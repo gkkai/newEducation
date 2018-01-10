@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.AddCityListsActivity">
+    <RelativeLayout style="@style/ActionBar"
+                    android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="添加名称" />
+
+    </RelativeLayout>
+    <ListView
+        android:layout_marginTop="72dp"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:divider="@android:color/transparent"
+        />
+</RelativeLayout>

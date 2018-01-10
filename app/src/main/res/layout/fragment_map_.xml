@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+               android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <RelativeLayout style="@style/ActionBar"
+       android:id="@+id/rlayouttitle" >
+
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="导航" />
+
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/wView_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlayouttitle"></WebView>
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:id="@+id/ll_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:background="@color/colorWhite">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+
+        >
+        <EditText
+            android:id="@+id/edit_serach"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/bt_serach"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+        <com.meiliangzi.app.widget.XListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollingCache="false"
+            android:scrollbars="none"
+            android:listSelector="@android:color/transparent"
+            android:dividerHeight="1dp"
+            android:divider="#F9F9F9"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:background="@color/colorWhite"
+        android:id="@+id/ll_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:weightSum="6"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_weight="5"
+            android:layout_width="0dp"
+            android:text="输入的名称"
+            android:layout_height="match_parent"/>
+        <Button
+            android:id="@+id/bt_sure"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</RelativeLayout>

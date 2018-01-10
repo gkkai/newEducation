@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/md_mydrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+    <WebView
+        android:id="@+id/wView_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"></WebView>
+    <RelativeLayout
+        android:id="@id/title"
+        style="@style/ActionBarMap"
+        android:layout_marginTop="23dp"
+        android:background="#0000"
+        >
+
+        <ImageView style="@style/ActionBar.LeftImage"
+                   android:background="#0000" />
+        <Spinner
+            android:id="@+id/spinner_city"
+            android:layout_centerVertical="true"
+            android:layout_width="73dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="40dp"
+            android:spinnerMode="dropdown"
+            android:dropDownWidth="80dp"
+            android:requiresFadingEdge="none"
+            android:dropDownVerticalOffset="40dp"
+            android:background="#0000"
+            />
+
+        <ImageView
+            android:id="@+id/image_ipuentname"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="45dp"
+            android:focusable="true"
+            android:background="@mipmap/inputname"
+            />
+        <ImageView
+            android:id="@+id/image_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:layout_gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:focusable="true"
+            android:background="@mipmap/mapadd"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/ll_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        >
+        <ImageView
+            android:id="@+id/imag_up_down"
+            android:layout_centerHorizontal="true"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/up"
+            />
+
+        <HorizontalScrollView
+            android:layout_marginTop="9dp"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#AA444444"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            >
+
+            <com.meiliangzi.app.widget.MyLearnLayout
+                android:id="@+id/layout_maps"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:background="@color/colorWhite"
+                android:orientation="horizontal"
+                >
+            </com.meiliangzi.app.widget.MyLearnLayout>
+        </HorizontalScrollView>
+        <View
+            android:layout_marginTop="69dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></View>
+
+        <ExpandableListView
+            android:layout_marginTop="69dp"
+            android:id="@+id/ellist_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:cacheColorHint="#abcdefff"
+            android:childDivider="#0000"
+            android:divider="#0000"
+            />
+    </RelativeLayout>
+
+
+
+
+</RelativeLayout>

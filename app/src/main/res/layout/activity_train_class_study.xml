@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.train.TrainClassStudyActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/tv_title_train"
+            style="@style/ActionBar.CenterTitle"
+            android:text="课程学习" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:layout_marginTop="73dp"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="50dp"
+        >
+
+        <RelativeLayout
+
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="51dp"
+            >
+            <xiaobo.com.video.CustomView.MyVideoPlayerStandard
+                android:id="@+id/jc_video"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="205dp"
+                android:id="@+id/tx_video_name"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:textSize="17sp"
+                android:text="视频名称"/>
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="232dp"
+                android:id="@+id/tx_video_teacher"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/colorLevel4"
+                android:textSize="@dimen/text_18_sp"
+                android:text="视频讲师名称"/>
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="272dp"
+                android:id="@+id/tx_video_learning_num"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/colorTextGray"
+                android:textSize="17sp"
+                android:text="视频学习人数"/>
+            <View
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="322dp"
+                android:background="@color/colorGrayLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="323dp"
+                android:id="@+id/tx_video_use_person"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/colorTextGray"
+                android:textSize="17sp"
+                android:text="适用人员"/>
+            <View
+                android:id="@+id/view"
+                android:layout_marginTop="373dp"
+                android:background="@color/colorGrayLine"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"></View>
+            <RelativeLayout
+                android:id="@+id/rel_class_study"
+                android:layout_marginTop="402dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+                <TextView
+                    android:text="章节列表"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp" />
+                <com.meiliangzi.app.widget.MyGridView
+                    android:id="@+id/myGridViewType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_30dp"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth" />
+
+
+            </RelativeLayout>
+            <View
+                android:id="@+id/id_view"
+                android:layout_below="@id/rel_class_study"
+                android:background="@color/colorGrayLine"
+                android:layout_width="match_parent"
+                android:layout_height="15dp"></View>
+        <RelativeLayout
+            android:layout_below="@id/id_view"
+            android:id="@+id/rel_class_study_commnet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            >
+            <TextView
+                android:text="评论列表"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+            <!--<com.meiliangzi.app.widget.XListView
+                android:layout_marginTop="30dp"
+                android:id="@+id/listView_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollingCache="false"
+                android:scrollbars="none"
+                android:listSelector="@android:color/transparent"
+                android:dividerHeight="1dp"
+                android:divider="#F9F9F9"
+                />-->
+            <com.meiliangzi.app.widget.MyGridView
+                android:id="@+id/listView_comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_30dp"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />
+        </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_marginBottom="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/zm_white"
+        >
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp"
+            android:hint="畅所欲言的时候到了！"
+            />
+        <TextView
+            android:id="@+id/tvSend"
+            android:drawablePadding="@dimen/margin_10dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:drawableLeft="@mipmap/ic_send"
+            android:textColor="@color/colorRedLine"
+            />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    android:padding="@dimen/margin_12">
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical">
+
+        <ImageView
+            android:id="@+id/iv_news_img"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/test_my_score" />
+
+        <ImageView
+            android:id="@+id/icPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_play"
+            android:visibility="gone" />
+    </FrameLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="@dimen/margin_6dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_new_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_4_dp"
+            android:lineSpacingExtra="@dimen/margin_4_dp"
+            android:lines="2"
+            android:ellipsize="end"
+            android:text="2017年8月4日大师开课，错过肠子真的就悔青了"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_16_sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/margin_6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_new_time"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:gravity="left"
+                android:lineSpacingExtra="@dimen/margin_4_dp"
+                android:text="2017年8月4日"
+                android:textColor="@color/colorGrgyLight"
+                android:textSize="@dimen/text_14_sp" />
+
+            <ImageView
+                android:id="@+id/iv_new_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_support_unselected"
+                android:scaleType="fitXY"
+                android:layout_marginRight="@dimen/margin_10dp"
+              />
+            <TextView
+                android:id="@+id/tv_new_collect_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_14_sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
+
+

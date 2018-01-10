@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.Main2Activity">
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <com.meiliangzi.app.widget.MyGridView
+            android:id="@+id/myGridViewType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:stretchMode="columnWidth" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F4F5"
+            android:padding="@dimen/margin_12"
+            android:text="筛选" />
+        <com.meiliangzi.app.widget.MyGridView
+            android:id="@+id/myGrid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:numColumns="2"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:stretchMode="columnWidth" />
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+
+    android:background="@color/colorWhite"
+    >
+
+    <TextView
+        android:paddingLeft="20dp"
+        android:id="@+id/tv_query_tiele"
+        android:gravity="center_vertical"
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="17sp"
+        android:text="hhhhhhhh"
+        android:layout_width="300dp"
+        android:layout_height="60dp" />
+
+    <TextView
+        android:layout_marginTop="60dp"
+        android:paddingLeft="20dp"
+        android:id="@+id/tv_query_create_at"
+        android:gravity="center_vertical"
+        android:layout_width="wrap_content"
+        android:text="2017.11.07"
+        android:layout_height="39dp" />
+
+    <ImageView
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_right_arrow"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginRight="20dp"/>
+
+
+
+    <View
+        android:layout_marginTop="99dp"
+        android:background="@color/colorGrayLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+
+</RelativeLayout>
+
+

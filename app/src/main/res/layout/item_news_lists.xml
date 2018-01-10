@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+
+    android:background="@color/colorWhite"
+    android:padding="@dimen/margin_12">
+
+
+<RelativeLayout
+
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:id="@+id/ivImg"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+
+         />
+    <LinearLayout
+        android:id="@+id/llLayout_item_newslists"
+        android:layout_toRightOf="@+id/ivImg"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginLeft="@dimen/margin_8dp"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/margin_6dp"
+        android:paddingTop="@dimen/margin_6dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:lines="2"
+            android:ellipsize="end"
+            android:textSize="19sp"
+            android:text="如何做好内容型产品的用户拉辛和促活?"
+            android:textColor="@color/colorTextDeep" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="2017-07-25"
+                android:textColor="@color/colorGrgyLight" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/image_item3"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+</RelativeLayout>
+
+</LinearLayout>
+
+

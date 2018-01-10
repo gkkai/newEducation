@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_12">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@mipmap/bg_question"
+            android:gravity="center"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/colorWhite" />
+            <TextView
+                android:id="@+id/tvPos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:text="如果由单位工会组成统一组织询价补充商业保险，您个人是否意愿购买"
+            android:textColor="@color/colorTextDeep" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/llAnswerA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:focusable="false"
+                android:id="@+id/ck1"
+                android:text="A"
+                android:textColor="@color/drawable_text_answer"
+                android:gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/selector_answer"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tvAnswerA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:button="@null"
+                android:text="可能会买"
+                android:textColor="@color/colorTextDeep" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAnswerB"
+            android:paddingTop="@dimen/margin_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:focusable="false"
+                android:id="@+id/ck2"
+                android:gravity="center"
+                android:text="B"
+                android:textColor="@color/drawable_text_answer"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/selector_answer"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tvAnswerB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:button="@null"
+                android:text="如果是免费的就会买"
+                android:textColor="@color/colorTextDeep" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/llAnswerC"
+            android:paddingTop="@dimen/margin_8dp"
+            android:paddingBottom="@dimen/margin_8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:text="C"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:focusable="false"
+                android:textColor="@color/drawable_text_answer"
+                android:id="@+id/ck3"
+                android:gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/selector_answer"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tvAnswerC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:button="@null"
+                android:text="没有购买欲望"
+                android:textColor="@color/colorTextDeep" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAnswerD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:text="D"
+                android:focusableInTouchMode="false"
+                android:clickable="false"
+                android:focusable="false"
+                android:textColor="@color/drawable_text_answer"
+                android:id="@+id/ck4"
+                android:gravity="center"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/selector_answer"
+                android:button="@null" />
+
+            <TextView
+                android:id="@+id/tvAnswerD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:button="@null"
+                android:text="肯定不买"
+                android:textColor="@color/colorTextDeep" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

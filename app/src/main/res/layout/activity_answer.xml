@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:context="com.meiliangzi.app.ui.AnswerActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage"
+                android:id="@+id/ivBack"
+            />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/ActionBar.CenterTitle"
+            android:text="倒计时：00:00" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <ListView
+        android:layout_weight="1"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="@android:color/transparent"
+        />
+
+    <TextView
+        android:id="@+id/tvSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ED2E3D"
+        android:gravity="center"
+        android:padding="@dimen/margin_12"
+        android:text="下一题"
+        android:textColor="@color/colorWhite"
+        />
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.meiliangzi.app.ui.view.imkit.SearchResultActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:textColor="#222222"
+            android:text="搜索群组" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <EditText
+        android:visibility="gone"
+        android:id="@+id/edit_search"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:singleLine="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:paddingLeft="20dp"
+
+        android:maxLength="13"
+        android:textSize="15sp"
+        android:drawablePadding="10dp"
+        android:hint="请输入群号或群名称"
+        android:drawableLeft="@mipmap/search1"
+        android:imeOptions="actionSearch"
+        android:background="@drawable/shape_edittext_map"
+
+        />
+    <GridView
+        android:id="@+id/gradview_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:numColumns="1"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        android:stretchMode="columnWidth" />
+
+</LinearLayout>

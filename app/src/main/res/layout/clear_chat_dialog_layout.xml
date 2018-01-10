@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#11ffffff">
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="130dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/creatgroup"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="15dp"
+            android:text="确定删除该群的聊天记录吗？"
+            android:textColor="@color/colorBlack"
+            android:textSize="19sp" />
+
+        <View
+            android:layout_marginTop="20dp"
+            android:background="@color/colorGrayLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"></View>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="取消"
+                android:textColor="@color/zm_gray_3"
+                android:textSize="16sp" />
+
+
+<View
+    android:background="@color/colorGrayLine"
+    android:layout_width="1dp"
+    android:layout_height="match_parent"></View>
+            <Button
+                android:id="@+id/yes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="60dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="清空"
+                android:textColor="@color/rc_draft_color"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+
+              tools:context="com.meiliangzi.app.ui.ArticalDetailActivity">
+
+
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="文章详情"
+            android:textColor="@color/colorTextDeep" />
+
+        <ImageView
+            style="@style/ActionBar.RightImage"
+            android:visibility="gone"
+            android:src="@mipmap/ic_share" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_4_dp"
+        android:background="@color/colorGrayLine" />
+
+    <ScrollView
+        android:layout_weight="0.51"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:background="@color/colorWhite"
+        >
+        <LinearLayout
+            android:background="@color/colorWhite"
+            android:padding="@dimen/margin_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_18_sp" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_6dp"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/tvSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:text=""
+                    android:drawablePadding="@dimen/margin_8dp"
+                    />
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivImg"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:scaleType="centerCrop" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:lineSpacingExtra="@dimen/margin_4_dp"
+                android:text=""
+                />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorGrayLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/margin_16dp"
+            android:paddingRight="@dimen/margin_16dp"
+
+            >
+
+            <LinearLayout
+
+                android:id="@+id/llParise"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/isSupport"
+                    style="@style/textStyleDeep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:clickable="false"
+                    android:drawableLeft="@drawable/selector_support_"
+                    android:drawablePadding="@dimen/margin_2dp"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:text="+1"
+                    android:textColor="@color/drawable_text_support" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCommon"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    style="@style/textStyleDeep"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawableLeft="@mipmap/ic_common_normal"
+                    android:drawablePadding="@dimen/margin_2dp"
+                    android:gravity="center"
+                    android:text="评论" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llCollect"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/cbCollecct"
+                    style="@style/textStyleDeep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:clickable="false"
+                    android:drawableLeft="@drawable/selector_collect"
+                    android:drawablePadding="@dimen/margin_2dp"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:text="收藏"
+                    android:textColor="@color/drawable_text_support" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llAnswer"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <CheckBox
+                    android:id="@+id/cbAnswer"
+                    style="@style/textStyleDeep"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@null"
+                    android:clickable="false"
+                    android:drawableLeft="@drawable/selector_answer_"
+                    android:drawablePadding="@dimen/margin_2dp"
+                    android:enabled="false"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:gravity="center"
+                    android:text="答题"
+                    android:textColor="@color/drawable_text_support" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

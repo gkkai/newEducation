@@ -1,0 +1,34 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="ActionBar">
+        <item name="android:layout_marginTop">25dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dip</item>
+        <item name="android:background">@color/colorWhite</item>
+    </style>
+
+
+    <style name="ActionBar.RightText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/text_14_sp</item>
+        <item name="android:textColor">@color/colorTextDefault</item>
+        <item name="android:paddingLeft">@dimen/margin_12</item>
+        <item name="android:paddingRight">@dimen/margin_12</item>
+        <item name="android:layout_marginRight">@dimen/margin_12</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+    </style>
+
+</resources>

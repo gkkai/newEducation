@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBlack"
+    android:gravity="center"
+    android:orientation="vertical">
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:background="@drawable/selector_white_rounder"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:padding="@dimen/margin_12"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温馨提示"
+            android:textColor="@color/colorTextDeep"
+            />
+        <TextView
+            android:layout_gravity="center"
+            android:paddingLeft="@dimen/margin_12"
+            android:paddingRight="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="您已经答过题了"
+            android:textColor="@color/colorTextDeep"
+            />
+        <View
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGrgyLight"/>
+
+        <TextView
+            android:id="@+id/tvConfirm"
+            android:paddingBottom="12dp"
+            android:layout_gravity="center"
+            android:paddingTop="@dimen/margin_16dp"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="wrap_content"
+            android:text="确定"
+            android:textColor="@color/colorRed"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

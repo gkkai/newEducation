@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.WebViewActivity"
+    android:orientation="vertical">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="行业资讯"
+            android:textColor="@color/colorTextDeep" />
+       <!-- <ImageView
+            style="@style/ActionBar.RightImage"
+            android:src="@mipmap/ic_share"/>-->
+    </RelativeLayout>
+
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.train.QueryClassListActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/tv_title_train"
+            style="@style/ActionBar.CenterTitle"
+            android:text="我的报名" />
+
+    </RelativeLayout>
+    <com.meiliangzi.app.widget.XListView
+        android:layout_marginTop="73dip"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        />
+</RelativeLayout>

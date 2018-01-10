@@ -1,0 +1,221 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EFEFEF"
+    tools:context="com.meiliangzi.app.ui.fragment.MineFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:background="@mipmap/bg_mine_top"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:paddingTop="20dp"
+            android:id="@+id/llUseInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@mipmap/test_user_start"
+                android:gravity="center"
+                >
+                <com.meiliangzi.app.widget.CircleImageView
+                    android:id="@+id/ivImg"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/ic_default_star" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:textSize="17sp"
+                android:text="登录/注册"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llMyScore"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_12">
+
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_score" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_12"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的成绩"
+                android:textSize="16sp"
+                android:textColor="#222222" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4_dp"
+                android:text="关注学习成绩"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="@dimen/margin_12"
+        android:layout_marginRight="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:id="@+id/llMyClassinfo"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_12">
+
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/myclass1" />
+
+        <LinearLayout
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_12"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的课程"
+                android:textSize="16sp"
+                android:textColor="#222222" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4_dp"
+                android:text="查看我的课程"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="@dimen/margin_12"
+        android:layout_marginRight="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:id="@+id/llMycollect"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_12">
+
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_mycollect" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_12"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的收藏"
+                android:textSize="16sp"
+                android:textColor="#222222" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4_dp"
+                android:text="查看自己喜欢的课程"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="@dimen/margin_12"
+        android:layout_marginRight="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:id="@+id/llSetting"
+        android:background="@color/colorWhite"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_12">
+
+        <ImageView
+            android:layout_marginTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_setting" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_12"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textSize="16sp"
+                android:textColor="#222222" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_4_dp"
+                android:text="个性化设置"
+                android:textColor="#999999" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+
+</LinearLayout>

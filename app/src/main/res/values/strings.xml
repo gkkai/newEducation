@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">煤亮子</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="stringIndex">首页</string>
+    <string name="stringVideo">社群</string>
+    <string name="stringMsg">消息</string>
+    <string name="stringMine">我的</string>
+    <string name="stringMAP">导航</string>
+    <string name="stringTRAIN">培训</string>
+
+
+    <string name="register_acode">获取验证码</string>
+    <string name="resend_peroid_nofity">秒后重发</string>
+    <string name="textPos">第%1$1题</string>
+
+    <string name="xlistview_header_hint_normal">下拉刷新</string>
+    <string name="xlistview_header_hint_ready">松开刷新数据</string>
+    <string name="xlistview_header_hint_loading">正在加载...</string>
+    <string name="xlistview_header_last_time">上次更新时间：</string>
+    <string name="xlistview_footer_hint_normal">查看更多</string>
+    <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+    <string name="setting_clear">清理缓存</string>
+    <string name="setting_clearing">正在清理缓存……</string>
+    <string name="setting_clears">缓存已经清理</string>
+    <string name="private_chat">发起聊天</string>
+    <string name="group_chat">创建群组</string>
+    <string name="add_contacts">添加好友</string>
+    <string name="add_select_group">创建群组</string>
+    <array name="request">
+        <item>querylist</item>
+        <item>studyinfo</item>
+        <item>articleinfo</item>
+        <item>savescore</item>
+        <item>userstudylist</item>
+        <item>getuserscores</item>
+        <item>usercollect</item>
+        <item>collectionlist</item>
+        <item>publishcomment</item>
+        <item>getallcomment</item>
+        <item>useronlinetimebyid</item>
+        <item>ispraise</item>
+        <item>ispraiselog</item>
+        <item>updateuserinfo</item>
+        <item>modifypassword</item>
+        <item>queryuserloginlog</item>
+    </array>
+    <string name="title_activity_web_view">WebViewActivity</string>
+    <string name="addressList_second_textSize_string">16sp</string>
+    <string name="title_activity_double_chat_room">DoubleChatRoomActivity</string>
+</resources>

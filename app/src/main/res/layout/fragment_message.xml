@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <Button
+        android:id="@+id/bt"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="暂无数据"
+        />
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        android:background="#EFEFEF"
+        />
+
+</LinearLayout>

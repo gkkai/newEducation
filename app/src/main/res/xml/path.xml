@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <external-path name="external_files" path="." />
+    <external-path path="Android/data/com.meiliangzi.app/" name="files_root" />
+    <external-path path="." name="/" />
+    <external-path name="rc_external_path" path="."/>
+</paths>

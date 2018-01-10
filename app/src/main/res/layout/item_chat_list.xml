@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rel_chat"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            >
+            <ImageView
+                android:id="@+id/image"
+                android:layout_marginLeft="20dp"
+                android:layout_centerVertical="true"
+                android:layout_width="47dp"
+                android:layout_height="47dp" />
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_marginLeft="78dp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:textSize="18sp"
+                android:text="姓名"
+                android:textColor="@color/cardview_dark_background"
+                android:gravity="center"
+                android:layout_alignTop="@id/image"/>
+            <TextView
+                android:id="@+id/text_mmessage"
+                android:layout_marginLeft="78dp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:text="消息内容"
+                android:gravity="center"
+                android:layout_alignBottom="@id/image"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/text_consent"
+                android:text="同意"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@color/colorRed"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="192dp"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+    <!--必须指定宽度-->
+    <TextView
+        android:id="@+id/txtv_top"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="@color/colorTextGray"
+        android:textColor="#eeeeee"
+        android:text="置顶" />
+    <!--必须指定宽度-->
+    <TextView
+        android:id="@+id/txtv_delete"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="#e53935"
+        android:textColor="#eeeeee"
+        android:text="删除" />
+    </LinearLayout>
+
+</LinearLayout>
+
+

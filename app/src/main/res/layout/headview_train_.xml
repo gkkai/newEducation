@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.meiliangzi.app.widget.TraonImageCycleView
+        android:id="@+id/icvView"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
+
+  <!--  <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_12">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="交易额" />
+
+        <TextView
+            android:id="@+id/tv_trade_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:text="￥1440.76万"
+            android:textColor="#FF8F4B"
+            android:textSize="16sp" />
+    </LinearLayout>-->
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="110dp"
+    android:weightSum="4">
+    <LinearLayout
+        android:id="@+id/ll_train_recentopenclass"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/openclasslist"/>
+        <TextView
+            android:gravity="center"
+            android:text="近期开班"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_train_studycenter"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/studycenter"/>
+        <TextView
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:text="学习中心"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_train_dataquery"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/dataquery"/>
+        <TextView
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:text="信息查询"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_train_datadownload"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@mipmap/datadownload"/>
+        <TextView
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:text="资料下载"
+            android:textSize="14sp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:layout_width="60dp"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+</LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:drawableLeft="@mipmap/video_image"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="精品视频"
+            android:textColor="@color/zm_black"/>
+        <TextView
+            android:id="@+id/tv_videw_more"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/ic_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="查看更多"
+            />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:padding="10dp"
+        android:background="@color/colorWhite"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="15">
+            <LinearLayout
+                android:layout_weight="7.3"
+
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/video_list_oneimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/video_list_onename"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <ImageView
+                    android:id="@+id/video_list_threeimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/video_list_threename"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+            <View
+                android:layout_weight="0.4"
+                android:background="@color/colorWhite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"></View>
+            <LinearLayout
+                android:layout_weight="7.3"
+
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/video_list_twoimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/video_list_twoname"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <ImageView
+                    android:id="@+id/video_list_fourimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/video_list_fourname"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:drawableLeft="@mipmap/recentclass"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="近期开班"
+            android:textColor="@color/zm_black"/>
+        <TextView
+            android:id="@+id/tv_openclass_more"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@mipmap/ic_right_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="查看更多"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:padding="10dp"
+        android:background="@color/colorWhite"
+        >
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="15">
+            <LinearLayout
+                android:layout_weight="7.3"
+
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/reclass_list_oneimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/reclass_list_onename"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <ImageView
+                    android:id="@+id/reclass_list_threeimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/reclass_list_threename"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+            <View
+                android:layout_weight="0.4"
+                android:background="@color/colorWhite"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"></View>
+            <LinearLayout
+                android:layout_weight="7.3"
+
+                android:layout_width="0dp"
+                android:layout_height="200dp"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/reclass_list_twoimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/reclass_list_twoname"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+                <ImageView
+                    android:id="@+id/reclass_list_fourimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp" />
+                <TextView
+                    android:textColor="@color/colorBlack"
+                    android:gravity="center_vertical"
+                    android:text="煤炭行业形式发展报告"
+                    android:id="@+id/reclass_list_fourname"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

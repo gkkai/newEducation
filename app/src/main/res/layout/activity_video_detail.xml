@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:background="@color/colorWhite"
+              tools:context="com.meiliangzi.app.ui.VideoDetailActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="详情"
+            />
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_4_dp"
+        android:background="@color/colorGrayLine" />
+
+
+    <TextView
+        android:visibility="gone"
+        android:padding="@dimen/margin_12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/textStyleDeep"
+        android:text="搬家中心党总支迅速传达学习公司“七一”表彰大会精神"
+        android:textSize="@dimen/text_18_sp"
+        android:textColor="@android:color/black"
+        />
+    <xiaobo.com.video.CustomView.MyVideoPlayerStandard
+        android:id="@+id/jc_video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+    <LinearLayout
+        android:padding="@dimen/margin_8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <View
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            />
+        <LinearLayout
+
+            android:id="@+id/llParise"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/isSupport"
+                style="@style/textStyleDeep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:clickable="false"
+                android:drawableLeft="@drawable/selector_support_"
+                android:drawablePadding="@dimen/margin_2dp"
+                android:enabled="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:gravity="center"
+                android:text="+1"
+                android:textColor="@color/drawable_text_support" />
+        </LinearLayout>
+        <!-- <CheckBox
+             android:id="@+id/isSupport"
+             style="@style/textStyleDeep"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:button="@null"
+             android:clickable="false"
+             android:drawableLeft="@drawable/selector_support_"
+             android:drawablePadding="@dimen/margin_2dp"
+             android:enabled="false"
+             android:focusable="false"
+             android:focusableInTouchMode="false"
+             android:gravity="center"
+             android:text="+1"
+             android:textColor="@color/drawable_text_support" />-->
+        <TextView
+            android:id="@+id/tvCollect"
+            android:gravity="center"
+            android:drawablePadding="@dimen/margin_6dp"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:drawableLeft="@mipmap/ic_collect_normal"
+            android:text="收藏"
+            />
+
+        <TextView
+            android:id="@+id/tvAnswer"
+            android:drawablePadding="@dimen/margin_6dp"
+            android:gravity="center"
+            android:drawableLeft="@mipmap/ic_answer_normal_"
+            android:layout_marginLeft="@dimen/margin_12"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorBlack"
+            android:text="答题"
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine"/>
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:background="@color/colorWhite"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine"/>
+    <LinearLayout
+        android:padding="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        >
+        <EditText
+            android:inputType="none"
+            android:id="@+id/etContent"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp"
+            android:hint="请输入内容"
+            />
+        <TextView
+            android:focusable="false"
+            android:id="@+id/tvSend"
+            android:drawablePadding="@dimen/margin_10dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发送"
+            android:drawableLeft="@mipmap/ic_send"
+            android:textColor="@color/colorRedLine"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

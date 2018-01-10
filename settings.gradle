@@ -1,0 +1,3 @@
+include ':app', ':jpush', ':versionupdatelibrary', ':zoomcommonlibs', ':IMLib', ':IMKit'
+include ':zoomcommonlib'
+include ':zoommobilertc'

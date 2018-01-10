@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.MapListsActivity">
+    <RelativeLayout style="@style/ActionBar"
+                    android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage"
+                   android:layout_centerVertical="true"
+                   />
+
+       <EditText
+            android:id="@+id/edit_adddress"
+            android:layout_width="210dp"
+            android:layout_height="30dp"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="40dp"
+            android:paddingLeft="10dp"
+            android:maxLength="13"
+            android:textSize="15sp"
+            android:hint="请输入查询的目的地..."
+            android:drawableLeft="@mipmap/search"
+            android:imeOptions="actionSearch"
+            android:background="@drawable/shape_edittext_map"
+
+            />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF" />
+   <!-- <LinearLayout
+        android:layout_marginTop="72dp"
+        android:id="@+id/ll_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#80FFFFFF"
+        >-->
+
+        <LinearLayout
+            android:layout_marginTop="72dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/colorWhite"
+            >
+            <TextView
+                android:id="@+id/tvhostirysocary"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:text="暂无历史记录"
+                />
+            <com.meiliangzi.app.widget.XListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="#F9F9F9"
+                android:dividerHeight="1dp"
+                android:listSelector="@android:color/transparent"
+                android:scrollbars="none"
+                android:scrollingCache="false"
+
+                />
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_no"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:layout_width="70dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+
+            android:background="@drawable/noimge"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            />
+        <TextView
+            android:gravity="center"
+
+            android:layout_width="70dp"
+            android:layout_height="20dp"
+            android:textSize="12sp"
+            android:text="暂无数据"
+            android:textColor="#999999"
+            />
+    </LinearLayout>
+
+
+</RelativeLayout>

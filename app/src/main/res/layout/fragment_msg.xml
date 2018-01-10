@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context="com.meiliangzi.app.ui.PersonCenterActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+
+        <TextView
+            android:visibility="gone"
+            style="@style/ActionBar.CenterTitle"
+            android:text="消息" />
+        <TextView
+            android:id="@+id/text_group"
+            style="@style/ActionBar.RightImage"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:text="群组"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginRight="120dp"
+            />
+        <TextView
+            android:id="@+id/text_frident"
+            style="@style/ActionBar.RightImage"
+            android:gravity="center_vertical"
+            android:textSize="17sp"
+            android:text="好友"
+            android:textColor="@color/cardview_dark_background"
+            android:layout_marginRight="60dp"
+            />
+        <ImageView
+            android:id="@+id/image_addfrident"
+            style="@style/ActionBar.RightImage"
+            android:src="@mipmap/add"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="请先登录或完善个人信息"
+        />
+   <!-- <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+
+    &lt;!&ndash;<FrameLayout
+        android:background="@color/colorWhite"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>&ndash;&gt;
+    <RelativeLayout
+        android:id="@+id/rl_system"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        >
+        <ImageView
+            android:id="@+id/image"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:layout_width="53dp"
+            android:layout_height="53dp" />
+        <TextView
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="18sp"
+            android:text="系统消息"
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:layout_alignTop="@id/image"/>
+        <TextView
+            android:id="@+id/text_systemmessage"
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="消息内容"
+            android:gravity="center"
+            android:layout_alignBottom="@id/image"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <RelativeLayout
+        android:id="@+id/rl_study"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        >
+        <ImageView
+            android:id="@+id/image2"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:layout_width="53dp"
+            android:layout_height="53dp" />
+        <TextView
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="18sp"
+            android:text="学习消息"
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:layout_alignTop="@id/image2"/>
+        <TextView
+            android:id="@+id/text_studymessage"
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="消息内容"
+            android:gravity="center"
+            android:layout_alignBottom="@id/image2"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <RelativeLayout
+        android:id="@+id/re_confirmation"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        >
+        <ImageView
+            android:id="@+id/image_suermessage"
+            android:layout_marginLeft="14dp"
+            android:layout_centerVertical="true"
+            android:layout_width="53dp"
+            android:layout_height="53dp" />
+        <TextView
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textSize="18sp"
+            android:text="验证消息"
+            android:textColor="@color/cardview_dark_background"
+            android:gravity="center"
+            android:layout_alignTop="@id/image_suermessage"/>
+        <TextView
+            android:id="@+id/text_suermessage"
+            android:layout_marginLeft="78dp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:text="消息内容"
+            android:gravity="center"
+            android:layout_alignBottom="@id/image_suermessage"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <FrameLayout
+        android:id="@+id/conversationlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>-->
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        />
+</LinearLayout>

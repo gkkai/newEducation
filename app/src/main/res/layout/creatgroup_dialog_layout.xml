@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#11ffffff">
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/creatgroup"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:gravity="center"
+            android:text="请输入群名称"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/grouptname"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:layout_gravity="center"
+            android:maxLength="13"
+            android:textSize="15sp"
+            android:gravity="center"
+
+            android:hint="请输入群名称"
+            android:focusable="true"
+            android:background="@drawable/shape_edittext_groupnema"
+            />
+
+<View
+    android:layout_gravity="center"
+    android:layout_width="280dp"
+    android:layout_height="1dp"
+    android:background="@color/colorRed"></View>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="温馨提示：群名称一旦确定，不能修改"
+            android:textSize="16sp" />
+        <View
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/rc_divider_color"></View>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="取消"
+                android:textColor="@color/zm_gray_3"
+                android:textSize="16sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/rc_divider_color"></View>
+
+            <Button
+                android:id="@+id/yes"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="确认"
+                android:textColor="@color/colorRed"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

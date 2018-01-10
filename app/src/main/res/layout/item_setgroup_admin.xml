@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/margin_12"
+    >
+
+   <com.meiliangzi.app.widget.XCRoundRectImageView
+       android:layout_centerVertical="true"
+       android:id="@+id/image_group_userheader"
+       android:layout_width="55dp"
+       android:layout_height="55dp"
+       android:scaleType="fitXY"/>
+    <TextView
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="60dp"
+        android:id="@+id/text_group_name"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="刘琳"
+        />
+    <TextView
+       android:layout_centerInParent="true"
+        android:id="@+id/text_group_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="管理员"
+        />
+    <TextView
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="12dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/text_cenele_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="取消管理员"
+        />
+</RelativeLayout>

@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_train_persong_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@mipmap/name"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:hint="请输入姓名"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+            <ImageView
+                android:id="@+id/image_train_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/man"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/colorWhite" />
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_train_ID_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@mipmap/idnumber"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:hint="请输入身份证"
+                android:inputType="textPassword"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cbLine2"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_train_phane"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@mipmap/phane"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:hint="请输入手机号"
+                android:inputType="textPassword"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+
+        </LinearLayout>
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/et_train_record"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawableLeft="@mipmap/record"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:hint="请选择学历"
+                android:maxLength="11"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin_12"
+                android:background="@drawable/drawable_line_focus"
+                android:button="@null" />
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_major"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/major"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请选择专业名称"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/company"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请选择工作单位"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_properties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/properties"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请选择单位性质"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_department"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/department"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请输入所在部门"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_job"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/job"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请输入职务"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:id="@+id/cbLine1"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_qq"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/qq"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请输入联系QQ"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/et_train_traintype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/traintype"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:hint="请选择培训类型"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+        <CheckBox
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="@dimen/margin_12"
+            android:background="@drawable/drawable_line_focus"
+            android:button="@null" />
+    </LinearLayout>
+        <ImageView
+            android:id="@+id/image_singup"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:layout_marginTop="@dimen/margin_20dp"
+            android:background="@mipmap/singup"
+            android:text="重置密码"
+             />
+    <TextView
+        android:layout_marginLeft="@dimen/margin_16dp"
+        android:layout_marginRight="@dimen/margin_16dp"
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center"
+        android:text="企业报名请登陆www.meiliangzi.cn"/>
+</LinearLayout>
+    </ScrollView>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.AddMapActivity">
+    <RelativeLayout style="@style/ActionBar"
+                    android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="添加名称" />
+        <TextView
+            android:id="@+id/sure"
+            style="@style/ActionBar.RightText"
+            android:textSize="17sp"
+            android:text="添加"
+            android:textColor="@color/zm_red"/>
+    </RelativeLayout>
+    <WebView
+        android:layout_marginTop="71dp"
+        android:id="@+id/wView_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        ></WebView>
+</RelativeLayout>

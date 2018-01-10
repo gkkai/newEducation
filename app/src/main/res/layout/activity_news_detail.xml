@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.meiliangzi.app.ui.ArticalDetailActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="资讯详情"
+            android:textColor="@color/colorTextDeep" />
+        <!--<ImageView
+            style="@style/ActionBar.RightImage"
+            android:src="@mipmap/ic_share"/>-->
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_4_dp"
+        android:background="@color/colorGrayLine" />
+<!--<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:id="@+id/layout_News"
+    android:background="@color/colorAccent">
+
+</LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+
+        >
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            >
+       <com.meiliangzi.app.widget.PagerSlidingTabStrip
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:allowWidthFull="true"
+            app:bottomLineHeight="2dp"
+            app:slidingBlock="@mipmap/line_red">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/layout_News"
+                android:background="@color/colorWhite">
+
+                <!--<TextView
+
+                    android:id="@+id/tvWhole"
+                    style="@style/text_slidingTabTitle"
+                    android:text="全部课程"
+                    android:layout_weight="1.0"
+                    android:textColor="#EA3241"
+                    android:textSize="@dimen/text_14_sp" />
+
+                <TextView
+                    android:id="@+id/tvBase"
+                    style="@style/text_slidingTabTitle"
+                    android:text="基础课程"
+                    android:layout_weight="1.0"
+                    android:textColor="@color/colorTextDeep"
+                    android:textSize="@dimen/text_14_sp" />
+
+                <TextView
+                    android:id="@+id/tvDe"
+                    style="@style/text_slidingTabTitle"
+                    android:text="党员教育"
+                    android:layout_weight="1.0"
+                    android:textColor="@color/colorTextDeep"
+                    android:textSize="@dimen/text_14_sp" />-->
+
+            </LinearLayout>
+       </com.meiliangzi.app.widget.PagerSlidingTabStrip>
+</HorizontalScrollView>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#EFEFEF" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <!--<ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
+        <LinearLayout
+            android:background="@color/colorWhite"
+            android:padding="@dimen/margin_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="@dimen/text_18_sp" />
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/margin_6dp"
+                android:layout_marginBottom="@dimen/margin_6dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:visibility="invisible"
+                    android:layout_weight="1"
+                    android:id="@+id/tvSub"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorBlack"
+                    android:drawableLeft="@mipmap/ic_i"
+                    android:text="123213232"
+                    android:drawablePadding="@dimen/margin_8dp"
+                    />
+                <TextView
+                    android:id="@+id/tvTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    />
+            </LinearLayout>
+            <ImageView
+                android:layout_marginBottom="@dimen/margin_8dp"
+                android:id="@+id/ivImg"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="180dp" />
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorBlack"
+                android:lineSpacingExtra="@dimen/margin_4_dp"
+                android:text=""
+                />
+        </LinearLayout>
+    </ScrollView>
+-->
+
+</LinearLayout>

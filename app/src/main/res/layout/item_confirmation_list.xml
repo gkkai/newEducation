@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:background="@color/colorWhite"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="20dp"
+        >
+
+        <RelativeLayout
+            android:id="@+id/rel_chat"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            >
+            <com.meiliangzi.app.widget.XCRoundRectImageView
+                android:id="@+id/image"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="47dp"
+                android:scaleType="fitXY"
+                android:layout_height="47dp" />
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_marginLeft="68dp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:textSize="17sp"
+                android:text="姓名"
+                android:textColor="#222222"
+                android:gravity="center"
+                android:layout_alignTop="@id/image"/>
+            <TextView
+                android:id="@+id/text_mmessage"
+                android:layout_marginLeft="68dp"
+                android:layout_width="160dp"
+                android:layout_height="20dp"
+                android:text="消息内容"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textColor="#666666"
+                android:layout_alignBottom="@id/image"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:id="@+id/text_refuse"
+                android:text="拒绝"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_addfrident_gray"/>
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/text_consent"
+                android:text="同意"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:background="@drawable/share_meet"/>
+            <TextView
+                android:visibility="gone"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:id="@+id/tv_wait"
+                android:text="等待验证"
+                android:textColor="#666666"
+                android:gravity="center"
+                android:textSize="15sp"
+                android:layout_width="wrap_content"
+                android:layout_height="26dp"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <!--必须指定宽度-->
+    <TextView
+        android:id="@+id/txtv_delete"
+        android:layout_width="96dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="#e53935"
+        android:textColor="#eeeeee"
+        android:text="删除" />
+
+</LinearLayout>
+
+

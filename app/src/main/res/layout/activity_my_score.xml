@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite"
+    tools:context="com.meiliangzi.app.ui.PersonCenterActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="我的成绩" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/margin_6dp"
+        android:background="@color/colorGrayLine" />
+    <com.meiliangzi.app.widget.PagerSlidingTabStrip
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:allowWidthFull="true"
+        app:bottomLineHeight="2dp"
+        app:slidingBlock="@mipmap/line_red">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvWhole"
+                style="@style/text_slidingTabTitleRank"
+                android:text="全部"
+                android:textSize="@dimen/text_14_sp"
+                android:textColor="#EA3241" />
+
+            <TextView
+                android:id="@+id/tvBase"
+                style="@style/text_slidingTabTitleRank"
+                android:text="已学习"
+                android:textSize="@dimen/text_14_sp"
+                android:textColor="@color/colorTextDeep" />
+            <TextView
+                android:id="@+id/tvDe"
+                style="@style/text_slidingTabTitleRank"
+                android:text="待学习"
+                android:textSize="@dimen/text_14_sp"
+                android:textColor="@color/colorTextDeep" />
+
+        </LinearLayout>
+
+    </com.meiliangzi.app.widget.PagerSlidingTabStrip>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        />
+</LinearLayout>

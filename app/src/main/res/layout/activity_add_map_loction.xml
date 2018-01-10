@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.AddMapLoctionActivity">
+    <RelativeLayout style="@style/ActionBar"
+                    android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="添加名称" />
+        <TextView
+            android:id="@+id/sure"
+            style="@style/ActionBar.RightText"
+            android:textSize="17sp"
+            android:textColor="@color/colorRed"
+            android:text="提交" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+            android:text="市区"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/iput_cityname"
+            android:hint="请输入市区名称..."
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            />
+        <ImageView
+            android:id="@+id/image_citylist"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.5"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_right_arrow_s"
+            android:layout_marginRight="20dp"/>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="131dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:layout_marginTop="131.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+            android:text="县级"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/iput_countyname"
+            android:hint="请输入县级名称..."
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            />
+        <ImageView
+            android:id="@+id/image_countylist"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="0.5"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/ic_right_arrow_s"
+            android:layout_marginRight="20dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="191.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:layout_marginTop="192dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+            android:text="类别"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <HorizontalScrollView
+            android:layout_weight="5.5"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:scrollbars="none"
+            android:fillViewport="true"
+            >
+            <LinearLayout
+
+                android:orientation="horizontal"
+                android:id="@+id/ll_map_type"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"></LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+    <View
+        android:layout_marginTop="312.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:layout_marginTop="252.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+
+            android:text="手机号码"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <EditText
+            android:id="@+id/phene_number"
+            android:hint="请输入手机号码"
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5.5"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:layout_gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:textSize="15sp"
+            android:focusable="true"
+            android:background="@drawable/shape_transptrent"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="252dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+
+    <LinearLayout
+        android:layout_marginTop="312.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+
+            android:text="地点名称"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <EditText
+            android:id="@+id/loction_name"
+            android:hint="请输入具体名称..."
+            android:gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_weight="5.5"
+            android:layout_height="match_parent"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/shape_transptrent"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="372.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:layout_marginTop="373dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+
+            android:text="经度"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/lat_id"
+            android:hint="124."
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            />
+
+    </LinearLayout>
+    <View
+        android:layout_marginTop="433.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
+    <LinearLayout
+        android:layout_marginTop="434dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:weightSum="7">
+        <TextView
+
+            android:text="纬度"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:textColor="@color/colorBlack"/>
+        <TextView
+            android:id="@+id/lng_id"
+            android:hint="37"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            />
+
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="71dp"
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="请先登录或完善个人信息"
+        android:background="@color/zm_white"
+        />
+
+</RelativeLayout>

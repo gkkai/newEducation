@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.WelcomeActivity">
+    <ImageView
+        android:id="@+id/ivImg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/bg_wel"
+        android:scaleType="fitXY"
+        />
+
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        tools:ignore="UselessParent"
+        android:id="@+id/relativeLayout">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/iv_welcome_loading_bg"
+            android:contentDescription="@null" />
+
+        <ImageView
+            android:id="@+id/iv_welcome_loading_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@mipmap/iv_welcome_loading_item"
+            android:contentDescription="@null" />
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <CheckBox
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:id="@+id/cbCk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:button="@null"
+        android:checked="false"
+        android:clickable="false"
+        android:drawableRight="@drawable/selector_gender"
+        android:padding="12dp"
+        android:text="神南公司"
+        android:textColor="@color/colorTextDeep" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp"
+                android:background="@color/colorWhite"
+    >
+   <!-- <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="500dp"
+                    android:background="@color/colorWhite"
+        >
+    </RelativeLayout>-->
+    <!--<ListView
+        android:id="@+id/listView_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="-15dp"
+        android:divider="@color/colorGrayLine"
+        android:dividerHeight="0.5dp" >
+    </ListView>-->
+ <TextView
+     android:gravity="center"
+     android:text="请培训类型"
+     android:layout_width="match_parent"
+     android:layout_height="40dp"/>
+ <View
+     android:background="@color/colorGrayLine"
+     android:layout_marginTop="40dp"
+     android:layout_width="match_parent"
+     android:layout_height="0.5dp"></View>
+    <TextView
+        android:layout_marginTop="40.5dp"
+        android:gravity="center"
+        android:text="培训"
+        android:id="@+id/text_record_train"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_marginTop="80.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"></View>
+    <TextView
+        android:layout_marginTop="81dp"
+        android:gravity="center"
+        android:text="复训"
+        android:id="@+id/text_record_refreshertraining"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
+
+</RelativeLayout>

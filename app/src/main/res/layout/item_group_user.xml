@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="90dp"
+    android:orientation="vertical"
+    android:paddingTop="@dimen/margin_12"
+    android:background="@color/white"
+    >
+    <com.meiliangzi.app.widget.XCRoundRectImageView
+       android:layout_gravity="center"
+        android:layout_centerVertical="true"
+       android:id="@+id/image_group_userheader"
+       android:layout_width="55dp"
+       android:layout_height="55dp"
+       android:scaleType="fitXY"/>
+    <TextView
+        android:id="@+id/text_group_name"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="刘琳"
+        />
+</LinearLayout>

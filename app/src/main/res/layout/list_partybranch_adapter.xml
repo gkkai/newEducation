@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorWhite"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp" >
+    <TextView
+        android:id="@+id/layout_part_list_adapter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:text="党支部列表"
+        android:textColor="@color/colorTextDefault"
+        android:textSize="19sp"
+        />
+
+    <ImageView
+        android:id="@+id/layout_partybranch_list_adapter_right_arrow"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone"
+        android:layout_marginRight="5dp"
+        android:src="@mipmap/ic_right_arrow_s" />
+
+</RelativeLayout>

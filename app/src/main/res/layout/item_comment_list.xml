@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:paddingBottom="@dimen/margin_10dp"
+    android:paddingTop="@dimen/margin_10dp">
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:id="@+id/tx_comment_person"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="@color/colorBlack"
+        android:text="评论人名称"/>
+    <TextView
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="120dp"
+        android:id="@+id/tx_comment_time"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:text="评论时间"/>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:id="@+id/llParise"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/isSupport"
+            style="@style/textStyleDeep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:clickable="false"
+            android:drawableLeft="@drawable/selector_support_"
+            android:drawablePadding="@dimen/margin_2dp"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:text="+1"
+            android:textColor="@color/drawable_text_support" />
+    </LinearLayout>
+    <TextView
+        android:gravity="center_vertical"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="60dp"
+        android:id="@+id/tx_comment_data"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBlack"
+        android:text="评论内容"/>
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorGrayLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</RelativeLayout>

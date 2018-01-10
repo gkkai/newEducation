@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.meiliangzi.app.widget.MyDrawer
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/md_mydrawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    app:dragtype="bottom"
+    app:isOpen="false"
+    app:content="@+id/r_map"
+    app:drag="@+id/ll_drag_main"
+    app:handler="@+id/rl_head"
+    >
+    <RelativeLayout
+        android:id="@+id/r_map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout style="@style/ActionBarMap"
+                        android:layout_marginTop="23dp">
+
+            <ImageView style="@style/ActionBar.LeftImage" />
+            <TextView
+                android:id="@+id/image_address"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="50dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:hint="榆林"
+                android:layout_width="60sp"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_edittext_map"/>
+            <EditText
+                android:id="@+id/edit_adddress"
+                android:layout_width="190dp"
+                android:layout_height="30dp"
+                android:imeOptions="actionNext|flagNoExtractUi"
+                android:layout_gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="40dp"
+                android:maxLength="13"
+                android:textSize="15sp"
+                android:hint="请输入您要查询的目的地..."
+                android:focusable="true"
+                android:background="@drawable/shape_edittext_map"
+
+                />
+
+        </RelativeLayout>
+
+        <WebView
+            android:layout_marginTop="70dp"
+            android:id="@+id/wView_map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></WebView>
+      <!--  <LinearLayout
+            android:layout_marginTop="70dp"
+            android:id="@+id/ll_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#80FFFFFF"
+            >
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:weightSum="6"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:background="@color/colorWhite"
+                >
+                <EditText
+                    android:id="@+id/edit_serach"
+                    android:layout_width="0dp"
+                    android:layout_weight="4"
+                    android:layout_height="30dp"
+                    android:imeOptions="actionNext|flagNoExtractUi"
+                    android:layout_gravity="center"
+                    android:maxLength="13"
+                    android:textSize="15sp"
+                    android:hint="请输入地址..."
+                    android:focusable="true"
+                    android:background="@drawable/shape_edittext_map"
+                    />
+
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/tx_serach"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="搜索"
+                    android:layout_height="20dp"/>
+                <TextView
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:id="@+id/tx_cancel"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:text="取消"
+                    android:layout_height="20dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:paddingRight="10dp"
+                android:paddingLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/colorWhite"
+                >
+                <TextView
+                    android:id="@+id/tvhostirysocary"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:textSize="17sp"
+                    android:text="暂无历史记录"
+                    />
+                <com.meiliangzi.app.widget.XListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:divider="#F9F9F9"
+                    android:dividerHeight="1dp"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+        <RelativeLayout
+
+            android:id="@+id/rl_bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:visibility="gone"
+            >
+            <TextView
+                android:layout_marginTop="20dp"
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:text="目的地："
+                android:paddingLeft="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="50dp"
+                android:background="@color/colorWhite"
+                android:layout_height="30dp"/>
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:id="@+id/image_map"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/studycenter"
+                android:layout_marginBottom="10dp"/>
+        </RelativeLayout>-->
+
+    </RelativeLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_drag_main"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        >
+
+        <ImageView
+            android:id="@+id/rl_head"
+            android:layout_width="40dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="#EFEFEF" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@color/colorWhite"
+            android:gravity="center"
+
+            >
+
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:id="@+id/layout_maps"
+                    android:background="@color/colorWhite">
+
+                    <TextView
+
+                        android:id="@+id/tvWhole"
+                        style="@style/text_slidingTabTitle"
+                        android:text="全部课程"
+                        android:layout_weight="1.0"
+                        android:textColor="#EA3241"
+                        android:textSize="@dimen/text_14_sp" />
+
+                    <TextView
+                        android:id="@+id/tvBase"
+                        style="@style/text_slidingTabTitle"
+                        android:text="基础课程"
+                        android:layout_weight="1.0"
+                        android:textColor="@color/colorTextDeep"
+                        android:textSize="@dimen/text_14_sp" />
+
+                    <TextView
+                        android:id="@+id/tvDe"
+                        style="@style/text_slidingTabTitle"
+                        android:text="党员教育"
+                        android:layout_weight="1.0"
+                        android:textColor="@color/colorTextDeep"
+                        android:textSize="@dimen/text_14_sp" />
+
+                </LinearLayout>
+
+        </LinearLayout>
+        <com.meiliangzi.app.widget.XListView
+            android:id="@+id/ll_drag_listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#F9F9F9"
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+
+            />
+
+    </LinearLayout>
+
+
+</com.meiliangzi.app.widget.MyDrawer>
+

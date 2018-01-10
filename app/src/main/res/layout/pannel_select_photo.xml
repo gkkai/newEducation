@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_panel_report_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:background="@android:color/transparent"
+    >
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_take_photograph"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/panel_report_bottom_bg"
+            android:gravity="center"
+            android:text="拍照"
+            android:textColor="#084675"
+            android:textSize="16sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp" />
+
+        <TextView
+            android:id="@+id/tv_get_albums"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/panel_report_bottom_bg"
+            android:gravity="center"
+            android:text="从手机相册选择"
+            android:textColor="#084675"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:id="@+id/ll_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/panel_report_bottom_bg">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/selector_common_item_press"
+                android:gravity="center"
+                android:text="取消"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

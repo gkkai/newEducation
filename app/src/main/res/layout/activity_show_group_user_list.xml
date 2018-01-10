@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.meiliangzi.app.ui.view.imkit.ShowGroupUserListActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="群成员列表" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="71dp"
+        android:background="@color/colorGrayLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"></View>
+    <com.meiliangzi.app.widget.XListView
+        android:layout_marginTop="72dp"
+        android:id="@+id/listViewUser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="#F9F9F9"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+
+        />
+</RelativeLayout>

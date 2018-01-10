@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Container"
+    android:layout_height="match_parent"
+    android:clickable="true">
+
+    <ImageView
+        android:id="@+id/iv_nodata_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-80dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/logo" />
+
+    <TextView
+        android:id="@+id/tv_nodata_content"
+        style="@style/TextView.Black"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:text="无数据"
+        android:textSize="@dimen/text_18_sp" />
+
+</FrameLayout>

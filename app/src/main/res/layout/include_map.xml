@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="250dp"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@color/colorWhite"
+        android:gravity="center"
+        >
+        <com.meiliangzi.app.widget.PagerSlidingTabStrip
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/layout_News"
+                android:background="@color/colorWhite">
+<!--                <TextView
+
+                    android:id="@+id/tvWhole"
+                    style="@style/text_slidingTabTitle"
+                    android:text="全部课程"
+                    android:layout_weight="1.0"
+                    android:textColor="#EA3241"
+                    android:textSize="@dimen/text_14_sp" />
+
+                <TextView
+                    android:id="@+id/tvBase"
+                    style="@style/text_slidingTabTitle"
+                    android:text="基础课程"
+                    android:layout_weight="1.0"
+                    android:textColor="@color/colorTextDeep"
+                    android:textSize="@dimen/text_14_sp" />
+
+                <TextView
+                    android:id="@+id/tvDe"
+                    style="@style/text_slidingTabTitle"
+                    android:text="党员教育"
+                    android:layout_weight="1.0"
+                    android:textColor="@color/colorTextDeep"
+                    android:textSize="@dimen/text_14_sp" />-->
+
+            </LinearLayout>
+        </com.meiliangzi.app.widget.PagerSlidingTabStrip>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="#EFEFEF" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

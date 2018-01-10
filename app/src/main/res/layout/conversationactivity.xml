@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/colorWhite"
+        >
+
+        <ImageView style="@style/ActionBar.LeftImage"
+            android:id="@+id/image_left"/>
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="120dp"
+            style="@style/ActionBar.CenterTitle"
+            android:text="title" />
+        <ImageView style="@style/ActionBar.RightImage"
+            android:id="@+id/image_right"
+            android:visibility="gone"
+            android:src="@mipmap/frident"
+            />
+        <ImageView style="@style/ActionBar.RightImage"
+            android:id="@+id/test_right"
+            android:src="@mipmap/groupset"
+            android:visibility="gone"
+            />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"></View>
+
+    <fragment
+        android:layout_marginTop="48dp"
+        android:id="@+id/conversation"
+        android:name="io.rong.imkit.fragment.ConversationFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/text_addfrident"
+        android:gravity="center"
+        android:text="请先添加好友"
+        android:background="#f2f2f2"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

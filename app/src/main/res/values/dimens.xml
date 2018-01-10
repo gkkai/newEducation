@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_16dp">16dp</dimen>
+    <dimen name="margin_20dp">20dp</dimen>
+    <dimen name="margin_10dp">10dp</dimen>
+    <dimen name="margin_8dp">8dp</dimen>
+    <dimen name="margin_30dp">30dp</dimen>
+    <dimen name="textSize_14sp">14sp</dimen>
+    <dimen name="margin_2dp">2dp</dimen>
+    <dimen name="margin_6dp">6dp</dimen>
+    <dimen name="margin_2_dp">2dp</dimen>
+
+    <dimen name="text_14_sp">14sp</dimen>
+    <dimen name="margin_4_dp">7dp</dimen>
+    <dimen name="text_16_sp">16sp</dimen>
+    <dimen name="text_18_sp">18sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="addressList_linkman">20dp</dimen>
+</resources>

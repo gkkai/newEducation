@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    tools:context="com.meiliangzi.app.ui.PersonCenterActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="设置姓名" />
+
+        <TextView
+            android:layout_marginRight="@dimen/margin_12"
+            android:id="@+id/tvDone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="完成"
+            android:textColor="@color/colorRed" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/margin_20dp"
+        android:padding="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etNickName"
+            android:background="@android:color/transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="请输入真实姓名"
+            android:textSize="@dimen/textSize_14sp"
+            android:drawablePadding="@dimen/margin_8dp"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            />
+        <CheckBox
+            android:layout_marginTop="@dimen/margin_12"
+            android:id="@+id/cbLine1"
+            android:button="@null"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@drawable/drawable_line_focus"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:text="设置你的真实姓名~"
+            android:textColor="@color/colorTextDefault" />
+
+    </LinearLayout>
+</LinearLayout>

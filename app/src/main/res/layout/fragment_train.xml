@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="培训" />
+        <ImageView
+            android:id="@+id/imageheader"
+            style="@style/ActionBar.RightImage"
+            android:textColor="@color/colorRed"
+            android:src="@mipmap/myheader"
+            android:layout_marginRight="8dp"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvEmpty"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="请先登录或完善个人信息"
+        />
+
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        />
+</LinearLayout>

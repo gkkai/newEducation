@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
+    android:orientation="vertical">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="64dp">
+        <ImageView
+            android:id="@+id/image_file_type"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/excel"
+            android:layout_width="35dp"
+            android:layout_height="35dp" />
+        <TextView
+            android:id="@+id/tx_enclosure_name"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="55dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="70dp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="学员登记模版"/>
+        <TextView
+            android:id="@+id/tx_filedownload"
+            android:gravity="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="50dp"
+            android:layout_height="25dp"
+            android:text="打开"
+            android:background="@drawable/shape_filedown"/>
+    </RelativeLayout>
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+
+</LinearLayout>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+
+              android:background="@color/colorWhite"
+              android:padding="@dimen/margin_12">
+
+
+    <RelativeLayout
+
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ivImg"
+            android:layout_width="120dp"
+            android:layout_height="150dp"
+            android:scaleType="centerCrop"
+            android:background="@mipmap/meet"
+            />
+        <LinearLayout
+            android:id="@+id/llLayout_item_newslists"
+            android:layout_toRightOf="@+id/ivImg"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginLeft="@dimen/margin_8dp"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/margin_6dp"
+            android:weightSum="7"
+            android:paddingTop="@dimen/margin_6dp">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_weight="2"
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:ellipsize="end"
+                android:textSize="16sp"
+                android:text="内部测试"
+                android:textColor="@color/colorTextDeep"
+                />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                >
+                <TextView
+
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会议类型："
+                    android:textColor="@color/colorGrgyLight" />
+                <TextView
+                    android:id="@+id/tvmeettype"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-07-25"
+                    android:textColor="@color/colorGrgyLight" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                >
+                <TextView
+
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="预定人数："
+                    android:textColor="@color/colorGrgyLight" />
+                <TextView
+                    android:id="@+id/tvPersonNumber"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-07-25"
+                    android:textColor="@color/colorGrgyLight" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                >
+                <TextView
+
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开始时间："
+                    android:textColor="@color/colorGrgyLight" />
+                <TextView
+                    android:id="@+id/tvMeetStartTime"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-07-25"
+                    android:textColor="@color/colorGrgyLight" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                >
+                <TextView
+
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="会议时长："
+                    android:textColor="@color/colorGrgyLight" />
+                <TextView
+                    android:id="@+id/tvMeetLong"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2017-07-25"
+                    android:textColor="@color/colorGrgyLight" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/tvHost"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/share_meet"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:text="主持人入口" />
+                <View
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@color/colorWhite"
+                    android:layout_height="match_parent"></View>
+
+                <TextView
+                    android:id="@+id/tvParticipants"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/share_meet"
+                    android:gravity="center"
+                    android:text="参与人入口"
+                    android:textColor="@color/colorWhite" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>
+
+

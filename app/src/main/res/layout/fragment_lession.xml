@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tvEmpty"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="请先登录或完善个人信息"
+            />
+
+        <com.meiliangzi.app.widget.XListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="#F9F9F9"
+            android:dividerHeight="1dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"
+            android:scrollingCache="false" />
+
+    </LinearLayout>
+
+   <LinearLayout
+        android:id="@+id/ll_no"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+       android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+
+            android:background="@mipmap/nocourse"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            />
+        <TextView
+            android:gravity="center"
+
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:textSize="17sp"
+            android:text="暂无课程"
+            android:textColor="#999999"
+            />
+    </LinearLayout>
+</RelativeLayout>
