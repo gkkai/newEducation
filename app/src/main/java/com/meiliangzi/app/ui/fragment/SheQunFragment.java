@@ -17,6 +17,7 @@ import com.meiliangzi.app.ui.NewsDetailActivity;
 import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.meiliangzi.app.ui.view.ZoomActivity;
+import com.meiliangzi.app.ui.view.vote.VoteActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +34,8 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
     RelativeLayout rl_shequn_zoommeet;
     @BindView(R.id.rl_shequn_industry)
     RelativeLayout rl_shequn_industry;
+    @BindView(R.id.rl_shequn_vote)
+    RelativeLayout rl_shequn_vote;
 
     public SheQunFragment() {
         // Required empty public constructor
@@ -58,7 +61,7 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
         rl_shequn_zoommeet.setOnClickListener(this);
 
         rl_shequn_industry.setOnClickListener(this);
-
+        rl_shequn_vote.setOnClickListener(this);
 
 
     }
@@ -91,6 +94,11 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
                 MyApplication.type=5;
                 Intent intent=new Intent(MyApplication.activity, NewsDetailActivity.class);
                 getActivity().startActivity(intent);
+                break;
+            case R.id.rl_shequn_vote:
+                // TODO  行业资讯查看更多
+                Intent intentvote=new Intent(MyApplication.activity, VoteActivity.class);
+                getActivity().startActivity(intentvote);
                 break;
         }
 

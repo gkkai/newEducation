@@ -64,6 +64,10 @@ import com.meiliangzi.app.model.bean.UserStar;
 import com.meiliangzi.app.model.bean.Validate;
 import com.meiliangzi.app.model.bean.VersionUpdate;
 import com.meiliangzi.app.model.bean.VideoInfoBean;
+import com.meiliangzi.app.model.bean.VoteBaseBean;
+import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
+import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
+import com.meiliangzi.app.model.bean.VpteSubvoteinfoBean;
 
 import org.json.JSONObject;
 
@@ -838,6 +842,34 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"userId","friendId"}, url = "", resultClass = AgreeFriendapplyBean.class, refreshMethod = "getisfriend")
     public void isfriend(Object context,int userId,int friendId);
+    /**
+     * 投票项目列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = VoteBaseBean.class, refreshMethod = "getvotelist")
+    public void votelist(Object context);
+    /**
+     * 投票项目列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"voteId","userId"}, url = "", resultClass = VoteSubvotelistBean.class, refreshMethod = "getvotelist")
+    public void subvotelist(Object context,int voteId,int userId);
+    /**
+     * 投票
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"subVoteId","userId"}, url = "", resultClass = VoteUsersubvoteBean.class, refreshMethod = "getusersubvote")
+    public void usersubvote(Object context,int subVoteId,int userId);
+    /**
+     * 投票内容详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"subVoteId","userId"}, url = "", resultClass = VpteSubvoteinfoBean.class, refreshMethod = "getsubvoteinfo")
+    public void subvoteinfo(Object context,int subVoteId,int userId);
 }
 
 

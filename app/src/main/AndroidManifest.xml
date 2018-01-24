@@ -108,17 +108,18 @@
             android:name=".ui.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data
                     android:host="com.meiliangzi.app"
                     android:path="/conversationlist"
                     android:scheme="rong" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".ui.RegisterActivity"
@@ -535,8 +536,8 @@
 
         <activity
             android:name=".ui.view.imkit.AddFridengActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".ui.view.imkit.NewBuildChatGroupActivity"
             android:theme="@style/AppTheme" />
@@ -549,16 +550,31 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.view.imkit.ChatFridentActivity"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".ui.view.imkit.MessageSystemActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.view.imkit.ShowGroupUserListActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.imkit.SearchResultActivity"
-            android:theme="@style/AppTheme" ></activity>
+        <activity
+            android:name=".ui.view.imkit.SearchResultActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.vote.VoteActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.vote.VoteListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.vote.VoteDetailsActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.view.vote.VoteDateVoideActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="adjustPan" ></activity>
     </application>
 
 </manifest>

@@ -43,6 +43,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import butterknife.BindView;
 
@@ -81,25 +82,28 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
     InputMethodManager imm;
     private MyDialog myDialog;
 
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_map_lists);
         onCreateView(R.layout.activity_map_lists);
         imm= (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+
+
+
+
+
     }
 
 
 
     @Override
     protected void findWidgets() {
-       /* loctsons= CacheUtils.readJson(this,"CacheLoction");
-        if(loctsons!=null&&loctsons.size()!=0){
-            lists.clear();
-            for(int j=0;j<loctsons.size();j++){
-                lists.add(gson.fromJson(loctsons.get(j),MapLoctionsBean.DataBean.class));
-            }
-        }*/
+
         adapter = new BaseLoctionsAdapter<QueryMapsBeans.DataBean>(this, R.layout.item_loctions_lists) {
 
             @Override

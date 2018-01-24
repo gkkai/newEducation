@@ -516,12 +516,12 @@
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f62a.png"
     },
     {
-        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_bubble_left.9.png",
-        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_bubble_left.9.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_bubble_left_file.9.png",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_bubble_left_file.9.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_bubble_left.9.png",
+        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_bubble_left.9.png"
     },
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_fr_file_list_ad_icon_file.png",
@@ -812,12 +812,12 @@
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f61a.png"
     },
     {
-        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_voice_receive_play3.png",
-        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_voice_receive_play3.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_volume_1.png",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_volume_1.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_voice_receive_play3.png",
+        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_voice_receive_play3.png"
     },
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ext_my_locator.png",
@@ -1400,12 +1400,12 @@
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f4a3.png"
     },
     {
-        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_file_icon_video.png",
-        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_file_icon_video.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_emotion_toggle_hover.png",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_emotion_toggle_hover.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_file_icon_video.png",
+        "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_file_icon_video.png"
     },
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u26a1.png",

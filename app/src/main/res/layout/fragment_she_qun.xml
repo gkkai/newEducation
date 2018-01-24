@@ -132,5 +132,33 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#f2f2f2"></View>
+    <RelativeLayout
+        android:id="@+id/rl_shequn_vote"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+        <TextView
+            android:textColor="#222222"
+            android:gravity="center_vertical"
+            android:text="投票管理"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:drawableLeft="@mipmap/votelog"
+            android:drawablePadding="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"/>
+        <ImageView
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@mipmap/ic_right_arrow"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"></View>
 
 </LinearLayout>
