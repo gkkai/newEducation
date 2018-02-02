@@ -20,6 +20,7 @@ import com.meiliangzi.app.model.bean.ArticalList;
 import com.meiliangzi.app.model.bean.BannerBean;
 import com.meiliangzi.app.model.bean.HomePageBean;
 import com.meiliangzi.app.model.bean.IndexNewsBean;
+import com.meiliangzi.app.model.bean.IndexpicBean;
 import com.meiliangzi.app.model.bean.StudyInfo;
 import com.meiliangzi.app.tools.IntentUtils;
 import com.meiliangzi.app.tools.PreferManager;
@@ -67,6 +68,7 @@ public class IndexFragment extends BaseFragment implements XListView.IXListViewL
     TextView tvOssNum;
     TextView tvTradeNum;
     TextView tvEmpty;
+    ImageView indexpic;
     //TextView tvMore;
     /*TextView tvZoomMore;
     TextView tvmap;*/
@@ -116,6 +118,8 @@ public class IndexFragment extends BaseFragment implements XListView.IXListViewL
         super.onResume();
         page=1;
         ProxyUtils.getHttpProxy().indexnews(this);
+        ProxyUtils.getHttpProxy().indexpic(this);
+
         isLogin();
     }
 
@@ -159,7 +163,13 @@ public class IndexFragment extends BaseFragment implements XListView.IXListViewL
         tvOssNum.setText(bean.getData().getCloudsstock() + "万");
         tvTradeNum.setText(bean.getData().getTurnover() + "万");
     }
+    protected void getindexpic(IndexpicBean bean) {
+        /*tvCoopNum.setText(bean.getData().getCooperation() + "个");
+        tvOssNum.setText(bean.getData().getCloudsstock() + "万");
+        tvTradeNum.setText(bean.getData().getTurnover() + "万");*/
+        ImageLoader.getInstance().displayImage(bean.getData(), indexpic, MyApplication.getSimpleOptions(R.mipmap.index_wait, R.mipmap.index_wait));
 
+    }
     public void getData(String type, int currentPage, int pageSize) {
         ProxyUtils.getHttpProxy().querylist(this, type, String.valueOf(currentPage), String.valueOf(pageSize), PreferManager.getUserId());
        // ProxyUtils.getHttpProxy().indexnews(this);
@@ -219,6 +229,7 @@ public class IndexFragment extends BaseFragment implements XListView.IXListViewL
         tvOssNum = (TextView) headView.findViewById(R.id.tv_oss_num);
         tvTradeNum = (TextView) headView.findViewById(R.id.tv_trade_money);
         ll_Trani= (RelativeLayout) headView.findViewById(R.id.ll_train);
+        indexpic=(ImageView) headView.findViewById(R.id.image_indexpic);
         ll_Trani.setOnClickListener(this);
         //image_zoom= (ImageView) headView.findViewById(R.id.image_zoom);
        // automaticView= (AutomaticView) headView.findViewById(R.id.AuView_Information);

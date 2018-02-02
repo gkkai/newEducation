@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.checkSupervise.CheckTaskDetailActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="任务详情" />
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"></View>
+    <ScrollView
+        android:layout_marginTop="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/text_check_projecttitle"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="煤亮子监控项目标题"
+                android:maxEms="15"
+                android:singleLine="true"
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:textColor="#222222" />
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/text_check_projecttitle"
+                android:layout_marginTop="16dp"
+                android:id="@+id/image_project_stats"
+                android:background="@mipmap/greaden"
+                android:layout_width="15dp"
+                android:layout_height="20dp" />
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/image_project_stats"
+                android:layout_marginTop="16dp"
+                android:id="@+id/image_project_stats2"
+                android:background="@mipmap/red"
+                android:layout_width="15dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical"
+                android:text="负责人："
+                android:textColor="#666666" />
+            <TextView
+                android:id="@+id/text_username"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="50dp"
+                android:gravity="center_vertical"
+                android:text="李刚"
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="81dp"
+                android:gravity="center_vertical"
+                android:text="执行时间："
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:id="@+id/text_start_at"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="81dp"
+                android:gravity="center_vertical"
+                android:text="2019.09.08"
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="110dp"
+                android:gravity="center_vertical"
+                android:text="协作部门："
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:id="@+id/text_assisting_departmentname"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="110dp"
+                android:gravity="center_vertical"
+                android:text="协作部门"
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_assisting_departmentname"
+                android:layout_marginTop="6dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="right"
+                android:text="完成标准："
+                android:textSize="14.5sp"
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:layout_below="@id/text_assisting_departmentname"
+                android:layout_marginTop="6dp"
+                android:id="@+id/text_standard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:textSize="14.5sp"
+                android:text="完成标准："
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_standard"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="完成措施："
+                android:textSize="14.5sp"
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:layout_below="@id/text_standard"
+                android:layout_marginTop="10dp"
+                android:id="@+id/text_measures"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:gravity="center_vertical"
+                android:textSize="14.5sp"
+                android:text="完成措施："
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:layout_below="@id/text_measures"
+                android:layout_marginTop="10dp"
+                android:id="@+id/text_examines_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:gravity="center_vertical"
+                android:text="审核人"
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_measures"
+                android:layout_marginTop="10dp"
+                android:id="@+id/text_project_auditing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:text="审核人："
+                android:textColor="#666666"></TextView>
+
+            <View
+                android:layout_below="@id/text_examines_userName"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/colorGrayLine"></View>
+
+
+            <TextView
+                android:layout_below="@id/text_examines_userName"
+                android:layout_marginTop="22dp"
+                android:layout_marginLeft="50dp"
+                android:id="@+id/text_checkcord"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:textSize="17sp"
+                android:textColor="#0099ff"
+                android:text="成果书记录" />
+            <TextView
+                android:layout_below="@id/text_examines_userName"
+                android:layout_marginTop="22dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:id="@+id/text_changecord"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:drawablePadding="10dp"
+                android:textSize="17sp"
+                android:textColor="#222222"
+                android:gravity="center"
+                android:text="变更记录" />
+
+            <View
+                android:layout_below="@id/text_changecord"
+                android:layout_marginTop="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorGrayLine"></View>
+
+
+
+
+            <!--<com.meiliangzi.app.widget.XListView
+                android:layout_below="@id/text_changecord"
+                android:layout_marginTop="16dp"
+                android:id="@+id/listView"
+                android:listSelector="@android:color/transparent"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingRight="20dp"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth"/>-->
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_below="@id/text_changecord"
+                android:layout_marginTop="4dp"
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:horizontalSpacing="2dp"
+                android:verticalSpacing="2dp"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth"
+                android:layout_marginBottom="@dimen/margin_30dp"/>
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

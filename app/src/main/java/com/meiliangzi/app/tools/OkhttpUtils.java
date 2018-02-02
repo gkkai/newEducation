@@ -6,6 +6,8 @@ import android.support.annotation.NonNull;
 
 import com.meiliangzi.app.tools.picompressor.HttpCallback;
 
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.io.InputStreamReader;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -123,6 +126,39 @@ public class OkhttpUtils {
 
 
     }
+
+   /* *//**
+     *
+     * @param url
+     * @param listener
+     *//*
+    private void get(final String url, final okhttpListener listener){
+       *//* RequestBody requestBodyPost = new FormBody.Builder()
+                .add("page", "1")
+                .add("code", "news")
+                .add("pageSize", "20")
+                .add("parentid", "0")
+                .add("type", "1")
+                .build();
+        if(parmeter!=null){
+            parmeter.get
+        }*//*
+        Request request = new Request.Builder().url(url).get().build();
+        okHttpClient.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                listener.okhttpListenerFailed();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //response.body().
+                listener.okhttpListenerSuccess("");
+            }
+        });
+
+    }*/
+
     /**
      * @param url 下载连接
      * @param saveDir 储存下载文件的SDCard目录
@@ -224,6 +260,23 @@ public class OkhttpUtils {
          * 下载失败
          */
         void onDownloadFailed();
+    }
+    public interface okhttpListener {
+        /**
+         * 下载成功
+         */
+        void okhttpListenerSuccess( String data);
+
+        /**
+         * @param progress
+         * 下载进度
+         */
+        void okhttpListenerloading(int progress);
+
+        /**
+         * 下载失败
+         */
+        void okhttpListenerFailed();
     }
 
     private void deleteAllFiles(File root) {

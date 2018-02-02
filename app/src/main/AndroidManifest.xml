@@ -570,11 +570,23 @@
         <activity
             android:name=".ui.view.vote.VoteDetailsActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.vote.VoteDateVoideActivity"
+        <activity
+            android:name=".ui.view.vote.VoteDateVoideActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
-            android:windowSoftInputMode="adjustPan" ></activity>
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".ui.view.checkSupervise.CheckSuperviseProjectListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.checkSupervise.CheckProjectDatasActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.checkSupervise.ProjectDetalisRecordActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.view.checkSupervise.CheckTaskDetailActivity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

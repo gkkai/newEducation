@@ -8,6 +8,7 @@
     <color name="colorRedLine">#F28189</color>
     <color name="colorTextDefault">#ABABAB</color>
     <color name="colorTextDeep">#4B4B4B</color>
+    <color name="colorText">#222222</color>
     <color name="colorOrange">#FFC8A0</color>
     <color name="colorBlack">#000</color>
     <color name="colorTextGray">#7A7A7A</color>
@@ -19,7 +20,8 @@
     <color name="colorLevel4">#FEA671</color>
     <color name="colorLevel5">#46EBFF</color>
 
-    <color name="black_textview">#575757</color>
+
+    <color name="black6">#666666</color>
     <color name="group_list_black_textview">#353535</color>
     <color name="group_list_gray">#999999</color>
     <color name="group_list_liner">#e4e4e4</color>

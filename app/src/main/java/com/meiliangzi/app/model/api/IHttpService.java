@@ -10,6 +10,11 @@ import com.meiliangzi.app.model.bean.ArticalList;
 import com.meiliangzi.app.model.bean.BannerBean;
 import com.meiliangzi.app.model.bean.BaseBean;
 import com.meiliangzi.app.model.bean.BindPhoneBean;
+import com.meiliangzi.app.model.bean.CheckChildenProjectBean;
+import com.meiliangzi.app.model.bean.CheckDepartmentsBean;
+import com.meiliangzi.app.model.bean.CheckProjectBean;
+import com.meiliangzi.app.model.bean.CheckProjectDetBean;
+import com.meiliangzi.app.model.bean.CheckProjectTaskDetBean;
 import com.meiliangzi.app.model.bean.CityListBean;
 import com.meiliangzi.app.model.bean.CommonList;
 import com.meiliangzi.app.model.bean.Company;
@@ -28,6 +33,7 @@ import com.meiliangzi.app.model.bean.HomePageBean;
 import com.meiliangzi.app.model.bean.IndexNewsBean;
 import com.meiliangzi.app.model.bean.IndexNewsListsBean;
 import com.meiliangzi.app.model.bean.IndexNewsTypeBean;
+import com.meiliangzi.app.model.bean.IndexpicBean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
 import com.meiliangzi.app.model.bean.MeetIDBean;
 import com.meiliangzi.app.model.bean.MeetlistsBean;
@@ -870,6 +876,55 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"subVoteId","userId"}, url = "", resultClass = VpteSubvoteinfoBean.class, refreshMethod = "getsubvoteinfo")
     public void subvoteinfo(Object context,int subVoteId,int userId);
+    /**
+     * 投票内容详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = IndexpicBean.class, refreshMethod = "getindexpic")
+    public void indexpic(Object context);
+    /**
+     * 取得所有部门列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = CheckDepartmentsBean.class, refreshMethod = "getdepartments")
+    public void departments(Object context);
+    /**
+     * 取得所有部门列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"endYear","departId"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
+    public void projects(Object context,String endYear,int departId);
+    /**
+     * 取得所有部门列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
+    public void projects(Object context);
+    /**
+     * 取得所有子项目列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"proId"}, url = "", resultClass = CheckChildenProjectBean.class, refreshMethod = "getsubpros")
+    public void subpros(Object context,int proId);
+    /**
+     * 取得所有子项目列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"projectId"}, url = "project/", resultClass = CheckProjectDetBean.class, refreshMethod = "getdet")
+    public void det(Object context,int projectId);
+    /**
+     * 任务详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"taskId"}, url = "task/", resultClass = CheckProjectTaskDetBean.class, refreshMethod = "getdet")
+    public void det(Object context,String taskId);
 }
 
 

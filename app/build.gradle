@@ -7,8 +7,8 @@ android {
         applicationId "com.meiliangzi.app"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 114
-        versionName "1.1.4"
+        versionCode 116
+        versionName "1.1.6"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //X5兼容64位手机

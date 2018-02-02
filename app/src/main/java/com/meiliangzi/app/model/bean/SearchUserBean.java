@@ -51,7 +51,12 @@ public class SearchUserBean {
         private String userHead;
         private String nickName;
         private int id;
-        private int isFriends;
+        protected int isFriends;
+
+        private DataBean(String userHead) {
+            this.userHead = userHead;
+        }
+
 
         public String getUser_head() {
             return userHead;

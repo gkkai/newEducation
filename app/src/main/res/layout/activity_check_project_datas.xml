@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.checkSupervise.CheckProjectDatasActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="项目详情" />
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"></View>
+    <ScrollView
+        android:layout_marginTop="72dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_check_projecttitle"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_height="20dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:text="煤亮子监控项目标题煤亮子监控项目标题煤亮子监控项目标题"
+                android:maxEms="17"
+                android:singleLine="true"
+
+                android:textSize="16sp"
+                android:ellipsize="end"
+                android:textColor="#222222" />
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@id/text_check_projecttitle"
+                android:layout_marginTop="16dp"
+                android:id="@+id/image_project_stats"
+                android:background="@mipmap/greaden"
+                android:layout_width="15dp"
+                android:layout_height="20dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical"
+                android:text="负责人："
+                android:textColor="#666666" />
+            <TextView
+                android:id="@+id/text_presion_cherge"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="40dp"
+                android:gravity="center_vertical"
+                android:text="负责人："
+                android:textColor="#666666" />
+
+            <TextView
+                android:layout_below="@id/text_presion_cherge"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="项目类型："
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:layout_below="@id/text_presion_cherge"
+                android:id="@+id/text_project_type"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:gravity="center"
+                android:text="项目类型："
+                android:textColor="#666666"></TextView>
+            <TextView
+                android:layout_below="@id/text_project_type"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:text="督办类型："
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_project_type"
+                android:id="@+id/text_check_type"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="90dp"
+                android:gravity="center"
+                android:text="督办类型："
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_check_type"
+                android:id="@+id/text_execute_time"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+
+                android:gravity="center"
+                android:text="执行时间："
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_execute_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:text="项目描述："
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_execute_time"
+                android:id="@+id/text_project_describe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="90dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:text="项目描述"
+                android:textColor="#666666"></TextView>
+
+            <TextView
+                android:layout_below="@id/text_project_describe"
+                android:id="@+id/text_project_auditing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="审核人："
+                android:textColor="#666666"></TextView>
+
+            <View
+                android:layout_below="@id/text_project_auditing"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/colorGrayLine"></View>
+
+            <TextView
+                android:layout_below="@id/text_project_auditing"
+                android:id="@+id/text_morerecord"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="11dp"
+                android:drawablePadding="10dp"
+                android:drawableLeft="@mipmap/morerecord"
+                android:gravity="center"
+                android:text="更多记录" />
+
+            <View
+                android:layout_below="@id/text_project_auditing"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:layout_marginTop="51dp"
+                android:background="@color/colorGrayLine"></View>
+
+            <TextView
+                android:layout_below="@id/text_project_auditing"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="56dp"
+                android:gravity="center_vertical"
+                android:textSize="16sp"
+                android:text="子任务分配："
+                android:textColor="#222222"></TextView>
+
+            <View
+                android:layout_below="@id/text_project_auditing"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="106dp"
+                android:background="@color/colorGrayLine"></View>
+
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_below="@id/text_project_auditing"
+                android:id="@+id/listView"
+                android:layout_marginTop="107dp"
+                android:listSelector="@android:color/transparent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:numColumns="1"
+                android:background="#f2f2f2"
+                android:scrollingCache="false"
+                android:scrollbars="none"
+                android:verticalSpacing="@dimen/margin_2_dp"
+                android:horizontalSpacing="2dp"
+                android:stretchMode="columnWidth"/>
+            <!--<com.meiliangzi.app.widget.MyGridView
+                android:id="@+id/myGridView_timesecreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:numColumns="4"
+                android:scrollbars="none"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />-->
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

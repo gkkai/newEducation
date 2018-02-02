@@ -1388,12 +1388,12 @@
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f52b.png"
     },
     {
-        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f615.png",
-        "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f615.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_def_rich_content.png",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ic_def_rich_content.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f615.png",
+        "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f615.png"
     },
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_picsel_back_normal.png",

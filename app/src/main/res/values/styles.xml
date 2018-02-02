@@ -17,6 +17,12 @@
 
 
     </style>
+    <style name="enter_exit_animate" parent="@android:style/Animation.Dialog">
+        <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>  //进入时的动画
+        <item name="@android:windowExitAnimation">@anim/dialog_exit</item>    //退出时的动画
+    </style>
+
+
     <style name="MyTheme" parent="@android:style/Theme.Holo.Light">
         <item name="android:listDivider">@android:color/transparent</item>
         <item name="android:listSelector">@android:color/transparent</item>

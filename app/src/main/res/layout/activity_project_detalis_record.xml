@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.checkSupervise.ProjectDetalisRecordActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="23dp">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="项目详情记录" />
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="71dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"></View>
+    <com.meiliangzi.app.widget.PagerSlidingTabStrip
+        android:layout_marginTop="72dp"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:allowWidthFull="true"
+        app:bottomLineHeight="2dp"
+        app:slidingBlock="@mipmap/blue">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/tvWhole"
+                style="@style/text_slidingTabTitle"
+                android:text="创建记录"
+                android:layout_weight="1.0"
+                android:textColor="@color/colorText"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvBase"
+                style="@style/text_slidingTabTitle"
+                android:text="成果书记录"
+                android:layout_weight="1.0"
+                android:textColor="@color/colorText"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tvDe"
+                style="@style/text_slidingTabTitle"
+                android:text="变更记录"
+                android:layout_weight="1.0"
+                android:textColor="@color/colorText"
+                android:textSize="15sp" />
+
+        </LinearLayout>
+
+    </com.meiliangzi.app.widget.PagerSlidingTabStrip>
+    <android.support.v4.view.ViewPager
+        android:layout_marginTop="112dp"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

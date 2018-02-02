@@ -17,6 +17,7 @@ import com.meiliangzi.app.ui.NewsDetailActivity;
 import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.meiliangzi.app.ui.view.ZoomActivity;
+import com.meiliangzi.app.ui.view.checkSupervise.CheckSuperviseProjectListActivity;
 import com.meiliangzi.app.ui.view.vote.VoteActivity;
 
 import butterknife.BindView;
@@ -36,6 +37,8 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
     RelativeLayout rl_shequn_industry;
     @BindView(R.id.rl_shequn_vote)
     RelativeLayout rl_shequn_vote;
+    @BindView(R.id.rl_shequn_check)
+    RelativeLayout rl_shequn_check;
 
     public SheQunFragment() {
         // Required empty public constructor
@@ -59,7 +62,7 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
         rl_shequn_map.setOnClickListener(this);
 
         rl_shequn_zoommeet.setOnClickListener(this);
-
+        rl_shequn_check.setOnClickListener(this);
         rl_shequn_industry.setOnClickListener(this);
         rl_shequn_vote.setOnClickListener(this);
 
@@ -96,9 +99,14 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
                 getActivity().startActivity(intent);
                 break;
             case R.id.rl_shequn_vote:
-                // TODO  行业资讯查看更多
+                // TODO 投票管理
                 Intent intentvote=new Intent(MyApplication.activity, VoteActivity.class);
                 getActivity().startActivity(intentvote);
+                break;
+            case R.id.rl_shequn_check:
+                // TODO  考核督办
+                Intent intentCheck=new Intent(MyApplication.activity, CheckSuperviseProjectListActivity.class);
+                getActivity().startActivity(intentCheck);
                 break;
         }
 

@@ -27,6 +27,7 @@ public class HttpProxyInvocation implements InvocationHandler {
         HttpResponseHandler response = ReflectUtils.constructHttpResponse(params[0], resultCls, refreshMethod);
         RequestParams requestParams = createRequestParams(arguments, params, flag);
         client.post(Constant.BASE_URL + url + method.getName(), requestParams, response);
+        //client.get(Constant.BASE_URL + url + method.getName(), requestParams, response);
         Log.i("grage", Constant.BASE_URL + url + method.getName());
         return new Object();
 
