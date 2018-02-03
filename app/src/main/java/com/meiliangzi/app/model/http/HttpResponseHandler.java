@@ -74,7 +74,7 @@ public class HttpResponseHandler extends JsonHttpResponseHandler
 			}
 		} catch (Exception e)
 		{
-			ReflectUtils.invokeMethod(context, ERROR, opcode, e.getMessage(), Integer.class, String.class);
+			ReflectUtils .invokeMethod(context, ERROR, opcode, e.getMessage(), Integer.class, String.class);
 //			ReflectUtils.invokeMethod(context, ERROR, opcode, e.getMessage(), Integer.class, String.class);
 
 		}
