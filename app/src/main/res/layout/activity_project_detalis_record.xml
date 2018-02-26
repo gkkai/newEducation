@@ -41,7 +41,7 @@
                 style="@style/text_slidingTabTitle"
                 android:text="创建记录"
                 android:layout_weight="1.0"
-                android:textColor="@color/colorText"
+                android:textColor="@color/ac_filter_string_color"
                 android:textSize="15sp" />
 
             <TextView
