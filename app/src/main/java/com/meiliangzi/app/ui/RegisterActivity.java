@@ -6,10 +6,13 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
+import com.meiliangzi.app.model.bean.ImageCodeBean;
 import com.meiliangzi.app.model.bean.Register;
 import com.meiliangzi.app.model.bean.Validate;
 import com.meiliangzi.app.tools.CountDownHandler;
@@ -18,6 +21,7 @@ import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,7 +57,11 @@ public class RegisterActivity extends BaseActivity {
     CheckBox cbIsVisable;
     @BindView(R.id.tvRegisterAgreement)
     TextView tvRegisterAgreement;
-
+    @BindView(R.id.image_dentifyingcode)
+    ImageView image_dentifyingcode;
+    @BindView(R.id.et_identifyingcode)
+    EditText et_identifyingcode;
+    ImageCodeBean data;
     private CountDownHandler mHandler;
 
     @Override
@@ -107,7 +115,7 @@ public class RegisterActivity extends BaseActivity {
         });
     }
 
-    @OnClick({R.id.tvRegister,R.id.tvValidate,R.id.tvRegisterAgreement})
+    @OnClick({R.id.tvRegister,R.id.tvValidate,R.id.tvRegisterAgreement,R.id.image_dentifyingcode})
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tvRegister:
@@ -128,9 +136,11 @@ public class RegisterActivity extends BaseActivity {
                 break;
             case R.id.tvValidate:
                 try {
-                    String phone = etAccount.getText().toString();
-                    RuleCheckUtils.checkPhone(phone);
-                    getValidate(phone);
+                    RuleCheckUtils.checkPhones(etAccount.getText().toString());
+                    RuleCheckUtils.checkEmpty(et_identifyingcode.getText().toString(),"请输入图文验证");
+                    getValidate(etAccount.getText().toString(),et_identifyingcode.getText().toString(),data.getData().getAt());
+
+                    //getValidate(phone);
                 } catch (Exception e) {
                     e.printStackTrace();
                     ToastUtils.custom(e.getMessage());
@@ -139,11 +149,16 @@ public class RegisterActivity extends BaseActivity {
             case R.id.tvRegisterAgreement:
                 IntentUtils.startAty(RegisterActivity.this,RegisterAgreementActivity.class);
                 break;
+            case R.id.image_dentifyingcode:
+                //TODO 图文验证刷新
+                //ProxyUtils.getHttpProxy().imagecode(ResetPwdActivity.this);
+                ProxyUtils.getHttpProxy().imagecode(RegisterActivity.this);
+                break;
         }
     }
 
-    public void getValidate(String phone){
-        ProxyUtils.getHttpProxy().sms(RegisterActivity.this,phone);
+    public void getValidate(String phone,String text,int code){
+        ProxyUtils.getHttpProxy().sms(RegisterActivity.this,phone,code,text);
     }
 
     protected void getValidate(Validate validate){
@@ -162,7 +177,21 @@ public class RegisterActivity extends BaseActivity {
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ProxyUtils.getHttpProxy().imagecode(this);
+    }
+    public void getimagecode(ImageCodeBean data){
+        //ProxyUtils.getHttpProxy().sms(ResetPwdActivity.this,phone);
+        this.data=data;
+        setImageByUrl(image_dentifyingcode,data.getData().getImage(),R.mipmap.imagecode,R.mipmap.imagecode);
 
+        //getValidate(etAccount.getText().toString(),et_identifyingcode.getText().toString());
+    }
+    public void setImageByUrl(ImageView view, String url, Integer fallbackResource, Integer loadingResource) {
+        // ImageView view = getView(viewID);
 
-
+        ImageLoader.getInstance().displayImage(url, view, MyApplication.getSimpleOptions(fallbackResource, loadingResource));
+    }
 }

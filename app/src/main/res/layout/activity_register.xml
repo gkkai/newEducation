@@ -28,8 +28,49 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_20dp"
         android:orientation="vertical">
-
         <LinearLayout
+            android:id="@+id/ll_identifyingcode"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:id="@+id/image_dentifyingcode"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:drawableLeft="@drawable/drawable_validate_focus"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+            <EditText
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:id="@+id/et_identifyingcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:drawablePadding="@dimen/margin_8dp"
+                android:hint="请输入图片中数字和字母(字母不区分大小写)"
+                android:textColor="@color/colorTextDefault"
+                android:textColorHint="@color/colorGrayLine"
+                android:textSize="@dimen/textSize_14sp" />
+
+            <CheckBox
+                android:layout_marginLeft="@dimen/margin_16dp"
+                android:layout_marginRight="@dimen/margin_16dp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginTop="@dimen/margin_12"
+                android:background="@drawable/drawable_line_focus"
+                android:button="@null" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_16dp"

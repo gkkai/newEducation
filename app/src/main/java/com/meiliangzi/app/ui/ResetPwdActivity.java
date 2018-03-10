@@ -8,12 +8,16 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.BaseBean;
 import com.meiliangzi.app.model.bean.BindPhoneBean;
+import com.meiliangzi.app.model.bean.ImageCodeBean;
 import com.meiliangzi.app.model.bean.Validate;
 import com.meiliangzi.app.tools.CountDownHandler;
 import com.meiliangzi.app.tools.IntentUtils;
@@ -23,6 +27,7 @@ import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.widget.MiddleView;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -57,6 +62,13 @@ public class ResetPwdActivity extends BaseActivity implements View.OnClickListen
     EditText etPwd;
     @BindView(R.id.tvEmpty)
     TextView tvEmpty;
+    @BindView(R.id.ll_identifyingcode)
+    LinearLayout ll_identifyingcode;
+    @BindView(R.id.image_dentifyingcode)
+    ImageView image_dentifyingcode;
+    @BindView(R.id.et_identifyingcode)
+    EditText et_identifyingcode;
+    ImageCodeBean data;
     private CountDownHandler mHandler;
     private int type;
 
@@ -94,18 +106,31 @@ public class ResetPwdActivity extends BaseActivity implements View.OnClickListen
         middleView.showModdleView(true);
     }
 
-    @OnClick({R.id.tvValidate, R.id.tvResetOk})
+    @OnClick({R.id.tvValidate, R.id.tvResetOk,R.id.image_dentifyingcode})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.tvValidate:
+                //TODO 图文验证
+
                 try {
                     RuleCheckUtils.checkPhones(etAccount.getText().toString());
-                    getValidate(etAccount.getText().toString());
+                    RuleCheckUtils.checkEmpty(et_identifyingcode.getText().toString(),"请输入图文验证");
+                    //getValidate(etAccount.getText().toString());
+                   // ProxyUtils.getHttpProxy().imagecode(ResetPwdActivity.this);
+
+                    getValidate(etAccount.getText().toString(),et_identifyingcode.getText().toString(),data.getData().getAt());
+
                 }  catch (Exception e) {
                     e.printStackTrace();
                     ToastUtils.custom(e.getMessage());
                 }
                 break;
+            case R.id.image_dentifyingcode:
+                //TODO 图文验证刷新
+                //ProxyUtils.getHttpProxy().imagecode(ResetPwdActivity.this);
+                ProxyUtils.getHttpProxy().imagecode(ResetPwdActivity.this);
+                break;
+
             case R.id.tvResetOk:
 
                     try {
@@ -133,13 +158,20 @@ public class ResetPwdActivity extends BaseActivity implements View.OnClickListen
         String p=userId+","+phone+","+sms+","+pwd;
         ProxyUtils.getHttpProxy().addphone(this,userId,phone,sms,pwd);
     }
+    public void getimagecode(ImageCodeBean data){
+        //ProxyUtils.getHttpProxy().sms(ResetPwdActivity.this,phone);
+        this.data=data;
+        setImageByUrl(image_dentifyingcode,data.getData().getImage(),R.mipmap.imagecode,R.mipmap.imagecode);
 
-    public void getValidate(String phone){
-        ProxyUtils.getHttpProxy().sms(ResetPwdActivity.this,phone);
+        //getValidate(etAccount.getText().toString(),et_identifyingcode.getText().toString());
+    }
+    public void getValidate(String phone,String text,int code){
+        ProxyUtils.getHttpProxy().sms(ResetPwdActivity.this,phone,code,text);
     }
 
     protected void getValidate(Validate validate){
         ToastUtils.custom("验证码已发送，请注意查收");
+
         mHandler.setmCountDown(Constant.COUNT_NUM);
         mHandler.sendEmptyMessage(CountDownHandler.MSG_COUNT_DOWN_FLAG);
     }
@@ -250,7 +282,19 @@ public class ResetPwdActivity extends BaseActivity implements View.OnClickListen
             }
         }
 
+        ProxyUtils.getHttpProxy().imagecode(ResetPwdActivity.this);
 
+    }
+    /**
+     * 为SmratImageView设置图片、加载中图片、加载失败图片
+     *
+     * @param view
+     * @param url
+     * @return
+     */
+    public void setImageByUrl(ImageView view, String url, Integer fallbackResource, Integer loadingResource) {
+       // ImageView view = getView(viewID);
 
+        ImageLoader.getInstance().displayImage(url, view, MyApplication.getSimpleOptions(fallbackResource, loadingResource));
     }
 }

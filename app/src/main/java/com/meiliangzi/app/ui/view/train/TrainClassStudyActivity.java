@@ -180,7 +180,7 @@ public class TrainClassStudyActivity extends BaseActivity implements View.OnClic
         VideoPlayer.setJcUserAction(new MyUserActionStandard());
         tx_video_name.setText(databean.getVideo_name());
         tx_video_teacher.setText("老师："+databean.getVideo_teacher());
-        tx_video_learning_num.setText("视频学习人数"+databean.getLearning_num());
+        tx_video_learning_num.setText("视频学习人数："+databean.getLearning_num());
         tx_video_use_person.setText("适用人员："+databean.getVideo_use_person());
         id=data.getData().getId();
 

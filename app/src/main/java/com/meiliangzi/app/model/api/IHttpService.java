@@ -30,6 +30,7 @@ import com.meiliangzi.app.model.bean.GroupListBean;
 import com.meiliangzi.app.model.bean.GroupUserlistBean;
 import com.meiliangzi.app.model.bean.GroupinfoBean;
 import com.meiliangzi.app.model.bean.HomePageBean;
+import com.meiliangzi.app.model.bean.ImageCodeBean;
 import com.meiliangzi.app.model.bean.IndexNewsBean;
 import com.meiliangzi.app.model.bean.IndexNewsListsBean;
 import com.meiliangzi.app.model.bean.IndexNewsTypeBean;
@@ -100,8 +101,8 @@ public interface IHttpService {
      * @param context 上下文对象
      * @param phone   手机号
      */
-    @HttpRequest(arguments = {"phone"}, url = "common/", resultClass = Validate.class, refreshMethod = "getValidate")
-    public void sms(Object context, String phone);
+    @HttpRequest(arguments = {"phone","code","text"}, url = "common/", resultClass = Validate.class, refreshMethod = "getValidate")
+    public void sms(Object context, String phone,int code,String text);
 
 
     /**
@@ -925,6 +926,13 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"taskId"}, url = "task/", resultClass = CheckProjectTaskDetBean.class, refreshMethod = "getdet")
     public void det(Object context,String taskId);
+    /**
+     * 获取图文验证码
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "common/", resultClass = ImageCodeBean.class, refreshMethod = "getimagecode")
+    public void imagecode(Object context);
 }
 
 
