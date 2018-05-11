@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/Users/kk/Desktop/work/newEducation/IMLib/src/main/assets"/><source path="/Users/kk/Desktop/work/newEducation/IMLib/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/kk/Desktop/work/newEducation/IMLib/src/debug/assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/Users/kk/Desktop/newEducation/IMLib/src/main/assets"/><source path="/Users/kk/Desktop/newEducation/IMLib/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/Users/kk/Desktop/newEducation/IMLib/src/debug/assets"/></dataSet></merger>

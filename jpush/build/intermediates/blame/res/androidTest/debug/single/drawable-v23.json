@@ -1,5 +1,9 @@
 [
     {
+        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
+        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-v23/abc_control_background_material.xml"
+    },
+    {
         "merged": "/Users/kk/Desktop/work/newEducation/jpush/build/intermediates/res/merged/androidTest/debug/drawable-v23/abc_control_background_material.xml",
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-v23/abc_control_background_material.xml"
     }

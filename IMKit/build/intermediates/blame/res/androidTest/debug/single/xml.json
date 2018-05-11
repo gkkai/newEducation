@@ -2,5 +2,9 @@
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/xml/rc_file_path.xml",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/bundles/debug/res/xml/rc_file_path.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/xml/rc_file_path.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/xml/rc_file_path.xml"
     }
 ]

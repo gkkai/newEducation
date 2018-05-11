@@ -2,5 +2,9 @@
     {
         "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/debug/xml/rc_file_path.xml",
         "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/xml/rc_file_path.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/xml/rc_file_path.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/xml/rc_file_path.xml"
     }
 ]
