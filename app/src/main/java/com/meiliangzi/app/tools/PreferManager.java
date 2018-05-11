@@ -27,6 +27,14 @@ public class PreferManager {
     private static final String PARTYBRANCHSID = "partyBranchsId";
     private static final String PARTYBRANNAME ="partyBranName" ;
 
+    private static final String IsAuthorization ="isAuthorization" ;
+    public static void  saveIsAuthorization(int isAuthorization){
+        PreferUtils.put(IsAuthorization,isAuthorization);
+    }
+    public static int getIsAuthorization(){
+
+        return PreferUtils.getInt(IsAuthorization,1);
+    }
 
     public static void  saveIsRememberPwd(String isremmemberpwd){
         PreferUtils.put(IS_REMEMBER_PWD,isremmemberpwd);

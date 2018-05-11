@@ -208,6 +208,7 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
         PreferManager.saveIsPartment(user.getData().isIsPartymember());
         PreferManager.partyBranName(user.getData().getPartybranch().getPartybranch_name());
         PreferManager.saveTimeStart(System.currentTimeMillis()+"");
+        PreferManager.saveIsAuthorization(user.getData().getIsAuthorization());
         if(TextUtils.isEmpty(user.getData().getUserCompany().getCompany_name())){
             PreferManager.saveIsCompleteInfo(false);
         }else {

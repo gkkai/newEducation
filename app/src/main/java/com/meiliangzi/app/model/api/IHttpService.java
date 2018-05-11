@@ -841,6 +841,13 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"userId"}, url = "", resultClass = AgreeFriendapplyBean.class, refreshMethod = "getemptynoticemessage")
     public void emptynoticemessage(Object context,int userId);
+    /**
+     * 清空消息
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userId"}, url = "", resultClass = AgreeFriendapplyBean.class, refreshMethod = "getemptynoticemessage")
+    public void emptycategorymessage(Object context,int userId);
 
     /**
      * 查询是否为好友
@@ -896,8 +903,8 @@ public interface IHttpService {
      *
      * @param context 上下文对象
      */
-    @HttpRequest(arguments = {"endYear","departId"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
-    public void projects(Object context,String endYear,int departId);
+    @HttpRequest(arguments = {"endYear","departId","nature"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
+    public void projects(Object context,String endYear,int departId,int nature);
     /**
      * 取得所有部门列表
      *

@@ -78,6 +78,15 @@ public class User extends BaseBean {
         private int noCourses;
         private String userProfile;
         private Partybranch partybranch;
+        private int isAuthorization;
+
+        public int getIsAuthorization() {
+            return isAuthorization;
+        }
+
+        public void setIsAuthorization(int isAuthorization) {
+            this.isAuthorization = isAuthorization;
+        }
 
         public Partybranch getPartybranch() {
             return partybranch;

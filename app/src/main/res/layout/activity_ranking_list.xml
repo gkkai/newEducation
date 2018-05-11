@@ -75,6 +75,51 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:text="时间"
+                        android:visibility="gone"/>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <CheckBox
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:clickable="false"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/ckContent_2018"
+                            android:gravity="center"
+                            android:textColor="@color/drawable_text_fiter"
+                            android:button="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2018"
+                            android:ems="5"
+                            android:lines="1"
+                            android:background="@drawable/drawable_filter"
+                            />
+                        <CheckBox
+                            android:focusable="false"
+                            android:focusableInTouchMode="false"
+                            android:clickable="false"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/ckContent_2017"
+                            android:gravity="center"
+                            android:textColor="@color/drawable_text_fiter"
+                            android:button="@null"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2017"
+                            android:ems="5"
+                            android:lines="1"
+                            android:background="@drawable/drawable_filter"
+                            />
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
                         android:text="类型" />
 
                     <com.meiliangzi.app.widget.MyGridView

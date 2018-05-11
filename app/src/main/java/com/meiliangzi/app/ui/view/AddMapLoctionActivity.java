@@ -42,9 +42,9 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     @BindView(R.id.phene_number)
     EditText phene_number;
     @BindView(R.id.lat_id)
-    TextView lat_id;
+    EditText lat_id;
     @BindView(R.id.lng_id)
-    TextView lng_id;
+    EditText lng_id;
     @BindView(R.id.sure)
     TextView sure;
     @BindView(R.id.image_citylist)
@@ -80,6 +80,8 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
         lng =getIntent().getStringExtra("lng");
         lat_id.setText(lat);
         lng_id.setText(lng);
+        String lng=lng_id.getText().toString().trim();
+        String lat=lat_id.getText().toString().trim();
     }
 
     @Override
@@ -216,6 +218,8 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     String name=loction_name.getText().toString();
                     //TODO 手机号码
                     String phone=phene_number.getText().toString();
+                    String lng=lng_id.getText().toString().trim();
+                    String lat=lat_id.getText().toString().trim();
                     ProxyUtils.getHttpProxy().addmapss(AddMapLoctionActivity.this,Integer.valueOf(PreferManager.getUserId()),name,cityid,county_id,classification_id,phone,lng,lat);
                 } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());

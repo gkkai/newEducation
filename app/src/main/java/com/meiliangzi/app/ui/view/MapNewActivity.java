@@ -235,7 +235,7 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
     protected void findWidgets() {
         //image_city.setOnClickListener(this);
         gson=new Gson();
-        locMan = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+        locMan = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
         mLocationListener = new LocationListener() {
             @Override
@@ -1006,16 +1006,35 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
                     e.printStackTrace();
                 }
 
+               /* runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        myDialog.dismiss();
+                    }
+                });*/
                 myDialog.dismiss();
+
             }
         });
         myDialog.setNoOnclickListener("取消", new MyDialog.onNoOnclickListener() {
             @Override
             public void onNoClick() {
                 // Toast.makeText(this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
+                /*runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        myDialog.dismiss();
+                    }
+                });*/
                 myDialog.dismiss();
             }
         });
+       /* runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        });*/
         myDialog.show();
 
     }

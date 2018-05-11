@@ -219,20 +219,7 @@ public class NativePlugin {
             if (!isGPSEnabled && !isNetworkEnabled) {
                 // no network provider is enabled
             } else {
-                if (isNetworkEnabled) {
-                    locMan.requestLocationUpdates(
-                            LocationManager.NETWORK_PROVIDER,
-                            1, 1,
-                            mLocationListener);
-                    Log.d("Network", "Network Enabled");
-                    if (locMan != null) {
-                        location = locMan.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if (location != null) {
-                            latitude = location.getLatitude();
-                            longitude = location.getLongitude();
-                        }
-                    }
-                }
+
                 // if GPS Enabled get lat/long using GPS Services
                 if (isGPSEnabled) {
                     if (location == null) {
@@ -260,6 +247,19 @@ public class NativePlugin {
                             }
                         }
                     }
+                }else  if (isNetworkEnabled) {
+                    locMan.requestLocationUpdates(
+                            LocationManager.NETWORK_PROVIDER,
+                            1, 1,
+                            mLocationListener);
+                    Log.d("Network", "Network Enabled");
+                    if (locMan != null) {
+                        location = locMan.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            latitude = location.getLatitude();
+                            longitude = location.getLongitude();
+                        }
+                    }
                 }
             }
 
@@ -273,10 +273,17 @@ public class NativePlugin {
      */
 
     @JavascriptInterface
-    public void androidCoordinate(String lng,String lat,String name) {
+    public void androidCoordinate(final String lng, final String lat, final String name) {
         //显示隐藏列表
         //((MapActivity) fragment).showlllistview();
-        ((MapNewActivity) fragment).shownavigation(lng,lat,name);
+
+        fragment.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ((MapNewActivity) fragment).shownavigation(lng,lat,name);
+            }
+        });
+
 
     }
     @JavascriptInterface

@@ -145,7 +145,7 @@ public class ConfirmationActivity extends BaseActivity  {
                 @Override
                 public void onClick(View v) {
                     //TODO 清空
-                    ProxyUtils.getHttpProxy().emptynoticemessage(ConfirmationActivity.this, Integer.valueOf(PreferManager.getUserId()));
+                    ProxyUtils.getHttpProxy().emptycategorymessage(ConfirmationActivity.this, Integer.valueOf(PreferManager.getUserId()));
 
                 }
             });

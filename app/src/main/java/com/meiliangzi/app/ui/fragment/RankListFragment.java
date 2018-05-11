@@ -163,9 +163,11 @@ public class RankListFragment extends BaseFragment implements XListView.IXListVi
     protected void getRank(RankList rankList){
         if (page==1){
             adapter.pullRefresh(rankList.getData());
+            listView.setSelection(0);
         }else {
             adapter.pullLoad(rankList.getData());
         }
+
 
     }
 

@@ -67,7 +67,10 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     private MyGridView myGridViewtiem;
     TextView tvReset;
     TextView tvDone;
-    private  String endYear="2018";
+    TextView text_project_nature_1;
+    TextView text_project_nature_2;
+    private  String endYear="-1";
+    private  int nature=-1;
     private int departId=-1;
     private int pos;
     private String  ischeck="";
@@ -100,8 +103,12 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         myGridViewtiem= (MyGridView) inflate.findViewById(R.id.myGridView_timesecreen);
         tvReset=(TextView) inflate.findViewById(R.id.tvReset);
         tvDone=(TextView) inflate.findViewById(R.id.tvDone);
+        text_project_nature_1 = (TextView) inflate.findViewById(R.id.text_project_nature_1);
+        text_project_nature_2=(TextView) inflate.findViewById(R.id.text_project_nature_2);
         tvReset.setOnClickListener(this);
         tvDone.setOnClickListener(this);
+        text_project_nature_1.setOnClickListener(this);
+        text_project_nature_2.setOnClickListener(this);
         tiemAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
             @Override
             public void convert(BaseViewHolder helper, String item) {
@@ -277,7 +284,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             listView.setVisibility(View.VISIBLE);
             tvEmpty.setVisibility(View.GONE);
             //TODO 取得所有项目列表
-            ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId);
+            ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
         }
     }
 
@@ -289,10 +296,16 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
                 break;
 
             case R.id.tvReset:
-                endYear="2017";
-                departId=0;
+                endYear="-1";
+                departId=-1;
                 ischeck="";
                 ischecktime="";
+                nature=-1;
+                text_project_nature_2.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_project_nature_2.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_project_nature_1.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_project_nature_1.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
                 dialog.dismiss();
                 break;
             case R.id.tvDone:
@@ -305,9 +318,28 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
                     ToastUtils.show("请选择部门");
 
                 }else {
-                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId);
+                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
                     dialog.dismiss();
                 }
+                break;
+            case R.id.text_project_nature_1:
+
+                  nature=1;
+                  text_project_nature_1.setTextColor(getResources().getColor(R.color.white));
+                  text_project_nature_1.setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
+                  text_project_nature_2.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                  text_project_nature_2.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
+
+                break;
+            case R.id.text_project_nature_2:
+
+                    nature=2;
+                    text_project_nature_2.setTextColor(getResources().getColor(R.color.white));
+                    text_project_nature_2.setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
+                    text_project_nature_1.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                    text_project_nature_1.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
 
                 break;
 

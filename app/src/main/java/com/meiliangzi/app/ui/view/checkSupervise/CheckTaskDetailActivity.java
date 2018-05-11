@@ -79,9 +79,9 @@ public class CheckTaskDetailActivity extends BaseActivity implements View.OnClic
         ChangeAdapter=new BaseVoteAdapter<CheckProjectTaskDetBean.DataBean.ChangePos>(this,R.layout.item_check_change_record) {
             @Override
             public void convert(BaseViewHolder helper, CheckProjectTaskDetBean.DataBean.ChangePos item) {
-                int pos =getPosition()+1;
-                helper.setText(R.id.text_,"第"+pos+"次提交");
-                helper.setText(R.id.text_pos,""+pos);
+                int pos =getPosition();
+                helper.setText(R.id.text_,"第"+(getmDatas().size()-pos)+"次提交");
+                helper.setText(R.id.text_pos,""+(getmDatas().size()-pos));
                 if(1==item.getType()){
                     helper.setText(R.id.text_change_type,"延时");
                 }else if(2==item.getType()){
@@ -92,7 +92,7 @@ public class CheckTaskDetailActivity extends BaseActivity implements View.OnClic
 
                 helper.setText(R.id.text_changeend_at,item.getChangeend_at());
                 helper.setText(R.id.text_application_reasons,item.getApplication_reasons());
-                helper.setText(R.id.text_audit_time,item.getAudit_time());
+                helper.setText(R.id.text_audit_time,item.getCreate_at());
                 if(1==item.getIs_adopt()){
                     helper.setText(R.id.text_is_adopt,"审核中");
                 }else if(2==item.getIs_adopt()){
@@ -111,9 +111,9 @@ public class CheckTaskDetailActivity extends BaseActivity implements View.OnClic
             @Override
             public void convert(BaseViewHolder helper, CheckProjectTaskDetBean.DataBean.TaskCheckLogs item) {
 
-                int pos =getPosition()+1;
-                helper.setText(R.id.text_,"第"+pos+"次提交");
-                helper.setText(R.id.text_pos,""+pos);
+                int pos =getPosition();
+                helper.setText(R.id.text_,"第"+(getmDatas().size()-pos)+"次提交");
+                helper.setText(R.id.text_pos,""+(getmDatas().size()-pos));
                 helper.setText(R.id.text_completion_desc,item.getCompletion_desc());
                 helper.setText(R.id.text_problem,item.getProblem());
                 helper.setText(R.id.text_solution,item.getSolution());

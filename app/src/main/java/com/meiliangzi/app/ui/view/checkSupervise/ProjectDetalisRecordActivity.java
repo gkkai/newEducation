@@ -41,6 +41,7 @@ public class ProjectDetalisRecordActivity extends BaseActivity  {
     private String[] title = {"创建记录", "成果书记录", "变更记录"};
     private MyAdapter adapter;
     private OnCallBack onclick;
+    private String usercheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +52,7 @@ public class ProjectDetalisRecordActivity extends BaseActivity  {
     @Override
     protected void findWidgets() {
         id=getIntent().getIntExtra("id",id);
+        usercheck=getIntent().getStringExtra("usercheck");
     }
 
     @Override
@@ -104,13 +106,13 @@ public class ProjectDetalisRecordActivity extends BaseActivity  {
         public BaseFragment getItem(int position) {
             if(position == 0)
             {
-                return new CheckFragment(0,id);
+                return new CheckFragment(0,id,usercheck);
             }else if(position == 1)
             {
-                return new CheckFragment(1,id);
+                return new CheckFragment(1,id,usercheck);
             }else
             {
-                return new CheckFragment(2,id);
+                return new CheckFragment(2,id,usercheck);
             }
         }
 

@@ -58,6 +58,11 @@ public class RankingListActivity extends BaseActivity {
     @BindView(R.id.tview_part)
     TextView tview_part;
     String result="";
+    String year="2018";
+    @BindView(R.id.ckContent_2018)
+    CheckBox ckContent_2018;
+    @BindView(R.id.ckContent_2017)
+    CheckBox ckContent_2017;
     private BaseQuickAdapter<Partment.DataBean> adapter;
     private BaseQuickAdapter<PartyBranchBean.DataBean> partadapter;
     private BaseQuickAdapter<PartyBranchBean.DataBean.Partybranchs_info> Partybranchs_infodapter;
@@ -131,7 +136,25 @@ public class RankingListActivity extends BaseActivity {
 
     @Override
     protected void findWidgets() {
+        ckContent_2017.setChecked(false);
+        ckContent_2018.setChecked(false);
+        ckContent_2017.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year="2017";
+                ckContent_2017.setChecked(true);
+                ckContent_2018.setChecked(false);
 
+            }
+        });
+        ckContent_2018.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                year="2018";
+                ckContent_2017.setChecked(false);
+                ckContent_2018.setChecked(true);
+            }
+        });
     }
 
     @Override
@@ -224,6 +247,9 @@ public class RankingListActivity extends BaseActivity {
         partbranchGridView.setVisibility(View.VISIBLE);
         partGridView.setVisibility(View.GONE);
         myGridView.setVisibility(View.GONE);
+        ckContent_2018.setChecked(true);
+        ckContent_2017.setChecked(false);
+
     }
 
     @Override

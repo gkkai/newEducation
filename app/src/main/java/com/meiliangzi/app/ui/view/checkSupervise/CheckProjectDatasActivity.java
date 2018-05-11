@@ -64,6 +64,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
 
     private String endYear="2019";
     private int width;
+    private String usercheck;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
             public void onClick(View v) {
                 Intent intent =new Intent(CheckProjectDatasActivity.this,ProjectDetalisRecordActivity.class);
                 intent.putExtra("id",id);
+                intent.putExtra("usercheck",usercheck);
                 startActivity(intent);
             }
         });
@@ -224,7 +226,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
     protected void asyncRetrive() {
         super.asyncRetrive();
         //TODO 取得所有项目列表
-        ProxyUtils.getHttpCheckProxy().projects(this,endYear,-1);
+        ProxyUtils.getHttpCheckProxy().projects(this,endYear,-1,-1);
         //ProxyUtils.getHttpCheckProxy().projects(this);
         //TODO 取得子项目列表
         ProxyUtils.getHttpCheckProxy().subpros(this,id);
@@ -257,6 +259,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
                     }
                     text_execute_time.setText("执行时间 ："+data.getData().get(i).getStart_at()+"~"+data.getData().get(i).getEnd_at());
                     text_project_describe.setText(data.getData().get(i).getProDesc());
+                    usercheck=data.getData().get(i).getExamine_userName();
                     text_project_auditing.setText("审核人 ："+data.getData().get(i).getExamine_userName());
                     if(1==projecttype){
                         if(0==data.getData().get(i).getProject_status()){

@@ -4,6 +4,7 @@ package com.meiliangzi.app.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import android.widget.TextView;
 
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.GroupActivity;
 import com.meiliangzi.app.ui.NewsDetailActivity;
 import com.meiliangzi.app.ui.base.BaseFragment;
@@ -110,5 +113,22 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
                 break;
         }
 
+    }
+
+    @Override
+    public void onResume() {
+        int IsAuthorization=PreferManager.getIsAuthorization();
+        if(IsAuthorization!=1){
+            rl_shequn_check.setVisibility(View.GONE);
+        }else {
+            if(TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()){
+                rl_shequn_check.setVisibility(View.GONE);
+            }else {
+                rl_shequn_check.setVisibility(View.VISIBLE);
+            }
+
+        }
+
+        super.onResume();
     }
 }

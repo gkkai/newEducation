@@ -216,7 +216,7 @@
         android:weightSum="7">
         <TextView
 
-            android:text="经度"
+            android:text="纬度"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
@@ -224,14 +224,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:textColor="@color/colorBlack"/>
-        <TextView
+        <EditText
             android:id="@+id/lat_id"
-            android:hint="124."
+            android:hint="39.9383"
             android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
             android:layout_width="0dp"
+            android:layout_weight="5.5"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/shape_transptrent"
             />
 
     </LinearLayout>
@@ -248,7 +251,7 @@
         android:weightSum="7">
         <TextView
 
-            android:text="纬度"
+            android:text="经度"
             android:layout_marginLeft="10dp"
             android:gravity="center_vertical"
             android:layout_gravity="center_vertical"
@@ -256,14 +259,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1.5"
             android:textColor="@color/colorBlack"/>
-        <TextView
+        <EditText
             android:id="@+id/lng_id"
-            android:hint="37"
+            android:hint="110.83738"
             android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
             android:layout_width="0dp"
+            android:layout_weight="5.5"
             android:layout_height="match_parent"
-            android:layout_weight="4"
+            android:imeOptions="actionNext|flagNoExtractUi"
+            android:textSize="14sp"
+            android:focusable="true"
+            android:background="@drawable/shape_transptrent"
             />
 
     </LinearLayout>
