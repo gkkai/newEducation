@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:orientation="vertical"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    android:background="@drawable/shape_vote_background"
+    >
+
+    <TextView
+        android:id="@+id/text_proName"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:text="消防八大注意事项"
+        android:textColor="#222222"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:id="@+id/text_time"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:gravity="center_vertical"
+        android:text="2018-12-13"
+        android:textSize="14sp"
+
+        android:textColor="#666666"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+       android:ellipsize="end"
+        android:singleLine="false"
+        android:maxLines="2"
+        android:layout_alignParentRight="true"
+        android:id="@+id/text_neirong"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="消防八大注意事项消防八大注意事项消防八大注意事项消防八大注意事项消防八大注意事项消防八大注意事项消防八大注意事项"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginTop="40dp"/>
+</RelativeLayout>

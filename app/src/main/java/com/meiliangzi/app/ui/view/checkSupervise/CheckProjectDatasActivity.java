@@ -226,7 +226,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
     protected void asyncRetrive() {
         super.asyncRetrive();
         //TODO 取得所有项目列表
-        ProxyUtils.getHttpCheckProxy().projects(this,endYear,-1,-1);
+        ProxyUtils.getHttpCheckProxy().projects(this,endYear,"-1",-1,-1);
         //ProxyUtils.getHttpCheckProxy().projects(this);
         //TODO 取得子项目列表
         ProxyUtils.getHttpCheckProxy().subpros(this,id);

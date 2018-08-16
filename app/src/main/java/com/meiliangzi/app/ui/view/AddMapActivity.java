@@ -14,15 +14,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
-import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.model.bean.CountyListbean;
 import com.meiliangzi.app.tools.picompressor.NativePlugin;
 import com.meiliangzi.app.ui.base.BaseActivity;
 
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 

@@ -65,21 +65,28 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     private Dialog dialog;
     private MyGridView myGridViewPartsecreen;
     private MyGridView myGridViewtiem;
+    private MyGridView myGreiviewmouth;
     TextView tvReset;
     TextView tvDone;
     TextView text_project_nature_1;
     TextView text_project_nature_2;
     private  String endYear="-1";
+    private  String endmouth="-1";
     private  int nature=-1;
     private int departId=-1;
     private int pos;
     private String  ischeck="";
     private int postime;
+    private int posmouth;
     private String  ischecktime="";
+    private String  ischecktmouth="";
     private List<String> tiems;
+    private List<String> mouths;
     BaseVoteAdapter<String> tiemAdapter;
+    BaseVoteAdapter<String> tiemmouthAdapter;
     BaseVoteAdapter<CheckProjectBean.DataBean> projectAdapter;
     BaseVoteAdapter<CheckDepartmentsBean.DataBean> departsreceenAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,13 +101,30 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         listView.setPullLoadEnable(false);
         listView.setPullRefreshEnable(false);
         tiems=new ArrayList<>();
+
         tiems.add(0,"2017");
         tiems.add(1,"2018");
         tiems.add(2,"2019");
         tiems.add(3,"2020");
+        mouths=new ArrayList<>();
+        mouths.add(0,"全部");
+        mouths.add(1,"1月");
+        mouths.add(2,"2月");
+        mouths.add(3,"3月");
+        mouths.add(4,"4月");
+        mouths.add(5,"5月");
+        mouths.add(6,"6月");
+        mouths.add(7,"7月");
+        mouths.add(8,"8月");
+        mouths.add(9,"9月");
+        mouths.add(10,"10月");
+        mouths.add(11,"11月");
+        mouths.add(12,"12月");
         inflate = LayoutInflater.from(getBaseContext()).inflate(R.layout.check_screen_dialog_layout, null);
         myGridViewPartsecreen  = (MyGridView) inflate.findViewById(R.id.myGreiviewpartsecreen);
         myGridViewtiem= (MyGridView) inflate.findViewById(R.id.myGridView_timesecreen);
+        myGreiviewmouth=(MyGridView)inflate.findViewById(R.id.myGreiviewmouth);
+
         tvReset=(TextView) inflate.findViewById(R.id.tvReset);
         tvDone=(TextView) inflate.findViewById(R.id.tvDone);
         text_project_nature_1 = (TextView) inflate.findViewById(R.id.text_project_nature_1);
@@ -136,6 +160,44 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
                 tiemAdapter.notifyDataSetChanged();
             }
         });
+        tiemmouthAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
+            @Override
+            public void convert(BaseViewHolder helper, String item) {
+                if(posmouth==getPosition()&&ischecktmouth.equals("ischeck")){
+                    helper.setText(R.id.text_depart, item);
+                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checktimebackground));
+                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
+
+                }else {
+                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.black6));
+
+                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
+                    helper.setText(R.id.text_depart, item);
+                }
+            }
+        };
+
+        myGreiviewmouth.setAdapter(tiemmouthAdapter);
+        myGreiviewmouth.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                posmouth=position;
+                ischecktmouth="ischeck";
+                if(position==0){
+                    endmouth= "-1";
+                } else if(position<10){
+                    endmouth="0"+position;
+
+                }else {
+                    endmouth=  position+"";
+                }
+                //endmouth=tiemAdapter.getItem(position);
+               // myGridViewtiem.notifyDataSetChanged();
+                tiemmouthAdapter.notifyDataSetChanged();
+            }
+        });
+
         //部门列表
         departsreceenAdapter = new BaseVoteAdapter<CheckDepartmentsBean.DataBean>(CheckSuperviseProjectListActivity.this, R.layout.item_check_select) {
             @Override
@@ -284,7 +346,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             listView.setVisibility(View.VISIBLE);
             tvEmpty.setVisibility(View.GONE);
             //TODO 取得所有项目列表
-            ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
+            ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
         }
     }
 
@@ -297,28 +359,34 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
 
             case R.id.tvReset:
                 endYear="-1";
+                endmouth="-1";
                 departId=-1;
                 ischeck="";
                 ischecktime="";
+                ischecktmouth="";
                 nature=-1;
                 text_project_nature_2.setTextColor(getResources().getColor(R.color.ac_filter_nature));
                 text_project_nature_2.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
                 text_project_nature_1.setTextColor(getResources().getColor(R.color.ac_filter_nature));
                 text_project_nature_1.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
-                ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
+                ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
                 dialog.dismiss();
                 break;
             case R.id.tvDone:
                 //TODO 取得所有项目列表
                 if(ischecktime.equals("")){
                     //TODO 请选择时间
-                    ToastUtils.show("请选择时间");
-                }else if(ischeck.equals("")){
+                    ToastUtils.show("请选择年份");
+                }else if(ischecktmouth.equals("")){
+                    //TODO 请选择部门
+                    ToastUtils.show("请选择月份");
+
+                } else if(ischeck.equals("")){
                     //TODO 请选择部门
                     ToastUtils.show("请选择部门");
 
                 }else {
-                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,departId,nature);
+                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
                     dialog.dismiss();
                 }
                 break;
@@ -353,6 +421,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     protected void asyncRetrive() {
         super.asyncRetrive();
         tiemAdapter.setDatas(tiems);
+        tiemmouthAdapter.setDatas(mouths);
         //TODO 取得所有部门列表
         ProxyUtils.getHttpCheckProxy().departments(this);
 

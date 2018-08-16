@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.creativecommons.CommonsDataActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:text="资料详情"
+            style="@style/ActionBar.CenterTitle" />
+
+</RelativeLayout>
+    <ScrollView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/text_title"
+                android:textSize="15sp"
+                android:textColor="#222222"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:text="消防注意八大事项"
+                android:layout_height="40dp"
+                />
+            <TextView
+                android:id="@+id/text_time"
+                android:layout_marginTop="40dp"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:text="事件"
+                android:layout_height="30dp"
+                />
+            <TextView
+                android:id="@+id/text_neirong"
+                android:layout_marginTop="70dp"
+                android:textSize="12sp"
+                android:textColor="#999999"
+                android:gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:text="消防注意八大事项"
+                android:layout_height="wrap_content"
+                />
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/text_neirong"
+                android:id="@+id/gradview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="10dp"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

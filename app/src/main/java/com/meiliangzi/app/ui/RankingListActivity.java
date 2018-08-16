@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
@@ -170,6 +171,10 @@ public class RankingListActivity extends BaseActivity {
             public void convert(BaseViewHolder helper, Partment.DataBean item) {
                 helper.setText(R.id.ckContent, item.getName());
                 CheckBox checkBox = helper.getView(R.id.ckContent);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
+                params.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                checkBox.setLayoutParams(params);
+
                 if (nameDepartment.equals(item.getName())) {
                     filter_type = 1;//
                     filter_dpartybranch=0;
@@ -186,6 +191,9 @@ public class RankingListActivity extends BaseActivity {
             public void convert(BaseViewHolder helper, String item) {
                 helper.setText(R.id.ckContent, item);
                 CheckBox checkBox = helper.getView(R.id.ckContent);
+                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
+               params.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                checkBox.setLayoutParams(params);
                 checkBox.setWidth(50);
                 if (nameType.equals(item)) {
                     checkBox.setChecked(true);
@@ -204,9 +212,9 @@ public class RankingListActivity extends BaseActivity {
             public void convert(BaseViewHolder helper, PartyBranchBean.DataBean item) {
 
                 CheckBox checkBox = helper.getView(R.id.ckContent);
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
-                params.width = dip2px(RankingListActivity.this, dip2px(RankingListActivity.this,42));
-                checkBox.setLayoutParams(params);
+//                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
+//                params.width = dip2px(RankingListActivity.this, dip2px(RankingListActivity.this,42));
+//                checkBox.setLayoutParams(params);
                 helper.setText(R.id.ckContent, item.getName());
                 if ( nameDepartment.equals(item.getName())) {
                     filter_department=0;
@@ -223,9 +231,9 @@ public class RankingListActivity extends BaseActivity {
             public void convert(BaseViewHolder helper, PartyBranchBean.DataBean.Partybranchs_info item) {
 
                 CheckBox checkBox = helper.getView(R.id.ckContent);
-                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
-                params.width = dip2px(RankingListActivity.this, dip2px(RankingListActivity.this,42));
-                checkBox.setLayoutParams(params);
+//                LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) checkBox.getLayoutParams();
+//                params.width = dip2px(RankingListActivity.this, dip2px(RankingListActivity.this,42));
+//                checkBox.setLayoutParams(params);
                 helper.setText(R.id.ckContent, item.getName());
                 if (nameDepartment2.equals(item.getName())) {
                     filter_department=0;

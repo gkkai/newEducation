@@ -9,22 +9,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.tools.PreferManager;
-import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.GroupActivity;
 import com.meiliangzi.app.ui.NewsDetailActivity;
 import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.meiliangzi.app.ui.view.ZoomActivity;
 import com.meiliangzi.app.ui.view.checkSupervise.CheckSuperviseProjectListActivity;
+import com.meiliangzi.app.ui.view.creativecommons.CommonsListActivity;
 import com.meiliangzi.app.ui.view.vote.VoteActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +41,8 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
     @BindView(R.id.rl_shequn_check)
     RelativeLayout rl_shequn_check;
 
+    @BindView(R.id.rl_shequn_commmons)
+    RelativeLayout rl_shequn_commmons;
     public SheQunFragment() {
         // Required empty public constructor
     }
@@ -68,7 +68,7 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
         rl_shequn_check.setOnClickListener(this);
         rl_shequn_industry.setOnClickListener(this);
         rl_shequn_vote.setOnClickListener(this);
-
+        rl_shequn_commmons.setOnClickListener(this);
 
     }
 
@@ -110,6 +110,11 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
                 // TODO  考核督办
                 Intent intentCheck=new Intent(MyApplication.activity, CheckSuperviseProjectListActivity.class);
                 getActivity().startActivity(intentCheck);
+                break;
+            case R.id.rl_shequn_commmons:
+                // TODO  知识共享
+                Intent commmons=new Intent(MyApplication.activity, CommonsListActivity.class);
+                getActivity().startActivity(commmons);
                 break;
         }
 

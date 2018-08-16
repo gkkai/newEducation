@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="com.meiliangzi.app.ui.view.creativecommons.NewBuildComminsActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="新建知识资料" />
+
+</RelativeLayout>
+    <ScrollView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_black_color"
+                android:id="@+id/view2"></View>
+            <EditText
+                android:layout_marginLeft="20dp"
+                android:id="@+id/edit_title"
+                android:hint="请输入标题"
+                android:textCursorDrawable="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                android:textSize="17sp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+            <View
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/text_black_color"></View>
+            <EditText
+                android:layout_marginTop="51dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/edit_neirong"
+                android:hint="请输入内容"
+                android:textCursorDrawable="@null"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:textSize="17sp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                />
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/edit_neirong"
+                android:id="@+id/gradview_group"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:horizontalSpacing="10dp"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="10dp"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/text_sure"
+        android:layout_alignParentBottom="true"
+        android:background="@color/zm_red"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+</RelativeLayout>

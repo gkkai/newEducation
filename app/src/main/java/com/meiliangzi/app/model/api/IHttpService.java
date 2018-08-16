@@ -17,6 +17,7 @@ import com.meiliangzi.app.model.bean.CheckProjectDetBean;
 import com.meiliangzi.app.model.bean.CheckProjectTaskDetBean;
 import com.meiliangzi.app.model.bean.CityListBean;
 import com.meiliangzi.app.model.bean.CommonList;
+import com.meiliangzi.app.model.bean.CommonsListBean;
 import com.meiliangzi.app.model.bean.Company;
 import com.meiliangzi.app.model.bean.ConfirmationBean;
 import com.meiliangzi.app.model.bean.CountyListbean;
@@ -54,6 +55,7 @@ import com.meiliangzi.app.model.bean.RankList;
 import com.meiliangzi.app.model.bean.RecentClassInfobean;
 import com.meiliangzi.app.model.bean.RecentOpenClassBean;
 import com.meiliangzi.app.model.bean.Register;
+import com.meiliangzi.app.model.bean.RepositoryinfoBean;
 import com.meiliangzi.app.model.bean.SearchGroupBean;
 import com.meiliangzi.app.model.bean.SearchUserBean;
 import com.meiliangzi.app.model.bean.SetAdminBean;
@@ -903,8 +905,8 @@ public interface IHttpService {
      *
      * @param context 上下文对象
      */
-    @HttpRequest(arguments = {"endYear","departId","nature"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
-    public void projects(Object context,String endYear,int departId,int nature);
+    @HttpRequest(arguments = {"endYear","month","departId","nature"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
+    public void projects(Object context,String endYear,String month,int departId,int nature);
     /**
      * 取得所有部门列表
      *
@@ -940,6 +942,20 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {}, url = "common/", resultClass = ImageCodeBean.class, refreshMethod = "getimagecode")
     public void imagecode(Object context);
+    /**
+     * 获取图文验证码
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"search","currentPage","pageSize"}, url = "", resultClass = CommonsListBean.class, refreshMethod = "getindexrepository")
+    public void indexrepository(Object context,String search,int currentPage,int pageSize);
+    /**
+     * 获取图文验证码
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"repositoryId"}, url = "", resultClass = RepositoryinfoBean.class, refreshMethod = "getrepositoryinfo")
+    public void repositoryinfo(Object context,int repositoryId);
 }
 
 

@@ -68,6 +68,7 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
     //    private static UnionApplication mInstance = null;
     private static MyApplication _instance;
     public static int type=5;
+    public static String path;
     private SQLHelper sqlHelper;
     public static Activity activity;
     public static NewsDetailActivity newsactivity;

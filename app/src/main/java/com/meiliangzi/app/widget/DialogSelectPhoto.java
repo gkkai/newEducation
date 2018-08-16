@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.tools.BitmapUtil;
+import com.meiliangzi.app.ui.view.creativecommons.ImageSelectActivity;
 import com.tandong.bottomview.view.BottomView;
 
 import java.io.ByteArrayOutputStream;
@@ -129,7 +130,73 @@ public class DialogSelectPhoto {
         });
         bottomView.showBottomView(true);
     }
+    public void getSelectPhoto(final Context context,String type) {
+        final BottomView bottomView = new BottomView(context, R.style.BottomViewTheme_Defalut, R.layout.pannel_select_photo);
+        this.context = context;
+        View view = bottomView.getView();
+        TextView tv_take_photograph = (TextView) view.findViewById(R.id.tv_take_photograph);
+        TextView tv_get_albums = (TextView) view.findViewById(R.id.tv_get_albums);
+        LinearLayout ll_cancel = (LinearLayout) view.findViewById(R.id.ll_cancel);
 
+        tv_take_photograph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH-mm");
+                Date student = new Date();
+                String str = sdf.format(student);
+                sdcardTempFile = new File(FOLODER, "tmp" + str + ".jpg");
+                if(sdcardTempFile.exists()){
+                    sdcardTempFile.delete();
+                }
+                if(!sdcardTempFile.exists()){
+                    try {
+                        File file = new File(FOLODER);
+                        if(!new File(FOLODER).exists()){
+                            file.mkdir();
+                        }
+                        sdcardTempFile.createNewFile();
+                        // 调用系统的拍照功能
+                        Intent intent3 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                        // 指定调用相机拍照后照片的储存路径
+                        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
+                            intent3.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                            Uri contentUri = FileProvider.getUriForFile(context, "com.meiliangzi.app.FileProvider", sdcardTempFile);
+                            intent3.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
+                        }else {
+                            intent3.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(sdcardTempFile));
+                        }
+                        ((FragmentActivity) context).startActivityForResult(intent3, PHOTO_REQUEST_TAKEPHOTO);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                bottomView.dismissBottomView();
+            }
+        });
+
+        tv_get_albums.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent2 = new Intent(Intent.ACTION_PICK, null);
+                intent2.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*");
+                ((FragmentActivity) context).startActivityForResult(intent2, PHOTO_REQUEST_GALLERY);
+//                // TODO  知识共享
+//                Intent commmons=new Intent(this, ImageSelectActivity.class);
+//                startActivityForResult(commmons);
+                bottomView.dismissBottomView();
+            }
+        });
+
+        ll_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                bottomView.dismissBottomView();
+            }
+        });
+        bottomView.showBottomView(true);
+    }
 
     public String onActivityResult(Context context, int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {

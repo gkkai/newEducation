@@ -23,7 +23,6 @@
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -586,8 +585,17 @@
         <activity
             android:name=".ui.view.checkSupervise.ProjectDetalisRecordActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.checkSupervise.CheckTaskDetailActivity"
+        <activity
+            android:name=".ui.view.checkSupervise.CheckTaskDetailActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.view.creativecommons.CommonsListActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.view.creativecommons.NewBuildComminsActivity"
+            android:theme="@style/AppTheme"/>
+        <activity android:name=".ui.view.creativecommons.CommonsDataActivity"
             android:theme="@style/AppTheme"></activity>
+        <activity android:name=".ui.view.creativecommons.ImageSelectActivity"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>
