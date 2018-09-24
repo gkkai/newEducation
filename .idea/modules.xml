@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/jpush/jpush.iml" filepath="$PROJECT_DIR$/jpush/jpush.iml" />
       <module fileurl="file://$PROJECT_DIR$/newEducation.iml" filepath="$PROJECT_DIR$/newEducation.iml" />
       <module fileurl="file://$PROJECT_DIR$/versionupdatelibrary/versionupdatelibrary.iml" filepath="$PROJECT_DIR$/versionupdatelibrary/versionupdatelibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wheelview/wheelview.iml" filepath="$PROJECT_DIR$/wheelview/wheelview.iml" />
       <module fileurl="file://$PROJECT_DIR$/zoomcommonlib/zoomcommonlib.iml" filepath="$PROJECT_DIR$/zoomcommonlib/zoomcommonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/zoomcommonlibs/zoomcommonlibs.iml" filepath="$PROJECT_DIR$/zoomcommonlibs/zoomcommonlibs.iml" />
       <module fileurl="file://$PROJECT_DIR$/zoommobilertc/zoommobilertc.iml" filepath="$PROJECT_DIR$/zoommobilertc/zoommobilertc.iml" />

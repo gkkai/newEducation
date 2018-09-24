@@ -588,14 +588,42 @@
         <activity
             android:name=".ui.view.checkSupervise.CheckTaskDetailActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.creativecommons.CommonsListActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.view.creativecommons.NewBuildComminsActivity"
-            android:theme="@style/AppTheme"/>
-        <activity android:name=".ui.view.creativecommons.CommonsDataActivity"
-            android:theme="@style/AppTheme"></activity>
-        <activity android:name=".ui.view.creativecommons.ImageSelectActivity"
-            android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".ui.view.creativecommons.CommonsListActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.creativecommons.NewBuildComminsActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.creativecommons.CommonsDataActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.creativecommons.ImageSelectActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.SendCarActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.OngoingActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.FreeBackActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.AddSendacarActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.DriverUserLisActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.FkDataActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.view.sendcar.SendFinishActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.view.sendcar.SendaCarinfoActivity"
+            android:theme="@style/AppTheme"
+            ></activity>
     </application>
 
 </manifest>

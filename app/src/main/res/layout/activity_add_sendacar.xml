@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.sendcar.AddSendacarActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_titel"
+            android:text="用车申请"
+            style="@style/ActionBar.CenterTitle" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"
+        android:id="@+id/view2"></View>
+    <ScrollView
+        android:id="@+id/svid"
+        android:layout_marginTop="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            >
+            <TextView
+                android:background="#f2f2f2f2"
+                android:paddingLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="部门信息"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+                <TextView
+                    android:layout_marginTop="50dp"
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="申请部门"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:id="@+id/edit_add_send_department"
+                    android:background="@android:color/transparent"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="13sp"
+                    android:layout_marginTop="50dp"
+                     />
+            <View
+                android:layout_marginTop="100dp"
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <TextView
+                android:layout_marginTop="101dp"
+                android:paddingLeft="20dp"
+                android:gravity="center_vertical"
+                android:text="申请人"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+            <EditText
+                android:textCursorDrawable="@null"
+                android:singleLine="true"
+                android:textSize="13sp"
+                android:background="@android:color/transparent"
+                android:paddingRight="20dp"
+                android:layout_alignParentRight="true"
+                android:hint="请输入"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/edit_add_send_name"
+                android:layout_marginTop="101dp"
+                android:gravity="center_vertical"
+                 />
+            <View
+                android:layout_marginTop="151dp"
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_marginTop="152dp"
+                android:id="@+id/gradview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollingCache="false"
+                android:scrollbars="none"
+                android:numColumns="1"
+                android:listSelector="@android:color/transparent"
+                android:dividerHeight="4dp"
+                android:divider="#f2f2f2f2"
+                android:layout_alignParentStart="true" />
+
+            </RelativeLayout>
+
+    </ScrollView>
+    <TextView
+        android:background="#00000000"
+        android:id="@+id/text_add_next"
+        android:drawablePadding="20dp"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:drawableLeft="@mipmap/sendcaradd"
+        android:text="继续添加车辆信息">
+
+    </TextView>
+
+
+    　<TextView
+    android:id="@+id/text_sure"
+    android:textSize="19sp"
+    android:textColor="@color/white"
+    android:gravity="center"
+    android:text="确定"
+    android:layout_alignParentBottom="true"
+    android:background="@color/zm_red"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+</RelativeLayout>

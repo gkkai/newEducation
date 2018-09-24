@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.sendcar.SendCarActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:text="车辆管理"
+            style="@style/ActionBar.CenterTitle" />
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@mipmap/add"
+
+            style="@style/ActionBar.RightImage"/>
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f2f2f2"
+        android:id="@+id/view2"></View>
+    <ScrollView
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+<TextView
+
+            android:textSize="18sp"
+            android:layout_marginLeft="10dp"
+    android:gravity="center_vertical"
+    android:textColor="#222222"
+    android:layout_width="match_parent"
+    android:text="车辆管理"
+    android:layout_height="50dp" />
+            <View
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2"
+                ></View>
+            <LinearLayout
+                android:layout_marginTop="51dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_ongoing"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sendcarjcz3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="行进中"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/text_JCZ"
+                        android:layout_marginTop="115dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#666666"
+                        android:text="4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_pending_feedback"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sendcardfk3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="待反馈"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/text_DFK"
+                        android:layout_marginTop="115dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#666666"
+                        android:text="12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_YWC"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sencarywc3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="已完成"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+                    <TextView
+                        android:id="@+id/text_YWC"
+                        android:layout_marginTop="115dp"
+                        android:layout_centerHorizontal="true"
+                        android:textColor="#666666"
+                        android:text="25"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </RelativeLayout>
+
+            </LinearLayout>
+            <View
+                android:layout_marginTop="200dp"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f2f2f2"
+                ></View>
+            <TextView
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:paddingLeft="10dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="210dp"
+                android:text="待发车列表"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+            <TextView
+                android:visibility="gone"
+                android:layout_alignParentRight="true"
+                android:textColor="#999999"
+                android:paddingRight="10dp"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_marginTop="210dp"
+                android:text="更多"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp" />
+            <View
+                android:layout_marginTop="260dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#f2f2f2"
+                ></View>
+            <com.meiliangzi.app.widget.MyGridView
+                android:layout_marginTop="261dp"
+                android:id="@+id/gradview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="10dp"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+    <TextView
+        android:visibility="gone"
+        android:layout_marginTop="311dp"
+        android:id="@+id/tvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="暂无数据"
+        android:background="@color/white"
+        />
+    <TextView
+        android:layout_below="@+id/relativeLayout3"
+        android:id="@+id/text_login"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="请先登录或完善个人信息"
+        android:background="@color/zm_white"
+        />
+</RelativeLayout>

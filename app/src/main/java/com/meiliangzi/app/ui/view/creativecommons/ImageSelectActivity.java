@@ -38,6 +38,7 @@ import com.meiliangzi.app.click.OnImageDirItemListener;
 import com.meiliangzi.app.click.OnItemClickListener;
 import com.meiliangzi.app.model.bean.ImageBean;
 import com.meiliangzi.app.model.bean.ImageDirBean;
+import com.meiliangzi.app.widget.ScaleImageView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -52,6 +53,7 @@ public class ImageSelectActivity extends AppCompatActivity implements OnItemClic
     private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
     private static final int PHOTO_REQUEST_CUT = 2;// 结果
     private ProgressDialog mProgressDialog;
+    private ScaleImageView scaleImageView;
     /**
      * 存储文件夹中的图片数量
      */
@@ -133,7 +135,7 @@ public class ImageSelectActivity extends AppCompatActivity implements OnItemClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_select);
 
-
+        scaleImageView=new ScaleImageView(this);
         select = getIntent().getIntExtra("select", 9);
        // maxImageCount = select;
 
@@ -223,7 +225,17 @@ public class ImageSelectActivity extends AppCompatActivity implements OnItemClic
                     clipPhoto(Uri.fromFile(new File(mImages.get(position).getPath())), PHOTO_REQUEST_CUT);//开始裁减图片
                 }
             } else {
-                Toast.makeText(this, position + "", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, position + "", Toast.LENGTH_SHORT).show();
+//                scaleImageView.setFiles(mImages,position);
+//                scaleImageView.setOnDeleteItemListener(new ScaleImageView.OnDeleteItemListener() {
+//                    @Override
+//                    public void onDelete(String position) {
+//                        File deletefile = new File(position);
+//                        deletefile.delete();
+//                    }
+//                });
+//                scaleImageView.create();
+
             }
         } else if (select == 1) {
 

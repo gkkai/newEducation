@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.sendcar.FkDataActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:text="车辆信息修改"
+            style="@style/ActionBar.CenterTitle" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"
+        android:id="@+id/view2"></View>
+    <ScrollView
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+            <TextView
+                android:layout_marginTop="30dp"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:text="部门信息"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="70dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="申请部门："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+
+            android:id="@+id/text_fk_partment"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="70dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="90dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="申请人："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/text_fk_username"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="90dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="130dp"
+                android:textSize="18sp"
+                android:textColor="#222222"
+                android:text="调车信息"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="170dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="用车人："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/text_fk_user"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="170dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="195dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="用车人电话："
+                android:layout_width="110dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/text_fk_userphone"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="195dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="220dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="出发地："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/text_fk_satrt"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="220dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+
+                android:layout_marginTop="245dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="目的地："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:id="@+id/text_fk_end"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="245dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="270dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="出发时间："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_fk_statttime"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="270dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="295dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="返回时间"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_fk_endtime"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="295dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="320dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="驾驶员："
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_fk_drivemUser"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="320dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="345dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="驾驶员电话："
+                android:layout_width="110dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_fk_drivemPhone"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="345dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginTop="370dp"
+                android:textSize="17sp"
+                android:textColor="#444444"
+                android:text="车牌号："
+                android:layout_width="110dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/text_fk_number"
+                android:layout_marginLeft="110dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="370dp"
+                android:textSize="17sp"
+                android:textColor="#666666"
+                android:text=""
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:gravity="center_vertical"
+                android:background="#f2f2f2"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="395dp"
+                android:textSize="17sp"
+                android:textColor="#999999"
+                android:text="车辆返程信息"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+            <RelativeLayout
+                android:layout_marginTop="450dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="实际返回时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:id="@+id/text_fk_tiem"
+                    android:paddingRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="选择返回时间"
+                    android:layout_width="140dp"
+                    android:layout_height="50dp"
+                    android:drawableRight="@mipmap/ic_right_arrow_s"/>
+                <View
+                    android:layout_marginTop="50dp"
+                    android:background="#f2f2f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+                    android:layout_marginTop="51dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="初始里程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="51dp"
+                    android:id="@+id/text_fk_startmileage"
+                    android:paddingRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="0KM"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="51dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="KM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <View
+                    android:layout_marginTop="101dp"
+                    android:background="#f2f2f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+                    android:layout_marginTop="102dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="返回里程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="101dp"
+                    android:id="@+id/text_fk_endmileage"
+                    android:paddingRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="0KM"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="101dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="KM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <View
+                    android:layout_marginTop="151dp"
+                    android:background="#f2f2f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+                <TextView
+                    android:layout_marginTop="152dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="18sp"
+                    android:text="行驶里程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:inputType="numberDecimal"
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:background="@android:color/transparent"
+                    android:layout_marginTop="152dp"
+                    android:id="@+id/text_fk_mileage"
+                    android:paddingRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="0KM"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:visibility="gone"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="152dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:hint="0KM"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <View
+                    android:layout_marginTop="202dp"
+                    android:background="#f2f2f2"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:background="@android:color/transparent"
+                    android:hint="备注"
+                    android:layout_marginTop="203dp"
+                    android:id="@+id/edit_fk_remarks"
+                    android:paddingRight="10dp"
+                    android:textColor="#444444"
+                    android:gravity="center_vertical"
+                    android:textSize="17sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    　<TextView
+    android:id="@+id/text_sure"
+    android:textSize="19sp"
+    android:textColor="@color/white"
+    android:gravity="center"
+    android:text="确定"
+    android:layout_alignParentBottom="true"
+    android:background="@color/zm_red"
+    android:layout_width="match_parent"
+    android:layout_height="50dp" />
+
+</RelativeLayout>

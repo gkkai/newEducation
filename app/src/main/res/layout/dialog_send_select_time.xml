@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    >
+
+
+
+
+
+        <TextView
+            android:textColor="#222222"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:text="时间服务时间:"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            />
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="50dp"
+            android:textColor="@color/zm_red"
+            android:gravity="center"
+            android:text="2019-8-9 09:89"
+            android:textSize="17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            />
+
+
+    <View
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:background="@color/zm_red"
+        android:layout_width="match_parent"
+        android:layout_height="2dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="52dp"
+        android:weightSum="5"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:text="年"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="月"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="日"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="时"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="分"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+    <View
+
+        android:layout_marginTop="102dp"
+        android:background="@color/zm_red"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+    <LinearLayout
+        android:id="@+id/lll"
+        android:orientation="horizontal"
+        android:layout_marginTop="103dp"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:weightSum="5">
+        <com.wx.wheelview.widget.WheelView
+            android:id="@+id/year"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.wx.wheelview.widget.WheelView
+            android:id="@+id/mouth"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.wx.wheelview.widget.WheelView
+            android:id="@+id/days"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.wx.wheelview.widget.WheelView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+        <com.wx.wheelview.widget.WheelView
+            android:id="@+id/min"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <View
+        android:id="@+id/view"
+        android:layout_below="@id/lll"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E4E4E4" />
+    <LinearLayout
+        android:layout_below="@id/view"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/text_quxiao"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="取消"
+            android:textSize="16sp" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="#E4E4E4" />
+
+        <TextView
+            android:id="@+id/text_sure"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="确认"
+            android:textSize="16sp" />
+    </LinearLayout>
+</RelativeLayout>

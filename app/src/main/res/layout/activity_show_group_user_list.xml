@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context="com.meiliangzi.app.ui.view.imkit.ShowGroupUserListActivity">
     <RelativeLayout style="@style/ActionBar"
-        android:layout_marginTop="23dp">
+        >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 
@@ -18,12 +18,12 @@
 
     </RelativeLayout>
     <View
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="49dp"
         android:background="@color/colorGrayLine"
         android:layout_width="match_parent"
         android:layout_height="1dp"></View>
     <com.meiliangzi.app.widget.XListView
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="50dp"
         android:id="@+id/listViewUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

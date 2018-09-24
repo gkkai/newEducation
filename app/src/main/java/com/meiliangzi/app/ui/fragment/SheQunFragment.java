@@ -20,6 +20,7 @@ import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.meiliangzi.app.ui.view.ZoomActivity;
 import com.meiliangzi.app.ui.view.checkSupervise.CheckSuperviseProjectListActivity;
 import com.meiliangzi.app.ui.view.creativecommons.CommonsListActivity;
+import com.meiliangzi.app.ui.view.sendcar.SendCarActivity;
 import com.meiliangzi.app.ui.view.vote.VoteActivity;
 
 import butterknife.BindView;
@@ -43,6 +44,8 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
 
     @BindView(R.id.rl_shequn_commmons)
     RelativeLayout rl_shequn_commmons;
+    @BindView(R.id.rl_shequn_sendcar)
+    RelativeLayout rl_shequn_sendcar;
     public SheQunFragment() {
         // Required empty public constructor
     }
@@ -69,6 +72,7 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
         rl_shequn_industry.setOnClickListener(this);
         rl_shequn_vote.setOnClickListener(this);
         rl_shequn_commmons.setOnClickListener(this);
+        rl_shequn_sendcar.setOnClickListener(this);
 
     }
 
@@ -115,6 +119,11 @@ public class SheQunFragment extends BaseFragment implements View.OnClickListener
                 // TODO  知识共享
                 Intent commmons=new Intent(MyApplication.activity, CommonsListActivity.class);
                 getActivity().startActivity(commmons);
+                break;
+            case R.id.rl_shequn_sendcar:
+                // TODO  知识共享
+                Intent sendcar=new Intent(MyApplication.activity, SendCarActivity.class);
+                getActivity().startActivity(sendcar);
                 break;
         }
 

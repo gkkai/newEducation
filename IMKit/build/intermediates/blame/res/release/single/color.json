@@ -2,9 +2,5 @@
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/color/rc_btn_file_list_send.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/color/rc_btn_file_list_send.xml"
-    },
-    {
-        "merged": "/Users/kk/Desktop/work/newEducation/IMKit/build/intermediates/res/merged/release/color/rc_btn_file_list_send.xml",
-        "source": "/Users/kk/Desktop/work/newEducation/IMKit/src/main/res/color/rc_btn_file_list_send.xml"
     }
 ]

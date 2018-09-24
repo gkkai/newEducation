@@ -20,6 +20,7 @@ import com.bumptech.glide.request.target.Target;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.model.bean.ImageBean;
 import com.meiliangzi.app.tools.ToastUtils;
 
 import java.io.File;
@@ -42,7 +43,7 @@ public class ScaleImageView {
     private Activity activity;
 
     private List<String> urls;
-    private List<File> files;
+    private List<ImageBean> paths;
     private List<File> downloadFiles;
 
     private int selectedPosition;
@@ -85,17 +86,17 @@ public class ScaleImageView {
         imageCount.setText(text);
     }
 
-    public void setFiles(List<File> files, int startPosition) {
-        if (this.files == null) {
-            this.files = new LinkedList<>();
-        } else {
-            this.files.clear();
-        }
-        this.files.addAll(files);
+    public void setFiles(List<ImageBean> paths, int startPosition) {
+//        if (this.files == null) {
+//            this.files = new LinkedList<>();
+//        } else {
+//            this.files.clear();
+//        }
+        this.paths=paths;
         status = FILES;
         download.setVisibility(View.GONE);
         this.startPosition = startPosition++;
-        String text = startPosition + "/" + files.size();
+        String text = startPosition + "/" + paths.size();
         imageCount.setText(text);
     }
 
@@ -124,9 +125,9 @@ public class ScaleImageView {
 
 
             int size = views.size();
-            files.remove(selectedPosition);
+                paths.remove(selectedPosition);
             if (listener != null) {
-                listener.onDelete(selectedPosition);
+                listener.onDelete(paths.get(selectedPosition).getPath());
             }
             viewPager.removeView(views.remove(selectedPosition));
             if (selectedPosition != size) {
@@ -197,7 +198,7 @@ public class ScaleImageView {
                             downloadFiles.add(downLoadFile);
                             activity.runOnUiThread(new Runnable() {
                                 @Override
-                                public void run() {
+                                 public void run() {
                                     imageView.setImage(ImageSource.uri(Uri.fromFile(downLoadFile)));
                                 }
                             });
@@ -209,11 +210,13 @@ public class ScaleImageView {
             }
             viewPager.setAdapter(adapter);
         } else if (status == FILES) {
-            for (File file : files) {
+
+            for (ImageBean path : paths) {
                 FrameLayout frameLayout = (FrameLayout) activity.getLayoutInflater().inflate(R.layout.view_scale_image, null);
                 SubsamplingScaleImageView imageView = (SubsamplingScaleImageView) frameLayout.findViewById(R.id.scale_image_view);
                 views.add(frameLayout);
-                imageView.setImage(ImageSource.uri(Uri.fromFile(file)));
+                imageView.setImage(ImageSource.uri(Uri.fromFile(new File(path.getPath()))));
+                //imageView.setimager
             }
             viewPager.setAdapter(adapter);
         }
@@ -265,9 +268,94 @@ public class ScaleImageView {
         }
 
     }
+//    private static class MyPagerAdapter2 extends PagerAdapter {
+//
+//        private List<Integer> mDrawableResIdList;
+//        private Dialog dialog;
+//
+//        MyPagerAdapter2(List<Integer> views, Dialog dialog) {
+//            this.mDrawableResIdList = views;
+//            this.dialog = dialog;
+//        }
+//
+//        @Override
+//        public Object instantiateItem(ViewGroup container, int position) {
+//            if (mDrawableResIdList != null && position < mDrawableResIdList.size()) {
+//                Integer resId = mDrawableResIdList.get(position);
+//                if (resId != null) {
+//                    ImageView itemView = new ImageView();
+//                    itemView.setb(resId);
+//
+//                    //此处假设所有的照片都不同，用resId唯一标识一个itemView；也可用其它Object来标识，只要保证唯一即可
+//                    itemView.setTag(resId);
+//
+//                    ((ViewPager) container).addView(itemView);
+//                    return itemView;
+//                }
+//            }
+//            return null;
+//        }
+//
+//        @Override
+//        public void destroyItem(ViewGroup container, int position, Object object) {
+//            if (position == 0 && mDrawableResIdList.size() == 0) {
+//                dialog.dismiss();
+//                return;
+//            }
+//            if (object != null) {
+//                ViewGroup viewPager = ((ViewGroup) container);
+//                int count = viewPager.getChildCount();
+//                for (int i = 0; i < count; i++) {
+//                    View childView = viewPager.getChildAt(i);
+//                    if (childView == object) {
+//                        viewPager.removeView(childView);
+//                        break;
+//                    }
+//                }
+//            }
+//
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            if (mDrawableResIdList != null) {
+//                return mDrawableResIdList.size();
+//            }
+//            return 0;
+//
+//        }
+//
+//        @Override
+//        public boolean isViewFromObject(View view, Object object) {
+//            return view == object;
+//        }
+//
+//        @Override
+//        public int getItemPosition(Object object) {
+//            if (object != null && mDrawableResIdList != null) {
+//                Integer resId = (Integer)((ImageView)object).getTag();
+//                if (resId != null) {
+//                    for (int i = 0; i < mDrawableResIdList.size(); i++) {
+//                        if (resId.equals(mDrawableResIdList.get(i))) {
+//                            return i;
+//                        }
+//                    }
+//                }
+//            }
+//            return POSITION_NONE;
+//        }
+//        public void updateData(List<Integer> itemsResId) {
+//            if (itemsResId == null) {
+//                return;
+//            }
+//            mDrawableResIdList = itemsResId;
+//            this.notifyDataSetChanged();
+//        }
+//
+//        }
 
     public interface OnDeleteItemListener {
-        void onDelete(int position);
+        void onDelete(String position);
     }
     private static final int MIN_DELAY_TIME= 2000;  // 两次点击间隔不能少于1000ms
     private static long lastClickTime;

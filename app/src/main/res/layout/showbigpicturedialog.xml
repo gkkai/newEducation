@@ -27,11 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:padding="24dp"
-        android:src="@mipmap/download"
+        android:padding="20dp"
+        android:src="@mipmap/guanbi"
         tools:ignore="ContentDescription"/>
 
     <ImageView
+        android:visibility="gone"
         android:id="@+id/scale_image_save"
         android:layout_width="30dp"
         android:layout_height="30dp"

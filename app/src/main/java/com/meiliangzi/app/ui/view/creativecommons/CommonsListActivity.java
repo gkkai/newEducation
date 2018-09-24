@@ -77,7 +77,7 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
                                           KeyEvent event) {
                 if ((actionId == 0 || actionId == 3) && event != null) {
                     //写点击搜索键后的操作
-                    pageSize=1;
+                    currentPage=1;
                     search=edit_.getText().toString().trim();
                     ProxyUtils.getHttpProxy().indexrepository(CommonsListActivity.this,search,currentPage,pageSize);
                     return true;
@@ -121,9 +121,7 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
 
     protected void getindexrepository(CommonsListBean bean){
        // Adapter.setDatas(bean.getData());
-        if(listView.getVisibility()==View.GONE){
-            listView.setVisibility(View.VISIBLE);
-        }
+
         if(tvEmpty.getVisibility()==View.VISIBLE){
             tvEmpty.setVisibility(View.GONE);
         }

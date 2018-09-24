@@ -35,6 +35,7 @@ import com.meiliangzi.app.model.bean.ImageCodeBean;
 import com.meiliangzi.app.model.bean.IndexNewsBean;
 import com.meiliangzi.app.model.bean.IndexNewsListsBean;
 import com.meiliangzi.app.model.bean.IndexNewsTypeBean;
+import com.meiliangzi.app.model.bean.IndexSendacarBean;
 import com.meiliangzi.app.model.bean.IndexpicBean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
 import com.meiliangzi.app.model.bean.MeetIDBean;
@@ -48,8 +49,10 @@ import com.meiliangzi.app.model.bean.PartyBranchBean;
 import com.meiliangzi.app.model.bean.QualityVideoCommentBean;
 import com.meiliangzi.app.model.bean.QueryDataBean;
 import com.meiliangzi.app.model.bean.QueryMapsBeans;
+import com.meiliangzi.app.model.bean.QuerySendacarinfoBean;
 import com.meiliangzi.app.model.bean.QueryUserInfoBean;
 import com.meiliangzi.app.model.bean.QueryVideoCommentBean;
+import com.meiliangzi.app.model.bean.QueryuserBean;
 import com.meiliangzi.app.model.bean.QuestionList;
 import com.meiliangzi.app.model.bean.RankList;
 import com.meiliangzi.app.model.bean.RecentClassInfobean;
@@ -58,6 +61,8 @@ import com.meiliangzi.app.model.bean.Register;
 import com.meiliangzi.app.model.bean.RepositoryinfoBean;
 import com.meiliangzi.app.model.bean.SearchGroupBean;
 import com.meiliangzi.app.model.bean.SearchUserBean;
+import com.meiliangzi.app.model.bean.SendacardeleteBean;
+import com.meiliangzi.app.model.bean.SendacarinfoBean;
 import com.meiliangzi.app.model.bean.SetAdminBean;
 import com.meiliangzi.app.model.bean.StudyCenternBean;
 import com.meiliangzi.app.model.bean.StudyInfo;
@@ -956,6 +961,65 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"repositoryId"}, url = "", resultClass = RepositoryinfoBean.class, refreshMethod = "getrepositoryinfo")
     public void repositoryinfo(Object context,int repositoryId);
+    /**
+     * 派车首页
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"plateStatus","currentPage","pageSize"}, url = "", resultClass = IndexSendacarBean.class, refreshMethod = "getindexsendacar")
+    public void indexsendacar(Object context,int plateStatus,int currentPage,int pageSize );
+    /**
+     * 派车首页
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"currentPage","pageSize"}, url = "", resultClass = IndexSendacarBean.class, refreshMethod = "getindexsendacar")
+    public void indexsendacar(Object context,int currentPage,int pageSize );
+    /**
+     * 获取驾驶人员列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = QueryuserBean.class, refreshMethod = "getqueryuserlist")
+    public void queryuserlist(Object context);
+    /**
+     * 派车删除
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"sendACarId"}, url = "", resultClass = SendacardeleteBean.class, refreshMethod = "getsendacardelete")
+    public void sendacardelete(Object context,int sendACarId);
+    /**
+     * 派车详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"sendACarId"}, url = "", resultClass = SendacarinfoBean.class, refreshMethod = "getsendacarinfo")
+    public void sendacarinfo(Object context,int sendACarId);
+    /**
+     * 派车详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"sendACarId","returnTime","initialMileage","returnMileage","mileage","remarks"}, url = "", resultClass = SendacardeleteBean.class, refreshMethod = "getsendacarinfoadd")
+    public void sendacarinfoadd(Object context,int sendACarId,String returnTime,String initialMileage,String returnMileage,String mileage,String remarks);
+
+
+    /**
+     * 派车详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"endAt","startAt"}, url = "", resultClass = QuerySendacarinfoBean.class, refreshMethod = "getquerysendacarlist")
+    public void querysendacarlist(Object context,String endAt,String startAt);
+    /*
+     * 派车详情
+     *
+             * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"sendACarInfoId","returnTime","initialMileage","returnMileage","mileage","remarks"}, url = "", resultClass = SendacardeleteBean.class, refreshMethod = "getsendacarinfoadd")
+    public void sendacarinfoupdate(Object context,int sendACarInfoId,String returnTime,String initialMileage,String returnMileage,String mileage,String remarks);
+
 }
 
 

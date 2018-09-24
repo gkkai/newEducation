@@ -94,7 +94,7 @@ public class NewBuildComminsActivity extends BaseActivity implements PermissionL
                 //适配imageView，正方形，宽和高都是屏幕宽度的1/3
                 RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) helper.getView(R.id.image_group_userheader).getLayoutParams();
                 params.width =  mScreenWidth / 3 - params.rightMargin - params.leftMargin;
-                params.height =  mScreenWidth / 3 - params.topMargin - params.bottomMargin;
+                params.height =  (mScreenWidth / 3 - params.rightMargin - params.leftMargin)-20;
                 helper.getView(R.id.image_group_userheader).setLayoutParams(params);
 
                     if (item.getPath() == null) {
@@ -102,7 +102,7 @@ public class NewBuildComminsActivity extends BaseActivity implements PermissionL
                         helper.getView(R.id.image_group_userheader).setEnabled(true);
                         //helper.setImageByUrl(R.id.image_group_userheader, null, R.mipmap.groupadd1, R.mipmap.groupadd1);
                         helper.showOrGoneView(R.id.image_delete,false);
-                        Glide.with(NewBuildComminsActivity.this).load(item.getPath()).error(R.mipmap.groupadd1).into((ImageView) helper.getView(R.id.image_group_userheader));
+                        Glide.with(NewBuildComminsActivity.this).load(item.getPath()).error(R.mipmap.addgroup).into((ImageView) helper.getView(R.id.image_group_userheader));
 
                         helper.getView(R.id.image_group_userheader).setOnClickListener(new View.OnClickListener() {
                             @Override

@@ -8,7 +8,7 @@
     android:background="@color/white"
     tools:context="com.meiliangzi.app.ui.view.imkit.ChatFridentActivity">
     <RelativeLayout style="@style/ActionBar"
-        android:layout_marginTop="23dp">
+        >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 

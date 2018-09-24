@@ -11,9 +11,12 @@
         android:src="@mipmap/ic_launcher" />
 
     <CheckBox
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
         android:id="@+id/ch_select"
-        android:layout_width="wrap_content"
-        style="@style/CustomCheckBoxTheme"
-        android:layout_height="wrap_content"
+        android:layout_width="25dp"
+        android:button="@null"
+        android:background="@drawable/selector_picture"
+        android:layout_height="25dp"
         android:layout_alignParentRight="true" />
 </RelativeLayout>

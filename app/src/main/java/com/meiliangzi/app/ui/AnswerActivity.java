@@ -11,9 +11,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.model.bean.BaseBean;
 import com.meiliangzi.app.model.bean.QuestionList;
+import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
@@ -34,9 +36,17 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.OnClick;
 import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import com.meiliangzi.app.R;
+
+import static com.meiliangzi.app.config.Constant.BASE_URL;
+
 /**
  * @author xiaobo
  * @version 1.0
@@ -144,6 +154,7 @@ public class AnswerActivity extends BaseActivity {
     };
     private long costTime;
     private long answerTime;
+    private String isverrrde="";
 
 
     @Override
@@ -151,30 +162,57 @@ public class AnswerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         MyApplication.score=0;
         onCreateView(R.layout.activity_answer);
-        /*callback=new HttpCallback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-               // ToastUtils.custom("提交成功");
-                AnswerActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        showDialog();
-                    }
-                });
-
-            }
-        };
-*/
     }
 
     @Override
     protected void findWidgets() {
+
+
+    }
+
+    private void savescore(String userid, String id, String score, String costTime) {
+        String url = BASE_URL+"community/savescore";
+        OkHttpClient okHttpClient = new OkHttpClient();
+        RequestBody body = new FormBody.Builder()
+                .add("userId", userid)
+                .add("subjectId", id)
+                .add("score", score)
+                .add("answerTime", costTime)
+    .build();
+        Request request = new Request.Builder()
+                .url(url)
+                .post(body)
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        isverrrde="verride";
+                        isSubmit=false;
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                ToastUtils.custom("提交失败，请重新提交");
+                            }
+                        });
+
+
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                String s=response.body().string();
+                Gson gson=new Gson();
+               // BaseBean baseBean= gson.fromJson(response.body().string(),BaseBean.class);
+                getResult();
+            }
+        });
 
     }
 
@@ -410,8 +448,8 @@ public class AnswerActivity extends BaseActivity {
                     return;
                 }
                 if(isSubmit){
-                    ToastUtils.custom("您已经答过题了");
-                    AnswerActivity.this.finish();
+                    ToastUtils.custom("正在提交，请稍后");
+                    //AnswerActivity.this.finish();
                     return;
                 }else {
                     answerList.clear();
@@ -443,56 +481,29 @@ public class AnswerActivity extends BaseActivity {
                         ToastUtils.custom("请选择答案");
                         return;
                     }
-                    wholeQuestionMap.get(questionIndex).setSelect(sb.toString());
-                    questionIndex++;
+
                     if (tvSubmit.getText().toString().equals("提交")) {
                         isSubmit=true;
-                        //提交
-                        score = 0;
-                   /* for (int i = 0; i < wholeQuestionMap.size(); i++) {
-                        QuestionList.DataBean item = wholeQuestionMap.get(i);
-                        if (item.getSelect() != null && item.getSelect().equals(item.getCorrectnessAnswer())) {
-                            score += (Integer.parseInt(item.getScore()));
-                            continue;
-                        }
-                        if(item.getSelect()!=null){
-                            String[] selecctAnswer = item.getSelect().split(",");
-                            String[] answer = item.getCorrectnessAnswer().split(",");
-                            if(selecctAnswer.length > answer.length){  //多选了 该题 0 分
-                                score+=0;
+                        if("verride".equals(isverrrde)){
+                            submitData(String.valueOf(MyApplication.score));
+                        }else {
+                            if(Questionitem==null){
+                                timetype="";
+                                submitData(String.valueOf(MyApplication.score));
                             }else {
-                                float temp = 0;
-                                boolean isCorrent = false;
-                                for (int j = 0;j< selecctAnswer.length;j++){    //少选了 或者选错了
-                                    if(selecctAnswer[j].equals(answer[j])){
-                                         temp += Float.parseFloat(item.getScore()) / answer.length;
-                                        isCorrent = true;
-                                        continue;
-                                    }else {
-                                        isCorrent=false;
-                                        break;
-                                    }
-                                }
-                                if(isCorrent){
-                                    DecimalFormat myformat=new java.text.DecimalFormat("0.0");
-                                    score+=Float.parseFloat(myformat.format(temp));
-                                }
+                                int rsult=Questionitem.getCurrentItemScore(sb.toString());
+                                MyApplication.score= MyApplication.score+rsult;
+                                timetype="";
+                                submitData(String.valueOf(MyApplication.score));
                             }
                         }
 
-                    }*/
-                        if(Questionitem==null){
-                            timetype="";
-                            submitData(String.valueOf(MyApplication.score));
-                        }else {
-                            int rsult=Questionitem.getCurrentItemScore(sb.toString());
-                            MyApplication.score= MyApplication.score+rsult;
-                            timetype="";
-                            submitData(String.valueOf(MyApplication.score));
-                        }
+
 
                         return;
                     } else {
+                        wholeQuestionMap.get(questionIndex).setSelect(sb.toString());
+                        questionIndex++;
                         int rsult=Questionitem.getCurrentItemScore(sb.toString());
                         MyApplication.score= MyApplication.score+ rsult;
                         tempA1 = 0;
@@ -616,12 +627,14 @@ public class AnswerActivity extends BaseActivity {
         if(isSubmit){
 
         }
-        ProxyUtils.getHttpProxy().savescore(AnswerActivity.this, Integer.valueOf(PreferManager.getUserId()), Integer.valueOf(id), Integer.valueOf(score),costTime);
+        //优化网络请求
+       // ProxyUtils.getHttpProxy().savescore(AnswerActivity.this, Integer.valueOf(PreferManager.getUserId()), Integer.valueOf(id), Integer.valueOf(score),costTime);
+        savescore(PreferManager.getUserId(),id, score,String.valueOf(costTime));
 
     }
 
-    protected void getResult(BaseBean baseBean) {
-        ToastUtils.custom("提交成功");
+    protected void getResult() {
+        //ToastUtils.custom("提交成功");
        // isSubmit=false;
         runOnUiThread(new Runnable() {
             @Override
