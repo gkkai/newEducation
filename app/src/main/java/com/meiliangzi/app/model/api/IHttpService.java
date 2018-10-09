@@ -46,6 +46,7 @@ import com.meiliangzi.app.model.bean.News;
 import com.meiliangzi.app.model.bean.NoticeMessagelistBean;
 import com.meiliangzi.app.model.bean.Partment;
 import com.meiliangzi.app.model.bean.PartyBranchBean;
+import com.meiliangzi.app.model.bean.ProposerUserlistBean;
 import com.meiliangzi.app.model.bean.QualityVideoCommentBean;
 import com.meiliangzi.app.model.bean.QueryDataBean;
 import com.meiliangzi.app.model.bean.QueryMapsBeans;
@@ -1012,13 +1013,20 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"endAt","startAt"}, url = "", resultClass = QuerySendacarinfoBean.class, refreshMethod = "getquerysendacarlist")
     public void querysendacarlist(Object context,String endAt,String startAt);
-    /*
+    /**
      * 派车详情
      *
-             * @param context 上下文对象
+     * @param context 上下文对象
      */
     @HttpRequest(arguments = {"sendACarInfoId","returnTime","initialMileage","returnMileage","mileage","remarks"}, url = "", resultClass = SendacardeleteBean.class, refreshMethod = "getsendacarinfoadd")
     public void sendacarinfoupdate(Object context,int sendACarInfoId,String returnTime,String initialMileage,String returnMileage,String mileage,String remarks);
+    /**
+     * 派车申请人校验
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = ProposerUserlistBean.class, refreshMethod = "getproposeruserlist")
+    public void proposeruserlist(Object context);
 
 }
 

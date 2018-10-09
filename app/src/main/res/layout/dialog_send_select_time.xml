@@ -14,7 +14,7 @@
             android:textColor="#222222"
             android:gravity="center"
             android:paddingLeft="50dp"
-            android:text="时间服务时间:"
+            android:text="服务时间:"
             android:textSize="17sp"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
@@ -33,10 +33,8 @@
 
 
     <View
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
         android:layout_marginTop="50dp"
-        android:background="@color/zm_red"
+        android:background="@color/colorGrayLine"
         android:layout_width="match_parent"
         android:layout_height="2dp" />
     <LinearLayout
@@ -80,7 +78,7 @@
     <View
 
         android:layout_marginTop="102dp"
-        android:background="@color/zm_red"
+        android:background="@color/colorGrayLine"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
     <LinearLayout

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.IndexSendacarBean;
+import com.meiliangzi.app.model.bean.ProposerUserlistBean;
 import com.meiliangzi.app.model.bean.SendacardeleteBean;
 import com.meiliangzi.app.tools.IntentUtils;
 import com.meiliangzi.app.tools.PreferManager;
@@ -223,10 +224,35 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.add:
-                Intent intent=new Intent(this,AddSendacarActivity.class);
-                startActivity(intent);
+                //TODO 检查是否权限
+                ProxyUtils.getHttpProxy().proposeruserlist(this);
+
                 break;
         }
+    }
+    protected void getproposeruserlist(ProposerUserlistBean bean){
+        if(bean!=null&&bean.getData().size()!=0){
+
+        if(iscontains(bean)){
+            Intent intent=new Intent(this,AddSendacarActivity.class);
+            startActivity(intent);
+        }else {
+           //TODO
+            ToastUtils.show("您没有权限进行此次操作");
+        }
+
+        }
+
+    }
+    private boolean iscontains(ProposerUserlistBean bean){
+        boolean iscontains=false;
+        for (int i=0;i<bean.getData().size();i++){
+                if(bean.getData().get(i).getId()==Integer.valueOf(PreferManager.getUserId())){
+
+                    iscontains= true;
+                }
+            }
+        return iscontains;
     }
     private String tiem(String start) {
         String time=date2TimeStamp(start+":00","yyyy/MM/dd HH:mm:ss");

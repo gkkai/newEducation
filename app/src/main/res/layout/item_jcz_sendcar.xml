@@ -2,10 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingRight="15dp"
-    android:paddingLeft="15dp">
+    android:padding="20dp">
     <TextView
-        android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
         android:textColor="@color/zm_highlight_focused"
         android:gravity="right|center_vertical"
@@ -14,7 +12,6 @@
         android:layout_width="100dp"
         android:layout_height="30dp" />
     <TextView
-        android:layout_marginTop="20dp"
         android:textColor="#444444"
         android:gravity="center"
         android:text="部门"
@@ -26,7 +23,7 @@
     <TextView
         android:lines="2"
         android:ellipsize="end"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:textColor="#444444"
         android:gravity="center_vertical"
         android:text="始发地"
@@ -34,7 +31,7 @@
         android:layout_width="90dp"
         android:layout_height="60dp" />
     <ImageView
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="45dp"
         android:layout_centerHorizontal="true"
         android:scaleX="1.2"
         android:scaleY="0.8"
@@ -44,7 +41,7 @@
     <TextView
         android:lines="2" android:ellipsize="end"
         android:textColor="#444444"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_alignParentRight="true"
         android:gravity="right|center_vertical"
         android:text="目的地"
@@ -54,14 +51,14 @@
     <TextView
         android:id="@+id/text_sendcar_startAt_endAt"
         android:text="11:30-18:30"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
         android:id="@+id/text_sendcar_plateNumber"
         android:text="陕BD6673"
-        android:layout_marginTop="90dp"
+        android:layout_marginTop="60dp"
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
