@@ -1,10 +1,8 @@
 package com.meiliangzi.app.ui;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.TypedValue;
@@ -12,10 +10,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.Partment;
 import com.meiliangzi.app.model.bean.PartyBranchBean;
@@ -27,13 +25,10 @@ import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.fragment.RankListFragment;
 import com.meiliangzi.app.ui.view.CustomDrawerLayout;
 import com.meiliangzi.app.widget.MyGridView;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-
 /**
  * @author xiaobo
  * @version 1.0
@@ -64,6 +59,9 @@ public class RankingListActivity extends BaseActivity {
     CheckBox ckContent_2018;
     @BindView(R.id.ckContent_2017)
     CheckBox ckContent_2017;
+
+    @BindView(R.id.edit_susou)
+    EditText edit_susou;
     private BaseQuickAdapter<Partment.DataBean> adapter;
     private BaseQuickAdapter<PartyBranchBean.DataBean> partadapter;
     private BaseQuickAdapter<PartyBranchBean.DataBean.Partybranchs_info> Partybranchs_infodapter;

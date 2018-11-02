@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.meiliangzi.app.ui.view.checkSupervise.CheckProjectDatasActivity">
     <RelativeLayout style="@style/ActionBar"
-        android:layout_marginTop="23dp">
+        >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 
@@ -18,12 +18,12 @@
 
     </RelativeLayout>
     <View
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@color/colorGrayLine"></View>
     <ScrollView
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="49dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

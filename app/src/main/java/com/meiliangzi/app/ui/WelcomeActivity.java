@@ -1,6 +1,7 @@
 package com.meiliangzi.app.ui;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,6 +30,10 @@ public class WelcomeActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onCreateView(R.layout.activity_welcome);
+        if((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0){
+            finish();
+            return;
+        }
         if (!PreferManager.getUserId().isEmpty())
         {
             PreferManager.saveTimeStart(System.currentTimeMillis()+"");

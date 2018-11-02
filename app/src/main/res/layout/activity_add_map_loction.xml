@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.meiliangzi.app.ui.view.AddMapLoctionActivity">
     <RelativeLayout style="@style/ActionBar"
-                    android:layout_marginTop="23dp">
+                    >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 
@@ -24,7 +24,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -57,12 +57,12 @@
             android:layout_marginRight="20dp"/>
     </LinearLayout>
     <View
-        android:layout_marginTop="131dp"
+        android:layout_marginTop="108dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <LinearLayout
-        android:layout_marginTop="131.5dp"
+        android:layout_marginTop="108.5dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -96,12 +96,12 @@
 
     </LinearLayout>
     <View
-        android:layout_marginTop="191.5dp"
+        android:layout_marginTop="168.5dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <LinearLayout
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="169dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -131,12 +131,12 @@
         </HorizontalScrollView>
     </LinearLayout>
     <View
-        android:layout_marginTop="312.5dp"
+        android:layout_marginTop="229.5dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <LinearLayout
-        android:layout_marginTop="252.5dp"
+        android:layout_marginTop="230dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -168,13 +168,13 @@
 
     </LinearLayout>
     <View
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="290dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
 
     <LinearLayout
-        android:layout_marginTop="312.5dp"
+        android:layout_marginTop="290.5dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -204,12 +204,12 @@
 
     </LinearLayout>
     <View
-        android:layout_marginTop="372.5dp"
+        android:layout_marginTop="350.5dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <LinearLayout
-        android:layout_marginTop="373dp"
+        android:layout_marginTop="351dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -239,12 +239,12 @@
 
     </LinearLayout>
     <View
-        android:layout_marginTop="433.5dp"
+        android:layout_marginTop="411dp"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <LinearLayout
-        android:layout_marginTop="434dp"
+        android:layout_marginTop="412dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:orientation="horizontal"
@@ -274,7 +274,7 @@
 
     </LinearLayout>
     <TextView
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="48dp"
         android:id="@+id/tvEmpty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -11,6 +11,25 @@
     <RelativeLayout style="@style/ActionBar">
 
         <ImageView style="@style/ActionBar.LeftImage" />
+        <EditText
+            android:visibility="gone"
+            android:id="@+id/edit_susou"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:singleLine="true"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:paddingLeft="10dp"
+            android:maxLength="13"
+            android:textSize="15sp"
+            android:hint="请输入名称..."
+            android:drawableLeft="@mipmap/search"
+            android:imeOptions="actionSearch"
+            android:background="@drawable/shape_edittext_map"
+
+            />
 
         <TextView
             style="@style/ActionBar.CenterTitle"

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.meiliangzi.app.ui.view.AddMapActivity">
     <RelativeLayout style="@style/ActionBar"
-                    android:layout_marginTop="23dp">
+                    >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 
@@ -22,7 +22,7 @@
             android:textColor="@color/zm_red"/>
     </RelativeLayout>
     <WebView
-        android:layout_marginTop="71dp"
+        android:layout_marginTop="48dp"
         android:id="@+id/wView_map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

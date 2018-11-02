@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.meiliangzi.app.ui.view.AddCityListsActivity">
     <RelativeLayout style="@style/ActionBar"
-                    android:layout_marginTop="23dp">
+                    >
 
         <ImageView style="@style/ActionBar.LeftImage" />
 
@@ -18,7 +18,7 @@
 
     </RelativeLayout>
     <ListView
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="48dp"
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

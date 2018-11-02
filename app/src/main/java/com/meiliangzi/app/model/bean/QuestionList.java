@@ -1,6 +1,7 @@
 package com.meiliangzi.app.model.bean;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -100,11 +101,14 @@ public class QuestionList extends BaseBean {
 
             Iterator it=set.iterator();
             this.randomansers=new ArrayList();
+            //TODO 随机打乱
+            Collections.shuffle(list);
             while(it.hasNext()){
                 Integer index=(Integer)it.next();
 
                 this.randomansers.add(list.get(index));
             }
+
             return this.randomansers;
 
         }
