@@ -381,7 +381,7 @@ public class ArticalDetailActivity extends BaseActivity {
             public void onNoClick() {
                 // Toast.makeText(this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
                 //TODO 取得试卷信息
-                ProxyUtils.getHttpProxy().gettestpaper(ArticalDetailActivity.this, id);
+                //ProxyUtils.getHttpProxy().gettestpaper(ArticalDetailActivity.this, id);
 
                 myDialog.dismiss();
             }

@@ -44,13 +44,15 @@
                 android:layout_height="50dp" />
 
                 <TextView
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="101dp"
                     android:paddingLeft="20dp"
                     android:gravity="center_vertical"
                     android:text="申请部门"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp" />
-                <EditText
+                <TextView
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@mipmap/ic_right_arrow_s"
                     android:textCursorDrawable="@null"
                     android:singleLine="true"
                     android:id="@+id/edit_add_send_department"
@@ -62,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:textSize="13sp"
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="101dp"
                      />
             <View
                 android:layout_marginTop="100dp"
@@ -70,24 +72,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"></View>
             <TextView
-                android:layout_marginTop="101dp"
+                android:layout_marginTop="50dp"
                 android:paddingLeft="20dp"
                 android:gravity="center_vertical"
                 android:text="申请人"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp" />
-            <EditText
+            <TextView
+                android:drawablePadding="10dp"
+                android:drawableRight="@mipmap/ic_right_arrow_s"
                 android:textCursorDrawable="@null"
                 android:singleLine="true"
                 android:textSize="13sp"
                 android:background="@android:color/transparent"
                 android:paddingRight="20dp"
                 android:layout_alignParentRight="true"
-                android:hint="请输入"
+                android:hint="请选择"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
-                android:id="@+id/edit_add_send_name"
-                android:layout_marginTop="101dp"
+                android:id="@+id/text_add_send_name"
+                android:layout_marginTop="50dp"
                 android:gravity="center_vertical"
                  />
             <View
@@ -107,6 +111,7 @@
                 android:listSelector="@android:color/transparent"
                 android:dividerHeight="4dp"
                 android:divider="#f2f2f2f2"
+                android:layout_marginBottom="50dp"
                 android:layout_alignParentStart="true" />
 
             </RelativeLayout>

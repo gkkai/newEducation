@@ -141,6 +141,12 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                             startActivity(intent);
                             finish();
                         }else {
+//                            //TODO
+//                            Intent intent = new Intent(this, AddSendacarActivity.class);
+//                            intent.putExtra("type", "updata");
+//                            intent.putExtra("sendACarId", id);
+//                            startActivity(intent);
+//                            finish();
                             ToastUtils.show("您没有权限进行此操作");
                         }
                     }else {

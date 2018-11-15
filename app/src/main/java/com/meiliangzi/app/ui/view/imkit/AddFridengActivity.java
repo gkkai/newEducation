@@ -50,13 +50,12 @@ import io.rong.imlib.model.Message;
 import io.rong.message.InformationNotificationMessage;
 
 public class AddFridengActivity extends BaseActivity {
-    /*@BindView(R.id.ellist_chatlist)
-    ExpandableListView grouplist;*/
+
     @BindView(R.id.gradview_group)
     GridView gradview_group;
     @BindView(R.id.edit_search)
     EditText edit_search;
-    //private MyAdapter adapter;
+    //private MyAdapter aadapter;
     private BaseTrainAdapter<SearchUserBean.DataBean> adapter;
     private List<DepartmentuserNumberBean.DataBean> NumberBean=new ArrayList<>();//部门的列表
     private LayoutInflater Inflater;
@@ -161,21 +160,21 @@ public class AddFridengActivity extends BaseActivity {
     protected void onResume() {
         if(MyApplication.numberBean!=null){
             NumberBean=MyApplication.numberBean.getData();
-            //adapter=new MyAdapter(this);
-            //grouplist.setAdapter(adapter);
+//            aadapter=new MyAdapter(this);
+//            grouplist.setAdapter(adapter);
         }
 
         super.onResume();
     }
-   /* private void getaddfriend(AgreeFriendapplyBean bean){
-
-
-    }*/
+//    private void getaddfriend(AgreeFriendapplyBean bean){
+//
+//
+//    }
     private void getmentusernumber(DepartmentuserNumberBean data){
         NumberBean.clear();
         NumberBean=data.getData();
 
-        //adapter.notifyDataSetChanged();
+        //aadapter.notifyDataSetChanged();
     }
     private void getsearchuser(SearchUserBean bean){
         adapter.setDatas(bean.getData());

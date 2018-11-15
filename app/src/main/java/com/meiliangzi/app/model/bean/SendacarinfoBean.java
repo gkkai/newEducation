@@ -53,7 +53,7 @@ public class SendacarinfoBean {
         private String  driverName;
         private  String sendACarInfoId;
         private  String driverUserId;
-
+        private  String proposerPhone;
 
         public String getReturnMileage() {
             return returnMileage;
@@ -205,6 +205,14 @@ public class SendacarinfoBean {
 
         public void setDriverUserId(String driverUserId) {
             this.driverUserId = driverUserId;
+        }
+
+        public String getProposerPhone() {
+            return proposerPhone;
+        }
+
+        public void setProposerPhone(String proposerPhone) {
+            this.proposerPhone = proposerPhone;
         }
     }
 }

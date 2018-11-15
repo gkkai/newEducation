@@ -7,8 +7,8 @@ android {
         applicationId "com.meiliangzi.app"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 124
-        versionName "1.2.4"
+        versionCode 123
+        versionName "1.2.3"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         //X5兼容64位手机
@@ -65,6 +65,7 @@ dependencies {
     compile files('libs/AMap_2DMap_V2.9.0_20160525.jar')
     compile project(':IMKit')
     compile project(':wheelview')
+    compile files('libs/jxl.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.jakewharton:butterknife:8.4.0'
@@ -81,5 +82,4 @@ dependencies {
     compile 'com.davemorrissey.labs:subsampling-scale-image-view:3.5.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
-    compile files('libs/jxl.jar')
 }

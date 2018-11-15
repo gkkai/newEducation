@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+    tools:context="com.meiliangzi.app.ui.view.sendcar.SendCarAddUserActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+
+        <TextView
+            android:text="选择申请人"
+            style="@style/ActionBar.CenterTitle" />
+
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"
+        android:id="@+id/view2"></View>
+    <ExpandableListView
+        android:layout_marginTop="49dp"
+        android:id="@+id/ellist_sendcar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:cacheColorHint="#abcdefff"
+        android:childDivider="#0000"
+        android:divider="#0000"
+        />
+</RelativeLayout>

@@ -54,6 +54,7 @@ import com.meiliangzi.app.model.bean.QuerySendacarinfoBean;
 import com.meiliangzi.app.model.bean.QueryUserInfoBean;
 import com.meiliangzi.app.model.bean.QueryVideoCommentBean;
 import com.meiliangzi.app.model.bean.QueryuserBean;
+import com.meiliangzi.app.model.bean.QueryvehicleListBean;
 import com.meiliangzi.app.model.bean.QuestionList;
 import com.meiliangzi.app.model.bean.RankList;
 import com.meiliangzi.app.model.bean.RecentClassInfobean;
@@ -62,6 +63,7 @@ import com.meiliangzi.app.model.bean.Register;
 import com.meiliangzi.app.model.bean.RepositoryinfoBean;
 import com.meiliangzi.app.model.bean.SearchGroupBean;
 import com.meiliangzi.app.model.bean.SearchUserBean;
+import com.meiliangzi.app.model.bean.SendCarUserBean;
 import com.meiliangzi.app.model.bean.SendacardeleteBean;
 import com.meiliangzi.app.model.bean.SendacarinfoBean;
 import com.meiliangzi.app.model.bean.SetAdminBean;
@@ -75,6 +77,7 @@ import com.meiliangzi.app.model.bean.TrainSignerUpBean;
 import com.meiliangzi.app.model.bean.Updateuserinfo;
 import com.meiliangzi.app.model.bean.User;
 import com.meiliangzi.app.model.bean.UserAddGroupBean;
+import com.meiliangzi.app.model.bean.UserCarSearchuserinfoBean;
 import com.meiliangzi.app.model.bean.UserStar;
 import com.meiliangzi.app.model.bean.Validate;
 import com.meiliangzi.app.model.bean.VersionUpdate;
@@ -83,6 +86,8 @@ import com.meiliangzi.app.model.bean.VoteBaseBean;
 import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
 import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
 import com.meiliangzi.app.model.bean.VpteSubvoteinfoBean;
+import com.meiliangzi.app.model.bean.departmentuserlistBean;
+import com.meiliangzi.app.ui.view.sendcar.DriverListActivity;
 
 import org.json.JSONObject;
 
@@ -227,6 +232,13 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"user_id"}, url = "common/", resultClass = Partment.class, refreshMethod = "getData")
     public void querydepartment(Object context, int user_id);
+    /**
+     * 获取部门列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"departmentId"}, url = "common/", resultClass = departmentuserlistBean.class, refreshMethod = "getdepartmentuserlist")
+    public void departmentuserlist(Object context, int departmentId);
 //
 //
 
@@ -808,6 +820,14 @@ public interface IHttpService {
     @HttpRequest(arguments = {"userName","myId"}, url = "", resultClass = SearchUserBean.class, refreshMethod = "getsearchuser")
     public void searchuser(Object context,String userName,int myId);
     /**
+     * 搜索用户
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userName"}, url = "common/", resultClass = UserCarSearchuserinfoBean.class, refreshMethod = "getsearchuserinfo")
+    public void searchuserinfo(Object context,String userName);
+
+    /**
      * 搜索群组
      *
      * @param context 上下文对象
@@ -1028,6 +1048,13 @@ public interface IHttpService {
     @HttpRequest(arguments = {}, url = "", resultClass = ProposerUserlistBean.class, refreshMethod = "getproposeruserlist")
     public void proposeruserlist(Object context);
 
+    /**
+     * 车辆信息列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {}, url = "", resultClass = QueryvehicleListBean.class, refreshMethod = "getQueryvehicleListBean")
+    public void queryvehiclelist(Object context);
 }
 
 

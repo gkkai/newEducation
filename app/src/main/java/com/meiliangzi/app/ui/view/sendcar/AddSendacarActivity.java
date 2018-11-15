@@ -59,13 +59,13 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
     @BindView(R.id.text_sure)
     TextView text_sure;
     @BindView(R.id.edit_add_send_department)
-    EditText text_add_send_department;
+    TextView text_add_send_department;
 
-    @BindView(R.id.edit_add_send_name)
-    EditText text_add_send_name;
+    @BindView(R.id.text_add_send_name)
+    TextView text_add_send_name;
     @BindView(R.id.text_titel)
     TextView text_titel;
-
+    private  String userPhone;
     ArrayWheelAdapter dayadapter=new ArrayWheelAdapter(this);
     private List<SendACarInfoArray> data=new ArrayList<SendACarInfoArray>();
     private BaseQuickAdapter<SendACarInfoArray> adapter;
@@ -92,7 +92,6 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
             //TODO 修改用车申请
             text_titel.setText("车程修改");
             text_add_send_department.setFocusable(false);
-            text_add_send_name.setFocusable(false);
             text_add_next.setVisibility(View.GONE);
             adapter=new BaseQuickAdapter<SendACarInfoArray>(this,R.layout.add_send) {
 
@@ -104,8 +103,8 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
 
                 @Override
                 public void convert(final BaseViewHolder helper, SendACarInfoArray item, final int positino) {
-                    helper.getView(R.id.edit_add_send_user).setFocusable(false);
-                    helper.getView(R.id.edit_add_send_userPhone).setFocusable(false);
+                    //helper.getView(R.id.edit_add_send_user).setFocusable(false);
+                    //helper.getView(R.id.edit_add_send_userPhone).setFocusable(false);
                     ((EditText)helper.getView(R.id.edit_add_send_user)).setText(item.getUser());
                     ((EditText)helper.getView(R.id.edit_add_send_userPhone)).setText(item.getUserPhone());
                     ((EditText)helper.getView(R.id.edit_add_send_start)).setText(item.getStart());
@@ -141,6 +140,15 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     });
+                    helper.getView(R.id.text_add_send_plateNumber).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(AddSendacarActivity.this,DriverListActivity.class);
+                            intent.putExtra("positino",positino);
+                            startActivityForResult(intent,102);
+                        }
+                    });
+
 
 
                 }
@@ -184,7 +192,15 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
 
                         }
                     });
-
+                    //TODO 车牌号修改
+                    helper.getView(R.id.text_add_send_plateNumber).setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(AddSendacarActivity.this,DriverListActivity.class);
+                            intent.putExtra("positino",positino);
+                            startActivityForResult(intent,102);
+                        }
+                    });
 
                 }
             };
@@ -197,11 +213,13 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
 
         text_add_next.setOnClickListener(this);
         text_sure.setOnClickListener(this);
+        text_add_send_name.setOnClickListener(this);
        // h=getViewByPosition(0,gradview).getHeight();
 
 
     }
     protected void getsendacarinfo(SendacarinfoBean bean){
+        userPhone=bean.getData().getProposerPhone();
         text_add_send_department.setText(bean.getData().getDepartmentName());
         text_add_send_name.setText(bean.getData().getProposer());
         data.get(0).setUser(bean.getData().getUser());
@@ -221,12 +239,22 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         switch (resultCode){
-            case 102:
+            case 101:
 
             ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverName)).setText(intent.getStringExtra("driverName"));
                 ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverPhone)).setText(intent.getStringExtra("driverPhone"));
                 ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
                 data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
+                break;
+            case 102:
+
+                ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
+                data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
+                break;
+            case 103:
+                text_add_send_department.setText(intent.getStringExtra("departmentName"));
+                text_add_send_name.setText(intent.getStringExtra("nickName"));
+                userPhone=intent.getStringExtra("userPhone");
                 break;
         }
     }
@@ -291,6 +319,11 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()){
 
+            case R.id.text_add_send_name:
+               Intent intent=new Intent(this,AddUserSendCarActivity.class);
+                startActivityForResult(intent,103);
+
+                break;
             case R.id.text_add_next:
                 data.add(new SendACarInfoArray());
                 adapter.setDatas(data);
@@ -333,6 +366,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                     JSONArray jsonArry=new JSONArray();
                     js.put("departmentName",text_add_send_department.getText().toString());
                     js.put("proposer",text_add_send_name.getText().toString());
+                    js.put("proposerPhone",userPhone);
                     if("updata".equals(type)){
                         sendacarupdata(js);
                     }else {
@@ -536,8 +570,9 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
         try {
             builder.addFormDataPart("departmentName",json.getString("departmentName"));
             builder.addFormDataPart("proposer",json.getString("proposer"));
+            builder.addFormDataPart("proposerPhone",json.getString("proposerPhone"));
             builder.addFormDataPart("user",data.get(0).getUser());
-            builder.addFormDataPart("userPhone",data.get(0).getUser());
+            builder.addFormDataPart("userPhone",data.get(0).getUserPhone());
             builder.addFormDataPart("start",data.get(0).getStart());
             builder.addFormDataPart("end",data.get(0).getEnd());
             builder.addFormDataPart("startAt",data.get(0).getStartAt());
@@ -607,6 +642,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
             builder.addFormDataPart("departmentName",json.getString("departmentName"));
             builder.addFormDataPart("proposer",json.getString("proposer"));
             builder.addFormDataPart("proposerUserid",PreferManager.getUserId());
+            builder.addFormDataPart("proposerPhone",json.getString("proposerPhone"));
             builder.addFormDataPart("SendACarInfoArray", json.getJSONArray("SendACarInfoArray").toString());
         } catch (JSONException e) {
             e.printStackTrace();

@@ -43,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp" />
     <EditText
+        android:inputType="number"
         android:textCursorDrawable="@null"
         android:singleLine="true"
         android:textSize="13sp"
@@ -230,7 +231,7 @@
         android:paddingRight="20dp"
         android:layout_alignParentRight="true"
         android:gravity="center_vertical"
-        android:hint="请选择驾驶人员"
+        android:hint="车牌号"
         android:layout_width="wrap_content"
         android:layout_height="50dp" />
 

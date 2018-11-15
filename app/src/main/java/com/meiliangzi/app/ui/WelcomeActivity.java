@@ -54,7 +54,7 @@ public class WelcomeActivity extends BaseActivity {
         welcomeAnimation.setAnimationListener(new WelcomeAnimatorListener(this));
         if(!"".equals(PreferManager.getUserId())){
             //TODO 获取部门列表
-            ProxyUtils.getHttpProxy().querydepartmentusernumber(this, Integer.valueOf(PreferManager.getUserId()));
+            //ProxyUtils.getHttpProxy().querydepartmentusernumber(this, Integer.valueOf(PreferManager.getUserId()));
 
         }
 
