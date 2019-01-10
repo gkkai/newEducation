@@ -23,6 +23,10 @@ import com.meiliangzi.app.ui.base.BaseActivity;
 
 import butterknife.BindView;
 
+/**
+ * 派车列表详细数据
+ *
+ */
 public class SendaCarinfoActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.text_fk_partment)
     TextView text_fk_partment;
@@ -79,8 +83,11 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void initComponent() {
+        //TODO 判哪个界面过来的数据
         if(getIntent().getIntExtra("type",101)==0){
+
             image_updata.setVisibility(View.GONE);
+
             ProxyUtils.getHttpProxy().sendacarinfo(this,getIntent().getIntExtra("sendACarId",0));
 
         }else {
@@ -188,6 +195,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
     private Dialog dialog;
     private View inflate;
     public void shownavigation() {
+        //TODO 点击修改或者删除弹出对话框供用户选择
         inflate = LayoutInflater.from(this).inflate(R.layout.dialog_updata, null);
         TextView xiugai=(TextView)inflate.findViewById(R.id.text_xiugai);
         TextView delete=(TextView)inflate.findViewById(R.id.text_delete);

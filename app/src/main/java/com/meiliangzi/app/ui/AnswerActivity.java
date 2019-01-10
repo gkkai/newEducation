@@ -55,7 +55,9 @@ import static com.meiliangzi.app.config.Constant.BASE_URL;
  **/
 
 public class AnswerActivity extends BaseActivity {
-
+    // 两次点击按钮之间的点击间隔不能少于1000毫秒
+    private static final int MIN_CLICK_DELAY_TIME = 2000;
+    private static long lastClickTime;
     @BindView(R.id.listView)
     ListView listView;
     @BindView(R.id.tvTitle)
@@ -79,7 +81,7 @@ public class AnswerActivity extends BaseActivity {
     private int tempA2;
     private int tempA3;
     private int tempA4;
-    private boolean isSubmit;
+    private boolean isSubmit=false;
     private StringBuilder sb;
     private  boolean checkAnswer;
     private boolean isBackGround;
@@ -170,7 +172,7 @@ public class AnswerActivity extends BaseActivity {
 
     }
 
-    private void savescore(String userid, String id, String score, String costTime) {
+    private void savescore(String userid, String id, final String score, String costTime) {
         String url = BASE_URL+"community/savescore";
         OkHttpClient okHttpClient = new OkHttpClient();
         RequestBody body = new FormBody.Builder()
@@ -209,8 +211,8 @@ public class AnswerActivity extends BaseActivity {
             public void onResponse(Call call, Response response) throws IOException {
                 String s=response.body().string();
                 Gson gson=new Gson();
-               // BaseBean baseBean= gson.fromJson(response.body().string(),BaseBean.class);
-                getResult();
+                //BaseBean baseBean= gson.fromJson(response.body().string(),BaseBean.class);
+                getResult(score);
             }
         });
 
@@ -443,93 +445,107 @@ public class AnswerActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tvSubmit:
-                if(tvSubmit.getText().toString().equals("返回")){
-                    this.finish();
-                    return;
-                }
-                if(isSubmit){
-                    ToastUtils.custom("正在提交，请稍后");
-                    //AnswerActivity.this.finish();
-                    return;
+                long curClickTime = System.currentTimeMillis();
+                if((curClickTime - lastClickTime) >= MIN_CLICK_DELAY_TIME) {
+                    // 超过点击间隔后再将lastClickTime重置为当前点击时间
+                    lastClickTime = curClickTime;
+                    onMultiClick();
                 }else {
-                    answerList.clear();
-                    sb = new StringBuilder();
-                    if(tempA1 == 1){
-                        //answerList.add("A");
-                        answerList.add(Questionitem.getRealAnswer("A"));
-                    }
-                    if(tempA2 == 1){
-                        // answerList.add("B");
-                        answerList.add(Questionitem.getRealAnswer("B"));
-                    }
-                    if(tempA3 == 1){
-                        //answerList.add("C");
-                        answerList.add(Questionitem.getRealAnswer("C"));
-                    }
-                    if(tempA4 == 1){
-                        // answerList.add("D");
-                        answerList.add(Questionitem.getRealAnswer("D"));
-                    }
-                    Collections.sort(answerList);
-                    for (int i=0;i<answerList.size();i++){
-                        sb.append(answerList.get(i)).append(",");
-                    }
-                    if(sb.toString().contains(",")){
-                        sb.deleteCharAt(sb.length()-1);
-                    }
-                    if(TextUtils.isEmpty(sb.toString()) && !checkAnswer){
-                        ToastUtils.custom("请选择答案");
-                        return;
-                    }
-
-                    if (tvSubmit.getText().toString().equals("提交")) {
-                        isSubmit=true;
-                        if("verride".equals(isverrrde)){
-                            submitData(String.valueOf(MyApplication.score));
-                        }else {
-                            if(Questionitem==null){
-                                timetype="";
-                                submitData(String.valueOf(MyApplication.score));
-                            }else {
-                                int rsult=Questionitem.getCurrentItemScore(sb.toString());
-                                MyApplication.score= MyApplication.score+rsult;
-                                timetype="";
-                                submitData(String.valueOf(MyApplication.score));
-                            }
-                        }
-
-
-
-                        return;
-                    } else {
-                        wholeQuestionMap.get(questionIndex).setSelect(sb.toString());
-                        questionIndex++;
-                        int rsult=Questionitem.getCurrentItemScore(sb.toString());
-                        MyApplication.score= MyApplication.score+ rsult;
-                        tempA1 = 0;
-                        tempA2 = 0;
-                        tempA3 = 0;
-                        tempA4 = 0;
-                        currentQuestion.clear();
-                        currentQuestion.add(wholeQuestionMap.get(questionIndex));
-                        adapter.setDatas(currentQuestion);
-
-                    }
-                    if (wholeQuestionMap.size() == questionIndex+1) {
-                        if(checkAnswer){
-                            tvSubmit.setText("返回");
-                        }else {
-                            tvSubmit.setText("提交");
-                        }
-
-                    } else {
-                        tvSubmit.setText("下一题");
-                    }
+                   // ToastUtils.show("清稍后");
                 }
-
                 break;
+
         }
     }
+
+    private void onMultiClick() {
+        if(tvSubmit.getText().toString().equals("返回")){
+            this.finish();
+            return;
+        }
+        if(isSubmit){
+            ToastUtils.custom("正在提交，请稍后");
+            //AnswerActivity.this.finish();
+            return;
+        }else {
+            answerList.clear();
+            sb = new StringBuilder();
+            if(tempA1 == 1){
+                //answerList.add("A");
+                answerList.add(Questionitem.getRealAnswer("A"));
+            }
+            if(tempA2 == 1){
+                // answerList.add("B");
+                answerList.add(Questionitem.getRealAnswer("B"));
+            }
+            if(tempA3 == 1){
+                //answerList.add("C");
+                answerList.add(Questionitem.getRealAnswer("C"));
+            }
+            if(tempA4 == 1){
+                // answerList.add("D");
+                answerList.add(Questionitem.getRealAnswer("D"));
+            }
+            Collections.sort(answerList);
+            for (int i=0;i<answerList.size();i++){
+                sb.append(answerList.get(i)).append(",");
+            }
+            if(sb.toString().contains(",")){
+                sb.deleteCharAt(sb.length()-1);
+            }
+            if(TextUtils.isEmpty(sb.toString()) && !checkAnswer){
+                ToastUtils.custom("请选择答案");
+                return;
+            }
+
+            if (tvSubmit.getText().toString().equals("提交")) {
+                isSubmit=true;
+                if("verride".equals(isverrrde)){
+                    submitData(String.valueOf(MyApplication.score));
+                }else {
+                    if(Questionitem==null){
+                        timetype="";
+                        submitData(String.valueOf(MyApplication.score));
+                    }else {
+                        int rsult=Questionitem.getCurrentItemScore(sb.toString());
+                        MyApplication.score= MyApplication.score+rsult;
+                        timetype="";
+                        submitData(String.valueOf(MyApplication.score));
+                    }
+                }
+
+
+
+                return;
+            } else {
+                wholeQuestionMap.get(questionIndex).setSelect(sb.toString());
+                questionIndex++;
+                int rsult=Questionitem.getCurrentItemScore(sb.toString());
+                MyApplication.score= MyApplication.score+ rsult;
+                tempA1 = 0;
+                tempA2 = 0;
+                tempA3 = 0;
+                tempA4 = 0;
+                currentQuestion.clear();
+                currentQuestion.add(wholeQuestionMap.get(questionIndex));
+                adapter.setDatas(currentQuestion);
+
+            }
+            if (wholeQuestionMap.size() == questionIndex+1) {
+                if(checkAnswer){
+                    tvSubmit.setText("返回");
+                }else {
+                    tvSubmit.setText("提交");
+                }
+
+            } else {
+                tvSubmit.setText("下一题");
+            }
+        }
+
+
+    }
+
     public void showDialogTime() {
         final MiddleView middleView = new MiddleView(AnswerActivity.this, R.layout.panel_answer);
         TextView Showtitl= (TextView) middleView.getView().findViewById(R.id.Showtitle);
@@ -561,7 +577,7 @@ public class AnswerActivity extends BaseActivity {
         middleView.showModdleView(false);
     }
 
-    public void showDialog() {
+    public void showDialog(String score) {
         final MiddleView middleView = new MiddleView(AnswerActivity.this, R.layout.panel_answer);
         TextView tvScore = (TextView) middleView.getView().findViewById(R.id.tvScore);
         TextView tvCostTime = (TextView) middleView.getView().findViewById(R.id.tvCostTime);
@@ -571,7 +587,7 @@ public class AnswerActivity extends BaseActivity {
         String minStr = (min < 10) ? ("0" + min) : String.valueOf(min);
         String secondStr = (second < 10) ? ("0" + second) : String.valueOf(second);
         tvCostTime.setText(minStr + ":" + secondStr);
-        tvScore.setText(String.valueOf(MyApplication.score));
+        tvScore.setText(score);
         middleView.getView().findViewById(R.id.ivClose).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -633,7 +649,7 @@ public class AnswerActivity extends BaseActivity {
 
     }
 
-    protected void getResult() {
+    protected void getResult(final String score) {
         //ToastUtils.custom("提交成功");
        // isSubmit=false;
         runOnUiThread(new Runnable() {
@@ -642,7 +658,7 @@ public class AnswerActivity extends BaseActivity {
                 if("timeOver".equals(timetype)){
                     showDialogTime();
                 }else {
-                    showDialog();
+                    showDialog(score);
                 }
 
 
@@ -736,4 +752,5 @@ public class AnswerActivity extends BaseActivity {
     protected void showErrorMessage(Integer errorCode, String errorMessage) {
         ToastUtils.custom(errorMessage);
     }
+
 }

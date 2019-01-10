@@ -1,6 +1,4 @@
 package com.meiliangzi.app.ui.view.sendcar;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -8,8 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.google.gson.Gson;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.IndexSendacarBean;
 import com.meiliangzi.app.model.bean.ProposerUserlistBean;
@@ -23,26 +19,16 @@ import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
-import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.dialog.SendDeleatDialog;
-import com.meiliangzi.app.ui.view.creativecommons.CommonsListActivity;
 import com.meiliangzi.app.widget.MyGridView;
-import com.meiliangzi.app.widget.XListView;
-
-import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import butterknife.BindView;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
-import static com.meiliangzi.app.config.Constant.BASE_URL;
+/**
+ * 派车首页
+ *
+ */
 
 public class SendCarActivity extends BaseActivity implements View.OnClickListener {
     public int plateStatus;
@@ -84,11 +70,12 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void convert(BaseViewHolder helper, final IndexSendacarBean.IndexSendacarData item) {
+                //TODO  数据展示
                 helper.setText(R.id.text_sendcar_departmentName, item.getDepartmentName());
                 helper.setText(R.id.text_sendcar_plateNumber, item.getPlateNumber());
                 helper.setText(R.id.text_sendcar_start, item.getStart());
                 helper.setText(R.id.text_sendcar_end, item.getEnd());
-                //TODO
+                //TODO 显示权限
                 String start = item.getStartAt().substring(item.getStartAt().lastIndexOf(" "));
                 String end = item.getEndAt().substring(item.getEndAt().lastIndexOf(" "));
                 helper.setText(R.id.text_sendcar_startAt_endAt, start+"~"+end);

@@ -210,11 +210,9 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
         data.add(new SendACarInfoArray());
         adapter.setDatas(data);
         gradview.setAdapter(adapter);
-
         text_add_next.setOnClickListener(this);
         text_sure.setOnClickListener(this);
         text_add_send_name.setOnClickListener(this);
-       // h=getViewByPosition(0,gradview).getHeight();
 
 
     }
@@ -232,7 +230,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
         data.get(0).setPlateNumber(bean.getData().getPlateNumber());
         data.get(0).setEndAt(bean.getData().getEndAt());
         data.get(0).setStartAt(bean.getData().getStartAt());
-        data.get(0).setDriverUserid(PreferManager.getUserId());
+        data.get(0).setDriverUserid(bean.getData().getDriverUserId());
         adapter.setDatas(data);
 
     }
@@ -249,7 +247,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
             case 102:
 
                 ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
-                data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
+               // data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
                 break;
             case 103:
                 text_add_send_department.setText(intent.getStringExtra("departmentName"));

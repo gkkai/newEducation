@@ -45,7 +45,6 @@ public class SendFinishActivity extends BaseActivity implements View.OnClickList
     private View inflate;
     private BaseQuickAdapter<IndexSendacarBean.IndexSendacarData> adapter;
     private BaseQuickAdapter<QuerySendacarinfoBean.Data> adapter1;
-
     private TextView text_cncule,text_sure;
     private EditText end,start;
     @BindView(R.id.tvEmpty)
