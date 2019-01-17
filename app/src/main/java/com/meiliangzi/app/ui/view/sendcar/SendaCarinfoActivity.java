@@ -1,7 +1,13 @@
 package com.meiliangzi.app.ui.view.sendcar;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -27,7 +33,7 @@ import butterknife.BindView;
  * 派车列表详细数据
  *
  */
-public class SendaCarinfoActivity extends BaseActivity implements View.OnClickListener {
+public class SendaCarinfoActivity extends BaseActivity implements View.OnClickListener, View.OnLongClickListener {
     @BindView(R.id.text_fk_partment)
     TextView text_fk_partment;
     @BindView(R.id.text_fk_username)
@@ -66,6 +72,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
     int sendACarInfoId;
     int proposerUserid;
     int driverUserId;
+    private String phoneNum;
 
 
     @Override
@@ -76,7 +83,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     protected void findWidgets() {
-        proposerUserid=getIntent().getIntExtra("proposerUserid",0000);
+        proposerUserid = getIntent().getIntExtra("proposerUserid", 0000);
         image_updata.setOnClickListener(this);
 
     }
@@ -84,22 +91,23 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void initComponent() {
         //TODO 判哪个界面过来的数据
-        if(getIntent().getIntExtra("type",101)==0){
+        if (getIntent().getIntExtra("type", 101) == 0) {
 
             image_updata.setVisibility(View.GONE);
 
-            ProxyUtils.getHttpProxy().sendacarinfo(this,getIntent().getIntExtra("sendACarId",0));
+            ProxyUtils.getHttpProxy().sendacarinfo(this, getIntent().getIntExtra("sendACarId", 0));
 
-        }else {
-            ProxyUtils.getHttpProxy().sendacarinfo(this,getIntent().getIntExtra("sendACarId",0));
+        } else {
+            ProxyUtils.getHttpProxy().sendacarinfo(this, getIntent().getIntExtra("sendACarId", 0));
 
         }
 
     }
-    protected void getsendacarinfo(SendacarinfoBean bean){
-        id=bean.getData().getId();
-        driverUserId=Integer.valueOf(bean.getData().getDriverUserId());
-        sendACarInfoId=Integer.valueOf(bean.getData().getSendACarInfoId());
+
+    protected void getsendacarinfo(SendacarinfoBean bean) {
+        id = bean.getData().getId();
+        driverUserId = Integer.valueOf(bean.getData().getDriverUserId());
+        sendACarInfoId = Integer.valueOf(bean.getData().getSendACarInfoId());
         text_fk_partment.setText(bean.getData().getDepartmentName());
         text_fk_username.setText(bean.getData().getProposer());
         text_fk_user.setText(bean.getData().getUser());
@@ -116,6 +124,8 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
         text_fk_endmileage.setText(bean.getData().getReturnMileage());
         text_fk_mileage.setText(bean.getData().getMileage());
         edit_fk_remarks.setText(bean.getData().getRemarks());
+        text_fk_userphone.setOnClickListener(this);
+        text_fk_drivemPhone.setOnClickListener(this);
 
     }
 
@@ -131,44 +141,43 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case  R.id.image_updata:
+        switch (v.getId()) {
+            case R.id.image_updata:
                 shownavigation();
                 break;
             case R.id.text_xiugai:
 
 
-                    //TODO 修改申请
-                    if(getIntent().getIntExtra("type",101)==1){
-                        //TOOD
-                        if(proposerUserid== Integer.valueOf(PreferManager.getUserId())) {
-                            Intent intent = new Intent(this, AddSendacarActivity.class);
-                            intent.putExtra("type", "updata");
-                            intent.putExtra("sendACarId", id);
-                            startActivity(intent);
-                            finish();
-                        }else {
+                //TODO 修改申请
+                if (getIntent().getIntExtra("type", 101) == 1) {
+                    //TOOD
+                    if (proposerUserid == Integer.valueOf(PreferManager.getUserId())) {
+                        Intent intent = new Intent(this, AddSendacarActivity.class);
+                        intent.putExtra("type", "updata");
+                        intent.putExtra("sendACarId", id);
+                        startActivity(intent);
+                        finish();
+                    } else {
 //                            //TODO
 //                            Intent intent = new Intent(this, AddSendacarActivity.class);
 //                            intent.putExtra("type", "updata");
 //                            intent.putExtra("sendACarId", id);
 //                            startActivity(intent);
 //                            finish();
-                            ToastUtils.show("您没有权限进行此操作");
-                        }
-                    }else {
-                        if(driverUserId==Integer.valueOf(PreferManager.getUserId())){
-                            //TODO 修改反馈
-                            Intent intent=new Intent(this,FkDataActivity.class);
-                            intent.putExtra("type","updata");
-                            intent.putExtra("sendACarId",id);
-                            intent.putExtra("sendACarInfoId",sendACarInfoId);
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            ToastUtils.show("您没有权限进行此操作");
-                        }
-
+                        ToastUtils.show("您没有权限进行此操作");
+                    }
+                } else {
+                    if (driverUserId == Integer.valueOf(PreferManager.getUserId())) {
+                        //TODO 修改反馈
+                        Intent intent = new Intent(this, FkDataActivity.class);
+                        intent.putExtra("type", "updata");
+                        intent.putExtra("sendACarId", id);
+                        intent.putExtra("sendACarInfoId", sendACarInfoId);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        ToastUtils.show("您没有权限进行此操作");
+                    }
 
 
                 }
@@ -177,10 +186,10 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.text_delete:
                 //TODO 删除
-                if(proposerUserid== Integer.valueOf(PreferManager.getUserId())){
-                    ProxyUtils.getHttpProxy().sendacardelete(this,id);
+                if (proposerUserid == Integer.valueOf(PreferManager.getUserId())) {
+                    ProxyUtils.getHttpProxy().sendacardelete(this, id);
 
-                }else {
+                } else {
                     ToastUtils.show("您没有权限进行修改");
                 }
                 dialog.dismiss();
@@ -190,8 +199,71 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
             case R.id.text_quxiao:
                 dialog.dismiss();
                 break;
+            case R.id.text_callphone:
+
+                //TODO 拨打电话
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                Uri data = Uri.parse("tel:" + phoneNum);
+                intent.setData(data);
+                startActivity(intent);
+                dialogphone.dismiss();
+
+                break;
+            case R.id.text_phone_quxiao:
+                dialogphone.dismiss();
+                break;
+            case R.id.text_fuzhi:
+                ClipboardManager clip = (ClipboardManager)getSystemService(Context.CLIPBOARD_SERVICE);
+                     //clip.getText(); // 粘贴
+                    clip.setText(phoneNum); // 复制
+                dialogphone.dismiss();
+                ToastUtils.show("复制完成");
+                break;
+            case R.id.text_fk_userphone:
+                phoneNum=text_fk_userphone.getText().toString().trim();
+                shownphonedialog();
+                break;
+            case R.id.text_fk_drivemPhone:
+                phoneNum=text_fk_drivemPhone.getText().toString().trim();
+                shownphonedialog();
+                break;
         }
     }
+    private Dialog dialogphone;
+    private View inflatephone;
+    private void shownphonedialog() {
+        //TODO 点击修改或者删除弹出对话框供用户选择
+        inflatephone = LayoutInflater.from(this).inflate(R.layout.send_car_dialog_layout, null);
+        TextView xiugai=(TextView)inflatephone.findViewById(R.id.text_callphone);
+        TextView delete=(TextView)inflatephone.findViewById(R.id.text_fuzhi);
+        TextView quxiao=(TextView)inflatephone.findViewById(R.id.text_phone_quxiao);
+        xiugai.setOnClickListener(this);
+        delete.setOnClickListener(this);
+        quxiao.setOnClickListener(this);
+        dialogphone = new Dialog(this, R.style.ActionSheetDialogStyle);
+        //填充对话框的布局
+        //将布局设置给Dialog
+        dialogphone.setContentView(inflatephone);
+        //获取当前Activity所在的窗体
+        Window dialogWindow = dialogphone.getWindow();
+        //设置Dialog从窗体底部弹出
+        dialogWindow.setGravity(Gravity.BOTTOM);
+        //获得窗体的属性
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        lp.y = 30;//设置Dialog距离底部的距离
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+        //将属性设置给窗体
+        dialogWindow.setAttributes(lp);
+        dialogphone.setCanceledOnTouchOutside(false);
+
+                dialogphone.show();//显示对话框
+
+
+
+
+    }
+
     private Dialog dialog;
     private View inflate;
     public void shownavigation() {
@@ -219,10 +291,20 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
         //将属性设置给窗体
         dialogWindow.setAttributes(lp);
         dialog.setCanceledOnTouchOutside(false);
+
         dialog.show();//显示对话框
+
     }
     protected void getsendacardelete(SendacardeleteBean bean){
         finish();
 
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        switch (v.getId()){
+
+        }
+        return false;
     }
 }

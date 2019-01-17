@@ -62,7 +62,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
     private int id;
     private int projecttype;
 
-    private String endYear="2019";
+    private String startYear="2019";
     private int width;
     private String usercheck;
 
@@ -80,7 +80,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
         width=width*3;
         width=width/4;
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy");
-        endYear=sdf.format(new java.util.Date());
+        startYear=sdf.format(new java.util.Date());
         id=getIntent().getIntExtra("id",111111);
         projecttype=getIntent().getIntExtra("projecttype",11);
         Drawable drawable1 = getResources().getDrawable(R.mipmap.morerecord);
@@ -226,7 +226,7 @@ public class CheckProjectDatasActivity extends BaseActivity {
     protected void asyncRetrive() {
         super.asyncRetrive();
         //TODO 取得所有项目列表
-        ProxyUtils.getHttpCheckProxy().projects(this,endYear,"-1",-1,-1);
+        ProxyUtils.getHttpCheckProxy().projects(this,startYear,"-1",-1,-1,-1,-1);
         //ProxyUtils.getHttpCheckProxy().projects(this);
         //TODO 取得子项目列表
         ProxyUtils.getHttpCheckProxy().subpros(this,id);

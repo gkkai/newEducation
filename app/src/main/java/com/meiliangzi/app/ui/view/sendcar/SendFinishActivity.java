@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.IndexSendacarBean;
 import com.meiliangzi.app.model.bean.QuerySendacarinfoBean;
 import com.meiliangzi.app.tools.ProxyUtils;
@@ -34,9 +35,9 @@ import java.util.regex.Pattern;
 
 import butterknife.BindView;
 
-public class SendFinishActivity extends BaseActivity implements View.OnClickListener {
+public class SendFinishActivity extends BaseActivity implements View.OnClickListener, XListView.IXListViewListener {
     public int currentPage=1;
-    public int pageSize=30;
+    public int pageSize=10;
     @BindView(R.id.listView)
     XListView listView;
     @BindView(R.id.text_select_time)
@@ -66,9 +67,10 @@ public class SendFinishActivity extends BaseActivity implements View.OnClickList
     protected void findWidgets() {
         excelPath = getExcelDir()+ File.separator+"后勤公司外出车辆登记表.xls";
         savetoexcel=new SaveToExcelUtil(this,excelPath);
-        listView.setPullRefreshEnable(false);
-        listView.setPullLoadEnable(false);
-        adapter = new BaseQuickAdapter<IndexSendacarBean.IndexSendacarData>(this, R.layout.item_ywc_sendcar) {
+        listView.setPullRefreshEnable(true);
+        listView.setPullLoadEnable(true);
+        listView.setXListViewListener(this);
+        adapter = new BaseQuickAdapter<IndexSendacarBean.IndexSendacarData>(this, listView,R.layout.item_ywc_sendcar) {
 
             @Override
             public void convert(BaseViewHolder helper, final IndexSendacarBean.IndexSendacarData item) {
@@ -122,7 +124,7 @@ public class SendFinishActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void initComponent() {
-        ProxyUtils.getHttpProxy().indexsendacar(this,4,currentPage,pageSize);
+        //ProxyUtils.getHttpProxy().indexsendacar(this,4,currentPage,pageSize);
 
 
     }
@@ -136,12 +138,18 @@ public class SendFinishActivity extends BaseActivity implements View.OnClickList
     protected void getindexsendacar(IndexSendacarBean bean){
         querySendacarinfoBean=null;
         listView.setAdapter(adapter);
-        adapter.setDatas(bean.getData());
+        //adapter.setDatas(bean.getData());
         if(listView.getVisibility()==View.GONE){
             listView.setVisibility(View.VISIBLE);
         }
         if(tvEmpty.getVisibility()==View.VISIBLE){
             tvEmpty.setVisibility(View.GONE);
+        }
+        if (currentPage == 1) {
+            adapter.pullRefresh(bean.getData());
+        } else {
+            adapter.pullLoad(bean.getData());
+            //listViewAdapter.pullRefresh(articalList.getData());
         }
 
     }
@@ -273,5 +281,20 @@ public class SendFinishActivity extends BaseActivity implements View.OnClickList
     protected void showErrorMessage(Integer errorCode, String errorMessage) {
         super.showErrorMessage(errorCode, errorMessage);
         tvEmpty.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onRefresh() {
+        currentPage = 1;
+        getData(4, currentPage, Constant.PAGESIZE);
+    }
+
+    @Override
+    public void onLoadMore() {
+        currentPage++;
+        getData(4, currentPage, Constant.PAGESIZE);
+    }
+    public void getData(int type,int currentPage,int pageSize ){
+        ProxyUtils.getHttpProxy().indexsendacar(this,type,currentPage,pageSize);
     }
 }

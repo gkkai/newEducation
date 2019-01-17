@@ -226,7 +226,7 @@ String groupid=null;
         this.versionUpdate = versionUpdate;
         AndPermission.with(MainActivity.this)
                 .requestCode(REQUEST_CODE_PERMISSION_CAMERA_SD)
-                .permission(Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .permission(Manifest.permission.CALL_PHONE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE)
                 // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
                 .rationale(new RationaleListener() {
                     @Override

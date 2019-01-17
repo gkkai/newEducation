@@ -128,7 +128,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="205dp"
                 android:textSize="17sp"
-                android:textColor="#666666"
+                android:textColor="@color/de_action_color"
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -246,7 +246,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="355dp"
                 android:textSize="17sp"
-                android:textColor="#666666"
+                android:textColor="@color/de_action_color"
                 android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />

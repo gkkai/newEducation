@@ -19,7 +19,7 @@
     <color name="colorLevel3">#FF60E0</color>
     <color name="colorLevel4">#FEA671</color>
     <color name="colorLevel5">#46EBFF</color>
-
+    <color name="color_a5a5a5" >#a5a5a5</color>
 
     <color name="black6">#666666</color>
     <color name="group_list_black_textview">#353535</color>

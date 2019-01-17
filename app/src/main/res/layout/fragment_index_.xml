@@ -13,14 +13,14 @@
             style="@style/ActionBar.RightImage"
             android:src="@mipmap/ic_share"/>-->
     </RelativeLayout>
+
     <com.meiliangzi.app.widget.XListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollingCache="false"
-        android:scrollbars="none"
-        android:listSelector="@android:color/transparent"
-        android:dividerHeight="1dp"
         android:divider="#F9F9F9"
-        />
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:scrollingCache="false" />
 </LinearLayout>

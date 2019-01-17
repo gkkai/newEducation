@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingRight="20dp"
+    android:paddingLeft="20dp"
+    >
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/shape_send_updata"
+        >
+
+        <TextView
+            android:textSize="18sp"
+            android:id="@+id/text_fuzhi"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="复制"
+            android:textColor="#222222"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/color_a5a5a5"
+            android:layout_height="1dp"></View>
+
+        <TextView
+            android:id="@+id/text_callphone"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:text="拨打电话"
+            android:textColor="#222222"
+            />
+    </LinearLayout>
+    <View
+        android:layout_marginTop="100dp"
+        android:background="#00ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"></View>
+    <TextView
+        android:id="@+id/text_phone_quxiao"
+        android:textSize="18sp"
+        android:background="@drawable/shape_send_updata"
+        android:layout_marginTop="105dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="取消"
+        />
+</RelativeLayout>

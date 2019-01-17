@@ -360,9 +360,7 @@ public class ArticalDetailActivity extends BaseActivity {
                     cbAnswer.setChecked(true);
                     break;
             }
-        }/* else {
-            this.finish();
-        }*/
+        }
     }
 
     public void showMiddle() {

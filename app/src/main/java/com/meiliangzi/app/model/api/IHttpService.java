@@ -931,8 +931,8 @@ public interface IHttpService {
      *
      * @param context 上下文对象
      */
-    @HttpRequest(arguments = {"endYear","month","departId","nature"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
-    public void projects(Object context,String endYear,String month,int departId,int nature);
+    @HttpRequest(arguments = {"endYear","month","departId","nature","projectType","lightStatus"}, url = "", resultClass = CheckProjectBean.class, refreshMethod = "getprojects")
+    public void projects(Object context,String endYear,String month,int departId,int nature ,int projectType ,int lightStatus);
     /**
      * 取得所有部门列表
      *

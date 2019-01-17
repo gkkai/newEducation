@@ -251,7 +251,7 @@ public class AnswerActivity extends BaseActivity {
                 helper.setText(R.id.tvPos, String.valueOf(questionIndex + 1));
                 if(time == 0){
                     //以前的答案规则排布
-               helper.setText(R.id.tvAnswerA, item.getAnswerA());
+                helper.setText(R.id.tvAnswerA, item.getAnswerA());
                 helper.setText(R.id.tvAnswerB, item.getAnswerB());
                 helper.setText(R.id.tvAnswerC, item.getAnswerC());
                 helper.setText(R.id.tvAnswerD, item.getAnswerD());
@@ -272,6 +272,7 @@ public class AnswerActivity extends BaseActivity {
                 final String answer =  item.getCorrectnessAnswer();
                 boolean QuestType=item.getStudy_status();
                 System.out.println("答案类型=========================="+QuestType);
+                //TODO
                 if(QuestType){
                     helper.setText(R.id.tvPos, "多选题");
                 }else {

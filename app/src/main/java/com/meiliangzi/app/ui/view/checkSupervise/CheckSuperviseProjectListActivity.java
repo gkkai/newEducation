@@ -61,31 +61,44 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     TextView text_screen;
     @BindView(R.id.listView)
     XListView listView;
+
     private View inflate;
     private Dialog dialog;
     private MyGridView myGridViewPartsecreen;
     private MyGridView myGridViewtiem;
     private MyGridView myGreiviewmouth;
+    //private MyGridView myGridView_progecttype;
+    private MyGridView myGridView_lightStatus;
     TextView tvReset;
     TextView tvDone;
     TextView text_project_nature_1;
     TextView text_project_nature_2;
+    TextView text_budgat_project;
+    TextView text_commitments_project;
+    TextView text_other_project;
+
+
     private  String endYear="-1";
     private  String endmouth="-1";
+
     private  int nature=-1;
     private int departId=-1;
-    private int pos;
-    private String  ischeck="";
-    private int postime;
-    private int posmouth;
-    private String  ischecktime="";
-    private String  ischecktmouth="";
+    private int type=-1;
+    private int lightStatu=-1;
+    private int pos=-1;
+    private int postime=-1;
+    private int posmouth=-1;
     private List<String> tiems;
     private List<String> mouths;
+    private List<String> lightStatus;
     BaseVoteAdapter<String> tiemAdapter;
     BaseVoteAdapter<String> tiemmouthAdapter;
+    //BaseVoteAdapter<String> typeAdapter;
+    BaseVoteAdapter<String> lightStatusAdapter;
     BaseVoteAdapter<CheckProjectBean.DataBean> projectAdapter;
     BaseVoteAdapter<CheckDepartmentsBean.DataBean> departsreceenAdapter;
+    private int postype=-1;
+    private int positionlightStatus=-1;
 
 
     @Override
@@ -120,23 +133,128 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         mouths.add(10,"10月");
         mouths.add(11,"11月");
         mouths.add(12,"12月");
+
+        lightStatus=new ArrayList<>();
+        lightStatus.add(0,"白灯");
+        lightStatus.add(1,"绿灯");
+        lightStatus.add(2,"黄灯");
+        lightStatus.add(3,"红灯");
+        lightStatus.add(4,"黑灯");
         inflate = LayoutInflater.from(getBaseContext()).inflate(R.layout.check_screen_dialog_layout, null);
         myGridViewPartsecreen  = (MyGridView) inflate.findViewById(R.id.myGreiviewpartsecreen);
         myGridViewtiem= (MyGridView) inflate.findViewById(R.id.myGridView_timesecreen);
         myGreiviewmouth=(MyGridView)inflate.findViewById(R.id.myGreiviewmouth);
-
+        //myGridView_progecttype= (MyGridView) inflate.findViewById(R.id.myGridView_progecttype);
+        myGridView_lightStatus=(MyGridView)inflate.findViewById(R.id.myGridView_lightStatus);
         tvReset=(TextView) inflate.findViewById(R.id.tvReset);
         tvDone=(TextView) inflate.findViewById(R.id.tvDone);
         text_project_nature_1 = (TextView) inflate.findViewById(R.id.text_project_nature_1);
         text_project_nature_2=(TextView) inflate.findViewById(R.id.text_project_nature_2);
+
+        text_budgat_project =(TextView) inflate.findViewById(R.id.text_budgat_project);
+         text_commitments_project=(TextView) inflate.findViewById(R.id.text_commitments_project);
+         text_other_project=(TextView) inflate.findViewById(R.id.text_other_project);
+
         tvReset.setOnClickListener(this);
         tvDone.setOnClickListener(this);
         text_project_nature_1.setOnClickListener(this);
         text_project_nature_2.setOnClickListener(this);
+        text_budgat_project.setOnClickListener(this);
+        text_commitments_project.setOnClickListener(this);
+        text_other_project.setOnClickListener(this);
+//        typeAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
+//
+//
+//            @Override
+//            public void convert(BaseViewHolder helper, String item) {
+//                if(postype==getPosition()){
+//                    helper.setText(R.id.text_depart, item+"");
+//                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checktimebackground));
+//                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
+//
+//                }else {
+//                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.black6));
+//
+//                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+//
+//                    helper.setText(R.id.text_depart, item+"");
+//                }
+//            }
+//        };
+//        myGridView_progecttype.setAdapter(typeAdapter);
+//        myGridView_progecttype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                postype=position;
+//                switch (position){
+//                    case 0:
+//                        type=1;
+//                        break;
+//                    case 1:
+//                        type=3;
+//                        break;
+//                    case 2:
+//                        type=2;
+//                        break;
+//
+//
+//                }
+//
+//                typeAdapter.notifyDataSetChanged();
+//            }
+//        });
+        //TODO
+        lightStatusAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
+
+
+            @Override
+            public void convert(BaseViewHolder helper, String item) {
+                if(positionlightStatus==getPosition()){
+                    helper.setText(R.id.text_depart, item+"");
+                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checktimebackground));
+                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
+
+                }else {
+                    ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.black6));
+
+                    helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
+                    helper.setText(R.id.text_depart, item+"");
+                }
+            }
+        };
+        myGridView_lightStatus.setAdapter(lightStatusAdapter);
+        myGridView_lightStatus.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                positionlightStatus=position;
+                switch (position){
+                    case 0:
+                        lightStatu=0;
+                        break;
+                    case 1:
+                        lightStatu=1;
+                        break;
+                    case 2:
+                        lightStatu=2;
+                        break;
+                    case 3:
+                        lightStatu=3;
+                        break;
+                    case 4:
+                        lightStatu=4;
+                        break;
+
+
+                }
+
+                lightStatusAdapter.notifyDataSetChanged();
+            }
+        });
         tiemAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
             @Override
             public void convert(BaseViewHolder helper, String item) {
-                if(postime==getPosition()&&ischecktime.equals("ischeck")){
+                if(postime==getPosition()){
                     helper.setText(R.id.text_depart, item);
                     helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checktimebackground));
                     ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
@@ -155,15 +273,15 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 postime=position;
-                ischecktime="ischeck";
                 endYear=tiemAdapter.getItem(position);
                 tiemAdapter.notifyDataSetChanged();
             }
         });
+
         tiemmouthAdapter=new BaseVoteAdapter<String>(CheckSuperviseProjectListActivity.this, R.layout.item_check_time_select) {
             @Override
             public void convert(BaseViewHolder helper, String item) {
-                if(posmouth==getPosition()&&ischecktmouth.equals("ischeck")){
+                if(posmouth==getPosition()){
                     helper.setText(R.id.text_depart, item);
                     helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checktimebackground));
                     ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
@@ -183,7 +301,6 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 posmouth=position;
-                ischecktmouth="ischeck";
                 if(position==0){
                     endmouth= "-1";
                 } else if(position<10){
@@ -202,7 +319,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         departsreceenAdapter = new BaseVoteAdapter<CheckDepartmentsBean.DataBean>(CheckSuperviseProjectListActivity.this, R.layout.item_check_select) {
             @Override
             public void convert(final BaseViewHolder helper, CheckDepartmentsBean.DataBean item) {
-                if(pos==getPosition()&&ischeck.equals("ischeck")){
+                if(pos==getPosition()){
                     helper.setText(R.id.text_depart, item.getName());
                     ((TextView)helper.getView(R.id.text_depart)).setTextColor(getResources().getColor(R.color.white));
                     helper.getView(R.id.text_depart).setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
@@ -224,7 +341,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 pos=position;
-                ischeck="ischeck";
+
                 departId=((CheckDepartmentsBean.DataBean)departsreceenAdapter.getItem(position)).getId();
                 departsreceenAdapter.notifyDataSetChanged();
 
@@ -346,7 +463,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
             listView.setVisibility(View.VISIBLE);
             tvEmpty.setVisibility(View.GONE);
             //TODO 取得所有项目列表
-            ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
+            ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature,type,lightStatu);
         }
     }
 
@@ -354,6 +471,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.text_screen:
+                endYear="-1";
                 shownavigation( );
                 break;
 
@@ -361,34 +479,70 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
                 endYear="-1";
                 endmouth="-1";
                 departId=-1;
-                ischeck="";
-                ischecktime="";
-                ischecktmouth="";
+                type=-1;
+                lightStatu=-1;
+
                 nature=-1;
+                pos=-1;
+                positionlightStatus=-1;
+                posmouth=-1;
+                postime=-1;
+                postype=-1;
                 text_project_nature_2.setTextColor(getResources().getColor(R.color.ac_filter_nature));
                 text_project_nature_2.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
                 text_project_nature_1.setTextColor(getResources().getColor(R.color.ac_filter_nature));
                 text_project_nature_1.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
-                ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
+                text_budgat_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_budgat_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_commitments_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_commitments_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_other_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_other_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                //text_budgat_project
+                ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature,type,lightStatu);
                 dialog.dismiss();
                 break;
             case R.id.tvDone:
                 //TODO 取得所有项目列表
-                if(ischecktime.equals("")){
-                    //TODO 请选择时间
-                    ToastUtils.show("请选择年份");
-                }else if(ischecktmouth.equals("")){
-                    //TODO 请选择部门
-                    ToastUtils.show("请选择月份");
+//                if(ischecktime.equals("")){
+//                    //TODO 请选择时间
+//                    ToastUtils.show("请选择年份");
+//                }else if(ischecktmouth.equals("")){
+//                    //TODO 请选择部门
+//                    ToastUtils.show("请选择月份");
+//
+//                } else if(ischeck.equals("")){
+//                    //TODO 请选择部门
+//                    ToastUtils.show("请选择部门");
+//
+//                }else {
+//                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
+//                    dialog.dismiss();
+//                }
+                ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature,type,lightStatu);
+                endYear="-1";
+                endmouth="-1";
+                departId=-1;
+                type=-1;
+                lightStatu=-1;
 
-                } else if(ischeck.equals("")){
-                    //TODO 请选择部门
-                    ToastUtils.show("请选择部门");
-
-                }else {
-                    ProxyUtils.getHttpCheckProxy().projects(this,endYear,endmouth,departId,nature);
-                    dialog.dismiss();
-                }
+                nature=-1;
+                pos=-1;
+                positionlightStatus=-1;
+                posmouth=-1;
+                postime=-1;
+                postype=-1;
+                text_project_nature_2.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_project_nature_2.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_project_nature_1.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_project_nature_1.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_budgat_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_budgat_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_commitments_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_commitments_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_other_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_other_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                dialog.dismiss();
                 break;
             case R.id.text_project_nature_1:
 
@@ -410,6 +564,40 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
 
 
                 break;
+            case R.id.text_budgat_project:
+
+                type=1;
+                text_budgat_project.setTextColor(getResources().getColor(R.color.white));
+                text_budgat_project.setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
+                text_commitments_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_commitments_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_other_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_other_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                break;
+            case R.id.text_commitments_project:
+
+                type=3;
+                text_commitments_project.setTextColor(getResources().getColor(R.color.white));
+                text_commitments_project.setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
+                text_budgat_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_budgat_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_other_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_other_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
+                break;
+            case R.id.text_other_project:
+
+                type=2;
+                text_other_project.setTextColor(getResources().getColor(R.color.white));
+                text_other_project.setBackground(getResources().getDrawable(R.mipmap.checkdepartbackground));
+                text_commitments_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_commitments_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+                text_budgat_project.setTextColor(getResources().getColor(R.color.ac_filter_nature));
+                text_budgat_project.setBackground(getResources().getDrawable(R.drawable.shape_check_gray));
+
+                break;
+
+
 
         }
 
@@ -422,6 +610,8 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         super.asyncRetrive();
         tiemAdapter.setDatas(tiems);
         tiemmouthAdapter.setDatas(mouths);
+        lightStatusAdapter.setDatas(lightStatus);
+        //typeAdapter.setDatas(projectType);
         //TODO 取得所有部门列表
         ProxyUtils.getHttpCheckProxy().departments(this);
 

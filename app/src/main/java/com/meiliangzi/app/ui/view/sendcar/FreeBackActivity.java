@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.IndexSendacarBean;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
@@ -19,10 +20,10 @@ import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
 
-public class FreeBackActivity extends BaseActivity {
+public class FreeBackActivity extends BaseActivity implements XListView.IXListViewListener {
     public int plateStatus;
     public int currentPage=1;
-    public int pageSize=30;
+    public int pageSize=10;
     @BindView(R.id.listView)
     XListView listView;
     private BaseQuickAdapter<IndexSendacarBean.IndexSendacarData> adapter;
@@ -34,9 +35,11 @@ public class FreeBackActivity extends BaseActivity {
 
     @Override
     protected void findWidgets() {
-        listView.setPullRefreshEnable(false);
-        listView.setPullLoadEnable(false);
-        adapter = new BaseQuickAdapter<IndexSendacarBean.IndexSendacarData>(this, R.layout.item_dfk_sendcar) {
+
+        listView.setPullRefreshEnable(true);
+        listView.setPullLoadEnable(true);
+        listView.setXListViewListener(this);
+        adapter = new BaseQuickAdapter<IndexSendacarBean.IndexSendacarData>(this,listView, R.layout.item_dfk_sendcar) {
 
             @Override
             public void convert(BaseViewHolder helper, final IndexSendacarBean.IndexSendacarData item) {
@@ -81,7 +84,7 @@ public class FreeBackActivity extends BaseActivity {
 
     @Override
     protected void initComponent() {
-        ProxyUtils.getHttpProxy().indexsendacar(this,3,currentPage,pageSize);
+        //ProxyUtils.getHttpProxy().indexsendacar(this,3,currentPage,pageSize);
 
     }
 
@@ -92,7 +95,28 @@ public class FreeBackActivity extends BaseActivity {
     }
 
     protected void getindexsendacar(IndexSendacarBean bean){
-        adapter.setDatas(bean.getData());
+        //adapter.setDatas(bean.getData());
+        if (currentPage == 1) {
+            adapter.pullRefresh(bean.getData());
+        } else {
+            adapter.pullLoad(bean.getData());
+            //listViewAdapter.pullRefresh(articalList.getData());
+        }
 
+    }
+
+    @Override
+    public void onRefresh() {
+        currentPage = 1;
+        getData(3, currentPage, Constant.PAGESIZE);
+    }
+
+    @Override
+    public void onLoadMore() {
+        currentPage++;
+        getData(3, currentPage, Constant.PAGESIZE);
+    }
+    public void getData(int type,int currentPage,int pageSize ){
+        ProxyUtils.getHttpProxy().indexsendacar(this,type,currentPage,pageSize);
     }
 }
