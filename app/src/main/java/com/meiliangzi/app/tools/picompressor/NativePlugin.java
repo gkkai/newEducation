@@ -50,6 +50,8 @@ public class NativePlugin {
         this.webView = webView;
         this.fragment = fragment;
         this.context = context;
+
+
         this.mLocationListener = mLocationListener;
         this.locMan = locMan;
         this.gson = new Gson();
