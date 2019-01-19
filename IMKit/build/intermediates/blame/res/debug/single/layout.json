@@ -28,16 +28,16 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_dialog_popup_prompt.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_image_message.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_image_message.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_plugin_location_activity.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_plugin_location_activity.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_fr_image.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_fr_image.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_plugin_location_activity.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_plugin_location_activity.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_image_message.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_image_message.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_location_preview_activity.xml",
@@ -56,12 +56,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_picsel_original.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_cs_single_choice_layout.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_cs_single_choice_layout.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_ext_emoticon_tab_container.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_ext_emoticon_tab_container.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_cs_single_choice_layout.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_cs_single_choice_layout.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_mention_members.xml",
@@ -72,32 +72,32 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_message.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_ext_extension_bar.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_ext_extension_bar.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_refresh_list_view.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_refresh_list_view.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_ext_extension_bar.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_ext_extension_bar.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_base_conversation.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_base_conversation.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_public_service_input_menus.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_input_menus.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_input_pager_layout.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_input_pager_layout.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_wi_notice.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_wi_notice.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_public_service_input_menus.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_input_menus.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_fr_public_service_sub_list.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_fr_public_service_sub_list.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_wi_notice.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_wi_notice.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_ac_file_manager.xml",
@@ -140,12 +140,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_cs_leave_message.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_picsel_preview.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_picsel_preview.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_item_message.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_message.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_picsel_preview.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_picsel_preview.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/layout/rc_ext_emoji_grid_view.xml",

@@ -29,8 +29,9 @@ import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.dialog.RLAlertDialog;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
+
+import com.nostra13.universalimageloader.core.ImageLoader;
 import org.json.JSONObject;
 
 import butterknife.BindView;
@@ -123,7 +124,7 @@ public class ArticalDetailActivity extends BaseActivity {
                     } else {
                         showMiddle();
                     }
-                    //showMiddle();
+
                 }
 
                 break;
@@ -379,7 +380,7 @@ public class ArticalDetailActivity extends BaseActivity {
             public void onNoClick() {
                 // Toast.makeText(this,"点击了--取消--按钮",Toast.LENGTH_LONG).show();
                 //TODO 取得试卷信息
-                //ProxyUtils.getHttpProxy().gettestpaper(ArticalDetailActivity.this, id);
+                ProxyUtils.getHttpProxy().gettestpaper(ArticalDetailActivity.this, id);
 
                 myDialog.dismiss();
             }

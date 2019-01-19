@@ -64,12 +64,12 @@
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_list_selector_disabled_holo_dark.9.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
-        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png",
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png",
+        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_textfield_default_mtrl_alpha.9.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_ic_menu_share_mtrl_alpha.png",

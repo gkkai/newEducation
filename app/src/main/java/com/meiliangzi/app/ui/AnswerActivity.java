@@ -13,13 +13,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.meiliangzi.app.MyApplication;
-import com.meiliangzi.app.model.bean.BaseBean;
 import com.meiliangzi.app.model.bean.QuestionList;
-import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
-import com.meiliangzi.app.tools.picompressor.HttpCallback;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
@@ -30,6 +27,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -44,6 +42,10 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 
 import com.meiliangzi.app.R;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import static com.meiliangzi.app.config.Constant.BASE_URL;
 
@@ -157,12 +159,15 @@ public class AnswerActivity extends BaseActivity {
     private long costTime;
     private long answerTime;
     private String isverrrde="";
-
+    private List<Map> list;
+    private JSONObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         MyApplication.score=0;
+        list=new ArrayList<>();
+        jsonObject=new JSONObject();
         onCreateView(R.layout.activity_answer);
     }
 
@@ -180,6 +185,7 @@ public class AnswerActivity extends BaseActivity {
                 .add("subjectId", id)
                 .add("score", score)
                 .add("answerTime", costTime)
+                .add("answer", jsonObject.toString())
     .build();
         Request request = new Request.Builder()
                 .url(url)
@@ -353,6 +359,7 @@ public class AnswerActivity extends BaseActivity {
                 }else {
                     //判定是不是多选
                     if(item.getStudy_status()){
+                        //TODO 多选
                         cbA.setChecked(false);
                         cbB.setChecked(false);
                         cbC.setChecked(false);
@@ -406,7 +413,7 @@ public class AnswerActivity extends BaseActivity {
                             }
                         });
                     }else {
-
+                        //TODO 单选题
                         helper.setOnClickListener(R.id.llAnswerA, new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -471,21 +478,36 @@ public class AnswerActivity extends BaseActivity {
         }else {
             answerList.clear();
             sb = new StringBuilder();
+            //TODO 返回正确选项
             if(tempA1 == 1){
                 //answerList.add("A");
                 answerList.add(Questionitem.getRealAnswer("A"));
+                Map map=new HashMap();
+                map.put(Questionitem.getId(),Questionitem.getRandomAnswerA());
+                list.add(map);
+                //Questionitem.getId()
             }
             if(tempA2 == 1){
                 // answerList.add("B");
                 answerList.add(Questionitem.getRealAnswer("B"));
+
+                Map map=new HashMap();
+                map.put(Questionitem.getId(),Questionitem.getRandomAnswerB());
+                list.add(map);
             }
             if(tempA3 == 1){
                 //answerList.add("C");
                 answerList.add(Questionitem.getRealAnswer("C"));
+                Map map=new HashMap();
+                map.put(Questionitem.getId(),Questionitem.getRandomAnswerC());
+                list.add(map);
             }
             if(tempA4 == 1){
                 // answerList.add("D");
                 answerList.add(Questionitem.getRealAnswer("D"));
+                Map map=new HashMap();
+                map.put(Questionitem.getId(),Questionitem.getRandomAnswerD());
+                list.add(map);
             }
             Collections.sort(answerList);
             for (int i=0;i<answerList.size();i++){
@@ -644,11 +666,53 @@ public class AnswerActivity extends BaseActivity {
         if(isSubmit){
 
         }
+        Map<Integer,List> map=mapCombine(list);
+        for (Map.Entry<Integer, List> entry : map.entrySet()) {
+                         //Map.entry<Integer,String> 映射项（键-值对）  有几个方法：用上面的名字entry
+                         //entry.getKey() ;entry.getValue(); entry.setValue();
+                        //map.entrySet()  返回此映射中包含的映射关系的 Set视图。
+                         System.out.println("key= " + entry.getKey() + " and value= "
+                                        + entry.getValue());
+            try {
+                jsonObject.put(String.valueOf(entry.getKey()),entry.getValue());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+                     }
+//        for (Object in : map.keySet()) {
+//                        //map.keySet()返回的是所有key的值
+//                         //String str = map.get(in);//得到每个key多对用value的值
+//            try {
+//                jsonObject.put(String.valueOf(map.keySet()),map.get(in));
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
         //优化网络请求
        // ProxyUtils.getHttpProxy().savescore(AnswerActivity.this, Integer.valueOf(PreferManager.getUserId()), Integer.valueOf(id), Integer.valueOf(score),costTime);
         savescore(PreferManager.getUserId(),id, score,String.valueOf(costTime));
 
     }
+
+    public static Map mapCombine(List<Map> list) {
+        Map<Object, List> map = new HashMap<>();
+        for (Map m : list) {
+            Iterator<Object> it = m.keySet().iterator();
+            while (it.hasNext()) {
+                Object key = it.next();
+                if (!map.containsKey(key)) {
+                    List newList = new ArrayList<>();
+                    newList.add(m.get(key));
+                    map.put(key, newList);
+                } else {
+                    map.get(key).add(m.get(key));
+                }
+            }
+        }
+        return map;
+    }
+
 
     protected void getResult(final String score) {
         //ToastUtils.custom("提交成功");
