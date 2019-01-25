@@ -32,5 +32,3 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.0.0-beta1'
     testCompile 'junit:junit:4.12'
 }
-
-

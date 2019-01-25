@@ -60,12 +60,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_fr_conversationlist.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_fr_public_service_sub_list.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_fr_public_service_sub_list.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_cs_alert_robot_evaluation.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_cs_alert_robot_evaluation.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_fr_public_service_sub_list.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_fr_public_service_sub_list.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_conversation.xml",
@@ -84,12 +84,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_ext_plugin_pager.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_share_location_message.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_share_location_message.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_plugin_location_activity.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_plugin_location_activity.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_share_location_message.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_share_location_message.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_ac_picture_pager.xml",
@@ -156,36 +156,36 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_picsel_grid_camera.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_input_menu.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_input_menu.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_dialog_popup_prompt.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_dialog_popup_prompt.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_preview_fragment.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_preview_fragment.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_dialog_popup_prompt.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_dialog_popup_prompt.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_input_menu.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_input_menu.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_public_service_search.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_public_service_search.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_refresh_list_view.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_refresh_list_view.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_conversation_member.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_conversation_member.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_wi_block.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_wi_block.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_refresh_list_view.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_refresh_list_view.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_item_image_message.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_item_image_message.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_wi_block.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/layout/rc_wi_block.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/layout/rc_mention_members.xml",

@@ -68,12 +68,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f494.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_picsel_catalog_selected.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_picsel_catalog_selected.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_cs_group_ok_normal.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_cs_group_ok_normal.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_picsel_catalog_selected.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_picsel_catalog_selected.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ad_list_audio_icon.png",

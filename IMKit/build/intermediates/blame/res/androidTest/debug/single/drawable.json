@@ -4,28 +4,28 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_bg_item.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_cs_submit_comment.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_cs_submit_comment.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_message_checkbox.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_message_checkbox.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_ic_phone_selector.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_ic_phone_selector.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_message_checkbox.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_message_checkbox.xml"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_cs_submit_comment.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_cs_submit_comment.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_bg_mentionlist_item.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_bg_mentionlist_item.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_selector_title_back_press.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_selector_title_back_press.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_cs_corner_single_check_style.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_cs_corner_single_check_style.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_selector_title_back_press.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable/rc_selector_title_back_press.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable/rc_ic_star_selector.xml",

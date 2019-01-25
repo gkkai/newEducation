@@ -56,12 +56,12 @@
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_popup_background_mtrl_mult.9.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/release/drawable-mdpi-v4/abc_ic_star_black_48dp.png",
-        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_ic_star_black_48dp.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/release/drawable-mdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png",
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/release/drawable-mdpi-v4/abc_ic_star_black_48dp.png",
+        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/drawable-mdpi-v4/abc_ic_star_black_48dp.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/release/drawable-mdpi-v4/abc_list_focused_holo.9.png",
