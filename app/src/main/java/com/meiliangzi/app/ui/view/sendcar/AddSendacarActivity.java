@@ -15,7 +15,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.model.bean.QueryuserBean;
 import com.meiliangzi.app.model.bean.SendACarInfoArray;
 import com.meiliangzi.app.model.bean.SendacarinfoBean;
 import com.meiliangzi.app.tools.PreferManager;
@@ -82,6 +84,10 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
         WindowManager wm = (WindowManager) this
                 .getSystemService(Context.WINDOW_SERVICE);
         width= wm.getDefaultDisplay().getWidth();
+        if( MyApplication.driverList!=null){
+            MyApplication.driverList.clear();
+        }
+
 
     }
 
@@ -136,6 +142,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                         public void onClick(View v) {
                             Intent intent=new Intent(AddSendacarActivity.this,DriverUserLisActivity.class);
                             intent.putExtra("positino",positino);
+                            intent.putExtra("type","updata");
                             startActivityForResult(intent,101);
 
                         }
@@ -188,6 +195,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                         public void onClick(View v) {
                             Intent intent=new Intent(AddSendacarActivity.this,DriverUserLisActivity.class);
                             intent.putExtra("positino",positino);
+                            intent.putExtra("type","add");
                             startActivityForResult(intent,101);
 
                         }
@@ -196,9 +204,16 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                     helper.getView(R.id.text_add_send_plateNumber).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent intent=new Intent(AddSendacarActivity.this,DriverListActivity.class);
-                            intent.putExtra("positino",positino);
-                            startActivityForResult(intent,102);
+                            //String s=((TextView)helper.getView(R.id.text_add_send_plateNumber)).getHint().toString().trim();
+                            if(data.get(positino).getQueryuserDatalist().size()==0){
+                                ToastUtils.show("请您先选择驾驶员");
+                            }
+                            else  {
+                                Intent intent=new Intent(AddSendacarActivity.this,AddCardNumberActivity.class);
+                                intent.putExtra("positino",positino);
+                                startActivityForResult(intent,101);
+                            }
+
                         }
                     });
 
@@ -238,12 +253,54 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         switch (resultCode){
             case 101:
+                if(intent.getIntExtra("type",3)==2){
+                    data.get(intent.getIntExtra("positino",100)).getQueryuserDatalist().clear();
+                    TextView   text_add_send_driverName=((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverName));
+                    TextView   driverPhone=  ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverPhone));
+                    TextView   plateNumber= ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber));
 
-            ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverName)).setText(intent.getStringExtra("driverName"));
-                ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverPhone)).setText(intent.getStringExtra("driverPhone"));
-                ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
-                data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
-                break;
+                    StringBuilder driverName=new StringBuilder();
+                    StringBuilder driverNumber=new StringBuilder();
+                    StringBuilder drivephone=new StringBuilder();
+                    for(int i=0;i< MyApplication.driverList.size();i++){
+                        driverName.append((MyApplication.driverList.get(i)).getDriverName()+",");
+                        driverNumber.append((MyApplication.driverList.get(i)).getPlateNumber()+",");
+                        drivephone.append((MyApplication.driverList.get(i)).getDriverPhone()+",");
+                        SendACarInfoArray.QueryuserData ss=new SendACarInfoArray.QueryuserData();
+                        ss.setDriverName(MyApplication.driverList.get(i).getDriverName());
+                        ss.setPlateNumber(MyApplication.driverList.get(i).getPlateNumber());
+                        ss.setId(MyApplication.driverList.get(i).getId());
+                        ss.setDriverPhone(MyApplication.driverList.get(i).getDriverPhone());
+
+                        data.get(intent.getIntExtra("positino",100)).getQueryuserDatalist().add(i,ss);
+
+                    }
+                    if (driverName.length() > 0){
+                        driverName.deleteCharAt(driverName.length() - 1);
+                    }
+                    if (drivephone.length() > 0){
+                        drivephone.deleteCharAt(drivephone.length() - 1);
+                    }
+                    if (driverNumber.length() > 0){
+                        driverNumber.deleteCharAt(driverNumber.length() - 1);
+                    }
+                    text_add_send_driverName.setText(driverName);
+                    driverPhone.setText(drivephone);
+                    plateNumber.setText(driverNumber);
+                   // data.add(MyApplication.driverList);
+
+                    //MyApplication.driverList.clear();
+
+                    break;
+                }
+                if(intent.getIntExtra("type",3)==1){
+                    ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverName)).setText(intent.getStringExtra("driverName"));
+                    ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_driverPhone)).setText(intent.getStringExtra("driverPhone"));
+                    ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
+                    data.get(intent.getIntExtra("positino",100)).setDriverUserid(String.valueOf(intent.getIntExtra("id",0)));
+                    break;
+                }
+
             case 102:
 
                 ((TextView)getViewByPosition(intent.getIntExtra("positino",100),gradview).findViewById(R.id.text_add_send_plateNumber)).setText(intent.getStringExtra("plateNumber"));
@@ -336,26 +393,51 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                 });
                 break;
             case R.id.text_sure:
-                for(int i=0;i<data.size();i++){
-                    String user=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_user)).getText().toString();
-                    data.get(i).setUser(user);
-                    String userPhone=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_userPhone)).getText().toString();
-                    data.get(i).setUserPhone(userPhone);
-                    String start=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_start)).getText().toString();
-                    data.get(i).setStart(start);
-                    String end=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_end)).getText().toString();
-                    data.get(i).setEnd(end);
-                    String startAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_startAt)).getText().toString();
-                    data.get(i).setStartAt(startAt);
-                    String endAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_endAt)).getText().toString();
-                    data.get(i).setEndAt(endAt);
-                    String driverName=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverName)).getText().toString();
-                    data.get(i).setDriverName(driverName);
-                    String driverPhone=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverPhone)).getText().toString();
-                    data.get(i).setDriverPhone(driverPhone);
-                    String plateNumber=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_plateNumber)).getText().toString();
-                    data.get(i).setPlateNumber(plateNumber);
+                if("updata".equals(type)){
+                    for(int i=0;i<data.size();i++){
+                        String user=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_user)).getText().toString();
+                        data.get(i).setUser(user);
+                        String userPhone=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_userPhone)).getText().toString();
+                        data.get(i).setUserPhone(userPhone);
+                        String start=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_start)).getText().toString();
+                        data.get(i).setStart(start);
+                        String end=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_end)).getText().toString();
+                        data.get(i).setEnd(end);
+                        String startAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_startAt)).getText().toString();
+                        data.get(i).setStartAt(startAt);
+                        String endAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_endAt)).getText().toString();
+                        data.get(i).setEndAt(endAt);
+                        String driverName=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverName)).getText().toString();
+                        data.get(i).setDriverName(driverName);
+                        String driverPhone=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverPhone)).getText().toString();
+                        data.get(i).setDriverPhone(driverPhone);
+                        String plateNumber=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_plateNumber)).getText().toString();
+                        data.get(i).setPlateNumber(plateNumber);
+                    }
+                }else {
+                    for(int i=0;i<data.size();i++){
+                        String user=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_user)).getText().toString();
+                        data.get(i).setUser(user);
+                        String userPhone=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_userPhone)).getText().toString();
+                        data.get(i).setUserPhone(userPhone);
+                        String start=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_start)).getText().toString();
+                        data.get(i).setStart(start);
+                        String end=((EditText)getViewByPosition(i,gradview).findViewById(R.id.edit_add_send_end)).getText().toString();
+                        data.get(i).setEnd(end);
+                        String startAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_startAt)).getText().toString();
+                        data.get(i).setStartAt(startAt);
+                        String endAt=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_endAt)).getText().toString();
+                        data.get(i).setEndAt(endAt);
+
+//                        String driverName=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverName)).getText().toString();
+//                        data.get(i).setDriverName(driverName);
+//                        String driverPhone=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_driverPhone)).getText().toString();
+//                        data.get(i).setDriverPhone(driverPhone);
+//                        String plateNumber=((TextView)getViewByPosition(i,gradview).findViewById(R.id.text_add_send_plateNumber)).getText().toString();
+//                        data.get(i).setPlateNumber(plateNumber);
+                    }
                 }
+
 
                 try {
                     RuleCheckUtils.checkEmpty(text_add_send_department.getText().toString(), "请选择申请人");
@@ -366,20 +448,28 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
                     js.put("proposer",text_add_send_name.getText().toString());
                     js.put("proposerPhone",userPhone);
                     if("updata".equals(type)){
+                        //TODO 修改
                         sendacarupdata(js);
                     }else {
+                        //TODO 新增
                         for (int i = 0; i < data.size(); i++) {
                             JSONObject jsobject=new JSONObject();
+                            JSONArray jsonArry1=new JSONArray();
                             jsobject.put("user", data.get(i).getUser());
                             jsobject.put("userPhone", data.get(i).getUserPhone());
                             jsobject.put("start", data.get(i).getStart());
                             jsobject.put("end", data.get(i).getEnd());
                             jsobject.put("startAt", data.get(i).getStartAt());
                             jsobject.put("endAt", data.get(i).getEndAt());
-                            jsobject.put("driverName", data.get(i).getDriverName());
-                            jsobject.put("driverPhone", data.get(i).getDriverPhone());
-                            jsobject.put("plateNumber", data.get(i).getPlateNumber());
-                            jsobject.put("driverUserid", data.get(i).getDriverUserid());
+                            for(int j = 0; j < data.get(i).getQueryuserDatalist().size(); j++){
+                                JSONObject jsobject1=new JSONObject();
+                                jsobject1.put("driverName", data.get(i).getQueryuserDatalist().get(j).getDriverName());
+                                jsobject1.put("driverPhone", data.get(i).getQueryuserDatalist().get(j).getDriverPhone());
+                                jsobject1.put("plateNumber", data.get(i).getQueryuserDatalist().get(j).getPlateNumber());
+                                jsobject1.put("driverUserid", data.get(i).getQueryuserDatalist().get(j).getId());
+                                jsonArry1.put(jsobject1);
+                            }
+                            jsobject.put("driverInfoArray",jsonArry1);
                             jsonArry.put(jsobject);
                         }
                         js.put("SendACarInfoArray",jsonArry);

@@ -32,12 +32,12 @@
         "source": "/Users/kk/Desktop/newEducation/jpush/src/main/res/layout/push_set_dialog.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
-        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/layout/notification_template_custom_big.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/layout/abc_action_bar_title_item.xml",
         "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/layout/abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/layout/notification_template_custom_big.xml",
+        "source": "/Users/kk/.android/build-cache/f139617e46fec962b062573e451d8d97bd52027a/output/res/layout/notification_template_custom_big.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/jpush/build/intermediates/res/merged/debug/layout/notification_template_lines_media.xml",

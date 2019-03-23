@@ -10,17 +10,28 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.internal.NavigationMenuPresenter;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +41,7 @@ import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.db.SQLHelper;
 import com.meiliangzi.app.db.bean.MessageBean;
 import com.meiliangzi.app.db.manage.MessageManage;
+import com.meiliangzi.app.model.bean.BannerBean;
 import com.meiliangzi.app.model.bean.DepartmentuserNumberBean;
 import com.meiliangzi.app.model.bean.GroupinfoBean;
 import com.meiliangzi.app.model.bean.QueryUserInfoBean;
@@ -37,6 +49,7 @@ import com.meiliangzi.app.model.bean.VersionUpdate;
 import com.meiliangzi.app.receiver.CounterServer;
 import com.meiliangzi.app.receiver.TagAliasOperatorHelper;
 import com.meiliangzi.app.tools.FileUtil;
+import com.meiliangzi.app.tools.IntentUtils;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.PreferUtils;
 import com.meiliangzi.app.tools.ProxyUtils;
@@ -51,8 +64,18 @@ import com.meiliangzi.app.ui.fragment.MsgFragment;
 import com.meiliangzi.app.ui.fragment.SheQunFragment;
 import com.meiliangzi.app.ui.fragment.TrainFragment;
 import com.meiliangzi.app.ui.listener.ClearCacheHandler;
+import com.meiliangzi.app.ui.view.MapNewActivity;
+import com.meiliangzi.app.ui.view.ZoomActivity;
+import com.meiliangzi.app.ui.view.checkSupervise.CheckSuperviseProjectListActivity;
+import com.meiliangzi.app.ui.view.creativecommons.CommonsListActivity;
+import com.meiliangzi.app.ui.view.sendcar.SendCarActivity;
+import com.meiliangzi.app.ui.view.vote.VoteActivity;
+import com.meiliangzi.app.widget.CircleImageView;
 import com.meiliangzi.app.widget.FragmentTabHost;
+import com.meiliangzi.app.widget.ImageCycleView;
 import com.meiliangzi.app.widget.MiddleView;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
 import com.yanzhenjie.permission.Rationale;
@@ -69,6 +92,7 @@ import java.util.Map;
 import java.util.concurrent.Executors;
 
 import androidkun.com.versionupdatelibrary.entity.VersionUpdateConfig;
+import butterknife.BindView;
 import cn.jpush.android.api.JPushInterface;
 import io.rong.imkit.RongIM;
 import io.rong.imkit.model.GroupUserInfo;
@@ -91,12 +115,10 @@ import static com.meiliangzi.app.receiver.TagAliasOperatorHelper.ACTION_DELETE;
  * @version 1.0
  * @date 2016/11/23 9:19
  */
-public class MainActivity extends BaseActivity implements PermissionListener, RongIM.UserInfoProvider, RongIM.GroupInfoProvider, RongIM.GroupUserInfoProvider {
+public class MainActivity extends BaseActivity implements PermissionListener, View.OnClickListener {
     private SQLHelper helper = null;
     private ClearCacheHandler clearCacheHanler;
-    private FragmentTabHost mTabHost;
     private long exitTime = 0;
-    //for receive customer msg from jpush server
     private MessageReceiver mMessageReceiver;
     public static final String MESSAGE_RECEIVED_ACTION = "com.example.jpushdemo.MESSAGE_RECEIVED_ACTION";
     public static final String KEY_TITLE = "title";
@@ -107,13 +129,31 @@ public class MainActivity extends BaseActivity implements PermissionListener, Ro
     private static final int REQUEST_CODE_PERMISSION_CAMERA_SD = 100;
     private static final int REQUEST_CODE_SETTING = 101;
     private VersionUpdate versionUpdate;
-    private String hauweipag="com.huawei.appmarket";
     private String isPhone;
     SQLiteDatabase database = null;
-
-String groupid=null;
+    private ImageCycleView icvView;
     private AddFridentDialog dialog;
 
+    @BindView(R.id.rl_shequn_map)
+    RelativeLayout rl_shequn_map;
+    @BindView(R.id.rl_shequn_zoommeet)
+    RelativeLayout rl_shequn_zoommeet;
+
+    @BindView(R.id.rl_shequn_vote)
+    RelativeLayout rl_shequn_vote;
+    @BindView(R.id.rl_shequn_check)
+    RelativeLayout rl_shequn_check;
+
+    @BindView(R.id.rl_shequn_commmons)
+    RelativeLayout rl_shequn_commmons;
+    @BindView(R.id.rl_shequn_sendcar)
+    RelativeLayout rl_shequn_sendcar;
+
+    @BindView(R.id.nv_main_menu)
+    NavigationView mNavigation;
+
+    @BindView(R.id.id_toolbar)
+    Toolbar id_toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,6 +179,7 @@ String groupid=null;
                 dialog.dismiss();
             }
         });
+        initWindow();
         super.onCreateView(R.layout.activity_main);
         /*//TODO 启动拿到当前时间
         ProxyUtils.getHttpProxyNoDialog().studyinfo(this, PreferManager.getUserId());*/
@@ -146,7 +187,6 @@ String groupid=null;
         if(helper ==null){
             helper = new SQLHelper(this);
         }
-        ImLibinit(PreferManager.getTokens());
 
 
 
@@ -154,41 +194,108 @@ String groupid=null;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        //super.onSaveInstanceState(outState);
-       // outState.putInt("variable", mCustomVariable);
     }
     @Override
     protected void findWidgets() {
-//clearCacheHanler = new ClearCacheHandler(this);
 
-        mTabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        ProxyUtils.getHttpProxyNoDialog().indexslideshow(this);
         registerMessageReceiver();  // used for receive msg
         init();
-//        MessageManage.getManage(MyApplication.getInstance().getSQLHelper()).deleteAllChannel();
+        icvView = (ImageCycleView)findViewById(R.id.icvView);
+        rl_shequn_map.setOnClickListener(this);
+
+        rl_shequn_zoommeet.setOnClickListener(this);
+        rl_shequn_check.setOnClickListener(this);
+        rl_shequn_vote.setOnClickListener(this);
+        rl_shequn_commmons.setOnClickListener(this);
+        rl_shequn_sendcar.setOnClickListener(this);
+
+        initSlid(id_toolbar);
+        initview();
+
+    }
+
+    private void initview() {
+        View mHeaderView =  mNavigation.getHeaderView(0);
+        CircleImageView ivImg = (CircleImageView) mHeaderView.findViewById(R.id.ivImg);
+        TextView tv_username= (TextView) mHeaderView.findViewById(R.id.tv_username);
+
+        TextView tv_user_phone= (TextView) mHeaderView.findViewById(R.id.tv_user_phone);
+        if(PreferManager.getUserStar().startsWith("http")){
+            ImageLoader.getInstance().displayImage(PreferManager.getUserStar(),ivImg, MyApplication.getSimpleOptions(R.mipmap.ic_default_star,R.mipmap.ic_default_star));
+        }else {
+            ImageLoader.getInstance().displayImage("file:///"+ PreferManager.getUserStar(),ivImg, MyApplication.getSimpleOptions(R.mipmap.ic_default_star,R.mipmap.ic_default_star));
+        }
+        tv_username.setText(PreferManager.getUserName());
+        tv_user_phone.setText(PreferManager.getUserPhone());
 
     }
 
 
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+
+            case R.id.rl_shequn_map:
+                // TODO  查看更多
+                Intent intentmap=new Intent(this, MapNewActivity.class);
+                startActivity(intentmap);
+                break;
+            case R.id.rl_shequn_zoommeet:
+                // TODO  视频会议
+                Intent intentZoom=new Intent(this, ZoomActivity.class);
+                startActivity(intentZoom);
+                break;
+
+            case R.id.rl_shequn_vote:
+                // TODO 投票管理
+                Intent intentvote=new Intent(this, VoteActivity.class);
+                startActivity(intentvote);
+                break;
+            case R.id.rl_shequn_check:
+                // TODO  考核督办
+                Intent intentCheck=new Intent(this, CheckSuperviseProjectListActivity.class);
+                startActivity(intentCheck);
+                break;
+            case R.id.rl_shequn_commmons:
+                // TODO  知识共享
+                Intent commmons=new Intent(this, CommonsListActivity.class);
+                startActivity(commmons);
+                break;
+            case R.id.rl_shequn_sendcar:
+                // TODO  知识共享
+                Intent sendcar=new Intent(this, SendCarActivity.class);
+               startActivity(sendcar);
+                break;
+        }
+
+    }
+    protected void indexslideshow(BannerBean bean) {
+        icvView.setImageResources(bean.getData(), imageCycleListener);
+
+    }
+
+    ImageCycleView.ImageCycleViewListener imageCycleListener = new ImageCycleView.ImageCycleViewListener() {
+        int id = 0;
+
+        @Override
+        public void displayImage(final String imageURL, ImageView imageView) {
+
+            ImageLoader.getInstance().displayImage(imageURL, imageView);
+
+//            imageView.setImageResource(R.mipmap.test_index_pic);
+        }
+
+        @Override
+        public void onImageClick(int position, View imageView) {
+
+
+        }
+    };
     @Override
     protected void initListener() {
-//        Intent intent=getIntent();
-//        if (intent!=null){
-//            Bundle bundle= intent.getExtras();
-//            Log.i("grage",bundle.get("cn.jpush.android.EXTRA").toString());
-//            Log.i("grage",bundle.get("cn.jpush.android.ALERT").toString());
-//            if (bundle!=null){
-//                MessageBean bean = new MessageBean();
-//                bean.setKey(bundle.getString("key"));
-//                bean.setTitle(bundle.getString("title"));
-//                bean.setContent("cn.jpush.android.ALERT");
-//                bean.setImage(bundle.getString("image"));
-//                bean.setId(bundle.getString("id")+"");
-//                if (MessageManage.getManage(MyApplication.getInstance().getSQLHelper()).addChannel(bean)) {
-//                    return;
-//                }
-//            }
-//
-//        }
+
 
     }
 
@@ -202,14 +309,8 @@ String groupid=null;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        //checkVersion();
-        initTabHost();
-        //submitTime();
-        if(!"".equals(PreferManager.getUserId())){
-            //TODO 获取部门列表
-           // ProxyUtils.getHttpProxy().querydepartmentusernumber(this, Integer.valueOf(PreferManager.getUserId()));
+        //initTabHost();
 
-        }
         checkVersion();
 
 
@@ -237,21 +338,21 @@ String groupid=null;
                 .send();
     }
 
-    private void initTabHost() {
-        mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
-        mTabHost.addTab(mTabHost.newTabSpec(INDEX).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_index, R.string.stringIndex)), IndexFragment.class, new Bundle());
-        mTabHost.addTab(mTabHost.newTabSpec(VIDEO).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_video, R.string.stringVideo)), SheQunFragment.class, new Bundle());
-        mTabHost.addTab(mTabHost.newTabSpec(MSG).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_msg, R.string.stringMsg)), MsgFragment.class, new Bundle());
-        // TODO 培训
-        //mTabHost.addTab(mTabHost.newTabSpec(Constant.TRAIN).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_msg, R.string.stringTRAIN)), TrainFragment.class, new Bundle());
-        mTabHost.addTab(mTabHost.newTabSpec(Constant.MINE).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_nime, R.string.stringMine)), MineFragment.class, new Bundle());
-        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
-    }
+//    private void initTabHost() {
+//       // mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
+//        mTabHost.addTab(mTabHost.newTabSpec(INDEX).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_index, R.string.stringIndex)), IndexFragment.class, new Bundle());
+//        mTabHost.addTab(mTabHost.newTabSpec(VIDEO).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_video, R.string.stringVideo)), SheQunFragment.class, new Bundle());
+//        mTabHost.addTab(mTabHost.newTabSpec(MSG).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_msg, R.string.stringMsg)), MsgFragment.class, new Bundle());
+//        // TODO 培训
+//        //mTabHost.addTab(mTabHost.newTabSpec(Constant.TRAIN).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_msg, R.string.stringTRAIN)), TrainFragment.class, new Bundle());
+//        mTabHost.addTab(mTabHost.newTabSpec(Constant.MINE).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_nime, R.string.stringMine)), MineFragment.class, new Bundle());
+//        mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+//    }
 
 
-    public FragmentTabHost getTabHost() {
-        return mTabHost;
-    }
+//    public FragmentTabHost getTabHost() {
+//        return mTabHost;
+//    }
 
 
     private View createIndicatorView(int selectorRes, int finddesigner) {
@@ -270,8 +371,7 @@ String groupid=null;
        /* setIntent(intent);
         setTab();*/
         int pos = intent.getIntExtra("from", 0);
-        mTabHost.setCurrentTab(pos);
-        //mTabHost.setCurrentTab(pos);
+
 
     }
 
@@ -281,18 +381,13 @@ String groupid=null;
         if(pos==3){
             getIntent().putExtra("jPfrom",0);
         }
-        mTabHost.setCurrentTab(pos);
     }
 
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
             if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-                if (TextUtils.equals(mTabHost.getCurrentTabTag(), INDEX)) {
-                    exitApp();
-                } else {
-                    mTabHost.setCurrentTabByTag(INDEX);
-                }
+
                 return true;
             }
         }
@@ -369,11 +464,20 @@ String groupid=null;
                 dialog.show();
             }
         }
-       /* if("".equals(PreferManager.getUserPhone())) {
-            if (TextUtils.isEmpty(PreferManager.getUserId())) {
-                dialog.show();
-            }
-        }*/
+//        if(TextUtils.isEmpty(PreferManager.getUserId()) ){
+//            if(TextUtils.isEmpty(PreferManager.getUserId())){
+//                //TODO 进行登录
+//              //  IntentUtils.startAty(welcomeActivity, LoginActivity.class);
+//            }else if(!PreferManager.getIsComplete()){
+//                //TODO 完善个人信息
+//                IntentUtils.startAty(this, PersonCenterActivity.class);
+//            }
+//
+//        }
+
+
+
+
         super.onResume();
     }
 
@@ -464,19 +568,7 @@ String groupid=null;
 
 
 
-// [MyReceiver] onReceive - cn.jpush.android.intent.NOTIFICATION_OPENED, extras:
-//    key:cn.jpush.android.NOTIFICATION_TYPE, value:0
-//    key:app, value:com.meiliangzi.app
-//    key:cn.jpush.android.ALERT, value:逍遥您有一个新课程未学习。
-//    key:cn.jpush.android.EXTRA, value: [image - http://o7tb2rscn.bkt.clouddn.com/attach/7716313e949411e79aeb00163e004505.png]
-//    key:cn.jpush.android.EXTRA, value: [id - 73]
-//    key:cn.jpush.android.EXTRA, value: [key - essay]
-//    key:cn.jpush.android.EXTRA, value: [title - 是对方的说法]
-//    key:cn.jpush.android.NOTIFICATION_ID, value:532153223
-//    key:cn.jpush.android.ALERT_TYPE, value:-1
-//    key:cn.jpush.android.NOTIFICATION_CONTENT_TITLE, value:煤亮子
-//    key:cn.jpush.android.MSG_ID, value:42784197147745772
-//    key:sdktype, value:JPUSH
+
 
     public class MessageReceiver extends BroadcastReceiver {
 
@@ -541,30 +633,9 @@ String groupid=null;
         int sequence = 1;
         TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
         PreferManager.saveUserId("");
-//                if (!PreferManager.getUserId().isEmpty())
-//                {
-//                    long  start= Long.parseLong(PreferManager.getTimeStart());
-//                    if (start==0){
-//                        return;
-//                    }
-//                    long minite=(System.currentTimeMillis()-start)/(60*1000);
-//                    doSubmit(String.valueOf(minite));
-//                }
+
         PreferManager.saveIsCompleteInfo(false);
-        //PreferUtils.deletefile();
-       /* TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
-        tagAliasBean.action = ACTION_DELETE;
-        if(true){
-            tagAliasBean.alias = String.valueOf(PreferManager.getUserId());
-        }else{
-//            tagAliasBean.tags = tags;
-        }
-        tagAliasBean.isAliasAction = true;
-        int sequence = 1;
-        TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
-        PreferManager.saveUserId("");*/
-        //PreferManager.saveUserId(null);
-       // PreferUtils.remove("userId");
+
         List<File> cacheFiles = new ArrayList<File>();
         FileUtil.recursionFile(getCacheDir(), cacheFiles);
         if (cacheFiles.isEmpty()) {
@@ -631,116 +702,17 @@ String groupid=null;
         }
     }
 
-   //TODO 链接融云服务
-    private void ImLibinit(final String tokens) {
-        if (getApplicationInfo().packageName.equals(MyApplication.getCurProcessName(getApplicationContext()))) {
-
-            RongIM.connect(tokens, new RongIMClient.ConnectCallback() {
-                @Override
-                public void onTokenIncorrect() {
-
-                }
-
-                @Override
-                public void onSuccess(String s) {
-                   /* Map map=new HashMap();
-                    map.put(Conversation.ConversationType.PRIVATE.getName(), false);
-                    RongIM.getInstance().startConversationList(getBaseContext(), map);
-*/
-                  // RongIM.getInstance().setUserInfoProvider(MainActivity.this, false);
-                   RongIM.getInstance().setGroupInfoProvider(MainActivity.this,false);
-                   // RongIM.getInstance().setGroupUserInfoProvider(MainActivity.this,false);
-
-                    //RongIM.setGroupInfoProvider(MainActivity.this,false);
-                    //RongIM.setGroupUserInfoProvider(MainActivity.this,false);
 
 
-                }
-
-                @Override
-                public void onError(RongIMClient.ErrorCode errorCode) {
-
-                }
-            });
-        }
-       }
-    @Override
-    public UserInfo getUserInfo(String s) {
-
-       /* Cursor cursor = null;
-        String name=null;
-        String image = null;
-        Map<String, String> map = new HashMap<String, String>();
-        try {
-            database = helper.getReadableDatabase();
-
-            cursor = database.query(true, SQLHelper.TABLE_NAME, new String[]{SQLHelper.NAME,SQLHelper.IMAGE}, "id=?",
-                    new String []{s}, null, null, null, null);
-            while (cursor.moveToNext()) {
-                name=cursor.getString(cursor.getColumnIndex(SQLHelper.NAME));
-                 image=cursor.getString(cursor.getColumnIndex(SQLHelper.IMAGE));
-                }
-        } catch (Exception e) {
-            // TODO: handle exception
-            e.getMessage();
-
-        } finally {
-            if (database != null) {
-                //helper.onUpgrade(database,1,2);
-                database.close();
-            }
-        }
-        if(name!=null&&image!=null){
-            return new UserInfo(s,name,Uri.parse(image));
-        }*/
-        //TODO 查看用户个人信息
-        //ProxyUtils.getHttpProxy().queryuserinfo(MainActivity.this, Integer.valueOf(s));
-
-if(!TextUtils.isEmpty(PreferManager.getUserId())&&s.equals(PreferManager.getUserId())){
-    return new UserInfo(PreferManager.getUserId(),PreferManager.getUserName(),Uri.parse(PreferManager.getUserStar()));
-
-}
-
-return null;
-    }
-    @Override
-    public Group getGroupInfo(String s) {
-
-        //TODO
-        ProxyUtils.getHttpProxy().groupinfo(MainActivity.this, Integer.valueOf(s));
-
-        return null;
-    }
-    @Override
-    public GroupUserInfo getGroupUserInfo(String s, String s1) {
-        //TODO
-        ProxyUtils.getHttpProxy().groupinfo(MainActivity.this, Integer.valueOf(s));
-
-        return null;
-    }
-    private void getmentusernumber(DepartmentuserNumberBean data){
-        MyApplication.numberBean=data;
-
-    }
-    private void getqueryuserinfo(QueryUserInfoBean data){
-        RongIM.getInstance().refreshUserInfoCache(new UserInfo(String.valueOf(data.getData().getUserId()),data.getData().getUserName(),Uri.parse(data.getData().getImage())));
 
 
-    }
-    private void getgroupinfo(GroupinfoBean data){
-        RongIM.getInstance().refreshGroupInfoCache(new Group(String.valueOf(data.getData().getGroupId()),data.getData().getGroupName(), Uri.parse(String.valueOf(data.getData().getGroupImage()))));
 
-    }
 
     @Override
     protected void asyncRetrive() {
         super.asyncRetrive();
 
 
-        if(getIntent()!=null){
-            int pos = getIntent().getIntExtra("from", 0);
-            mTabHost.setCurrentTab(pos);
-        }
 
     }
 
@@ -753,5 +725,97 @@ return null;
         }
 
     }
+    /**
+     * 设置侧拉框（NavigationView）
+     *
+     * @param toolbarChild
+     */
+    private void initSlid(final Toolbar toolbarChild) {
+        final DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_main_layout);
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(MainActivity.this,
+                mDrawerLayout,toolbarChild, R.string.drawer_open, R.string.drawer_close) {
+            @Override
+            public void onDrawerSlide(View drawerView, float slideOffset) {
+                View content = mDrawerLayout.getChildAt(0);
+                int offset = (int) (drawerView.getWidth() * slideOffset);
+                content.setTranslationX(offset);
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+            }
+
+            @Override
+            public void onDrawerStateChanged(int newState) {
+                super.onDrawerStateChanged(newState);
+            }
+        };
+
+        mDrawerToggle.syncState();
+        mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        mNavigation.setItemIconTintList(null);
+        // 设置导航栏默认选中
+        mNavigation.getMenu().getItem(0).setChecked(true);
+        mNavigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.item_first:
+                        //TODO 关于我们
+                        IntentUtils.startAty(MainActivity.this, AboutUsActivity.class);
+                        break;
+                    case R.id.item_second:
+                        //TODO 意见反馈
+                        IntentUtils.startAty(MainActivity.this, SetttingActivity.class);
+                        break;
+                    case R.id.item_third:
+
+
+                        IntentUtils.startAty(MainActivity.this, SetttingActivity.class);
+
+
+
+                        break;
+                    case R.id.item_four:
+
+                        PreferManager.saveUserId("");
+                        Intent intent = new Intent(MainActivity.this, CounterServer.class);
+                        stopService(intent);
+                        PreferManager.saveIsCompleteInfo(false);
+                        MainActivity.this.finish();
+                        break;
+
+
+
+
+                    default:
+                        break;
+                }
+                item.setChecked(true);
+                // DrawerLayout控件
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
+    }
+
+    private void initWindow(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            SystemBarTintManager tintManager = new SystemBarTintManager(this);
+            tintManager.setStatusBarTintColor(Color.parseColor("#3399FE"));
+            tintManager.setStatusBarTintEnabled(true);
+        }
+    }
+
+
 }
 

@@ -16,16 +16,16 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ext_plugin_image_pressed.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f52b.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f52b.png"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_bubble_left.9.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ic_bubble_left.9.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f623.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f623.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ic_bubble_left.9.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ic_bubble_left.9.png"
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f52b.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/u1f52b.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_btn_send_hover.9.png",
@@ -60,12 +60,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_cs_admin_hover.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ac_file_preview.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ac_file_preview.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_radio_button_off.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_radio_button_off.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/rc_ac_file_preview.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_ac_file_preview.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/release/drawable-xhdpi-v4/u1f6b2.png",

@@ -52,12 +52,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable/rc_ic_files_selector.xml"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable/rc_menu_text_selector.xml",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable/rc_menu_text_selector.xml"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable/rc_an_voice_receive.xml",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable/rc_an_voice_receive.xml"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable/rc_menu_text_selector.xml",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable/rc_menu_text_selector.xml"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable/rc_ic_star_selector.xml",

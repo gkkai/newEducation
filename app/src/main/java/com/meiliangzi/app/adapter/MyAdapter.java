@@ -23,6 +23,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.click.OnChangeListener;
 import com.meiliangzi.app.click.OnItemClickListener;
 import com.meiliangzi.app.model.bean.ImageBean;
+import com.meiliangzi.app.ui.view.creativecommons.ImageSelectActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,6 +59,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         this.mOnChangeListener = onChangeListener;
         this.mList = list;
         Log.e("list",mList.toString()+"");
+    }
+
+    public MyAdapter(ImageSelectActivity context, int maxImageCount, List<ImageBean> mImages, ImageSelectActivity imageSelectActivity, ImageSelectActivity onItemClickListener) {
     }
 
     @Override

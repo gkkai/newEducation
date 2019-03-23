@@ -49,7 +49,7 @@ import java.util.HashSet;
 import java.util.List;
 
 public class ImageSelectActivity extends AppCompatActivity implements OnItemClickListener,
-        OnChangeListener, View.OnClickListener, PopupWindow.OnDismissListener, OnImageDirItemListener {
+        OnChangeListener, View.OnClickListener,PopupWindow.OnDismissListener, OnImageDirItemListener {
     private static final int PHOTO_REQUEST_CAMERA = 1;// 拍照
     private static final int PHOTO_REQUEST_CUT = 2;// 结果
     private ProgressDialog mProgressDialog;

@@ -22,6 +22,7 @@ public class DriverListActivity extends BaseActivity {
     @BindView(R.id.listView)
     XListView listView;
     private BaseQuickAdapter<QueryvehicleListBean.QueryvehicleListBeanData> adapter;
+    private String type;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +31,7 @@ public class DriverListActivity extends BaseActivity {
 
     @Override
     protected void findWidgets() {
+        type=getIntent().getStringExtra("type");
         listView.setPullRefreshEnable(false);
         listView.setPullLoadEnable(false);
         adapter=new BaseQuickAdapter<QueryvehicleListBean.QueryvehicleListBeanData>(this,R.layout.car_list_item) {
@@ -43,13 +45,25 @@ public class DriverListActivity extends BaseActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent mIntent = new Intent();
-                mIntent.putExtra("positino",getIntent().getIntExtra("positino",1));
-                mIntent.putExtra("id",adapter.getItem(position-1).getId());
-                mIntent.putExtra("plateNumber",adapter.getItem(position-1).getPlateNumber());
-                // 设置结果，并进行传送
-                setResult(102, mIntent);
-                finish();
+                if("105".equals(type)){
+                    String s=adapter.getItem(position-1).getPlateNumber();
+                    Intent mIntent = new Intent();
+                    mIntent.putExtra("positino",getIntent().getIntExtra("positino",1));
+                    mIntent.putExtra("id",adapter.getItem(position-1).getId());
+                    mIntent.putExtra("plateNumber",adapter.getItem(position-1).getPlateNumber());
+                    // 设置结果，并进行传送
+                    setResult(105, mIntent);
+                    finish();
+                }else {
+                    Intent mIntent = new Intent();
+                    mIntent.putExtra("positino",getIntent().getIntExtra("positino",1));
+                    mIntent.putExtra("id",adapter.getItem(position-1).getId());
+                    mIntent.putExtra("plateNumber",adapter.getItem(position-1).getPlateNumber());
+                    // 设置结果，并进行传送
+                    setResult(102, mIntent);
+                    finish();
+                }
+
             }
         });
     }

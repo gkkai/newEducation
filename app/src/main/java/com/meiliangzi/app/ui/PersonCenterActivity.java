@@ -111,7 +111,8 @@ public class PersonCenterActivity extends BaseActivity implements PermissionList
 
     @Override
     protected void findWidgets() {
-
+        partyBranchId=Integer.valueOf(PreferManager.getpartyBranchId("partyBranchId"));
+        partyBranchsId=Integer.valueOf(PreferManager.getpartyBranchsId("partyBranchsId"));
     }
 
     @Override
@@ -374,6 +375,8 @@ public class PersonCenterActivity extends BaseActivity implements PermissionList
         if(getIntent()!=null && getIntent().getStringExtra("activity")!=null){
             setResult(RESULT_OK);
             this.finish();
+        }else {
+            IntentUtils.startAty(this, MainActivity.class);
         }
     }
 

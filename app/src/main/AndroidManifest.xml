@@ -191,9 +191,6 @@
             android:name=".ui.GroupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-
-
-
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -620,7 +617,10 @@
         <activity
             android:name=".ui.view.sendcar.AddUserSendCarActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.sendcar.DriverListActivity"
+        <activity
+            android:name=".ui.view.sendcar.DriverListActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.view.sendcar.AddCardNumberActivity"
             android:theme="@style/AppTheme"></activity>
     </application>
 

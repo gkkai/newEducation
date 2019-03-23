@@ -224,8 +224,8 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
             Intent intent=new Intent(this,AddSendacarActivity.class);
             startActivity(intent);
         }else {
-           //TODO
-//            Intent intent=new Intent(this,AddSendacarActivity.class);
+           //TODO 测试用的
+//           Intent intent=new Intent(this,AddSendacarActivity.class);
 //            startActivity(intent);
             ToastUtils.show("您没有权限进行此次操作");
         }

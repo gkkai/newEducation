@@ -44,6 +44,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.CityListBean;
 import com.meiliangzi.app.model.bean.CountyListbean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
@@ -258,8 +259,8 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
 
             }
         };
-        webview.loadUrl("http://www.meiliangzi.cn:8087/api/map");
-        //webview.loadUrl("http://dev-2.meiliangzi.cn:8087/api/map");
+        //webview.loadUrl("http://z.meiliangzi.cn:8087/api/map");
+        webview.loadUrl(Constant.BASE_URL+"map");
         WebSettings webSettings = webview.getSettings();
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         // 设置与Js交互的权限

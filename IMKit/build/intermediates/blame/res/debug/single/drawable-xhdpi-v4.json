@@ -44,12 +44,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_menu_keyboard_hover.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_grid_camera.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_grid_camera.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_default_discussion_portrait.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_default_discussion_portrait.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_grid_camera.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/src/main/res/drawable-xhdpi/rc_grid_camera.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/debug/drawable-xhdpi-v4/rc_ic_location_item_default.png",

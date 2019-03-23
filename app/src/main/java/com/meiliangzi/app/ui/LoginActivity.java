@@ -195,7 +195,6 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
         PreferManager.saveUserId(String.valueOf(user.getData().getUserId()));
         PreferManager.saveTokens(user.getData().getTokens());
         //开始融云会话认证
-        ImLibinit(PreferManager.getTokens());
         PreferManager.saveUserStar(user.getData().getImage());
         PreferManager.saveUserPhone(user.getData().getPhone());
         PreferManager.saveUserName(user.getData().getUserName());
@@ -232,10 +231,10 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
         tagAliasBean.action = TagAliasOperatorHelper.ACTION_SET;
         tagAliasBean.isAliasAction=true;
         TagAliasOperatorHelper.getInstance().handleAction(LoginActivity.this,sequence, tagAliasBean);
-//TODO 获取部门列表
+       //TODO 获取部门列表
        // ProxyUtils.getHttpProxy().querydepartmentusernumber(this, Integer.valueOf(PreferManager.getUserId()));
 
-        setResult(RESULT_OK);
+        IntentUtils.startAty(this, MainActivity.class);
         this.finish();
     }
 
@@ -392,36 +391,7 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
         }
 
     }
-    //TODO 链接融云服务
-    private void ImLibinit(final String tokens) {
-        if (getApplicationInfo().packageName.equals(MyApplication.getCurProcessName(getApplicationContext()))) {
 
-            RongIM.connect(tokens, new RongIMClient.ConnectCallback() {
-                @Override
-                public void onTokenIncorrect() {
-
-                }
-
-                @Override
-                public void onSuccess(String s) {
-                   /* Map map=new HashMap();
-                    map.put(Conversation.ConversationType.PRIVATE.getName(), false);
-                    RongIM.getInstance().startConversationList(getBaseContext(), map);
-*/
-                   // RongIM.getInstance().setUserInfoProvider(LoginActivity.this, false);
-
-                    RongIM.getInstance().setGroupInfoProvider(LoginActivity.this,false);
-                    //RongIM.getInstance().setGroupUserInfoProvider(LoginActivity.this,false);
-
-                }
-
-                @Override
-                public void onError(RongIMClient.ErrorCode errorCode) {
-
-                }
-            });
-        }
-    }
 
     @Override
     public UserInfo getUserInfo(String s) {

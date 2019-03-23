@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="60dp">
     <TextView
         android:id="@+id/tv_driver_name"
@@ -9,6 +10,19 @@
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
+    <CheckBox
+        android:focusable="false"
+        android:visibility="gone"
+        android:button="@null"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:background="@drawable/selector_picture"
+        android:id="@+id/cbSelect"
+        />
+
 
 
 </RelativeLayout>

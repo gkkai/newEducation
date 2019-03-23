@@ -171,6 +171,7 @@
     </RelativeLayout>
 
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvAboutUs"
         android:padding="@dimen/margin_12"
         android:layout_width="match_parent"
@@ -182,24 +183,30 @@
         android:drawableLeft="@mipmap/ic_about_us"
         android:textColor="@color/colorTextDeep" />
     <View
+        android:visibility="gone"
         android:layout_marginLeft="@dimen/margin_12"
         android:layout_marginRight="@dimen/margin_12"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="@dimen/margin_10dp"
         android:background="#EFEFEF" />
+
     <TextView
+        android:visibility="gone"
         android:id="@+id/tvLoginOut"
-        android:padding="@dimen/margin_12"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/margin_12"
         android:text="退出登录"
         android:textColor="@color/colorRed" />
+
     <View
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EFEFEF"

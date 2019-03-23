@@ -175,16 +175,18 @@
         android:layout_height="50dp" />
 
     <TextView
+        android:singleLine="true"
+        android:ellipsize="end"
         android:background="@android:color/transparent"
         android:layout_marginTop="356dp"
         android:id="@+id/text_add_send_driverName"
-        android:drawablePadding="10dp"
         android:paddingRight="20dp"
+        android:drawablePadding="10dp"
         android:layout_alignParentRight="true"
         android:drawableRight="@mipmap/ic_right_arrow_s"
-        android:gravity="center_vertical"
+        android:gravity="right|center_vertical"
         android:hint="请选择"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="50dp" />
     <View
         android:layout_marginTop="406dp"
@@ -200,15 +202,17 @@
         android:layout_height="50dp" />
 
     <TextView
+        android:singleLine="true"
+        android:ellipsize="end"
         android:background="@android:color/transparent"
         android:layout_marginTop="407dp"
         android:id="@+id/text_add_send_driverPhone"
         android:drawablePadding="10dp"
         android:paddingRight="20dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|right"
         android:hint="请选择驾驶人员"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="50dp" />
     <View
         android:layout_marginTop="457dp"
@@ -224,15 +228,18 @@
         android:layout_height="50dp" />
 
     <TextView
+        android:singleLine="true"
+        android:ellipsize="end"
         android:background="@android:color/transparent"
         android:layout_marginTop="458dp"
         android:id="@+id/text_add_send_plateNumber"
         android:drawablePadding="10dp"
         android:paddingRight="20dp"
         android:layout_alignParentRight="true"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|right"
         android:hint="车牌号"
-        android:layout_width="wrap_content"
+        android:drawableRight="@mipmap/ic_right_arrow_s"
+        android:layout_width="250dp"
         android:layout_height="50dp" />
 
 </RelativeLayout>

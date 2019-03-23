@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">煤亮子</string>
+    <string name="app_name">产业通</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -50,4 +50,6 @@
     <string name="title_activity_web_view">WebViewActivity</string>
     <string name="addressList_second_textSize_string">16sp</string>
     <string name="title_activity_double_chat_room">DoubleChatRoomActivity</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
 </resources>

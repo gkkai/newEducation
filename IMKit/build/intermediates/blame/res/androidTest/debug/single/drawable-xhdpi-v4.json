@@ -960,12 +960,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f609.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u1f47b.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f47b.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u26c4.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u26c4.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u1f47b.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f47b.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_ic_voice_sent.png",
@@ -1064,12 +1064,12 @@
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/rc_ic_notice_point.png"
     },
     {
-        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u1f600.png",
-        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f600.png"
-    },
-    {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u1f60d.png",
         "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f60d.png"
+    },
+    {
+        "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/u1f600.png",
+        "source": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/bundles/debug/res/drawable-xhdpi-v4/u1f600.png"
     },
     {
         "merged": "/Users/kk/Desktop/newEducation/IMKit/build/intermediates/res/merged/androidTest/debug/drawable-xhdpi-v4/rc_file_icon_picture.png",

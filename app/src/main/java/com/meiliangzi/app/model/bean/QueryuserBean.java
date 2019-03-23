@@ -41,6 +41,15 @@ public class QueryuserBean {
         private String plateNumber;
         private String driverName;
         private int id;
+        private boolean Select;
+
+        public boolean isSelect() {
+            return Select;
+        }
+
+        public void setSelect(boolean select) {
+            Select = select;
+        }
 
         public String getDriverPhone() {
             return driverPhone;

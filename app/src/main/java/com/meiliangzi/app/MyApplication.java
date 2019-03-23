@@ -16,6 +16,7 @@ import android.util.Log;
 import com.meiliangzi.app.db.SQLHelper;
 import com.meiliangzi.app.model.bean.DepartmentuserNumberBean;
 import com.meiliangzi.app.model.bean.GroupinfoBean;
+import com.meiliangzi.app.model.bean.QueryuserBean;
 import com.meiliangzi.app.tools.AppCrashUtils;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.PreferUtils;
@@ -69,6 +70,7 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
     private static MyApplication _instance;
     public static int type=5;
     public static String path;
+    public static ArrayList<QueryuserBean.QueryuserData> driverList;
     private SQLHelper sqlHelper;
     public static Activity activity;
     public static NewsDetailActivity newsactivity;

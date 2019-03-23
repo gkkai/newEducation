@@ -378,7 +378,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:gravity="center"
-            android:text="企业报名请登陆www.meiliangzi.cn"/>
+            android:text="企业报名请登陆z.meiliangzi.cn"/>
     </LinearLayout>
 </ScrollView>
 

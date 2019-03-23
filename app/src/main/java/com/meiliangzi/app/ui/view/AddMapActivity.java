@@ -15,6 +15,7 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
+import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.tools.picompressor.NativePlugin;
 import com.meiliangzi.app.ui.base.BaseActivity;
 
@@ -78,7 +79,8 @@ public class AddMapActivity extends BaseActivity implements View.OnClickListener
             }
         };
 
-        webview.loadUrl("http://www.meiliangzi.cn:8087/api/maps");
+        //webview.loadUrl("http://z.meiliangzi.cn:8087/api/maps");
+        webview.loadUrl(Constant.BASE_URL+"maps");
         //webview.loadUrl("http://dev-2.meiliangzi.cn:8087/api/maps");
         WebSettings webSettings = webview.getSettings();
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
