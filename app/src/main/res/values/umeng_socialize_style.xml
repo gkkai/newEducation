@@ -15,7 +15,9 @@
         <item name="android:paddingRight">4dp</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-
+    <style name="myNavMenuTextStyle">
+        <item name="android:textSize">17dp</item>
+    </style>
     <style name="umeng_socialize_action_bar_item_im">
         <item name="android:layout_width">25dp</item>
         <item name="android:layout_height">25dp</item>

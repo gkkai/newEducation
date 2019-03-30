@@ -137,6 +137,7 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
     protected void onResume() {
         super.onResume();
         isLogin();
+        getData();
 
     }
 

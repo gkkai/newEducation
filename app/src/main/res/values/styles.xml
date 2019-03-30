@@ -19,7 +19,7 @@
     </style>
     <!--处理ToolBar指示颜色-->
     <style name="ToolBarColorStyle" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="colorControlNormal">@color/colorAccent</item>
+        <item name="colorControlNormal">@color/colorText</item>
     </style>
     <style name="enter_exit_animate" parent="@android:style/Animation.Dialog">
         <item name="@android:windowEnterAnimation">@anim/dialog_enter</item>  //进入时的动画

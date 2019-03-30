@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
@@ -20,6 +21,8 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -29,16 +32,22 @@ import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.db.SQLHelper;
+import com.meiliangzi.app.db.bean.MainBean;
 import com.meiliangzi.app.db.bean.MessageBean;
 import com.meiliangzi.app.db.manage.MessageManage;
 import com.meiliangzi.app.model.bean.BannerBean;
@@ -56,6 +65,8 @@ import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.base.BaseViewHolder;
+import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.ui.dialog.AddFridentDialog;
 import com.meiliangzi.app.ui.fragment.GroupFragment;
 import com.meiliangzi.app.ui.fragment.IndexFragment;
@@ -74,7 +85,10 @@ import com.meiliangzi.app.widget.CircleImageView;
 import com.meiliangzi.app.widget.FragmentTabHost;
 import com.meiliangzi.app.widget.ImageCycleView;
 import com.meiliangzi.app.widget.MiddleView;
+import com.meiliangzi.app.widget.MyGridView;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.PermissionListener;
@@ -134,26 +148,34 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
     private ImageCycleView icvView;
     private AddFridentDialog dialog;
 
-    @BindView(R.id.rl_shequn_map)
-    RelativeLayout rl_shequn_map;
-    @BindView(R.id.rl_shequn_zoommeet)
-    RelativeLayout rl_shequn_zoommeet;
-
-    @BindView(R.id.rl_shequn_vote)
-    RelativeLayout rl_shequn_vote;
-    @BindView(R.id.rl_shequn_check)
-    RelativeLayout rl_shequn_check;
-
-    @BindView(R.id.rl_shequn_commmons)
-    RelativeLayout rl_shequn_commmons;
-    @BindView(R.id.rl_shequn_sendcar)
-    RelativeLayout rl_shequn_sendcar;
+//    @BindView(R.id.rl_shequn_map)
+//    RelativeLayout rl_shequn_map;
+//    @BindView(R.id.rl_shequn_zoommeet)
+//    RelativeLayout rl_shequn_zoommeet;
+//
+//    @BindView(R.id.rl_shequn_vote)
+//    RelativeLayout rl_shequn_vote;
+//    @BindView(R.id.rl_shequn_check)
+//    RelativeLayout rl_shequn_check;
+//
+//    @BindView(R.id.rl_shequn_commmons)
+//    RelativeLayout rl_shequn_commmons;
+//    @BindView(R.id.rl_shequn_sendcar)
+//    RelativeLayout rl_shequn_sendcar;
 
     @BindView(R.id.nv_main_menu)
     NavigationView mNavigation;
 
     @BindView(R.id.id_toolbar)
     Toolbar id_toolbar;
+    BaseVoteAdapter<MainBean> voteAdapter;
+
+    @BindView(R.id.gradview)
+    MyGridView gradview;
+    List<MainBean> mainBeanList=new ArrayList<>();
+    @BindView(R.id.scrollView)
+    ScrollView scrollView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,15 +202,24 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
             }
         });
         initWindow();
-        super.onCreateView(R.layout.activity_main);
+
         /*//TODO 启动拿到当前时间
         ProxyUtils.getHttpProxyNoDialog().studyinfo(this, PreferManager.getUserId());*/
         //requestReadContactsPermission();
         if(helper ==null){
             helper = new SQLHelper(this);
         }
+        int[] id={R.mipmap.sendcar3,R.mipmap.check,R.mipmap.zoommeet1,R.mipmap.shequn_map1
+        ,R.mipmap.knowledgeku,R.mipmap.votelog};
+        String[] name={"派车系统","考核督办","视频会议","地图服务","知识库","投票管理"};
+        for (int i=0;i<6;i++){
+            MainBean mainBean =new MainBean();
+            mainBean.setImgid(id[i]);
+            mainBean.setName(name[i]);
+            mainBeanList.add(mainBean);
 
-
+        }
+        super.onCreateView(R.layout.activity_main);
 
     }
 
@@ -197,22 +228,79 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
     }
     @Override
     protected void findWidgets() {
+        scrollView.post(new Runnable() {
+            @Override
+            public void run() {
+                //mScrollView.scrollTo(0, width+h);
+                scrollView.fullScroll(ScrollView.FOCUS_UP);
 
+            }
+        });
         ProxyUtils.getHttpProxyNoDialog().indexslideshow(this);
         registerMessageReceiver();  // used for receive msg
         init();
         icvView = (ImageCycleView)findViewById(R.id.icvView);
-        rl_shequn_map.setOnClickListener(this);
-
-        rl_shequn_zoommeet.setOnClickListener(this);
-        rl_shequn_check.setOnClickListener(this);
-        rl_shequn_vote.setOnClickListener(this);
-        rl_shequn_commmons.setOnClickListener(this);
-        rl_shequn_sendcar.setOnClickListener(this);
+//        rl_shequn_map.setOnClickListener(this);
+//
+//        rl_shequn_zoommeet.setOnClickListener(this);
+//        rl_shequn_check.setOnClickListener(this);
+//        rl_shequn_vote.setOnClickListener(this);
+//        rl_shequn_commmons.setOnClickListener(this);
+//        rl_shequn_sendcar.setOnClickListener(this);
 
         initSlid(id_toolbar);
         initview();
+       // loadRoundImage(this,5,);
+        voteAdapter = new BaseVoteAdapter<MainBean>(this, gradview, R.layout.main_list) {
+            @Override
+            public void convert(final BaseViewHolder helper, final MainBean item) {
+                helper.setImageByUrl(R.id.imageid,null,item.getImgid(),item.getImgid());
 
+                helper.setText(R.id.name,item.getName());
+        }
+        };
+        voteAdapter.setDatas(mainBeanList);
+        gradview.setAdapter(voteAdapter);
+        gradview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               switch (position){
+                   case 0:
+                       // TODO  知识共享
+                       Intent sendcar=new Intent(MainActivity.this, SendCarActivity.class);
+                       startActivity(sendcar);
+                       break;
+                   case 1:
+                       // TODO  考核督办
+                       Intent intentCheck=new Intent(MainActivity.this, CheckSuperviseProjectListActivity.class);
+                       startActivity(intentCheck);
+                       break;
+                   case 2:
+                       // TODO  视频会议
+                       Intent intentZoom=new Intent(MainActivity.this, ZoomActivity.class);
+                       startActivity(intentZoom);
+                       break;
+                   case 3:
+                       // TODO  查看更多
+                       Intent intentmap=new Intent(MainActivity.this, MapNewActivity.class);
+                       startActivity(intentmap);
+                       break;
+                   case 4:
+                       // TODO  知识共享
+                       Intent commmons=new Intent(MainActivity.this, CommonsListActivity.class);
+                       startActivity(commmons);
+                       break;
+                   case 5:
+                       // TODO 投票管理
+                       Intent intentvote=new Intent(MainActivity.this, VoteActivity.class);
+                       startActivity(intentvote);
+                       break;
+
+               }
+
+            }
+        });
+       // scrollView.smoothScrollTo(0,20);
     }
 
     private void initview() {
@@ -272,17 +360,57 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
 
     }
     protected void indexslideshow(BannerBean bean) {
-        icvView.setImageResources(bean.getData(), imageCycleListener);
+        List<BannerBean.DataBean> beans=new ArrayList<>();
+        for (int i=0;i<2;i++){
+            BannerBean.DataBean bean1=new BannerBean.DataBean();
+            bean1.setImage(""+i);
+            beans.add(bean1);
+        }
+
+
+
+        icvView.setImageResources(beans, imageCycleListener);
+        ///loadRoundImage(this,5,);
 
     }
+
 
     ImageCycleView.ImageCycleViewListener imageCycleListener = new ImageCycleView.ImageCycleViewListener() {
         int id = 0;
 
         @Override
         public void displayImage(final String imageURL, ImageView imageView) {
+            if(imageURL.equals("0")){
+                DisplayImageOptions options;
+                //显示图象选项
+                options = new DisplayImageOptions.Builder()
+                        // 设置图片下载期间显示的图片
+                        .showStubImage(R.mipmap.index).showImageForEmptyUri(R.mipmap.index)// 设置图片Uri为空或是错误的时候显示的图片    
+                        .showImageOnFail(R.mipmap.index)// 设置图片加载或解码过程中发生错误显示的图片   
+                        .cacheInMemory() // 设置下载的图片是否缓存在内存中
+                        .cacheOnDisc() // 设置下载的图片是否缓存在SD卡中    
+                        .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片  
+                        .build();
 
-            ImageLoader.getInstance().displayImage(imageURL, imageView);
+
+                ImageLoader.getInstance().displayImage("999", imageView,options);
+            }else {
+                DisplayImageOptions options;
+                //显示图象选项
+                options = new DisplayImageOptions.Builder()
+                        // 设置图片下载期间显示的图片
+                        .showStubImage(R.mipmap.index2).showImageForEmptyUri(R.mipmap.index2)// 设置图片Uri为空或是错误的时候显示的图片    
+                        .showImageOnFail(R.mipmap.index2)// 设置图片加载或解码过程中发生错误显示的图片   
+                        .cacheInMemory() // 设置下载的图片是否缓存在内存中
+                        .cacheOnDisc() // 设置下载的图片是否缓存在SD卡中    
+                        .displayer(new RoundedBitmapDisplayer(20)) // 设置成圆角图片  
+                        .build();
+
+
+                ImageLoader.getInstance().displayImage("999", imageView,options);
+            }
+
+
 
 //            imageView.setImageResource(R.mipmap.test_index_pic);
         }
@@ -390,7 +518,9 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
 
                 return true;
             }
+            exitApp();
         }
+
         return super.dispatchKeyEvent(event);
     }
 
@@ -527,7 +657,7 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
 //                    .setFileSavePath(savePath)//设置文件保存路径（可不设置）
                             .setNotificationIconRes(R.mipmap.logo)//设置通知图标
                             .setNotificationSmallIconRes(R.mipmap.logo)//设置通知小图标
-                            .setNotificationTitle("煤亮子")//设置通知标题
+                            .setNotificationTitle("产业通")//设置通知标题
                             .startDownLoad();
 
                    /* if(isAvilible(MainActivity.this,hauweipag)){
@@ -773,7 +903,7 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
                         break;
                     case R.id.item_second:
                         //TODO 意见反馈
-                        IntentUtils.startAty(MainActivity.this, SetttingActivity.class);
+                        IntentUtils.startAty(MainActivity.this, FreeBackActivity.class);
                         break;
                     case R.id.item_third:
 
@@ -816,6 +946,22 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
         }
     }
 
-
+    public static void loadRoundImage(final Context context, final int cornerRadius, String url,int resId,final ImageView imageView){
+        Glide.with(context)
+                .load(url)
+                .asBitmap()
+                .placeholder(resId)
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //设置缓存
+                .into(new BitmapImageViewTarget(imageView){
+                    @Override
+                    protected void setResource(Bitmap resource) {
+                        super.setResource(resource);
+                        RoundedBitmapDrawable circularBitmapDrawable =
+                                RoundedBitmapDrawableFactory.create(context.getResources(), resource);
+                        circularBitmapDrawable.setCornerRadius(cornerRadius); //设置圆角弧度
+                        imageView.setImageDrawable(circularBitmapDrawable);
+                    }
+                });
+    }
 }
 

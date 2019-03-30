@@ -61,7 +61,19 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         Log.e("list",mList.toString()+"");
     }
 
-    public MyAdapter(ImageSelectActivity context, int maxImageCount, List<ImageBean> mImages, ImageSelectActivity imageSelectActivity, ImageSelectActivity onItemClickListener) {
+    public MyAdapter(ImageSelectActivity context, int maxImageCount, List<ImageBean> mImages, OnChangeListener onChangeListener, ImageSelectActivity onItemClickListener) {
+        //获取屏幕宽度
+        WindowManager wm = (WindowManager) context
+                .getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics dm = new DisplayMetrics();
+        wm.getDefaultDisplay().getMetrics(dm);
+        mScreenWidth = dm.widthPixels;
+        this.mContext = context;
+        this.mMaxImageCount = maxImageCount;
+        this.mOnItemClickListener = onItemClickListener;
+        this.mOnChangeListener = onChangeListener;
+        this.mList = mImages;
+        Log.e("list",mList.toString()+"");
     }
 
     @Override

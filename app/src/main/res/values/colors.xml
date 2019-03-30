@@ -22,6 +22,7 @@
     <color name="color_a5a5a5" >#a5a5a5</color>
 
     <color name="black6">#666666</color>
+    <color name="black2">#222222</color>
     <color name="group_list_black_textview">#353535</color>
     <color name="group_list_gray">#999999</color>
     <color name="group_list_liner">#e4e4e4</color>

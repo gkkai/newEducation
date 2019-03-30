@@ -9,7 +9,7 @@
         android:id="@+id/ivImg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/bg_wel"
+        android:src="@mipmap/welcome"
         android:scaleType="fitXY"
         />
 
@@ -18,11 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="10dp"
         tools:ignore="UselessParent"
         android:id="@+id/relativeLayout">
 
         <ImageView
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -30,6 +31,7 @@
             android:contentDescription="@null" />
 
         <ImageView
+
             android:id="@+id/iv_welcome_loading_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

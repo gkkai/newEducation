@@ -7,214 +7,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipToPadding="false"
-    android:fitsSystemWindows="true">
-    <LinearLayout
-        android:orientation="vertical"
-        android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
+    android:background="#f2f2f2"
+    >
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout style="@style/ActionBar">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/id_toolbar"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            app:theme="@style/ToolBarColorStyle"
-            android:layout_centerInParent="true"
-            />
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
-        <TextView
-            style="@style/ActionBar.CenterTitle"
-            android:text="煤亮子" />
+            <LinearLayout
 
-    </RelativeLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorGrayLine"></View>
-    <com.meiliangzi.app.widget.ImageCycleView
-        android:id="@+id/icvView"
-        android:layout_width="match_parent"
-        android:layout_height="180dp" />
-    <TextView
-        android:textSize="17sp"
-        android:textColor="#222222"
-        android:paddingLeft="20dp"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="所有服务"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginLeft="20dp"
-            android:id="@+id/rl_shequn_map"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/shequn_map1"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="地图指南"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-               />
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <RelativeLayout style="@style/ActionBar">
 
-        </RelativeLayout>
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/id_toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        app:layout_scrollFlags="scroll|enterAlways"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        app:theme="@style/ToolBarColorStyle"
+                        android:layout_centerInParent="true"
+                        />
 
-        <RelativeLayout
-            android:layout_centerInParent="true"
-            android:id="@+id/rl_shequn_zoommeet"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/zoommeet1"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="视频会议"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                />
+                    <TextView
+                        style="@style/ActionBar.CenterTitle"
+                        android:text="煤亮子" />
+
+                </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorGrayLine"></View>
+
+
+                <com.meiliangzi.app.widget.ImageCycleView
+                    android:id="@+id/icvView"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+
+
+                    android:scaleType="fitXY"/>
+
+                <com.meiliangzi.app.widget.MyGridView
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/gradview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#f2f2f2"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:horizontalSpacing="5dp"
+                    android:verticalSpacing="5dp"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth" />
+
+            </LinearLayout>
 
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginRight="20dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/rl_shequn_vote"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/votelog"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="投票管理"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                />
+    </ScrollView>
 
-        </RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
-        android:paddingTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginLeft="@dimen/margin_20dp"
-            android:id="@+id/rl_shequn_check"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/check"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="考核督办"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                />
 
-        </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_centerInParent="true"
-            android:id="@+id/rl_shequn_commmons"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/knowledgeku"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="85dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="知识库"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                />
-
-        </RelativeLayout>
-        <RelativeLayout
-            android:layout_marginRight="20dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/rl_shequn_sendcar"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            >
-            <ImageView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@mipmap/sendcar3"/>
-            <TextView
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="70dp"
-                android:textColor="#222222"
-                android:gravity="center_vertical"
-                android:text="派车系统"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                />
-
-        </RelativeLayout>
-    </RelativeLayout>
-    </LinearLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nv_main_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="left"
+        android:paddingLeft="20dp"
         app:itemTextColor="@drawable/home_left_drawer_menu_item_text"
+        app:itemTextAppearance="@style/myNavMenuTextStyle"
         app:headerLayout="@layout/navigation_header"
         app:menu="@menu/drawer"
         app:theme="@style/ACPLDialog"
         >
 
     </android.support.design.widget.NavigationView>
+
 
 </android.support.v4.widget.DrawerLayout>

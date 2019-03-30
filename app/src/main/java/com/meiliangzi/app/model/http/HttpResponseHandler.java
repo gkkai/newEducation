@@ -45,7 +45,7 @@ public class HttpResponseHandler extends JsonHttpResponseHandler
 	public void onFinish()
 	{
 //		DialogUtils.dismissLoading(refreshMethod);
-	}
+;	}
 
 	@Override
 	public void onSuccess(JSONObject response)

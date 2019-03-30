@@ -225,7 +225,7 @@ public class ImageCycleView extends LinearLayout {
             if (mImageViewCacheList.isEmpty()) {
                 imageView = new ImageView(mContext);
                 imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                 // 设置图片点击监听
                 imageView.setOnClickListener(new OnClickListener() {
                     @Override
@@ -267,11 +267,11 @@ public class ImageCycleView extends LinearLayout {
         mImageViews = new ImageView[imageCount];
         for (int i = 0; i < imageCount; i++) {
             mImageView = new ImageView(mContext);
-            int imageParams = (int) (mScale * 10 + 0.5f);// XP与DP转换，适应应不同分辨率
+            int imageParams = (int) (mScale * 8 + 0.5f);// XP与DP转换，适应应不同分辨率
             int imagePadding = (int) (mScale *10 + 0.5f);
             LayoutParams params = new LayoutParams(imageParams, imageParams);
             params.leftMargin = 10;
-            mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            mImageView.setScaleType(ImageView.ScaleType.FIT_XY);
             mImageView.setLayoutParams(params);
             mImageView.setPadding(imagePadding, imagePadding, imagePadding, imagePadding);
             mImageViews[i] = mImageView;

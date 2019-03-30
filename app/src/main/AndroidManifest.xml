@@ -620,8 +620,11 @@
         <activity
             android:name=".ui.view.sendcar.DriverListActivity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.view.sendcar.AddCardNumberActivity"
-            android:theme="@style/AppTheme"></activity>
+        <activity
+            android:name=".ui.view.sendcar.AddCardNumberActivity"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".ui.FreeBackActivity"
+            android:theme="@style/AppTheme" ></activity>
     </application>
 
 </manifest>

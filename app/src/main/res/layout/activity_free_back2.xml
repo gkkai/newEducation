@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.FreeBackActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="意见反馈" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="20dp"
+        android:paddingLeft="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+    <EditText
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:hint="请写下您的意见或者建议"
+        android:layout_marginTop="60dp"
+        android:textColor="#222222"
+        android:id="@+id/edit_wd_miaoshu"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@drawable/shape_wd_miaoshu_"
+        android:maxLength="14"
+        android:textCursorDrawable="@drawable/exittext"
+        android:padding="10dp"
+        android:gravity="top"
+        android:textSize="@dimen/textSize_14sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"></EditText>
+        <TextView
+            android:id="@+id/text_sumit"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:background="@drawable/zm_red"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            tools:ignore="HardcodedText"
+            android:layout_below="@+id/edit_wd_miaoshu"
+            android:layout_alignParentStart="true" />
+</RelativeLayout>
+</RelativeLayout>

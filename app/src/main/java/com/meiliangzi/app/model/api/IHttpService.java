@@ -1,6 +1,7 @@
 package com.meiliangzi.app.model.api;
 
 
+import com.meiliangzi.app.db.bean.FreebackBean;
 import com.meiliangzi.app.model.annotation.HttpRequest;
 import com.meiliangzi.app.model.bean.AddFrouppicBean;
 import com.meiliangzi.app.model.bean.AddMapBean;
@@ -90,6 +91,7 @@ import com.meiliangzi.app.model.bean.departmentuserlistBean;
 import com.meiliangzi.app.ui.view.sendcar.DriverListActivity;
 
 import org.json.JSONObject;
+import org.jsoup.Connection;
 
 import java.io.File;
 
@@ -1055,6 +1057,14 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {}, url = "", resultClass = QueryvehicleListBean.class, refreshMethod = "getQueryvehicleListBean")
     public void queryvehiclelist(Object context);
+    /**
+     * 意见反馈
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userId","deliveryContent"}, url = "", resultClass = FreebackBean.class, refreshMethod = "getfeedbackadd")
+    public void feedbackadd(Object context,int userId,String deliveryContent);
+
 }
 
 
