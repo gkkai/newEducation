@@ -3,6 +3,7 @@ package com.meiliangzi.app.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ public class WelcomeActivity extends BaseActivity {
         if(helper ==null){
             helper = new SQLHelper(this);
         }
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) ;//隐藏状态栏
     }
 
     @Override

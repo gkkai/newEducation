@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.meiliangzi.app.MyApplication;
+import com.meiliangzi.app.R;
 import com.meiliangzi.app.tools.ToastUtils;
 
 import butterknife.ButterKnife;
@@ -29,6 +31,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         excuteOther();
         asyncRetrive();
         pushAtyToStack();
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.zm_red));
     }
 
 

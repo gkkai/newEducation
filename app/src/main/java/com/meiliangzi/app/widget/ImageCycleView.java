@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -152,7 +151,7 @@ public class ImageCycleView extends LinearLayout {
      *
      * @author minking
      */
-    private final class GuidePageChangeListener implements OnPageChangeListener {
+    private final class GuidePageChangeListener implements ViewPager.OnPageChangeListener {
         @Override
         public void onPageScrollStateChanged(int state) {
             if (state == ViewPager.SCROLL_STATE_IDLE)

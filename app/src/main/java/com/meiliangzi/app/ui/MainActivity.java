@@ -43,6 +43,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.githang.statusbar.StatusBarCompat;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
@@ -124,7 +125,6 @@ import static com.meiliangzi.app.receiver.TagAliasOperatorHelper.ACTION_DELETE;
 
 /**
  * 主界面
- *
  * @author xiaobo
  * @version 1.0
  * @date 2016/11/23 9:19
@@ -148,20 +148,6 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
     private ImageCycleView icvView;
     private AddFridentDialog dialog;
 
-//    @BindView(R.id.rl_shequn_map)
-//    RelativeLayout rl_shequn_map;
-//    @BindView(R.id.rl_shequn_zoommeet)
-//    RelativeLayout rl_shequn_zoommeet;
-//
-//    @BindView(R.id.rl_shequn_vote)
-//    RelativeLayout rl_shequn_vote;
-//    @BindView(R.id.rl_shequn_check)
-//    RelativeLayout rl_shequn_check;
-//
-//    @BindView(R.id.rl_shequn_commmons)
-//    RelativeLayout rl_shequn_commmons;
-//    @BindView(R.id.rl_shequn_sendcar)
-//    RelativeLayout rl_shequn_sendcar;
 
     @BindView(R.id.nv_main_menu)
     NavigationView mNavigation;
@@ -221,6 +207,7 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
         }
         super.onCreateView(R.layout.activity_main);
 
+
     }
 
     @Override
@@ -240,13 +227,6 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
         registerMessageReceiver();  // used for receive msg
         init();
         icvView = (ImageCycleView)findViewById(R.id.icvView);
-//        rl_shequn_map.setOnClickListener(this);
-//
-//        rl_shequn_zoommeet.setOnClickListener(this);
-//        rl_shequn_check.setOnClickListener(this);
-//        rl_shequn_vote.setOnClickListener(this);
-//        rl_shequn_commmons.setOnClickListener(this);
-//        rl_shequn_sendcar.setOnClickListener(this);
 
         initSlid(id_toolbar);
         initview();
