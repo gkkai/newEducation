@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:orientation="vertical"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:background="@drawable/shape_vote_background"
+    >
+   <ImageView
+       android:id="@+id/image_checkstate"
+       android:layout_centerVertical="true"
+       android:layout_width="28dp"
+       android:layout_height="36dp" />
+    <TextView
+        android:id="@+id/text_proName"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:gravity="center_vertical"
+        android:text="煤炭市场调研"
+        android:textColor="#222222"
+        android:textSize="14sp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"/>
+    <TextView
+        android:id="@+id/text_departmentName"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:text="煤炭市场调研"
+        android:textColor="#666666"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/text_userName"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:text="王亮亮"
+        android:textColor="#666666"
+        android:layout_marginLeft="190dp"
+        android:layout_marginTop="30dp"/>
+    <TextView
+        android:id="@+id/text_time"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:gravity="center_vertical"
+        android:text="2018-12-13～2018-12-23"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"/>
+
+
+</RelativeLayout>

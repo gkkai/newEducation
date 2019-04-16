@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<item
+
+    android:id="@+id/item_first"
+    android:icon="@mipmap/aboutus"
+    android:title="关于我们">
+</item>
+<item
+    android:id="@+id/item_second"
+    android:icon="@mipmap/feedback"
+    android:title="意见反馈">
+</item>
+<item
+    android:id="@+id/item_third"
+    android:icon="@mipmap/setting"
+    android:title="设置">
+
+</item>
+    <item
+        
+        android:id="@+id/item_four"
+        android:icon="@mipmap/out"
+        android:title="退出">
+
+    </item>
+</menu>

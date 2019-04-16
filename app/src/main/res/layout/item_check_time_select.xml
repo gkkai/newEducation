@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+       android:id="@+id/text_depart"
+        android:layout_height="30dp"
+        android:layout_width="60dp"
+        android:gravity="center"
+        android:lines="1"
+        android:singleLine="true"
+        android:text="2017"
+        android:textColor="#222222"
+        android:background="@drawable/shape_check_gray"
+        />
+</LinearLayout>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/text_pos"
+        android:background="@mipmap/pos"
+        android:layout_marginTop="35dp"
+        android:layout_marginLeft="20dp"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/white"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/text_"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:gravity="center"
+        android:text="第1次提交"
+        android:textSize="17sp"
+        android:textColor="@color/ac_filter_string_color"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+    <TextView
+
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+
+        android:gravity="right"
+        android:text="提交时间："
+        android:textColor="#666666"
+        android:layout_width="70dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/text_receive_at"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="120dp"
+        android:text="2018.09.09"
+        android:textColor="#222222"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    <TextView
+
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="50dp"
+
+        android:gravity="right"
+        android:text="审核人："
+        android:textColor="#666666"
+        android:layout_width="70dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/text_userchecke"
+        android:layout_marginTop="90dp"
+        android:layout_marginLeft="120dp"
+        android:gravity="center"
+        android:text="米粒"
+        android:textColor="#222222"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    <TextView
+
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="50dp"
+
+        android:gravity="right"
+        android:text="审核结果："
+        android:textColor="#666666"
+        android:layout_width="70dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/text_is_adopt"
+        android:layout_marginTop="110dp"
+        android:layout_marginLeft="120dp"
+        android:gravity="center"
+        android:text="通过"
+        android:textColor="#222222"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+    <TextView
+
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="50dp"
+
+        android:gravity="right"
+        android:text="审核评价："
+        android:textColor="#666666"
+        android:layout_width="70dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/text_audit_opinion"
+        android:layout_marginTop="130dp"
+        android:layout_marginLeft="120dp"
+        android:text="可以按照计划进行"
+        android:textColor="#222222"
+        android:paddingRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>

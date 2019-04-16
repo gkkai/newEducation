@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="@drawable/shape_vote_background"
+    >
+    <com.meiliangzi.app.widget.SemicircleImageView
+        android:id="@+id/image_"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"/>
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_marginTop="155dp"
+        android:layout_marginLeft="14dp"
+        android:gravity="center_vertical"
+        android:textColor="#222222"
+        android:text="工作中的细节"
+        android:textSize="16sp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="true"
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+    <TextView
+        android:id="@+id/text_vote_num"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="190dp"
+        android:gravity="center"
+        android:textColor="@color/colorRed"
+        android:text="245"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    <TextView
+        android:layout_toRightOf="@id/text_vote_num"
+        android:layout_marginTop="190dp"
+        android:gravity="center"
+        android:text="票"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp" />
+    <TextView
+        android:id="@+id/text_vote"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="190dp"
+        android:gravity="center"
+        android:textColor="@color/colorRed"
+
+        android:text="去投票"
+        android:layout_marginRight="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+    <ImageView
+        android:id="@+id/icPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ic_play"
+         />
+    <TextView
+        android:id="@+id/text_ranking"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="@color/white"
+        android:background="@drawable/shape_vote_num"
+        android:layout_width="35dp"
+        android:layout_height="25dp" />
+</RelativeLayout>

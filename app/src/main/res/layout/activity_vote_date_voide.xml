@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.vote.VoteDateVoideActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout2">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="详情" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine"></View>
+    <com.meiliangzi.app.tools.MyPlayUtil
+        android:layout_marginTop="49dp"
+        android:id="@+id/jc_video"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentStart="true" />
+    <ScrollView
+        android:layout_marginTop="253dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp">
+                <TextView
+
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#222222"
+                    android:text="工作中的细节"
+                    android:textSize="16sp"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:singleLine="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:id="@+id/text_vote_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:paddingRight="20dp"/>
+                <TextView
+                    android:layout_toRightOf="@id/text_vote_title"
+                    android:text="345"
+                    android:gravity="center_vertical"
+                    android:id="@+id/text_vote_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/text_piao"
+                    android:layout_toRightOf="@id/text_vote_num"
+                    android:text="票"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:id="@+id/text_vote"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="20dp"
+                    android:text="投票"
+                    android:gravity="center_vertical"
+                    android:layout_width="50dp"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_marginTop="40dp"
+                android:background="#f2f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="5dp"></View>
+            <RelativeLayout
+                android:layout_marginTop="45dp"
+                android:id="@+id/rl_voidlist"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="列表"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp" />
+                <com.meiliangzi.app.widget.MyGridView
+                    android:layout_marginTop="35dp"
+                    android:id="@+id/gradview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:numColumns="2"
+                    android:scrollbars="none"
+                    android:horizontalSpacing="5dp"
+                    android:verticalSpacing="5dp"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth"></com.meiliangzi.app.widget.MyGridView>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
+
+<!--<RelativeLayout
+    android:id="@+id/rl_blow"
+    android:layout_alignParentBottom="true"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <TextView
+        android:gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="当前票数:"/>
+    <TextView
+        android:id="@+id/text_blow_num"
+        android:gravity="center"
+        android:layout_marginLeft="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:textColor="@color/colorRed"
+        android:text="345"/>
+    <TextView
+        android:layout_centerInParent="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:id="@+id/text_blow_vote"
+        android:gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:background="@mipmap/votestartlong"
+        android:textColor="@color/white"
+        android:text="投票"/>
+</RelativeLayout>-->
+    <RelativeLayout
+        android:id="@+id/rl_blow"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/group_list_liner">
+
+        </View>
+        <TextView
+            android:gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="#222222"
+            android:textSize="17sp"
+            android:text="当前票数:"/>
+        <TextView
+            android:textSize="17sp"
+            android:id="@+id/text_blow_num"
+            android:gravity="center"
+            android:layout_marginLeft="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorRed"
+            android:text="0"/>
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:id="@+id/text_blow_vote"
+            android:gravity="center"
+            android:layout_marginLeft="80dp"
+            android:textSize="17sp"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/votestartlong"
+            android:textColor="@color/white"
+            android:text="投票"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom" >
+
+    <LinearLayout
+        android:id="@+id/ll_rule"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:text="投票规则"
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+        <TextView
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical"
+            android:text="1 .在投票时每人每次只能投一次"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <TextView
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical"
+            android:text="2 .一旦投票后期不能取消或者更改"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_marginLeft="45dp"
+            android:gravity="center_vertical"
+            android:text="3 . 本次投票的截止日期 ：2018.02.02"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="评选作品展示"/>
+    </LinearLayout>
+
+
+</LinearLayout>

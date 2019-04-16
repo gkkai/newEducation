@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:background="@color/colorWhite"
+    android:orientation="vertical"
+    >
+
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#F6F4F5"
+            android:padding="@dimen/margin_12"
+            android:text="筛选"
+            android:textColor="#222222"/>
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"
+            >
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:background="@color/colorWhite"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/margin_12"
+                android:paddingRight="@dimen/margin_12">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="项目性质" />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+
+                        android:id="@+id/text_project_nature_1"
+                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:textColor="@color/black6"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="生产型"
+                        android:background="@drawable/shape_check_gray"
+                        />
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/text_project_nature_2"
+                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="非生产型"
+                        android:textColor="@color/black6"
+                        android:background="@drawable/shape_check_gray"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="项目类型" />
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+
+                        android:id="@+id/text_budgat_project"
+                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:textColor="@color/black6"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="预算项目"
+                        android:background="@drawable/shape_check_gray"
+                        />
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/text_commitments_project"
+                        android:layout_height="30dp"
+                        android:layout_width="60dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="任务书"
+                        android:textColor="@color/black6"
+                        android:background="@drawable/shape_check_gray"
+                        />
+                    <TextView
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/text_other_project"
+                        android:layout_height="30dp"
+                        android:layout_width="120dp"
+                        android:textSize="13sp"
+                        android:gravity="center"
+                        android:text="其他（督办、短板）"
+                        android:textColor="@color/black6"
+                        android:background="@drawable/shape_check_gray"
+                        />
+                </LinearLayout>
+                <!--<com.meiliangzi.app.widget.MyGridView-->
+                    <!--android:id="@+id/myGridView_progecttype"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginTop="@dimen/margin_10dp"-->
+                    <!--android:numColumns="3"-->
+                    <!--android:scrollbars="none"-->
+                    <!--android:scrollingCache="false"-->
+                    <!--android:stretchMode="columnWidth" />-->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="亮灯状态" />
+                <com.meiliangzi.app.widget.MyGridView
+                    android:id="@+id/myGridView_lightStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/margin_10dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="年份选择" />
+
+                <com.meiliangzi.app.widget.MyGridView
+                    android:id="@+id/myGridView_timesecreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth" />
+
+                <TextView
+                    android:id="@+id/tview_mouth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="月份选择" />
+
+                <com.meiliangzi.app.widget.MyGridView
+                    android:id="@+id/myGreiviewmouth"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:numColumns="4"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/margin_10dp" />
+                <TextView
+                    android:id="@+id/tview_branch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:textSize="15sp"
+                    android:textColor="#222222"
+                    android:text="部门选择" />
+
+                <com.meiliangzi.app.widget.MyGridView
+                    android:id="@+id/myGreiviewpartsecreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:numColumns="3"
+                    android:scrollbars="none"
+                    android:scrollingCache="false"
+                    android:stretchMode="columnWidth"
+                    android:verticalSpacing="@dimen/margin_10dp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorGrayLine" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvReset"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="取消" />
+            <View
+                android:layout_width="0.5dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorGrayLine" />
+
+            <TextView
+                android:id="@+id/tvDone"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="确定"
+                android:textColor="@color/rc_popup_dialog_prompt_ok_color" />
+        </LinearLayout>
+
+    </LinearLayout>
