@@ -12,7 +12,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.MeetIDBean;
 import com.meiliangzi.app.model.bean.MeetlistsBean;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.LoginActivity;
@@ -414,10 +414,8 @@ public class ZoomActivity extends BaseActivity implements  ZoomSDKInitializeList
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     IntentUtils.startAtyWithSingleParam(ZoomActivity.this, LoginActivity.class, "activity", "WholeFragment");
-                } else if (!PreferManager.getIsComplete()) {
-                    IntentUtils.startAtyWithSingleParam(ZoomActivity.this, PersonCenterActivity.class, "activity", "WholeFragment");
                 }
             }
         });
@@ -426,12 +424,13 @@ public class ZoomActivity extends BaseActivity implements  ZoomSDKInitializeList
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()){
-            if(TextUtils.isEmpty(PreferManager.getUserId())){
-                tvEmpty.setText("请先登录");
-            }else if(!PreferManager.getIsComplete()){
-                tvEmpty.setText("请完善个人信息");
-            }
+        if(TextUtils.isEmpty(NewPreferManager.getId())){
+//            if(TextUtils.isEmpty(PreferManager.getUserId())){
+//                tvEmpty.setText("请先登录");
+//            }else if(!PreferManager.getIsComplete()){
+//                tvEmpty.setText("请完善个人信息");
+//            }
+            tvEmpty.setText("请先登录");
             tvEmpty.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
         }else {

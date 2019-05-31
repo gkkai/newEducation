@@ -36,19 +36,19 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_logo" />
     </LinearLayout>
+
     <LinearLayout
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
-            android:layout_marginLeft="@dimen/margin_16dp"
-            android:layout_marginRight="@dimen/margin_16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:orientation="vertical">
 
             <EditText
                 android:id="@+id/etAccount"
@@ -61,168 +61,161 @@
                 android:inputType="phone"
                 android:maxLength="11"
                 android:textColor="@color/colorTextDefault"
-                android:textSize="@dimen/textSize_14sp"
                 android:textColorHint="@color/colorGrayLine"
-                />
+                android:textSize="@dimen/textSize_14sp" />
 
             <CheckBox
                 android:id="@+id/cbLine1"
-                android:button="@null"
-                android:layout_marginTop="@dimen/margin_12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_12"
                 android:background="@drawable/drawable_line_focus"
-                />
+                android:button="@null" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_marginLeft="@dimen/margin_16dp"
-            android:layout_marginRight="@dimen/margin_16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_marginLeft="@dimen/margin_16dp"
+            android:layout_marginRight="@dimen/margin_16dp"
+            android:orientation="vertical">
+
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
                 <EditText
-                    android:inputType="textPassword"
                     android:id="@+id/etPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/drawable_pwd_focus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="请输入密码"
-                    android:textSize="@dimen/textSize_14sp"
                     android:drawablePadding="@dimen/margin_8dp"
+                    android:hint="请输入密码"
+                    android:inputType="textPassword"
                     android:textColor="@color/colorTextDefault"
                     android:textColorHint="@color/colorGrayLine"
-                    />
+                    android:textSize="@dimen/textSize_14sp" />
+
                 <CheckBox
                     android:id="@+id/checkBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:button="@drawable/drawable_visable"
-                    />
+                    android:button="@drawable/drawable_visable" />
             </LinearLayout>
 
             <CheckBox
                 android:id="@+id/cbLine2"
-                android:button="@null"
-                android:layout_marginTop="@dimen/margin_12"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_12"
                 android:background="@drawable/drawable_line_focus"
-                />
+                android:button="@null" />
         </LinearLayout>
 
 
         <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_20dp"
             android:layout_marginRight="@dimen/margin_20dp"
             android:layout_marginTop="@dimen/margin_12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
+
             <CheckBox
                 android:id="@+id/check_rem_pwd"
-                android:button="@null"
-                android:drawableLeft="@drawable/drawable_pwd_rember"
-                android:textColor="@color/colorTextDefault"
-                android:layout_alignParentLeft="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:button="@null"
+                android:drawableLeft="@drawable/drawable_pwd_rember"
                 android:drawablePadding="@dimen/margin_8dp"
-                android:textSize="@dimen/textSize_14sp"
                 android:text="记住密码"
-                />
+                android:textColor="@color/colorTextDefault"
+                android:textSize="@dimen/textSize_14sp" />
 
             <TextView
                 android:id="@+id/tvForgetPwd"
-                android:layout_alignParentRight="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:text="忘记密码?"
-                android:textColor="@color/colorTextDefault"
-                />
+                android:textColor="@color/colorTextDefault" />
         </RelativeLayout>
+
         <TextView
             android:id="@+id/tvLogin"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
             android:layout_marginLeft="@dimen/margin_16dp"
             android:layout_marginRight="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_30dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
             android:background="@drawable/drawable_bg_btn"
+            android:gravity="center"
             android:text="登录"
-            android:textColor="@color/colorWhite"
-            />
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/tvRegister"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
             android:layout_marginLeft="@dimen/margin_16dp"
             android:layout_marginRight="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_30dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
             android:background="@mipmap/bg_register"
+            android:gravity="center"
             android:text="注册"
 
             />
 
         <LinearLayout
-            android:layout_marginTop="12dp"
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="bottom"
+            android:layout_gravity="bottom"
             android:layout_marginLeft="@dimen/margin_16dp"
             android:layout_marginRight="@dimen/margin_16dp"
-            >
+            android:layout_marginTop="12dp"
+            android:gravity="bottom"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:text="推荐登录方式"
-                android:textColor="@color/colorGrayLine"
-                />
+                android:textColor="@color/colorGrayLine" />
+
             <LinearLayout
-                android:layout_marginTop="12dp"
-                android:layout_marginBottom="@dimen/margin_16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                >
+                android:layout_marginBottom="@dimen/margin_16dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center">
+
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="1dp"
-                    android:background="@color/colorGrayLine"
-                    />
+                    android:background="@color/colorGrayLine" />
+
                 <TextView
                     android:id="@+id/tvWeiChatLogin"
-                    android:drawablePadding="12dp"
-                    android:layout_marginLeft="@dimen/margin_16dp"
-                    android:layout_marginRight="@dimen/margin_16dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="微信登录"
-                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_16dp"
+                    android:layout_marginRight="@dimen/margin_16dp"
                     android:drawableLeft="@mipmap/ic_wechat"
-                    />
+                    android:drawablePadding="12dp"
+                    android:gravity="center"
+                    android:text="微信登录" />
+
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="1dp"
-                    android:background="@color/colorGrayLine"
-                    />
+                    android:background="@color/colorGrayLine" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

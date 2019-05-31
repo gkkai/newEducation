@@ -5,8 +5,8 @@
                 android:background="#11ffffff">
 
     <LinearLayout
-        android:layout_width="280dp"
-        android:layout_height="120dp"
+        android:layout_width="285dp"
+        android:layout_height="149dp"
         android:layout_centerInParent="true"
         android:background="@drawable/mydeletedialog"
         android:orientation="vertical">
@@ -16,30 +16,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="26dp"
             android:gravity="center"
-            android:text="提示"
+            android:text="确定退出此次考试"
             android:textColor="@color/colorBlack"
             android:textSize="19sp" />
 
 
         <TextView
+            android:id="@+id/message"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:text="确认删除"
-            android:textColor="@color/colorBlack"
-            android:textSize="16sp" />
+            android:text="退出后数据会被保存"
+            android:textColor="#666666"
+            android:textSize="13sp" />
         <View
             android:background="@color/colorGrayLine"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"></View>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="match_parent"
             android:orientation="horizontal">
 
             <Button
@@ -52,8 +54,8 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="取消"
-                android:textColor="@color/button_backgroud"
-                android:textSize="16sp" />
+                android:textColor="#666666"
+                android:textSize="14sp" />
             <View
                 android:background="@color/colorGrayLine"
                 android:layout_width="0.5dp"
@@ -70,8 +72,8 @@
                 android:gravity="center"
                 android:singleLine="true"
                 android:text="确认"
-                android:textColor="@color/button_backgroud"
-                android:textSize="16sp" />
+                android:textColor="#E80017"
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 

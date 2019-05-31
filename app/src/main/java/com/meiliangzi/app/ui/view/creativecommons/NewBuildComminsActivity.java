@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -17,7 +16,7 @@ import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.ImageBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
@@ -268,7 +267,7 @@ public class NewBuildComminsActivity extends BaseActivity implements PermissionL
                     RuleCheckUtils.checkEmpty(edit_neirong.getText().toString(), "请输入内容");
                     if(issure){
                         issure=false;
-                        uploadImg(edit_title.getText().toString().trim(),edit_neirong.getText().toString().trim(), PreferManager.getUserId(),PreferManager.getUserName());
+                        uploadImg(edit_title.getText().toString().trim(),edit_neirong.getText().toString().trim(), NewPreferManager.getId(),NewPreferManager.getUserName());
 
                     }
 

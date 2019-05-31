@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -73,7 +74,7 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) ;//隐藏状态栏
         onCreateView(R.layout.activity_login);
         if(helper ==null){
             helper = new SQLHelper(this);
@@ -160,7 +161,6 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
                 break;
             case R.id.tvWeiChatLogin:
                 UMShareAPI.get(this).deleteOauth(LoginActivity.this, SHARE_MEDIA.WEIXIN, authListener);
-//                UMShareAPI.get(LoginActivity.this).doOauthVerify(LoginActivity.this, SHARE_MEDIA.WEIXIN, authListener1);
                 break;
         }
     }
@@ -175,30 +175,12 @@ public class LoginActivity extends BaseActivity implements RongIM.UserInfoProvid
     }
 
     protected void getResult(User user){
-       /* if(user.getData().getPhone()==null||"".equals(user.getData().getPhone())){
-            dialog=new AddFridentDialog(this);
-            dialog.setMessage("请绑定手机号码");
-            //dialog.setCancelable(false);
-            dialog.setYesOnclickListener("确定", new AddFridentDialog.onYesOnclickListener() {
-                @Override
-                public void onYesClick() {
-                    Intent intent=new Intent(LoginActivity.this,ResetPwdActivity.class);
-
-                    intent.putExtra("BindPhone",101);
-                    startActivityForResult(intent,1009);
-                    dialog.dismiss();
-                }
-            });
-            dialog.show();
-        }*/
-        //submitTime();
+      
         PreferManager.saveUserId(String.valueOf(user.getData().getUserId()));
         PreferManager.saveTokens(user.getData().getTokens());
-        //开始融云会话认证
         PreferManager.saveUserStar(user.getData().getImage());
         PreferManager.saveUserPhone(user.getData().getPhone());
         PreferManager.saveUserName(user.getData().getUserName());
-//        PreferManager.saveGender(user.getData().get());
         PreferManager.saveCompany(user.getData().getUserCompany().getCompany_name());
         PreferManager.saveCompanyId(user.getData().getUserCompany().getId());
         PreferManager.saveWorkNum(String.valueOf(user.getData().getUser_code()));

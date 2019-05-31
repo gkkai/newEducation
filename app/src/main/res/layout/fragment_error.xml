@@ -1,0 +1,76 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    >
+    <ScrollView
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:padding="10dp"
+                android:textColor="#333333"
+                android:gravity="center_vertical"
+                android:id="@+id/tv_type"
+                android:text="单选题"
+                android:textSize="14sp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+
+            <!-- TODO: Update blank fragment layout -->
+            <TextView
+                android:textColor="#333333"
+                android:padding="10dp"
+                android:lineSpacingExtra="13dp"
+                android:layout_marginTop="60dp"
+                android:textSize="15sp"
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="近期，我国学者研究“多节点（ ）网络”取,近期，我国学者研究“多节点（ ）网络”取" />
+
+
+            <com.meiliangzi.app.widget.MyGridView
+                android:padding="10dp"
+                android:verticalSpacing="10dp"
+                android:id="@+id/gradview"
+                android:layout_marginTop="10dp"
+                android:layout_below="@id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollingCache="false"
+                android:scrollbars="none"
+                android:numColumns="1"
+                android:listSelector="@android:color/transparent"
+                android:dividerHeight="4dp"
+                android:divider="#f2f2f2f2"
+                android:layout_alignParentStart="true"></com.meiliangzi.app.widget.MyGridView>
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:id="@+id/tv_analysis"
+                android:textSize="15sp"
+                android:textColor="#E80017"
+                android:background="@drawable/shape_huise"
+                android:layout_marginTop="30dp"
+                android:drawableRight="@mipmap/ic_right_arrow_s"
+                android:gravity="center"
+                android:text="查看解析"
+                android:drawablePadding="5dp"
+                android:layout_below="@id/gradview"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

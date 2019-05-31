@@ -46,14 +46,14 @@ public class SetCompanyActivity extends BaseActivity {
 
     @Override
     protected void initComponent() {
-        adapter = new BaseQuickAdapter<Company.DataBean>(SetCompanyActivity.this,R.layout.item_company) {
+        adapter = new BaseQuickAdapter<Company.DataBean>(SetCompanyActivity.this, R.layout.item_company) {
             @Override
             public void convert(BaseViewHolder helper, Company.DataBean item) {
                 CheckBox cbCk = helper.getView(R.id.cbCk);
                 cbCk.setText(item.getName());
-                if(helper.getPosition() == pos){
+                if (helper.getPosition() == pos) {
                     cbCk.setChecked(true);
-                }else {
+                } else {
                     cbCk.setChecked(false);
                 }
             }
@@ -75,10 +75,10 @@ public class SetCompanyActivity extends BaseActivity {
                 pos = position;
                 adapter.notifyDataSetChanged();
                 Intent intent = new Intent();
-                intent.putExtra("content",adapter.getItem(position).getName());
-                intent.putExtra("companyId",adapter.getItem(position).getId());
+                intent.putExtra("content", adapter.getItem(position).getName());
+                intent.putExtra("companyId", adapter.getItem(position).getId());
                 intent.putExtra("object", adapter.getItem(position));
-                setResult(RESULT_OK,intent);
+                setResult(RESULT_OK, intent);
                 SetCompanyActivity.this.finish();
             }
         });
@@ -87,6 +87,8 @@ public class SetCompanyActivity extends BaseActivity {
     public void getCompanyList() {
         ProxyUtils.getHttpProxy().querycampany(SetCompanyActivity.this);
     }
+
+
 
     public void getData(Company company) {
         adapter.setDatas(company.getData());

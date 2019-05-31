@@ -9,12 +9,9 @@ import android.widget.TextView;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.QueryuserBean;
-import com.meiliangzi.app.model.bean.QueryvehicleListBean;
-import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
-import com.meiliangzi.app.widget.MyGridView;
 import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;

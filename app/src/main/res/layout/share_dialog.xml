@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#f2f2f2">
+
+
+
+    <LinearLayout
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:weightSum="4">
+
+
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_centerHorizontal="true"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/ll_weinxin"
+            >
+
+            <ImageView
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/weixin" />
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="48dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:textSize="12sp"
+                android:text="微信"
+                android:textColor="@color/black6" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/ll_penyouquan"
+            >
+
+            <ImageView
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/friend" />
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="48dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:textSize="12sp"
+                android:text="朋友圈"
+                android:textColor="@color/black6" />
+        </LinearLayout>
+        <LinearLayout
+            android:visibility="gone"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/ll_copy"
+            >
+
+            <ImageView
+                android:layout_width="68dp"
+                android:layout_height="68dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/share" />
+
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="48dp"
+                android:layout_height="17dp"
+                android:layout_marginTop="@dimen/margin_8dp"
+                android:textSize="12sp"
+                android:text="复制"
+                android:textColor="@color/black6" />
+        </LinearLayout>
+        <!--<LinearLayout-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:gravity="center"-->
+            <!--android:id="@+id/ll_share"-->
+            <!--&gt;-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="68dp"-->
+                <!--android:layout_height="68dp"-->
+                <!--android:scaleType="fitXY"-->
+                <!--android:src="@mipmap/share" />-->
+
+
+            <!--<TextView-->
+                <!--android:gravity="center"-->
+                <!--android:layout_width="48dp"-->
+                <!--android:layout_height="17dp"-->
+                <!--android:layout_marginTop="@dimen/margin_8dp"-->
+                <!--android:textSize="12sp"-->
+                <!--android:text="分享"-->
+                <!--android:textColor="@color/black6" />-->
+        <!--</LinearLayout>-->
+    </LinearLayout>
+
+    <TextView
+        android:background="@color/white"
+        android:textSize="16sp"
+        android:textColor="#E80017"
+        android:id="@+id/concle"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rc_dimen_size_50"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="取消" />
+
+</LinearLayout>

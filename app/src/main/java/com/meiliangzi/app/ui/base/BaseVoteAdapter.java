@@ -8,6 +8,7 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.meiliangzi.app.widget.DateUtil;
+import com.meiliangzi.app.widget.HorizontalListView;
 import com.meiliangzi.app.widget.XListView;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public abstract class    BaseVoteAdapter<T> extends BaseAdapter {
     private XListView mXListView;
     private GridView mGridView;
     private ListView mListView;
+    private HorizontalListView hListView;
     protected List<T> mDatas = new ArrayList<T>();
     private int position;
 
@@ -42,6 +44,11 @@ public abstract class    BaseVoteAdapter<T> extends BaseAdapter {
     public BaseVoteAdapter(Context context, XListView xListView, int itemID) {
         this.mContext = context;
         this.mXListView = xListView;
+        this.mItemID = itemID;
+    }
+    public BaseVoteAdapter(Context context, HorizontalListView hListView, int itemID) {
+        this.mContext = context;
+        this.hListView = hListView;
         this.mItemID = itemID;
     }
 

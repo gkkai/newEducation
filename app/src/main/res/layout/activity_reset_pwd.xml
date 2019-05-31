@@ -15,7 +15,7 @@
         <TextView
             android:id="@+id/tv_title"
             style="@style/ActionBar.CenterTitle"
-            android:text="重置密码"
+            android:text="忘记密码"
             android:textColor="@android:color/black" />
     </RelativeLayout>
 
@@ -29,51 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <LinearLayout
-            android:id="@+id/ll_identifyingcode"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="vertical">
 
-            <ImageView
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                android:id="@+id/image_dentifyingcode"
-                android:layout_width="150dp"
-                android:layout_height="40dp"
-                android:drawableLeft="@drawable/drawable_validate_focus"
-                android:textColor="@color/colorTextDefault"
-                android:textColorHint="@color/colorGrayLine"
-                android:textSize="@dimen/textSize_14sp" />
-
-            <EditText
-                android:gravity="center"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:layout_marginTop="10dp"
-                android:id="@+id/et_identifyingcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:drawablePadding="@dimen/margin_8dp"
-                android:hint="请输入图片中数字和字母(字母不区分大小写)"
-                android:textColor="@color/colorTextDefault"
-                android:textColorHint="@color/colorGrayLine"
-                android:textSize="@dimen/textSize_14sp" />
-
-            <CheckBox
-                android:layout_marginLeft="@dimen/margin_16dp"
-                android:layout_marginRight="@dimen/margin_16dp"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/margin_12"
-                android:background="@drawable/drawable_line_focus"
-                android:button="@null" />
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_marginLeft="@dimen/margin_16dp"
             android:layout_marginRight="@dimen/margin_16dp"
             android:layout_marginTop="@dimen/margin_20dp"
@@ -102,84 +62,98 @@
                 android:button="@null" />
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_16dp"
             android:layout_marginRight="@dimen/margin_16dp"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/et_image_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:drawableLeft="@drawable/drawable_validate_focus"
+                    android:drawablePadding="@dimen/margin_8dp"
+                    android:hint="请输入图中信息"
+                    android:textColor="@color/colorTextDefault"
+                    android:textColorHint="@color/colorGrayLine"
+                    android:textSize="@dimen/textSize_14sp" />
+
+                <RelativeLayout
+                    android:layout_width="98dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/shape_roid_red"
+                    android:gravity="center"
+                    android:textColor="@color/colorWhite" >
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:id="@+id/image_dentifyingcode"
+                        android:layout_width="150dp"
+                        android:layout_height="40dp"
+                        android:drawableLeft="@drawable/drawable_validate_focus"
+                        android:textColor="@color/colorTextDefault"
+                        android:textColorHint="@color/colorGrayLine"
+                        android:textSize="@dimen/textSize_14sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <CheckBox
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@drawable/drawable_line_focus"
+                android:button="@null" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_marginTop="@dimen/margin_16dp"
                 android:orientation="horizontal">
 
                 <EditText
                     android:id="@+id/etValidate"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/drawable_validate_focus"
                     android:drawablePadding="@dimen/margin_8dp"
-                    android:hint="请输入验证码"
+                    android:hint="请输入图中信息"
                     android:textColor="@color/colorTextDefault"
                     android:textColorHint="@color/colorGrayLine"
-                    android:textSize="@dimen/textSize_14sp" />
+                    android:textSize="@dimen/textSize_14sp"/>
 
-                <TextView
-                    android:id="@+id/tvValidate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/bg_validate"
+                <RelativeLayout
+                    android:layout_width="98dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/shape_roid_red"
                     android:gravity="center"
-                    android:text="获取验证码"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite" >
+                    <TextView
+                        android:id="@+id/tvValidate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="发送验证码"
+                        android:textColor="@color/colorWhite" />
+                </RelativeLayout>
+
             </LinearLayout>
 
             <CheckBox
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/margin_12"
                 android:background="@drawable/drawable_line_focus"
                 android:button="@null" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/etNewPww"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:drawableLeft="@drawable/drawable_pwd_focus"
-                    android:drawablePadding="@dimen/margin_8dp"
-                    android:hint="请输入密码"
-                    android:inputType="textPassword"
-                    android:textColor="@color/colorTextDefault"
-                    android:textColorHint="@color/colorGrayLine"
-                    android:textSize="@dimen/textSize_14sp" />
-
-                <CheckBox
-                    android:id="@+id/cbIsVisable"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@drawable/drawable_visable" />
-            </LinearLayout>
-
-            <CheckBox
-                android:id="@+id/cbLine2"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/margin_12"
-                android:background="@drawable/drawable_line_focus"
-                android:button="@null" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -195,7 +169,7 @@
                     android:background="@android:color/transparent"
                     android:drawableLeft="@drawable/drawable_pwd_focus"
                     android:drawablePadding="@dimen/margin_8dp"
-                    android:hint="请再次输入新密码"
+                    android:hint="请输入新密码"
                     android:inputType="textPassword"
                     android:textColor="@color/colorTextDefault"
                     android:textColorHint="@color/colorGrayLine"

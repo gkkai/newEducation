@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Process;
@@ -24,6 +25,8 @@ import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.tools.picompressor.NativePlugin;
 import com.meiliangzi.app.ui.NewsDetailActivity;
+import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
+import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
 import com.meiliangzi.app.ui.view.train.ZipFileBena;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -34,10 +37,13 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.nostra13.universalimageloader.utils.StorageUtils;
+import com.umeng.commonsdk.UMConfigure;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
 import org.json.JSONObject;
+import org.litepal.LitePalApplication;
+import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -71,6 +77,7 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
     public static int type=5;
     public static String path;
     public static ArrayList<QueryuserBean.QueryuserData> driverList;
+    public static boolean isActive;
     private SQLHelper sqlHelper;
     public static Activity activity;
     public static NewsDetailActivity newsactivity;
@@ -81,8 +88,13 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
     public static List<ZipFileBena> zipfilelist=new ArrayList<>();
     public static Class clsaaname;
     public static String tokens;
+    public static PaperBean paperBean;
+    public static int alreadyanswered=0;
     public static boolean ISShow=true;
     public static DepartmentuserNumberBean numberBean;
+
+    public static IndexColumnBean indexColumnBean;
+    public static int id;
     /**
      * 集成融云应用的唯一标识, 前端后台都需要用到.
      */
@@ -109,19 +121,20 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
         initImageLoader(getApplicationContext());
         initSimpleOption();
         initPush();
+//        UMConfigure.init(this,"5a12384aa40fa3551f0001d1"
+//                ,"umeng",UMConfigure.DEVICE_TYPE_PHONE,"");//58edcfeb310c93091c000be2 5965ee00734be40b580001a0
         PlatformConfig.setWeixin("wxfcf0a2512f7f6031", "d66d4d41f647dae8c4e5ae46a1ff69d5");
         //submitTime();
         //RongIMClient.init(this, APP_KEY);
-      if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))||"io.rong.push".equals(
-                getCurProcessName(getApplicationContext()))) {
-          RongIM.setServerInfo("nav.cn.ronghub.com", "up.qbox.me");
-          RongIM.init(this);
-
-
-      }
+//      if (getApplicationInfo().packageName.equals(getCurProcessName(getApplicationContext()))||"io.rong.push".equals(
+//                getCurProcessName(getApplicationContext()))) {
+//          RongIM.setServerInfo("nav.cn.ronghub.com", "up.qbox.me");
+//          RongIM.init(this);
+//
+//
+//      }
           //RongIMClient.init(this);
-
-
+        //SQLiteDatabase db = Connector.getDatabase();
 
     }
 
@@ -222,7 +235,6 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
             sqlHelper.close();
         super.onTrimMemory(level);
         if (level == TRIM_MEMORY_UI_HIDDEN) {
-
             Log.i("GRAGE", "APP遁入后台");
             if (!PreferManager.getUserId().isEmpty())
             {
@@ -231,7 +243,6 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
                     return;
                 }
                 long minite=(System.currentTimeMillis()-start)/(60*1000);
-                //submitTime();
             }
         }
     }

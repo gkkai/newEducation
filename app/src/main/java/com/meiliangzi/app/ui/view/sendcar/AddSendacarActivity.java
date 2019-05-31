@@ -20,7 +20,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.QueryuserBean;
 import com.meiliangzi.app.model.bean.SendACarInfoArray;
 import com.meiliangzi.app.model.bean.SendacarinfoBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
@@ -729,7 +729,7 @@ public class AddSendacarActivity extends BaseActivity implements View.OnClickLis
         try {
             builder.addFormDataPart("departmentName",json.getString("departmentName"));
             builder.addFormDataPart("proposer",json.getString("proposer"));
-            builder.addFormDataPart("proposerUserid",PreferManager.getUserId());
+            builder.addFormDataPart("proposerUserid", NewPreferManager.getId());
             builder.addFormDataPart("proposerPhone",json.getString("proposerPhone"));
             builder.addFormDataPart("SendACarInfoArray", json.getJSONArray("SendACarInfoArray").toString());
         } catch (JSONException e) {

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0;
+
+        }
+        .app-container {
+            padding: 20px 0;
+            background: #fff;
+        }
+        .word span{
+            font-size: 13px;
+            color: #666;
+            font-weight: normal;
+        }
+        .head{
+            padding-bottom: 10px;
+            border-bottom: 1px solid #dcdcdc;
+        }
+        .head span{
+            font-size: 13px;
+            color:#666;
+            margin: 10px 0;
+        }
+        .video{
+            margin-bottom: 10px;
+        }
+        .word .jie{
+
+            font-size: 14px;
+        }
+
+        .word .sum{
+            color:#666;
+            font-size: 14px;
+            text-indent: 2em;
+            text-align: justify;
+        }
+        .app-container .video{
+            padding:0 15px;
+        }
+        .app-container .title{
+            padding: 0 15px;
+        }
+        .app-container .head{
+            margin: 0 15px;
+        }
+        .app-container .content{
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <div class="word video">
+        <video  id='video' src="" controls="controls" width="100%" height="200px" >
+        </video>
+        <!--<img src="img/ad4.jpg" alt="" width="100%" height="auto">-->
+    </div>
+     <div class="word title">
+            <span style="font-weight: 700;font-size: 14px;" id="title"></span>
+     </div>
+    <div class="word head">
+          <span style="margin-right: 10px;" id="depart"></span>
+          <span class="time"></span>
+    </div>
+    <div class="word content">
+        <span class="jie" onclick="getCoordinate()">简介</span>
+        <p  class="sum">信不信把你拉入黑名单
+            心里话
+            发点不该发的牢骚
+            我的养草生活(二)
+            一本书安抚了没电的浮躁
+            守望幸福
+            我为衣狂
+            聆听母亲的唠叨
+            母亲节的慨叹与愿望
+            轶事二则
+            姑娘，别让所谓的“爱情”毁了你
+            送伞</p>
+    </div>
+</div>
+<script src="jquery.min.js"></script>
+<script>
+    $(function(){
+
+        var  local = document.location.href;
+        function getID(obj){
+            var index = obj.lastIndexOf("\=");
+            obj = obj.substring(index+1,obj.length);
+            return obj;
+        }
+        getID(local);
+        var videoId= getID(local);
+        $.ajax({
+            type : 'GET',
+            async : true,
+            url : "video/findById/"+videoId,
+            error : function() {
+                $("#file_upload_process").html(
+                    "<font color='red'>上传失败</font>");
+
+            },
+            success : function(result) {
+                $('#title').text(result.data.title);
+                $('#depart').text(result.data.departmentName);
+                $('.time').text(result.data.updateTime);
+                var videopath = result.data.videoPath;
+                $('#video').prop('src',videopath);
+                $('.sum').text(result.data.content);
+
+            }
+        });
+    })
+
+    var video = document.getElementById('video');
+    video.addEventListener('play',function(){
+        var time = video.currentTime;
+        window.webkit.messageHandlers.videoMessageAction.postMessage({
+            "action": "play"
+        });
+    });
+
+    video.addEventListener('pause',function(){
+        var time = video.currentTime;
+        window.webkit.messageHandlers.videoMessageAction.postMessage({
+            "action": "pause"
+        });
+    });
+
+    function stopVideo(){
+        video.pause();
+    }
+    // video.onclick = videofn;
+    // function videofn(){
+    //     this.controls = true;
+    //     if(video.paused){
+    //         video.play();
+    //         console.log('start')
+    //     }else{
+    //         video.pause();
+    //         alert('stop')
+    //     }
+    // }
+
+
+
+    function getCoordinate(){
+
+
+       /* var u = navigator.userAgent;
+        var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+        var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        var lng =  $("#lng").val();
+        var lat =  $("#lat").val();
+        var name =  $("#name").val();
+        if (isAndroid){
+            setAndroid(lng, lat,name)
+        }else if(isiOS){
+            iosCoordinate(lng, lat, name)
+        }
+        function setAndroid(lng, lat,name){
+            window.NativePlugin.androidCoordinate(lng, lat, name)
+        }*/
+    }
+
+
+</script>
+</body>
+</html>

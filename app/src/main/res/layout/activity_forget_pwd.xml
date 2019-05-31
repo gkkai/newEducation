@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.LoginActivity">
+
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="忘记密码"
+            android:textColor="@android:color/black" />
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorGrayLine" />
+<LinearLayout
+    android:layout_marginTop="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="50dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <EditText
+            android:layout_centerVertical="true"
+            android:id="@+id/etAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/account"
+            android:drawablePadding="10dp"
+            android:hint="请输入您的手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/drawable_line_focus"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <EditText
+            android:layout_centerVertical="true"
+            android:id="@+id/et_picturecode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/message"
+            android:drawablePadding="10dp"
+            android:hint="请输入图中信息"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+            <ImageView
+                android:layout_alignParentRight="true"
+                android:layout_width="98dp"
+                android:layout_height="37dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:id="@+id/image_dentifyingcode"
+                android:src="@mipmap/imagecode"
+                android:textSize="@dimen/textSize_14sp" />
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/drawable_line_focus"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <EditText
+            android:layout_centerVertical="true"
+            android:id="@+id/et_messagecode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/verificationcode"
+            android:drawablePadding="10dp"
+            android:hint="请输入验证码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+        <RelativeLayout
+            android:layout_alignParentRight="true"
+            android:layout_width="98dp"
+            android:layout_height="37dp"
+            android:background="@drawable/shape_roid_red"
+            android:gravity="center"
+            android:textColor="@color/colorWhite" >
+            <TextView
+                android:id="@+id/tvValidate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="发送验证码"
+                android:textColor="@color/colorWhite" />
+        </RelativeLayout>
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/drawable_line_focus"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <EditText
+            android:layout_centerVertical="true"
+            android:id="@+id/et_newpwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableLeft="@mipmap/password"
+            android:drawablePadding="10dp"
+            android:hint="请输入新的密码"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:textColor="@color/colorTextDefault"
+            android:textColorHint="@color/colorGrayLine"
+            android:textSize="@dimen/textSize_14sp" />
+
+
+        <View
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/drawable_line_focus"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tvsure"
+        android:layout_marginTop="90dp"
+        android:background="@drawable/shape_roid_red"
+        android:gravity="center"
+        android:text="完成"
+        android:textSize="16sp"
+        android:textColor="#ffffff"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+</LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,113 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.meiliangzi.app.ui.view.Academy.fragment.CIndexFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:background="@color/de_draft_color"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp">
+        <TextView
+            android:layout_alignParentBottom="true"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="产业学苑" />
+        <RelativeLayout
+            android:id="@+id/rl_integral"
+            android:layout_marginRight="90dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="100dp"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_code"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="248" />
+            <TextView
+                android:layout_alignParentRight="true"
+                android:textSize="10sp"
+                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="积分" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_topersonalcentenr"
+            android:layout_marginRight="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="去学习" />
+        <ImageView
+            android:id="@+id/search"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/top_search"
+            android:layout_width="18dp"
+            android:layout_height="18dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/one"
+        android:layout_marginTop="60dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/zm_red"
+            app:tabIndicatorHeight="1dip"
+            app:tabMode="scrollable"
+            app:tabMinWidth="50dip"
+            app:tabPaddingStart="5dip"
+            app:tabPaddingEnd="5dip"
+            app:tabGravity="center"
+            app:tabSelectedTextColor="@color/ac_filter_nature"
+            app:tabTextAppearance="@style/tab_head"
+            app:tabTextColor="@color/text_tips_color" />
+        <ImageView
+            android:visibility="gone"
+            android:layout_marginTop="12dp"
+        android:id="@+id/im_menu"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@mipmap/menu"/>
+        <View
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#f2f2f2" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="51dip"
+            android:layout_weight="1"
+            android:background="@color/white" />
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    >
+
+    <TextView
+        android:textSize="17sp"
+        android:id="@+id/tv_2"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="2019年四月第二次答题"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="#333333"/>
+    <TextView
+        android:textSize="12sp"
+        android:id="@+id/tv_3"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_2"
+        android:gravity="center"
+        android:text="未达"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="#999999"/>
+    <TextView
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:textSize="12sp"
+        android:layout_below="@id/tv_2"
+        android:gravity="center"
+        android:text="80分"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:textColor="#E80017"/>
+    <TextView
+        android:textSize="13sp"
+        android:id="@+id/tv_startquestions"
+        android:background="@mipmap/frame"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_2"
+        android:gravity="center"
+        android:text="重新答题"
+        android:layout_width="75dp"
+        android:layout_height="35dp"
+        android:textColor="#333333"/>
+
+</RelativeLayout>

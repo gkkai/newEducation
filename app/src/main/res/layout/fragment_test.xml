@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context="com.meiliangzi.app.ui.view.Academy.activity.TestFragment">
+
+    <android.support.design.widget.TabLayout
+        android:layout_marginTop="30dp"
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="34dip"
+        app:tabBackground="@color/white"
+        app:tabIndicatorColor="@color/zm_red"
+        app:tabIndicatorHeight="1dip"
+        app:tabMode="scrollable"
+        app:tabMinWidth="40dip"
+        app:tabPaddingStart="5dip"
+        app:tabPaddingEnd="5dip"
+        app:tabSelectedTextColor="@color/zm_red"
+        app:tabTextAppearance="@style/tab_head"
+        app:tabTextColor="@color/de_action_color" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dip"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+</LinearLayout>

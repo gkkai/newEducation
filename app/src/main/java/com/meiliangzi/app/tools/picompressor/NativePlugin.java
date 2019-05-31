@@ -22,6 +22,7 @@ import com.meiliangzi.app.ui.view.AddMapActivity;
 import com.meiliangzi.app.ui.view.AddMapLoctionActivity;
 import com.meiliangzi.app.ui.view.MapActivity;
 import com.meiliangzi.app.ui.view.MapNewActivity;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -45,7 +46,12 @@ public class NativePlugin {
 
     private double latitude, longitude;
     private MyDialog myDialog;
-
+    JsCallback callback;
+    public NativePlugin(Context context,WebView webView,JsCallback callback) {
+        this.context=context;
+        this.webView = webView;
+        this.callback = callback;
+    }
     public NativePlugin(LocationManager locMan,WebView webView ,Activity fragment, Context context, LocationListener mLocationListener) {
         this.webView = webView;
         this.fragment = fragment;
@@ -66,6 +72,34 @@ public class NativePlugin {
     }
 
     /**
+     * 开始播放
+     */
+
+    @JavascriptInterface
+    public void play(String type) {
+
+        callback.callback(type);
+
+    }
+    /**
+     * 暂停播放
+     */
+
+    @JavascriptInterface
+    public void suspendplay() {
+        ToastUtils.show("js调用");
+
+    }
+    /**
+     * 结束播放
+     */
+
+    @JavascriptInterface
+    public void finishplay() {
+        ToastUtils.show("js调用");
+
+    }
+    /**
      * 加载地址
      */
 
@@ -74,6 +108,7 @@ public class NativePlugin {
         //viewActivity.showselectLists(callback);
         MapLoctionsBean bean = gson.fromJson(callback, MapLoctionsBean.class);
         //((MapActivity) fragment).showLoctions(bean.getData());
+        ToastUtils.show("callback");
 
     }
     /**
@@ -293,6 +328,10 @@ public class NativePlugin {
         Intent dialIntent =  new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));//跳转到拨号界面，同时传递电话号码
         fragment.startActivity(dialIntent);
         //fragment.finish();
+
+    }
+    public interface  JsCallback{
+        public void   callback(String type);
 
     }
   /*  1 Android直接拨打电话

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.AnswerReportActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView
+            style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="答题报告" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2" />
+    　　　
+    <RelativeLayout
+        android:id="@+id/rl_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100sp"
+        android:layout_width="181dp"
+        android:layout_height="181dp"
+        android:background="@mipmap/answred">
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/ll_kaosho"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_integral"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="45sp"
+                android:text="80"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                />
+            <TextView
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:text="分"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_week"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_integral_week"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="45sp"
+                android:text="8"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                />
+            <TextView
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:text="分"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:textSize="23sp"
+        android:textColor="#333333"
+        android:gravity="center_horizontal"
+        android:text="恭喜通过考试!"
+        android:id="@+id/tv_pass"
+        android:layout_marginTop="300dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:layout_below="@+id/tv_pass"
+        android:id="@+id/tv_answeranalysis"
+        android:layout_marginLeft="50dp"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:background="#E80017"
+        android:gravity="center"
+        android:text="返回首页"
+        android:layout_marginTop="20dp"
+        android:layout_width="347dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/tv_finish"
+        android:layout_marginLeft="50dp"
+        android:textSize="16sp"
+        android:textColor="#E80017"
+        android:background="@mipmap/frame_red"
+        android:gravity="center"
+        android:text="返回首页"
+        android:layout_marginTop="20dp"
+        android:layout_width="347dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_answeranalysis"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
+
+
+

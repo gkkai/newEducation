@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type"  content="text/html;charset=gb2312">
+    <script type="text/javascript">
+function javaCallJs(){
+     document.getElementById("content").innerHTML +=
+         "<br\>java调用了js函数";
+}
+
+function javaCallJsWithArgs(arg){
+     document.getElementById("content").innerHTML +=
+         ("<br\>"+arg);
+}
+
+</script>
+</head>
+<body>
+this is my html <br/><br>
+<button onClick="window.NativePlugin.play('play')">开始播放</button><br/><br>
+<button onClick="window.NativePlugin.play('puse')" >暂停播放</button></body></br><br>
+<div id="content">content:</div>
+</body>
+</html>

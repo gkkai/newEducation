@@ -22,6 +22,7 @@
     <color name="color_a5a5a5" >#a5a5a5</color>
 
     <color name="black6">#666666</color>
+    <color name="black3">#333333</color>
     <color name="black2">#222222</color>
     <color name="group_list_black_textview">#353535</color>
     <color name="group_list_gray">#999999</color>
@@ -41,12 +42,12 @@
     <color name="de_action_white">@android:color/white</color>
     <color name="de_transparent">#00000000</color>
 
-    <color name="de_draft_color">#cb120f</color>
+    <color name="de_draft_color">#E80017</color>
     <color name="main_theme_color">#0195ff</color>
 
     <color name="press">#e8e8e8</color>
     <color name="white">#FFFFFF</color>
-
+    <color name="totle">#818080</color>
     <color name="text_line_color">#dfdfdd</color>
     <color name="text_black_color">#333333</color>
     <color name="text_tips_color">#666666</color>
@@ -62,4 +63,9 @@
 
     <color name="ac_filter_string_color">#0099ff</color>
     <color name="ac_filter_nature">#222222</color>
+    <color name="whitecolor">#ffffff</color>
+    <color name="buttom_tv">#484747</color>
+    <color name="toubu">#f4692a</color>
+    <color name="gray">#d3d3d3</color>
+    <color name="gray1">#444444</color>
 </resources>

@@ -13,7 +13,7 @@ import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
 import com.meiliangzi.app.model.bean.VpteSubvoteinfoBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
@@ -55,21 +55,6 @@ public class VoteDetailsActivity extends BaseActivity {
     protected void findWidgets() {
         id=getIntent().getIntExtra("id",0000000);
         isvote=getIntent().getIntExtra("isvote",0000000);
-        /*voteAdapter = new BaseVoteAdapter<String>(this, gradview, R.layout.item_vote_vote_datas_list) {
-            @Override
-            public void convert(BaseViewHolder helper, final String item) {
-                ViewGroup.LayoutParams   ls= helper.getView(R.id.image_).getLayoutParams();
-                int h=ls.width;
-                int h2=h+h/2;
-                ls.height=h2;
-                helper.getView(R.id.image_).setLayoutParams(ls);
-                helper.setImageByUrl(R.id.image_, item, R.mipmap.votebackgroud, R.mipmap.votebackgroud);
-
-            }
-
-        };
-        gradview.setAdapter(voteAdapter);*/
-
 
     }
 
@@ -81,7 +66,7 @@ public class VoteDetailsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
 
@@ -96,7 +81,7 @@ public class VoteDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDetailsActivity.this,id,Integer.valueOf(PreferManager.getUserId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDetailsActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
 
 
             }
@@ -141,7 +126,7 @@ public class VoteDetailsActivity extends BaseActivity {
     }
     private void getusersubvote(VoteUsersubvoteBean data){
 
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
 }

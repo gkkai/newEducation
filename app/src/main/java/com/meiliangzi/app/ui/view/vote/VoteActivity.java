@@ -11,14 +11,12 @@ import android.widget.TextView;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.VoteBaseBean;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.LoginActivity;
-import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
-import com.meiliangzi.app.ui.view.ZoomActivity;
 import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
@@ -79,10 +77,8 @@ public class VoteActivity extends BaseActivity {
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     IntentUtils.startAtyWithSingleParam(VoteActivity.this, LoginActivity.class, "activity", "WholeFragment");
-                } else if (!PreferManager.getIsComplete()) {
-                    IntentUtils.startAtyWithSingleParam(VoteActivity.this, PersonCenterActivity.class, "activity", "WholeFragment");
                 }
             }
         });
@@ -96,12 +92,13 @@ public class VoteActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()){
-            if(TextUtils.isEmpty(PreferManager.getUserId())){
-                tvEmpty.setText("请先登录");
-            }else if(!PreferManager.getIsComplete()){
-                tvEmpty.setText("请完善个人信息");
-            }
+        if(TextUtils.isEmpty(NewPreferManager.getId())){
+//            if(TextUtils.isEmpty(PreferManager.getUserId())){
+//                tvEmpty.setText("请先登录");
+//            }else if(!PreferManager.getIsComplete()){
+//                tvEmpty.setText("请完善个人信息");
+//            }
+            tvEmpty.setText("请先登录");
             tvEmpty.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
         }else {

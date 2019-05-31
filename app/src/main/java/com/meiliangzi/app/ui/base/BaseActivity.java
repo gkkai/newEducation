@@ -1,8 +1,11 @@
 package com.meiliangzi.app.ui.base;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.githang.statusbar.StatusBarCompat;
@@ -21,6 +24,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Context mContext;
 
     protected void onCreateView(int layoutResID) {
+//        // 隐藏标题栏
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+      // getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
+        initSystemBarTint();
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
         mContext = this;
@@ -31,8 +38,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         excuteOther();
         asyncRetrive();
         pushAtyToStack();
-        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.zm_red));
+
+        StatusBarCompat.setStatusBarColor(this, getResources().getColor(R.color.white));
     }
+
+
+
+
 
 
     /**
@@ -117,6 +129,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
 
+
     protected void showProgress(String message,
        boolean isCanceledOnTouchOutside, boolean isCancelable) {
     }
@@ -144,5 +157,32 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     public void onBackClick() {
     }
+    protected void initSystemBarTint() {
+
+        Window window = getWindow();
+
+
+
+            // 沉浸式状态栏
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |           View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+                window.setStatusBarColor(Color.BLACK);
+
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) ;//隐藏状态栏
+
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+
+            }
+            return;
+        }
 
 }

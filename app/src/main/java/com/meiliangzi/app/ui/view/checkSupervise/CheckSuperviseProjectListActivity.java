@@ -12,44 +12,26 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.meiliangzi.app.R;
-import com.amap.api.maps2d.Projection;
-import com.google.gson.Gson;
 import com.meiliangzi.app.model.bean.CheckDepartmentsBean;
 import com.meiliangzi.app.model.bean.CheckProjectBean;
-import com.meiliangzi.app.model.bean.CountyListbean;
-import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
-import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.LoginActivity;
-import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
-import com.meiliangzi.app.ui.view.vote.VoteActivity;
 import com.meiliangzi.app.widget.MyGridView;
 import com.meiliangzi.app.widget.XListView;
-import com.nostra13.universalimageloader.utils.L;
 
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
 
 public class CheckSuperviseProjectListActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.tvEmpty)
@@ -451,12 +433,13 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()){
-            if(TextUtils.isEmpty(PreferManager.getUserId())){
-                tvEmpty.setText("请先登录");
-            }else if(!PreferManager.getIsComplete()){
-                tvEmpty.setText("请完善个人信息");
-            }
+        if(TextUtils.isEmpty(NewPreferManager.getId())){
+//            if(TextUtils.isEmpty(PreferManager.getUserId())){
+//
+//            }else if(!PreferManager.getIsComplete()){
+//                tvEmpty.setText("请完善个人信息");
+//            }
+            tvEmpty.setText("请先登录");
             tvEmpty.setVisibility(View.VISIBLE);
             listView.setVisibility(View.GONE);
         }else {
@@ -637,10 +620,8 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     IntentUtils.startAtyWithSingleParam(CheckSuperviseProjectListActivity.this, LoginActivity.class, "activity", "WholeFragment");
-                } else if (!PreferManager.getIsComplete()) {
-                    IntentUtils.startAtyWithSingleParam(CheckSuperviseProjectListActivity.this, PersonCenterActivity.class, "activity", "WholeFragment");
                 }
             }
         });

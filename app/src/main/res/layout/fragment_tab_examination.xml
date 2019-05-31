@@ -1,0 +1,32 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.meiliangzi.app.ui.view.Academy.fragment.TabExaminationFragment">
+
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="10dp"
+        android:scrollingCache="false"
+        android:divider="#F2F2F2"
+        android:overScrollMode="never"
+        android:headerDividersEnabled="false"
+        android:footerDividersEnabled="false"
+
+        />
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/dataEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="暂无数据"
+        android:background="@color/white"
+        />
+
+</RelativeLayout>

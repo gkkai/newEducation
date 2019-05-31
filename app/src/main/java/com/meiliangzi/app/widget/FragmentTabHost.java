@@ -31,6 +31,7 @@ import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TabWidget;
 
+
 import java.util.ArrayList;
 
 
@@ -271,7 +272,7 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
         // We are now ready to go. Make sure we are switched to the
         // correct tab.
         mAttached = true;
-        ft = doTabChanged(currentTab, ft);
+        //ft = doTabChanged(currentTab, ft);
         if (ft != null) {
             ft.commit();
             mFragmentManager.executePendingTransactions();
@@ -301,6 +302,12 @@ public class FragmentTabHost extends TabHost implements TabHost.OnTabChangeListe
 
     @Override
     public void onTabChanged(String tabId) {
+//        FragmentManager fragmentManager = mFragmentManager;
+//        int count = fragmentManager.getBackStackEntryCount();
+//        for (int i = 0; i < count; ++i) {
+//            fragmentManager.popBackStack();
+//        }
+//        mFragmentManager.popBackStackImmediate(CIndexFragment.class.getName(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             FragmentTransaction ft = doTabChanged(tabId, null);
             if (ft != null) {

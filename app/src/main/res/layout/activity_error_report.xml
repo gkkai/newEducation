@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.AnswerReportActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView
+            style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="答题报告" />
+
+
+    </RelativeLayout>
+
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2" />
+    　　　
+    <RelativeLayout
+        android:id="@+id/rl_pass"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:layout_width="138dp"
+        android:layout_height="138dp"
+        android:background="@mipmap/star_pass">
+
+
+
+    </RelativeLayout>
+
+
+
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/rl_pass"
+        android:id="@+id/rl_integral"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:textColor="#333333"
+            android:gravity="center_horizontal"
+            android:text="您已经完成此次答题!"
+            android:id="@+id/tv_pass"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_alignLeft="@id/tv_pass"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tv_pass"
+            android:id="@+id/tv_currentAnswerRightNumber"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:textSize="19sp"
+            android:text="答对3题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/tv_lastWrongNumber"
+            android:layout_alignRight="@id/tv_pass"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/tv_pass"
+            android:textColor="#333333"
+            android:textSize="19sp"
+            android:text="剩余3到题"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+
+    </RelativeLayout>
+    <TextView
+        android:layout_below="@+id/rl_integral"
+        android:id="@+id/tv_answer"
+        android:layout_marginLeft="50dp"
+        android:textSize="16sp"
+        android:background="#E80017"
+        android:gravity="center"
+        android:text="继续答题"
+        android:layout_marginTop="40dp"
+        android:layout_width="347dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/tv_finish"
+        android:layout_marginLeft="50dp"
+        android:textSize="16sp"
+        android:textColor="#E80017"
+        android:background="@mipmap/frame_red"
+        android:gravity="center"
+        android:text="返回首页"
+        android:layout_marginTop="20dp"
+        android:layout_width="347dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/tv_answer"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

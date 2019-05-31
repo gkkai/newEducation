@@ -15,7 +15,7 @@ import com.meiliangzi.app.model.bean.VoteBaseBean;
 import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
 import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.LoginActivity;
 import com.meiliangzi.app.ui.PersonCenterActivity;
@@ -83,7 +83,7 @@ public class VoteListActivity extends BaseActivity {
                                 public void onClick(View v) {
 
                                     if(!((TextView)helper.getView(R.id.text_vote)).getText().equals("已投")){
-                                        ProxyUtils.getHttpProxy().usersubvote(VoteListActivity.this,item.getId(),Integer.valueOf(PreferManager.getUserId()));
+                                        ProxyUtils.getHttpProxy().usersubvote(VoteListActivity.this,item.getId(),Integer.valueOf(NewPreferManager.getId()));
 
                                     }
                                     helper.setText(R.id.text_vote, "已投");
@@ -228,7 +228,7 @@ public class VoteListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
 
@@ -252,7 +252,7 @@ public class VoteListActivity extends BaseActivity {
         isonclick=false;
     }
     private void getusersubvote(VoteUsersubvoteBean data){
-        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
 

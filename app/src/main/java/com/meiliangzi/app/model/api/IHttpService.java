@@ -88,6 +88,13 @@ import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
 import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
 import com.meiliangzi.app.model.bean.VpteSubvoteinfoBean;
 import com.meiliangzi.app.model.bean.departmentuserlistBean;
+import com.meiliangzi.app.ui.view.Academy.bean.ArticleListBean;
+import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
+import com.meiliangzi.app.ui.view.Academy.bean.PageListBean;
+import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
+import com.meiliangzi.app.ui.view.Academy.bean.PersonalScorebean;
+import com.meiliangzi.app.ui.view.Academy.bean.RuleListBean;
+import com.meiliangzi.app.ui.view.Academy.bean.VideoListBean;
 import com.meiliangzi.app.ui.view.sendcar.DriverListActivity;
 
 import org.json.JSONObject;
@@ -1064,6 +1071,72 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"userId","deliveryContent"}, url = "", resultClass = FreebackBean.class, refreshMethod = "getfeedbackadd")
     public void feedbackadd(Object context,int userId,String deliveryContent);
+    /**
+     * 根据用户id及试卷类型获取试卷分页信息
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userId","type","pageNumber","pageSize"}, url = "examinationUserPaper/", resultClass = PageListBean.class, refreshMethod = "getPageList")
+    public void getPageList(Object context,String userId,String type ,int pageNumber ,int pageSize );
+
+    /**
+     * 根据试卷ID获取试题
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userId","paperId"}, url = "examinationUserPaperQuestions/", resultClass = PaperBean.class, refreshMethod = "getList")
+    public void getList(Object context,String userId,String paperId);
+    /**
+     * 栏目列表没分页
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"columnType"}, url = "column/", resultClass = IndexColumnBean.class, refreshMethod = "getList")
+    public void getList(Object context,String columnType);
+    /**
+     * 文章列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"columnId","pageNumber","pageSize"}, url = "essay/", resultClass = ArticleListBean.class, refreshMethod = "getPageList")
+    public void getPageList(Object context,String columnId ,String pageNumber ,String pageSize );
+    /**
+     * 视频列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"columnId","pageNumber","pageSize"}, url = "video/", resultClass = VideoListBean.class, refreshMethod = "getPageList")
+    public void getPageList(Object context,String columnId ,int pageNumber ,String pageSize );
+    /**
+     * 搜索文章
+     *
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"pageNumber","pageSize","title"}, url = "essay/", resultClass = ArticleListBean.class, refreshMethod = "getPageList")
+    public void getPageList1(Object context,int pageNumber ,String pageSize ,String title);
+    /**
+     * 搜索视频
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"pageNumber","pageSize","title"}, url = "video/", resultClass = VideoListBean.class, refreshMethod = "getPageList")
+    public void getPageList1(Object context,int pageNumber ,int pageSize ,String title);
+
+    /**
+     * 积分列表
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"userId"}, url = "rule/", resultClass = RuleListBean.class, refreshMethod = "getList")
+    public void get(Object context,String userId );
+    /**
+     * 个人积分明细
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"token"}, url = "organizationService/userAccount/refresh", resultClass = BaseBean.class, refreshMethod = "refresh")
+    public void refresh(Object context,String token);
 
 }
 

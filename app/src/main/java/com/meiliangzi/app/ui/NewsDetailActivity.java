@@ -44,10 +44,7 @@ public class NewsDetailActivity extends BaseActivity {
     //public NewsDetailActivity.OnCallBack onclick;
     List<TextView> listviews;
     List<IndexNewsTypeBean.DataBean> dataBeens;
-    private BlankFragment newFragment1, newFragment2, newFragment3, newFragment4, newFragment5;
-    private BlankFragment blankFragment;
     private static NewsFragment[] fragments;
-    int positions = 0;
     private OnCallBack onclick;
     private PagerSlidingTabStrip.OnClickTabListener onClickTabListener;
 
@@ -156,12 +153,6 @@ public class NewsDetailActivity extends BaseActivity {
     }
     private View addView2() {
         // TODO 动态添加布局(java方式)
-
-
-        /*//定义子View中两个元素的布局
-        LinearLayout.LayoutParams vlp = new LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT);*/
         LinearLayout.LayoutParams vlp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, 1.0f);
         vlp.gravity = Gravity.CENTER_VERTICAL;
         for (int i = 0; i < dataBeens.size(); i++) {

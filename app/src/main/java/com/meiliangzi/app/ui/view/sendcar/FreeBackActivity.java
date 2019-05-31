@@ -1,21 +1,20 @@
 package com.meiliangzi.app.ui.view.sendcar;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.IndexSendacarBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
-import com.meiliangzi.app.ui.dialog.SendDeleatDialog;
 import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
@@ -54,7 +53,8 @@ public class FreeBackActivity extends BaseActivity implements XListView.IXListVi
                 helper.getView(R.id.text_sumit_fk).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(item.getDriverUserId()==Integer.valueOf(PreferManager.getUserId())){
+                        Log.d("name++++++++++",  NewPreferManager.getId()+"");
+                        if(item.getDriverUserId()==Integer.valueOf(NewPreferManager.getId())){
                             Intent i=new Intent(FreeBackActivity.this,FkDataActivity.class);
                             i.putExtra("sendACarId",item.getId());
                             startActivity(i);

@@ -12,9 +12,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.model.bean.SearchUserBean;
 import com.meiliangzi.app.model.bean.UserCarSearchuserinfoBean;
-import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;

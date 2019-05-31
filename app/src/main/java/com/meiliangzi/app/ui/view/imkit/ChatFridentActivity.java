@@ -88,6 +88,8 @@ if(type!=null&&type.equals("frident")){
                 @Override
                 public void onClick(View v) {
                     deleatDialog =new DeleatDialog(ChatFridentActivity.this);
+                    deleatDialog.setTitle("提示");
+                    deleatDialog.setMessage("是否删除");
                     deleatDialog.setYesOnclickListener("确认", new DeleatDialog.onYesOnclickListener() {
                         @Override
                         public void onYesClick() {

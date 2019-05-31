@@ -195,7 +195,7 @@ public class BaseViewHolder {
         if (isShowView) {
             view.setVisibility(View.VISIBLE);
         } else {
-            view.setVisibility(View.GONE);
+            view.setVisibility(View.INVISIBLE);
         }
     }
 

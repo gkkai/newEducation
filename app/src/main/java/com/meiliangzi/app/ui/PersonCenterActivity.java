@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -15,6 +16,7 @@ import com.meiliangzi.app.model.bean.Company;
 import com.meiliangzi.app.model.bean.Updateuserinfo;
 import com.meiliangzi.app.model.bean.UserStar;
 import com.meiliangzi.app.tools.IntentUtils;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
@@ -135,7 +137,8 @@ public class PersonCenterActivity extends BaseActivity implements PermissionList
         } else {
             ImageLoader.getInstance().displayImage("file:///" + PreferManager.getUserStar(), ivStavr, MyApplication.getSimpleOptions(R.mipmap.ic_default_star, R.mipmap.ic_default_star));
         }
-        tvUserName.setText(PreferManager.getUserName());
+        Log.i("Name====",(NewPreferManager.getUserName()));
+        tvUserName.setText(NewPreferManager.getUserName());
         tvGender.setVisibility(View.GONE);
         companyId = Integer.valueOf(PreferManager.getCompanId());
         departmentId = Integer.valueOf(PreferManager.getDepartmentId());

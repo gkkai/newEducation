@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_small_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:lines="1"
+            android:ellipsize="end"
+            android:id="@+id/tv_small_title"
+            android:gravity="center_vertical"
+            android:textSize="16sp"
+            android:textColor="#333333"
+            android:text="全民国家安全教育日|这份网络安全书请查看"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+        <LinearLayout
+            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="47"
+            android:orientation="horizontal"
+            >
+
+            <com.meiliangzi.app.widget.SemicircleImageView
+                android:scaleType="fitXY"
+                android:id="@+id/image_small_one"
+                android:layout_weight="15"
+                android:layout_width="0dp"
+                android:layout_height="81dp" />
+            <View
+                android:layout_weight="1"
+                android:background="#f2f2f2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+            <com.meiliangzi.app.widget.SemicircleImageView
+                android:scaleType="fitXY"
+                android:id="@+id/image_small_two"
+                android:layout_weight="15"
+                android:layout_width="0dp"
+                android:layout_height="81dp" />
+            <View
+                android:layout_weight="1"
+                android:background="#f2f2f2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+            <com.meiliangzi.app.widget.SemicircleImageView
+                android:scaleType="fitXY"
+                android:id="@+id/image_small_three"
+                android:layout_weight="15"
+                android:layout_width="0dp"
+                android:layout_height="81dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_small_department"
+            android:layout_marginTop="130dp"
+            android:gravity="center_vertical"
+            android:textSize="14sp"
+            android:textColor="#999999"
+            android:text="安环部  2019-04-12"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_no_image"
+        android:layout_width="match_parent"
+        android:layout_height="85dp">
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="75dp">
+            <TextView
+                android:lines="2"
+                android:ellipsize="end"
+                android:id="@+id/tv_no_title"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:textColor="#333333"
+                android:text="全民国家安全教育日|这份网络安全书请查看"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/tv_no_department"
+                android:gravity="center_vertical"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:text="安环部  2019-04-12"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/rl_big_image"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_centerVertical="true"
+            android:layout_marginRight="140dp"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+            <TextView
+                android:lines="2"
+                android:ellipsize="end"
+                android:id="@+id/tv_big_title"
+                android:textSize="16sp"
+                android:textColor="#333333"
+                android:text="全民国家安全教育日|这份网络安全书请查看"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+
+            <TextView
+                android:layout_alignParentBottom="true"
+                android:id="@+id/tv_big_department"
+                android:gravity="bottom"
+                android:textSize="14sp"
+                android:textColor="#999999"
+                android:text="安环部  2019-04-12"
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+        </RelativeLayout>
+
+        <com.meiliangzi.app.widget.SemicircleImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/image_big"
+            android:layout_alignParentRight="true"
+            android:layout_width="130dp"
+            android:layout_height="81dp"
+            android:scaleType="fitXY"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -16,8 +16,7 @@ import android.widget.TextView;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.AddMapBean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
-import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
@@ -86,12 +85,13 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
 
     @Override
     protected void initComponent() {
-        if (TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()) {
-            if (TextUtils.isEmpty(PreferManager.getUserId())) {
-                tvEmpty.setText("请先登录");
-            } else {
-                tvEmpty.setText("请完善个人信息");
-            }
+        if (TextUtils.isEmpty(NewPreferManager.getId())) {
+//            if (TextUtils.isEmpty(PreferManager.getUserId())) {
+//                tvEmpty.setText("请先登录");
+//            } else {
+//                tvEmpty.setText("请完善个人信息");
+//            }
+            tvEmpty.setText("请先登录");
             tvEmpty.setVisibility(View.VISIBLE);
 
         }
@@ -220,22 +220,18 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     String phone=phene_number.getText().toString();
                     String lng=lng_id.getText().toString().trim();
                     String lat=lat_id.getText().toString().trim();
-                    ProxyUtils.getHttpProxy().addmapss(AddMapLoctionActivity.this,Integer.valueOf(PreferManager.getUserId()),name,cityid,county_id,classification_id,phone,lng,lat);
+                    ProxyUtils.getHttpProxy().addmapss(AddMapLoctionActivity.this,Integer.valueOf(NewPreferManager.getId()),name,cityid,county_id,classification_id,phone,lng,lat);
                 } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());
                     e.printStackTrace();
                 }
                 break;
             case R.id.tvEmpty:
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     Intent intent=new Intent(this,LoginActivity.class);
                     startActivity(intent);
                     finish();
 
-                } else if (!PreferManager.getIsComplete()) {
-                    Intent intent=new Intent(this,PersonCenterActivity.class);
-                    startActivity(intent);
-                    finish();
                 }
 
                 break;

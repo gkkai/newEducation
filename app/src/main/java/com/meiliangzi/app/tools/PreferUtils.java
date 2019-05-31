@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import java.util.Map;
 
 public class PreferUtils {
-    private static final String CONFIG_FILE = "config";
+    private static final String CONFIG_FILE = "Newconfig";
     private static SharedPreferences mSp;
 
     private PreferUtils() {
@@ -74,4 +74,5 @@ public class PreferUtils {
             mSp.edit().clear().commit();
         }
     }
+
 }

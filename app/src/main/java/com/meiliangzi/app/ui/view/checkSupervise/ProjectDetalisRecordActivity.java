@@ -1,22 +1,14 @@
 package com.meiliangzi.app.ui.view.checkSupervise;
-
-import android.graphics.Color;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.ui.GroupActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.fragment.CheckFragment;
-import com.meiliangzi.app.ui.fragment.WholeFragment;
-import com.meiliangzi.app.ui.fragment.WholeFragment1;
-import com.meiliangzi.app.ui.fragment.WholeFragment2;
-import com.meiliangzi.app.widget.CircleImageView;
 import com.meiliangzi.app.widget.PagerSlidingTabStrip;
 
 import java.util.List;

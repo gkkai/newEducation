@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:id="@+id/rl_bg"
+    tools:context="com.meiliangzi.app.ui.view.Academy.NewLoginActivity">
+    <!-- TODO: Update blank fragment layout -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                style="@style/ActionBar"
+                android:background="@mipmap/bg"
+                android:layout_height="169dp">
+            </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/back"
+                    android:layout_marginTop="112dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@mipmap/logo"
+                    android:layout_width="114dp"
+                    android:layout_height="114dp"
+                    >
+                </RelativeLayout>
+            <LinearLayout
+                android:layout_below="@id/back"
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+
+                >
+
+                    <LinearLayout
+                        android:weightSum="2"
+                        android:id="@+id/gadiogroup"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        >
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="50dp"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            >
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/tvphone"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="手机号登录"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:textColor="#E80017"
+                                android:textSize="16sp"
+                                 />
+                            <View
+                                android:id="@+id/cbLine11"
+                                android:button="@null"
+                                android:layout_marginTop="@dimen/margin_12"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@drawable/drawable_line_focus"
+                                />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_weight="1"
+                            >
+
+                            <TextView
+                                android:gravity="center"
+                                android:id="@+id/tvworknumber"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="工号登录"
+                                android:inputType="phone"
+                                android:maxLength="11"
+                                android:textColor="#E80017"
+                                android:textSize="16sp"
+                                />
+
+                            <View
+                                android:id="@+id/cbLine22"
+                                android:layout_marginTop="@dimen/margin_12"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:background="@drawable/drawable_line_focus"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="vertical"
+                    >
+
+                    <EditText
+                        android:id="@+id/etAccount"
+                        android:layout_width="match_parent"
+                        android:layout_height="39dp"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@mipmap/account"
+                        android:drawablePadding="10dp"
+                        android:hint="请输入手机号"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:textColor="@color/colorTextDefault"
+                        android:textSize="@dimen/textSize_14sp"
+                        android:textColorHint="@color/colorGrayLine"
+                        />
+
+                    <CheckBox
+                        android:id="@+id/cbLine1"
+                        android:button="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@drawable/drawable_line_focus"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="vertical"
+                    >
+
+                    <EditText
+                        android:id="@+id/etPwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="39dp"
+                        android:background="@android:color/transparent"
+                        android:drawableLeft="@mipmap/password"
+                        android:drawablePadding="10dp"
+                        android:hint="请输入密码"
+                        android:inputType="textPassword"
+                        android:textColor="@color/colorTextDefault"
+                        android:textColorHint="@color/colorGrayLine"
+                        android:textSize="@dimen/textSize_14sp" />
+
+                    <CheckBox
+                        android:id="@+id/cbLine2"
+                        android:button="@null"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@drawable/drawable_line_focus"
+                        />
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/check_rem_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:layout_alignParentLeft="true"
+                    android:button="@null"
+                    android:drawableLeft="@drawable/drawable_pwd_rember"
+                    android:drawablePadding="@dimen/margin_8dp"
+                    android:text="记住密码"
+                    android:textColor="@color/colorTextDefault"
+                    android:textSize="@dimen/textSize_14sp" />
+
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/shape_roid_red"
+                android:gravity="center"
+                android:text="登录"
+                android:textSize="16sp"
+                android:textColor="#ffffff"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+                <TextView
+                    android:id="@+id/tvForgetPwd"
+                    android:gravity="right|center_vertical"
+                    android:text="忘记密码？"
+                    android:textSize="13sp"
+                    android:textColor="#666666"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp" />
+            </LinearLayout>
+
+        </RelativeLayout>
+
+
+</LinearLayout>

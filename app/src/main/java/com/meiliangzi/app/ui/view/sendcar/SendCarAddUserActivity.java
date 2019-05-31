@@ -16,7 +16,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.Partment;
 import com.meiliangzi.app.model.bean.SendCarUserBean;
 import com.meiliangzi.app.model.bean.departmentuserlistBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 
@@ -55,7 +55,7 @@ public class SendCarAddUserActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        ProxyUtils.getHttpProxy().querydepartment(this,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().querydepartment(this,Integer.valueOf(NewPreferManager.getId()));
 
         super.onResume();
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.githang.statusbar.StatusBarCompat;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.tools.IntentUtils;
@@ -51,6 +52,7 @@ public class MineFragment extends BaseFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        StatusBarCompat.setStatusBarColor(getActivity(), getResources().getColor(R.color.zm_red));
         View view = createView(inflater.inflate(R.layout.fragment_mine, null, false));
         return view;
     }

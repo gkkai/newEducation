@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +21,7 @@ import android.widget.TextView;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.SendacardeleteBean;
 import com.meiliangzi.app.model.bean.SendacarinfoBean;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
@@ -151,7 +150,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                 //TODO 修改申请
                 if (getIntent().getIntExtra("type", 101) == 1) {
                     //TOOD
-                    if (proposerUserid == Integer.valueOf(PreferManager.getUserId())) {
+                    if (proposerUserid == Integer.valueOf(NewPreferManager.getId())) {
                         Intent intent = new Intent(this, AddSendacarActivity.class);
                         intent.putExtra("type", "updata");
                         intent.putExtra("sendACarId", id);
@@ -167,7 +166,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                         ToastUtils.show("您没有权限进行此操作");
                     }
                 } else {
-                    if (driverUserId == Integer.valueOf(PreferManager.getUserId())) {
+                    if (driverUserId == Integer.valueOf(NewPreferManager.getId())) {
                         //TODO 修改反馈
                         Intent intent = new Intent(this, FkDataActivity.class);
                         intent.putExtra("type", "updata");
@@ -186,7 +185,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.text_delete:
                 //TODO 删除
-                if (proposerUserid == Integer.valueOf(PreferManager.getUserId())) {
+                if (proposerUserid == Integer.valueOf(NewPreferManager.getId())) {
                     ProxyUtils.getHttpProxy().sendacardelete(this, id);
 
                 } else {

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.TopSearchActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:layout_marginLeft="30dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/edit_topsearch"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:singleLine="true"
+            android:layout_gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:layout_marginRight="80dp"
+            android:maxLength="13"
+            android:textSize="15sp"
+            android:hint="请输入想要搜索的内容"
+            android:imeOptions="actionSearch"
+            android:background="@drawable/shape_edittext_map"
+
+            />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:textColor="#333333"
+            android:textSize="16sp"
+            android:text="取消"
+            style="@style/ActionBar.RightText" />
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2" />
+    <com.meiliangzi.app.widget.XListView
+        android:layout_marginTop="50dp"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        android:overScrollMode="never"
+        />
+</RelativeLayout>

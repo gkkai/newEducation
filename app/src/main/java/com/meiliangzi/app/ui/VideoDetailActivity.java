@@ -35,6 +35,7 @@ import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.base.BaseBActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.dialog.MyDialog;
@@ -66,7 +67,7 @@ import static com.meiliangzi.app.ui.MainActivity.MESSAGE_RECEIVED_ACTION;
  * @description 视频详情
  **/
 
-public class VideoDetailActivity extends BaseActivity implements XListView.IXListViewListener{
+public class VideoDetailActivity extends BaseBActivity implements XListView.IXListViewListener{
     /* @BindView(R.id.ivPlay)
      ImageView ivPlay;
     @BindView(R.id.ivImg)

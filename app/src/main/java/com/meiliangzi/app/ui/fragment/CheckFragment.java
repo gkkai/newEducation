@@ -1,18 +1,14 @@
 package com.meiliangzi.app.ui.fragment;
 
-import android.content.Context;
-import android.net.Uri;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.model.bean.CheckProjectBean;
 import com.meiliangzi.app.model.bean.CheckProjectDetBean;
-import com.meiliangzi.app.model.bean.VoteBaseBean;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
@@ -20,9 +16,9 @@ import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
+@SuppressLint("ValidFragment")
 public class CheckFragment extends BaseFragment {
     private final String usercheck;
     private int id;

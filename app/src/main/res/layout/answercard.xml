@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:orientation="vertical"
+    >
+<TextView
+    android:textSize="16sp"
+    android:textColor="#333333"
+    android:text="试题答题卡"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="70dp" />
+    <android.support.v7.widget.RecyclerView
+    android:id="@+id/list"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+     />
+
+</LinearLayout>

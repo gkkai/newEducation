@@ -11,17 +11,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.config.Constant;
 import com.meiliangzi.app.model.bean.CommonsListBean;
-import com.meiliangzi.app.model.bean.Validate;
-import com.meiliangzi.app.tools.CountDownHandler;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
-import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.LoginActivity;
 import com.meiliangzi.app.ui.PersonCenterActivity;
-import com.meiliangzi.app.ui.RegisterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
@@ -102,11 +97,9 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
         text_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     IntentUtils.startAtyForResult(CommonsListActivity.this, LoginActivity.class, 1003, "activity", "index");
 
-                } else if (!PreferManager.getIsComplete()) {
-                    IntentUtils.startAtyForResult(CommonsListActivity.this, PersonCenterActivity.class, 1003, "activity", "index");
                 }
             }
         });
@@ -190,12 +183,13 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
     }
 
     private void isLogin() {
-        if (TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()) {
-            if (TextUtils.isEmpty(PreferManager.getUserId())) {
-                text_login.setText("请先登录");
-            } else {
-                text_login.setText("请完善个人信息");
-            }
+        if (TextUtils.isEmpty(NewPreferManager.getId())) {
+//            if (TextUtils.isEmpty(PreferManager.getUserId())) {
+//                text_login.setText("请先登录");
+//            } else {
+//                text_login.setText("请完善个人信息");
+//            }
+            text_login.setText("请先登录");
             text_login.setVisibility(View.VISIBLE);
         }else {
             text_login.setVisibility(View.GONE);

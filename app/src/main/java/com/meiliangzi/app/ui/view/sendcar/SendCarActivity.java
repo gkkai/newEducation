@@ -11,11 +11,10 @@ import com.meiliangzi.app.model.bean.IndexSendacarBean;
 import com.meiliangzi.app.model.bean.ProposerUserlistBean;
 import com.meiliangzi.app.model.bean.SendacardeleteBean;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.LoginActivity;
-import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
@@ -82,7 +81,7 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
                 helper.getView(R.id.text_quxiao_sendcar).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(item.getProposerUserid()== Integer.valueOf(PreferManager.getUserId())){
+                        if(item.getProposerUserid()== Integer.valueOf(NewPreferManager.getId())){
                             deleatDialog.setYesOnclickListener("确定", new SendDeleatDialog.onYesOnclickListener() {
                                 @Override
                                 public void onYesClick() {
@@ -149,11 +148,8 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
         text_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(PreferManager.getUserId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getId())) {
                     IntentUtils.startAtyForResult(SendCarActivity.this, LoginActivity.class, 1003, "activity", "index");
-
-                } else if (!PreferManager.getIsComplete()) {
-                    IntentUtils.startAtyForResult(SendCarActivity.this, PersonCenterActivity.class, 1003, "activity", "index");
                 }
             }
         });
@@ -236,7 +232,7 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
     private boolean iscontains(ProposerUserlistBean bean){
         boolean iscontains=false;
         for (int i=0;i<bean.getData().size();i++){
-                if(bean.getData().get(i).getId()==Integer.valueOf(PreferManager.getUserId())){
+                if(bean.getData().get(i).getId()==Integer.valueOf(NewPreferManager.getId())){
 
                     iscontains= true;
                 }
@@ -294,12 +290,13 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
         }
     }
     private void isLogin() {
-        if (TextUtils.isEmpty(PreferManager.getUserId()) || !PreferManager.getIsComplete()) {
-            if (TextUtils.isEmpty(PreferManager.getUserId())) {
-                text_login.setText("请先登录");
-            } else {
-                text_login.setText("请完善个人信息");
-            }
+        if (TextUtils.isEmpty(NewPreferManager.getId()) ) {
+//            if (TextUtils.isEmpty(NewPreferManager.getId())) {
+//                text_login.setText("请先登录");
+//            } else {
+//                text_login.setText("请完善个人信息");
+//            }
+            text_login.setText("请先登录");
             text_login.setVisibility(View.VISIBLE);
             add.setFocusable(false);
         }else {

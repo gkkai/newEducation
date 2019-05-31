@@ -8,7 +8,9 @@
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:background="@color/colorGrayLine"></View>
-    <RelativeLayout style="@style/ActionBar">
+    <RelativeLayout
+        android:layout_marginTop="@dimen/margin_20dp"
+        style="@style/ActionBar">
 
 
         <TextView

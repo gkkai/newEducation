@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorWhite"
+    android:fitsSystemWindows="true"
     tools:context="com.meiliangzi.app.ui.PersonCenterActivity">
 
     <RelativeLayout style="@style/ActionBar">
@@ -23,94 +24,18 @@
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
 
-    <LinearLayout
-        android:id="@+id/llPersonInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="12dp">
-
-        <com.meiliangzi.app.widget.CircleImageView
-            android:id="@+id/ivImg"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@mipmap/test_user_star" />
-
-        <LinearLayout
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/margin_8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_username"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="王大大"
-                android:textColor="@color/colorTextDeep" />
-
-            <TextView
-                android:id="@+id/tv_user_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="13536589653"
-                android:textColor="@color/colorTextGray" />
-        </LinearLayout>
-        <ImageView
-            android:layout_marginLeft="12dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_right_arrow_s"
-            />
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:background="#EFEFEF" />
 
 
-    <TextView
-        android:id="@+id/tvUpDatePwd"
-        android:padding="@dimen/margin_12"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="修改登录密码"
-        android:drawablePadding="@dimen/margin_10dp"
-        android:gravity="center_vertical"
-        android:visibility="gone"
-        android:drawableRight="@mipmap/ic_right_arrow_s"
-        android:drawableLeft="@mipmap/ic_update_pwd"
-        android:textColor="@color/colorTextDeep" />
 
-    <View
-        android:layout_marginLeft="@dimen/margin_12"
-        android:layout_marginRight="@dimen/margin_12"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/colorGrayLine" />
-    <TextView
-        android:id="@+id/tvbindPhone"
-        android:padding="@dimen/margin_12"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="绑定手机"
-        android:gravity="center_vertical"
-        android:drawablePadding="@dimen/margin_10dp"
-        android:drawableRight="@mipmap/ic_right_arrow_s"
-        android:drawableLeft="@mipmap/bindphone2"
-        android:textColor="@color/colorTextDeep" />
-    <View
-        android:layout_marginLeft="@dimen/margin_12"
-        android:layout_marginRight="@dimen/margin_12"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/colorGrayLine" />
+
+
+
+
+
 
 
     <RelativeLayout
+
         android:id="@+id/layout_setting_clear_cache"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -169,9 +94,14 @@
         </LinearLayout>
 
     </RelativeLayout>
+    <View
+        android:layout_marginLeft="@dimen/margin_12"
+        android:layout_marginRight="@dimen/margin_12"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorGrayLine" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/tvAboutUs"
         android:padding="@dimen/margin_12"
         android:layout_width="match_parent"
@@ -183,27 +113,25 @@
         android:drawableLeft="@mipmap/ic_about_us"
         android:textColor="@color/colorTextDeep" />
     <View
-        android:visibility="gone"
         android:layout_marginLeft="@dimen/margin_12"
         android:layout_marginRight="@dimen/margin_12"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/colorGrayLine" />
-    <View
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/margin_10dp"
-        android:background="#EFEFEF" />
+
 
     <TextView
-        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:id="@+id/tvLoginOut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/margin_12"
         android:text="退出登录"
-        android:textColor="@color/colorRed" />
+        android:background="@color/de_draft_color"
+        android:textColor="@color/white" />
 
     <View
         android:visibility="gone"

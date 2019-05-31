@@ -7,4 +7,5 @@ public class WXEntryActivity extends WXCallbackActivity {
 
 
 
+
 }

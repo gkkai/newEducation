@@ -29,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table thread_info (_id integer primary key autoincrement," +
                 "thread_id integer,url text,start integer,end integer,finished integer)";
+
         db.execSQL(sql);
     }
 

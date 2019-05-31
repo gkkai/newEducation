@@ -2,6 +2,7 @@ package com.meiliangzi.app.tools;
 
 
 import com.meiliangzi.app.model.api.IHttpService;
+import com.meiliangzi.app.model.http.HttpChanYeYuanProxyInvocation;
 import com.meiliangzi.app.model.http.HttpCheckProxyGetInvocation;
 import com.meiliangzi.app.model.http.HttpCheckProxyInvocation;
 import com.meiliangzi.app.model.http.HttpProxyInvocation;
@@ -15,6 +16,7 @@ public class ProxyUtils {
     private static HttpCheckProxyInvocation proxycheckHandler = new HttpCheckProxyInvocation();
     private static HttpCheckProxyGetInvocation proxycheckgetHandler = new HttpCheckProxyGetInvocation();
     private static HttpProxyNoDialogInvocation proxyHandlerNoDialog = new HttpProxyNoDialogInvocation();
+    private static HttpChanYeYuanProxyInvocation chanYeYuanProxyInvocation = new HttpChanYeYuanProxyInvocation();
     public static IHttpService getHttpProxyNoDialog() {
         return (IHttpService) Proxy.newProxyInstance(proxyHandlerNoDialog.getClass().getClassLoader(), new Class[]{IHttpService.class}, proxyHandlerNoDialog);
     }
@@ -26,5 +28,8 @@ public class ProxyUtils {
     }
     public static IHttpService GetHttpCheckProxy() {
         return (IHttpService) Proxy.newProxyInstance(proxycheckgetHandler.getClass().getClassLoader(), new Class[]{IHttpService.class}, proxycheckgetHandler);
+    }
+    public static IHttpService gethttpchanyexutyan() {
+        return (IHttpService) Proxy.newProxyInstance(chanYeYuanProxyInvocation.getClass().getClassLoader(), new Class[]{IHttpService.class}, chanYeYuanProxyInvocation);
     }
 }

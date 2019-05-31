@@ -18,7 +18,8 @@ public class HttpResponseHandler extends JsonHttpResponseHandler
 	private static final int HTTP_NODATA = 1;
 	private static final int HTTP_SUCCESS_200 = 200;
 	private static final int SESSION_INVALID = -1;
-	private static final String OPCODE = "status";
+	private static final String OPCODE = "code";
+	private static final String OPCODESTATUS = "status";
 	private static final String DATA = "msg";
 	private static final String ERROR = "showErrorMessage";
 	private Object context;
@@ -49,12 +50,24 @@ public class HttpResponseHandler extends JsonHttpResponseHandler
 
 	@Override
 	public void onSuccess(JSONObject response)
+
 	{
+		try {
+			opcode = response.getInt(OPCODE);
+		} catch (JSONException e) {
+
+			e.printStackTrace();
+			try {
+				opcode = response.getInt(OPCODESTATUS);
+			} catch (JSONException e1) {
+				e1.printStackTrace();
+			}
+		}
 		try
 		{
 			Log.i("grage", response.toString());
+			String fly=response.toString().replaceAll("\\\\","");
 
-			opcode = response.getInt(OPCODE);
 
 				switch (opcode)
 			{

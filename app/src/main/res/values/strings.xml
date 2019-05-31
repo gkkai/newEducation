@@ -8,7 +8,8 @@
     <string name="stringMsg">消息</string>
     <string name="stringMine">我的</string>
     <string name="stringMAP">导航</string>
-    <string name="stringTRAIN">培训</string>
+    <string name="stringTRAIN">视频</string>
+    <string name="stringExamination">考试</string>
 
 
     <string name="register_acode">获取验证码</string>

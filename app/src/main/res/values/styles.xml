@@ -7,9 +7,8 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-
     </style>
-    <style name="chatTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="chatTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowFullscreen">true</item>
         <item name="android:windowNoTitle">true</item>

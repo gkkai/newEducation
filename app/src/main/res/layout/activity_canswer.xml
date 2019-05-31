@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.meiliangzi.app.ui.view.Academy.CAnswerActivity">
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="智能答题" />
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2" />
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_answernumber"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <TextView
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:text="答题次数"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_reward"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <TextView
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:text="奖励积分"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:id="@+id/tv_optimum"
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="18sp"
+                android:text="2"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp" />
+            <TextView
+                android:gravity="center"
+                android:textColor="#333333"
+                android:textSize="14sp"
+                android:text="今日最佳成绩"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f2f2f2" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp">
+        <TextView
+            android:layout_centerVertical="true"
+            android:textSize="17sp"
+            android:textColor="#333333"
+            android:text="每周一答"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:drawableRight="@mipmap/ic_right_arrow"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            android:textColor="#999999"
+            android:text="更多"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <com.meiliangzi.app.widget.XListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="1dp"
+        android:divider="#F9F9F9"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        />
+
+</LinearLayout>

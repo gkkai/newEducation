@@ -14,10 +14,11 @@ import com.meiliangzi.app.receiver.CounterServer;
 import com.meiliangzi.app.receiver.TagAliasOperatorHelper;
 import com.meiliangzi.app.tools.FileUtil;
 import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.listener.ClearCacheHandler;
+import com.meiliangzi.app.ui.view.Academy.NewPersonCenterActivity;
 import com.meiliangzi.app.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -41,17 +42,8 @@ import static com.meiliangzi.app.receiver.TagAliasOperatorHelper.ACTION_DELETE;
 
 public class SetttingActivity extends BaseActivity {
 
-    @BindView(R.id.ivImg)
-    CircleImageView ivImg;
 
-    @BindView(R.id.tv_username)
-    TextView tvUserName;
-    @BindView(R.id.tvUpDatePwd)
-    TextView tvUpDatePwd;
-    @BindView(R.id.tv_user_phone)
-    TextView tvUserPhone;
     private TextView cacheTxt;
-    private TextView bundPhone;
     private TextView mClearCacheTxt;
     private RelativeLayout mClear;
     private ViewSwitcher mClearCacheViewSwitch;
@@ -72,22 +64,11 @@ public class SetttingActivity extends BaseActivity {
         mClearCacheViewSwitch = findView(R.id.vs_settings_clear_cache);
         // 缓存容量显示
         cacheTxt =findView(R.id.tv_setting_cache);
-        bundPhone= (TextView) findViewById(R.id.tvbindPhone);
-        String r = PreferManager.getUserPhone();
-        if(!"".equals(PreferManager.getUserPhone())){
-            bundPhone.setVisibility(View.GONE);
-            tvUpDatePwd.setVisibility(View.VISIBLE);
+        String r = NewPreferManager.getPhone();
 
-        }
         mClearCacheViewSwitch.setInAnimation(this, android.R.anim.fade_in);
         mClearCacheViewSwitch.setOutAnimation(this, android.R.anim.fade_out);
-        if (PreferManager.getUserStar().startsWith("http")) {
-            ImageLoader.getInstance().displayImage(PreferManager.getUserStar(), ivImg, MyApplication.getSimpleOptions(R.mipmap.ic_default_star, R.mipmap.ic_default_star));
-        } else {
-            ImageLoader.getInstance().displayImage("file:///" + PreferManager.getUserStar(), ivImg, MyApplication.getSimpleOptions(R.mipmap.ic_default_star, R.mipmap.ic_default_star));
-        }
-        tvUserName.setText(PreferManager.getUserName());
-        tvUserPhone.setText(PreferManager.getUserPhone());
+
     }
 
     @Override
@@ -95,49 +76,31 @@ public class SetttingActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.llPersonInfo, R.id.tvUpDatePwd, R.id.tvAboutUs, R.id.layout_setting_clear_cache,R.id.tvLoginOut,R.id.tvbindPhone})
+    @OnClick({ R.id.tvAboutUs, R.id.layout_setting_clear_cache,R.id.tvLoginOut})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.llPersonInfo:
-                IntentUtils.startAtyWithSingleParam(this, PersonCenterActivity.class, "activity", "PersonCenterActivity");
-                break;
-            case R.id.tvUpDatePwd:
-                IntentUtils.startAty(SetttingActivity.this, UpdatePwdActivity.class);
-                break;
+
             case R.id.tvAboutUs:
                 IntentUtils.startAty(SetttingActivity.this, AboutUsActivity.class);
                 break;
             case R.id.layout_setting_clear_cache:
                 playClearAnimIfNeeded();
                 break;
-            case R.id.tvbindPhone:
-                bindPhone();
-                break;
+
             case R.id.tvLoginOut:
                 TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
                 tagAliasBean.action = ACTION_DELETE;
                 if(true){
-                    tagAliasBean.alias = String.valueOf(PreferManager.getUserId());
+                    tagAliasBean.alias = String.valueOf(NewPreferManager.getId());
                 }else{
-//            tagAliasBean.tags = tags;
                 }
                 tagAliasBean.isAliasAction = true;
                 int sequence = 1;
                 TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
-                PreferManager.saveUserId("");
-//                if (!PreferManager.getUserId().isEmpty())
-//                {
-//                    long  start= Long.parseLong(PreferManager.getTimeStart());
-//                    if (start==0){
-//                        return;
-//                    }
-//                    long minite=(System.currentTimeMillis()-start)/(60*1000);
-//                    doSubmit(String.valueOf(minite));
-//                }
                 Intent intent = new Intent(SetttingActivity.this, CounterServer.class);
                 stopService(intent);
-                PreferManager.saveIsCompleteInfo(false);
-                SetttingActivity.this.finish();
+                NewPreferManager.savePasswd("");
+                getApplication().onTerminate();
                 break;
         }
     }
@@ -254,8 +217,6 @@ public class SetttingActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode==103){
-            bundPhone.setVisibility(View.GONE);
-            tvUpDatePwd.setVisibility(View.VISIBLE);
         }else {
 
         }

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="185dp"
+    android:layout_height="100dp"
     android:id="@+id/rl_shequn_vote"
-    android:background="@drawable/shape_withe">
+    android:layout_centerVertical="true"
+    >
 
 
             <ImageView
                 android:id="@+id/imageid"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="39dp"
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:background="@mipmap/votelog"/>
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                />
             <TextView
+                android:layout_below="@id/imageid"
+                android:layout_marginTop="10dp"
                 android:id="@+id/name"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="123dp"
                 android:textColor="#222222"
                 android:gravity="center_vertical"
                 android:text="投票管理"
-                android:textSize="16sp"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
+                android:textSize="12sp"
+                android:layout_width="48dp"
+                android:layout_height="17dp"
                 />
 
 

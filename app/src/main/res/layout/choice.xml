@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+        <LinearLayout
+            android:id="@+id/ll_chose"
+            android:visibility="gone"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+                <CheckBox
+                    android:layout_gravity="center_vertical"
+                    android:focusableInTouchMode="false"
+                    android:clickable="false"
+                    android:focusable="false"
+                    android:id="@+id/ck"
+                    android:text="A"
+                    android:textColor="@color/drawable_text_answer"
+                    android:gravity="center"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/selector_answer"
+                    android:button="@null" />
+
+                <TextView
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/tvAnswer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:button="@null"
+                    android:text="可能可能会买可能会买可可能可能会买可能会买可能会买可能会买可能会买可能会买可能会买可能会买可能会买会买可能可能会买可能会买可能会买可能会买可能会买可能会买可能会买可能会买可能会买会买能会买可能会买可能会买可能会买可能会买可能会买可能会买会买"
+                    android:textColor="@color/colorTextDeep" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_blanks"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+                <TextView
+                    android:id="@+id/text"
+                    android:textColor="#666666"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:text="正确答案："
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                     />
+
+                <EditText
+
+                    android:textCursorDrawable="@null"
+                    android:textSize="14sp"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:id="@+id/edit_Answer"
+                    android:layout_width="170dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:textColorHint="#222222"
+                    android:textColor="@color/colorTextDeep"
+                    android:inputType="text"
+                    android:singleLine="true"
+
+                    android:imeOptions="actionDone"
+                   />
+        </LinearLayout>
+
+
+
+</LinearLayout>

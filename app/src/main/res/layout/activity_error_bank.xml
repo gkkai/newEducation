@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.ErrorBankActivity"
+    >
+    <RelativeLayout style="@style/ActionBar">
+
+        <ImageView
+            style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/ActionBar.CenterTitle"
+            android:text="错题库" />
+        <TextView
+            android:id="@+id/tv_answercard"
+            android:textColor="#333333"
+            android:textSize="14sp"
+            style="@style/ActionBar.RightText"
+            android:text="答题卡" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#f2f2f2" />
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+        <TextView
+            android:textSize="16sp"
+            android:id="@+id/tv_pagetitle"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="错题库规则"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textColor="#333333"/>
+        <TextView
+
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:textSize="12sp"
+            android:id="@+id/tv_duration"
+            android:text="提示: 若每月月底不按时清空错题库，则扣除5积分"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:textColor="#999999"/>
+
+
+        <TextView
+            android:id="@+id/tv_alreadyanswered"
+            android:text="3"
+            android:textColor="#333333"
+            android:layout_marginRight="28dp"
+            android:gravity="bottom|right"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:textSize="36sp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="65dp"
+            />
+
+        <TextView
+            android:gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:textSize="14sp"
+            android:id="@+id/tv_totalNumber"
+            android:layout_alignParentRight="true"
+            android:text="/10"
+            android:layout_width="30dp"
+            android:layout_height="65dp"
+            android:textColor="#999999"/>
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f2f2f2" />
+    <FrameLayout
+        android:layout_marginTop="160dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="51dp">
+
+
+        <android.support.v4.view.ViewPager
+
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:background="@color/white" />
+        <!--阴影-->
+        <ImageView
+            android:id="@+id/shadowView"
+            android:layout_width="20dp"
+            android:layout_height="match_parent"
+            android:background="@mipmap/shadow_right"/>
+
+
+    </FrameLayout>
+
+
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="51dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2" />
+    <LinearLayout
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:id="@+id/tv_pre"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="#222222"
+            android:textSize="17sp"
+            android:text="上一题"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/tv_next"
+            android:background="#E80017"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:text="下一题"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</RelativeLayout>

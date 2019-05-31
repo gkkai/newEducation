@@ -16,6 +16,7 @@ public abstract class BaseFragment extends Fragment {
     protected View mView;
 
     protected View createView(View view) {
+
         this.mView = view;
         ButterKnife.bind(this, view);
         findWidgets();

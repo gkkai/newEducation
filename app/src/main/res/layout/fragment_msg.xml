@@ -8,7 +8,8 @@
     android:orientation="vertical"
     tools:context="com.meiliangzi.app.ui.PersonCenterActivity">
 
-    <RelativeLayout style="@style/ActionBar">
+    <RelativeLayout style="@style/ActionBar"
+        android:layout_marginTop="@dimen/margin_20dp">
 
 
         <TextView

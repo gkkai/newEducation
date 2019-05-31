@@ -15,27 +15,19 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
-import com.meiliangzi.app.model.bean.VoteSubvotelistBean;
 import com.meiliangzi.app.model.bean.VoteUsersubvoteBean;
 import com.meiliangzi.app.model.bean.VpteSubvoteinfoBean;
 import com.meiliangzi.app.tools.MyPlayUtil;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
-import com.meiliangzi.app.ui.view.train.TrainClassStudyActivity;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.imageaware.ImageViewAware;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.BindView;
-import xiaobo.com.video.CustomView.MyVideoPlayerStandard;
 import xiaobo.com.video.UserAction;
 import xiaobo.com.video.UserActionStandard;
 import xiaobo.com.video.VideoPlayer;
@@ -166,7 +158,7 @@ private int id;
     @Override
     protected void onResume() {
         super.onResume();
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
 
@@ -177,7 +169,7 @@ private int id;
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(PreferManager.getUserId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
 
             }
         });
@@ -185,7 +177,7 @@ private int id;
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(PreferManager.getUserId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
 
             }
         });
@@ -327,7 +319,7 @@ private int id;
 
     }
     private void getusersubvote(VoteUsersubvoteBean data){
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(PreferManager.getUserId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
 
     }
     public  void getBitmapFormUrl(final String url) {

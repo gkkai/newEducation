@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.VideoPlayActivity">
+    <cn.jzvd.JZVideoPlayerStandard
+        android:id="@+id/video_Player"
+        android:layout_width="match_parent"
+        android:layout_height="240dp" />
+
+    <ImageView
+        android:id="@+id/image_back"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:src="@mipmap/back"
+        android:layout_width="19dp"
+        android:layout_height="19dp" />
+    <ImageView
+        android:id="@+id/image_menu"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:src="@mipmap/top_enjoy"
+        android:layout_width="23dp"
+        android:layout_height="23dp" />
+
+    <ScrollView
+        android:layout_marginTop="230dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tx_title"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="陕北矿业产业发展公司祝福视频"
+                android:textColor="#222222"
+                android:textSize="17sp" />
+
+            <TextView
+                android:paddingLeft="15dp"
+                android:id="@+id/tv_departmentName"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="50dp"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:lines="1"
+                android:text="党群部党群部"
+                android:textColor="#333333"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/tv_time"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_toRightOf="@id/tv_departmentName"
+                android:ellipsize="end"
+                android:gravity="bottom"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:text="2019-02-13"
+                android:textColor="#999999"
+                android:textSize="13sp" />
+            <View
+                android:layout_marginTop="10dp"
+                android:background="#979797"
+                android:layout_below="@id/tv_departmentName"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <TextView
+
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginTop="90dp"
+                android:text="简介"
+                android:textColor="#222222"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_content"
+                android:paddingLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="120dp"
+                android:text="2019年产业发展公司对大家的新年祝福。"
+                android:textColor="#444444"
+                android:textSize="13sp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="75dp"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:id="@+id/ll_item"
+    android:background="@drawable/shape_huise"
+    >
+
+
+        <TextView
+            android:background="@drawable/shape_huise"
+            android:layout_centerInParent="true"
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="我是标题"
+            android:textColor="#333333"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:layout_marginTop="5dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/img"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@mipmap/top_close"
+            />
+
+
+    <!-- 屏幕右侧外边部分，正常时在屏幕中处于不可见 -->
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_hidden"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="#ff0000"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/tv_item_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+</RelativeLayout>

@@ -3,11 +3,8 @@ package com.meiliangzi.app.ui.view.checkSupervise;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -17,19 +14,12 @@ import android.widget.TextView;
 
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.CheckChildenProjectBean;
-import com.meiliangzi.app.model.bean.CheckDepartmentsBean;
 import com.meiliangzi.app.model.bean.CheckProjectBean;
-import com.meiliangzi.app.tools.IntentUtils;
-import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
-import com.meiliangzi.app.ui.LoginActivity;
-import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
-import com.meiliangzi.app.ui.view.vote.VoteActivity;
 import com.meiliangzi.app.widget.MyGridView;
-import com.meiliangzi.app.widget.XListView;
 
 import java.text.SimpleDateFormat;
 
