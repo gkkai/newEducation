@@ -2,6 +2,7 @@ package com.meiliangzi.app.ui.view.Academy;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -27,6 +28,7 @@ import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.view.Academy.adapter.TopicAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.AnswerWrongBean;
 import com.meiliangzi.app.ui.view.Academy.bean.ComintQuestionsBackbean;
@@ -57,7 +59,7 @@ public class ErrorBankActivity extends BaseActivity implements View.OnClickListe
     @BindView(R.id.tv_pre)
     TextView tv_pre;
 
-   
+   MyDialog myDialog;
     @BindView(R.id.tv_alreadyanswered)
     TextView tv_alreadyanswered;
     @BindView(R.id.tv_totalNumber)
@@ -75,7 +77,28 @@ public class ErrorBankActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void findWidgets() {
+        myDialog=new MyDialog(this);
+        myDialog=new MyDialog(this);
+        myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                getWindow().setAttributes(lp);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
+
+            }
+        });
+        myDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 0.6f;
+                getWindow().setAttributes(lp);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            }
+        });
         tv_alreadyanswered.setText(1+"");
 
         inflate = LayoutInflater.from(getBaseContext()).inflate(R.layout.answercard, null);
@@ -204,75 +227,92 @@ public class ErrorBankActivity extends BaseActivity implements View.OnClickListe
                 }
                 //TODO 开始提交数据
                 if(currentItem==MyApplication.paperBean.getData().size()){
-                    errorAnswerBean=new ErrorAnswerBean();
+                    myDialog.setYesOnclickListener("确认", new MyDialog.onYesOnclickListener() {
+                        @Override
+                        public void onYesClick() {
+                            myDialog.dismiss();
+                            errorAnswerBean=new ErrorAnswerBean();
 
-                    ArrayList<ErrorAnswerBean.AnswerBean> AnswerBeans = new ArrayList<>();
-                    
-                    if(AnswerBeans.size()>=MyApplication.paperBean.getData().size()){
+                            ArrayList<ErrorAnswerBean.AnswerBean> AnswerBeans = new ArrayList<>();
 
-                    }else {
-                        //TODO 提交数据
-                        for(int i=0;i<MyApplication.paperBean.getData().size();i++){
-                            ErrorAnswerBean.AnswerBean answerBean = new ErrorAnswerBean.AnswerBean();
-                            answerBean.setId(MyApplication.paperBean.getData().get(i).getId());
-                            List<PaperBean.Data.UserAnswer> userbeans=new ArrayList<PaperBean.Data.UserAnswer>();
-                            for(int j=0;j<MyApplication.paperBean.getData().get(i).getQuestionOption().size();j++){
-                                PaperBean.Data.UserAnswer questionOption=new PaperBean.Data.UserAnswer();
+                            if(AnswerBeans.size()>=MyApplication.paperBean.getData().size()){
 
-                                if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).ischos){
-                                    questionOption.setKey(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getKey());
-                                    questionOption.setValue(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getValue());
-                                    userbeans.add(questionOption);
+
+                            }else {
+
+                                //TODO 提交数据
+                                for(int i=0;i<MyApplication.paperBean.getData().size();i++){
+                                    ErrorAnswerBean.AnswerBean answerBean = new ErrorAnswerBean.AnswerBean();
+                                    answerBean.setId(MyApplication.paperBean.getData().get(i).getId());
+                                    List<PaperBean.Data.UserAnswer> userbeans=new ArrayList<PaperBean.Data.UserAnswer>();
+                                    for(int j=0;j<MyApplication.paperBean.getData().get(i).getQuestionOption().size();j++){
+                                        PaperBean.Data.UserAnswer questionOption=new PaperBean.Data.UserAnswer();
+
+                                        if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).ischos){
+                                            questionOption.setKey(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getKey());
+                                            questionOption.setValue(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getValue());
+                                            userbeans.add(questionOption);
+
+                                        }
+                                    }
+                                    answerBean.setRightAnswer(MyApplication.paperBean.getData().get(i).getRightAnswer());
+                                    answerBean.setUserAnswe(userbeans);
+                                    AnswerBeans.add(answerBean);
+
 
                                 }
                             }
-                            answerBean.setRightAnswer(MyApplication.paperBean.getData().get(i).getRightAnswer());
-                            answerBean.setUserAnswe(userbeans);
-                            AnswerBeans.add(answerBean);
-
-
-                        }
-                    }
 
 
 
-                    errorAnswerBean.setAnswerBean(AnswerBeans);
-                    Gson gson=new Gson();
-                    String rsule=gson.toJson(errorAnswerBean);
+                            errorAnswerBean.setAnswerBean(AnswerBeans);
+                            Gson gson=new Gson();
+                            String rsule=gson.toJson(errorAnswerBean);
 
-                    //TODO 发送数据
-                    //String rsules= JSON.toJSONString(errorAnswerBean);
-                    OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserQuestionsWrong/modify", new OkhttpUtils.onCallBack() {
-                        @Override
-                        public void onFaild(Exception e) {
-                            runOnUiThread(new Runnable() {
+
+                            //TODO 发送数据
+                            //String rsules= JSON.toJSONString(errorAnswerBean);
+                            OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserQuestionsWrong/modify", new OkhttpUtils.onCallBack() {
                                 @Override
-                                public void run() {
-                                    ToastUtils.show("提交失败，请重新提交");
+                                public void onFaild(Exception e) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            ToastUtils.show("提交失败，请重新提交");
+                                        }
+                                    });
+
+
+                                }
+
+                                @Override
+                                public void onResponse(String json) {
+                                    AnswerWrongBean bean=new Gson().fromJson(json,AnswerWrongBean.class);
+                                    if("1".equals(bean.getCode())){
+                                        ToastUtils.show(bean.getMessage());
+                                    }else {
+                                        Intent intent=new Intent(ErrorBankActivity.this,ErrorReportActivity.class);
+                                        intent.putExtra("currentAnswerWrongNumber",bean.getData().getCurrentAnswerWrongNumber());
+                                        intent.putExtra("currentAnswerRightNumber",bean.getData().getCurrentAnswerRightNumber());
+                                        intent.putExtra("lastWrongNumber",bean.getData().getLastWrongNumber());
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+
+
                                 }
                             });
-
-
-                        }
-
-                        @Override
-                        public void onResponse(String json) {
-                            AnswerWrongBean bean=new Gson().fromJson(json,AnswerWrongBean.class);
-                            if("1".equals(bean.getCode())){
-                                ToastUtils.show(bean.getMessage());
-                            }else {
-                                Intent intent=new Intent(ErrorBankActivity.this,ErrorReportActivity.class);
-                                intent.putExtra("currentAnswerWrongNumber",bean.getData().getCurrentAnswerWrongNumber());
-                                intent.putExtra("currentAnswerRightNumber",bean.getData().getCurrentAnswerRightNumber());
-                                intent.putExtra("lastWrongNumber",bean.getData().getLastWrongNumber());
-                                startActivity(intent);
-                                finish();
-                            }
-
-
-
                         }
                     });
+                    myDialog.setNoOnclickListener("取消", new MyDialog.onNoOnclickListener() {
+                        @Override
+                        public void onNoClick() {
+                            myDialog.dismiss();
+                        }
+                    });
+                    myDialog.show();
+
 
                 }else {
                     if(currentItem+1==MyApplication.paperBean.getData().size()){

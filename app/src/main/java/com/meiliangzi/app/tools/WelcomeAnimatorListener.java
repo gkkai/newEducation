@@ -89,7 +89,9 @@ public class WelcomeAnimatorListener implements AnimationListener {
                     welcomeActivity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            ToastUtils.show(bean.getMessage());
+                            IntentUtils.startAty(welcomeActivity,NewLoginActivity.class);
+                            welcomeActivity.finish();
+                            //ToastUtils.show(bean.getMessage());
                         }
                     });
                 }else {

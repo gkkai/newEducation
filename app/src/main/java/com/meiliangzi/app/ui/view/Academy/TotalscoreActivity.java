@@ -83,8 +83,11 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
         Adapter=new BaseVoteAdapter<RuleListBean.Data>(this,gradview,R.layout.integralrule_item) {
             @Override
             public void convert(BaseViewHolder helper, final RuleListBean.Data item) {
-                if(0==item.getCycle()){
-                    if(item.getLimits()<=item.getDayScore()){
+                if(item.getDayScore()!=null){
+
+
+                if(0==Integer.valueOf(item.getCycle())){
+                    if(Integer.valueOf(item.getLimits())<=Integer.valueOf(item.getDayScore())){
                         //TODO 积分已满
                         ((TextView)helper.getView(R.id.tv_finish)).setText("已完成");
                         ((TextView)helper.getView(R.id.tv_finish)).setTextColor(getResources().getColor(R.color.black2));
@@ -172,7 +175,7 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
 
                     }
                 }else {
-                    if(item.getLimits()<=item.getWeekScore()){
+                    if(Integer.valueOf(item.getLimits())<=Integer.valueOf(item.getDayScore())){
                         //TODO 积分已满
                         ((TextView)helper.getView(R.id.tv_finish)).setText("已完成");
                         ((TextView)helper.getView(R.id.tv_finish)).setTextColor(getResources().getColor(R.color.black2));
@@ -265,6 +268,7 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                 ((TextView)helper.getView(R.id.tv_conditions)).setText(item.getRuleDescribe());
 
             }
+            }
         };
         gradview.setAdapter(Adapter);
         tv_scoredetailed.setOnClickListener(this);
@@ -274,8 +278,7 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
     private void loginScore(String userId) {
         Map<String,String> maps=new HashMap<>();
         maps.put("userId", userId);
-
-        maps.put("userId", LOGINID);
+        maps.put("ruleId", LOGINID);
         OkhttpUtils.getInstance(this).doPost("academyService/detail/loginScore", maps, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
@@ -286,12 +289,24 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        BaseInfo bean=new Gson().fromJson(json,BaseInfo.class);
-                        ToastUtils.show(bean.getSuccess());
-                        getlsit();
+                        try {
+
+                            BaseInfo bean=new Gson().fromJson(json,BaseInfo.class);
+                            if(bean.getCode()==1){
+                                ToastUtils.show(bean.getSuccess());
+                            }else {
+                               getlsit();
+                            }
+
+                        }catch (Exception e){
+                            ToastUtils.show(e.getMessage());
+                        }
+
+
+
+
                     }
                 });
-                // NewPreferManager.saveRuleLists(json);
 
             }
         });
@@ -325,16 +340,18 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                     public void run() {
                         Gson gson=new Gson();
                         RuleListBean bean=   gson.fromJson(json,RuleListBean.class);
-                        if("1".equals(bean.getCode())){
-                            ToastUtils.show(bean.getMessage());
-                        }else {
-                            for(int i=0;i<bean.getData().size();i++){
-                                todayscoredes=todayscoredes+bean.getData().get(i).getDayScore();
-                            }
-                            tv_today_scoredes.setText(todayscoredes+"");
-                            bean.getData().add(new RuleListBean.Data());
-                            Adapter.setDatas(bean.getData());
-                        }
+//                        if("1".equals(bean.getCode())){
+//                            ToastUtils.show(bean.getMessage());
+//                        }else {
+//                            for(int i=0;i<bean.getData().size();i++){
+//                                todayscoredes=todayscoredes+bean.getData().get(i).getDayScore();
+//                            }
+//
+//                        }
+                        tv_today_scoredes.setText(bean.getData().get(1).getDayIntegral());
+                        bean.getData().add(new RuleListBean.Data());
+                        Adapter.setDatas(bean.getData());
+
 
 
                     }
@@ -360,6 +377,7 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                 Intent intent1 =new Intent(this,DetailsWebActivity.class);
                 intent1.putExtra("url","academyService/html/rule.html");
                 intent1.putExtra("title","积分说明");
+                intent1.putExtra("type","1");
                 startActivity(intent1);
                 break;
             case R.id.im_black:

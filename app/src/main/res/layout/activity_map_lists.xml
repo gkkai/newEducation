@@ -103,6 +103,31 @@
             android:textColor="#999999"
             />
     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/ll_historicalrecords"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="30dp"
+            android:text="历史记录"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <GridView
+            android:layout_marginTop="20dp"
+            android:id="@+id/gradview_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="4"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:stretchMode="columnWidth" ></GridView>
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>

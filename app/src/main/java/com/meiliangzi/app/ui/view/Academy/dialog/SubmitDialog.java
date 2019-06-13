@@ -19,8 +19,9 @@ import com.meiliangzi.app.R;
 public class SubmitDialog extends Dialog {
     private Button yes;//确定按钮
     private Button no;//取消按钮
-    private TextView titleTv;//消息标题文本
-    private TextView messageTv;//消息提示文本
+    public TextView titleTv;//消息标题文本
+    public TextView messageTv;//消息提示文本
+    public TextView messageTv1;//消息提示文本
     private String titleStr;//从外界设置的title文本
     private String messageStr;//从外界设置的消息文本
     //确定文本和取消文本的显示内容
@@ -111,6 +112,10 @@ public class SubmitDialog extends Dialog {
         if (messageStr != null) {
             messageTv.setText(messageStr);
         }
+        if (messageTv1 != null) {
+            messageTv1.setText(messageStr);
+        }
+
         //如果设置按钮的文字
         if (yesStr != null) {
             yes.setText(yesStr);
@@ -128,6 +133,7 @@ public class SubmitDialog extends Dialog {
         no = (Button) findViewById(R.id.no);
         titleTv = (TextView) findViewById(R.id.title);
         messageTv = (TextView) findViewById(R.id.message);
+        messageTv1= (TextView) findViewById(R.id.message1);
     }
 
     /**

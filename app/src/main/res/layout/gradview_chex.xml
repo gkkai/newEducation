@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_gravity="center_vertical"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:id="@+id/ck"
+        android:text="Aaaaaaa"
+        android:textColor="@color/drawable_text_answer"
+        android:gravity="center"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shape_huise"
+
+        android:button="@null" />
+</LinearLayout>

@@ -29,7 +29,7 @@ public class ProxyUtils {
     public static IHttpService GetHttpCheckProxy() {
         return (IHttpService) Proxy.newProxyInstance(proxycheckgetHandler.getClass().getClassLoader(), new Class[]{IHttpService.class}, proxycheckgetHandler);
     }
-    public static IHttpService gethttpchanyexutyan() {
+    public static IHttpService gethttp() {
         return (IHttpService) Proxy.newProxyInstance(chanYeYuanProxyInvocation.getClass().getClassLoader(), new Class[]{IHttpService.class}, chanYeYuanProxyInvocation);
     }
 }

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f2f2f2"
     tools:context="com.meiliangzi.app.ui.view.Academy.fragment.TabExaminationFragment">
 
     <com.meiliangzi.app.widget.XListView
@@ -12,7 +13,7 @@
         android:listSelector="@android:color/transparent"
         android:dividerHeight="10dp"
         android:scrollingCache="false"
-        android:divider="#F2F2F2"
+        android:divider="#f2f2f2"
         android:overScrollMode="never"
         android:headerDividersEnabled="false"
         android:footerDividersEnabled="false"

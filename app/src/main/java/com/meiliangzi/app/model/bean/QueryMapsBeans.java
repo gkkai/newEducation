@@ -42,6 +42,15 @@ public class QueryMapsBeans {
         private String  image;
         private String  address;
         private String  phone;
+        private int  id;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
 
         public String getPhone() {
             return phone;

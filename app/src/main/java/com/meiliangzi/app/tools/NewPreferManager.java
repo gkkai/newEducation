@@ -28,15 +28,36 @@ public class NewPreferManager {
     private static final String LOGIN_PWD = "loginpwd";
     private static final String Token = "token";
     private static final String RefreshToken = "token_refresh";
-    private static final String OrgId = "orgId";
+    private static final String OrgId = "personalOrgId";
+    private static final String WeekColumbean = "weekColumbean";
+    private static final String Hostirysocary = "hostirysocary";
 
+
+
+    public static void  savehostirysocary(String orgId){
+        PreferUtils.put(Hostirysocary,orgId);
+    }
+
+    public static String gethostirysocary(){
+        return PreferUtils.getString(Hostirysocary,"");
+    }
+
+
+
+
+    public static void  saveWeekColumbean(String rulelists){
+        PreferUtils.put(WeekColumbean,rulelists);
+    }
+    public static String getWeekColumbean(){
+        return PreferUtils.getString(WeekColumbean,"");
+    }
 
     public static void  saveOrgId(String orgId){
-        PreferUtils.put(Token,orgId);
+        PreferUtils.put(OrgId,orgId);
     }
 
     public static String getOrgId(){
-        return PreferUtils.getString(Token,"");
+        return PreferUtils.getString(OrgId,"");
     }
 
     public static void  saverefreshToken(String token_refresh){

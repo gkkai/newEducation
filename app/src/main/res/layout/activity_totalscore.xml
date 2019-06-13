@@ -83,6 +83,7 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp" />
                 <TextView
+                    android:visibility="gone"
                     android:textSize="12sp"
                     android:layout_marginTop="12dp"
                     android:layout_marginLeft="95dp"
@@ -119,6 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp" />
                 <com.meiliangzi.app.widget.MyGridView
+                    android:listSelector="@android:color/transparent"
                     android:id="@+id/gradview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

@@ -1,8 +1,10 @@
 package com.meiliangzi.app.ui.view.Academy;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.receiver.TagAliasOperatorHelper;
 import com.meiliangzi.app.tools.IntentUtils;
@@ -29,6 +32,8 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
+
 import butterknife.BindView;
 
 import static com.meiliangzi.app.config.Constant.LOGINID;
@@ -59,7 +64,7 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
     private String pwd="";
     private IWXAPI api;
     private String type="1";
-
+    private String out="";
     @BindView(R.id.tvLogin)
     TextView tvLogin;
     @BindView(R.id.tvForgetPwd)
@@ -71,12 +76,19 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN) ;//隐藏状态栏
 
-
+        out=getIntent().getStringExtra("out");
         onCreateView(R.layout.activity_new_login);
     }
 
     @Override
     protected void findWidgets() {
+        if("1".equals(out)){
+            Stack<Activity> s= MyApplication.atyStack;
+            for(Activity activity :s){
+                activity.finish();
+            }
+            Log.i("Login=======",s.toArray().toString());
+        }
         cbRemPwd.setChecked(NewPreferManager.getIsRememberPwd().equals("1"));
         etAccount.setText(NewPreferManager.getPhone());
         if(NewPreferManager.getIsRememberPwd().equals("1")){
@@ -130,7 +142,7 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
                     pwd = etPwd.getText().toString();
                     RuleCheckUtils.checkEmpty(loginName,"请输入用户名");
                     RuleCheckUtils.checkPhone(loginName);
-                    RuleCheckUtils.checkPwdLength(pwd);
+                    //RuleCheckUtils.checkPwdLength(pwd);
                     login(loginName,pwd);
                 } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());
@@ -157,8 +169,13 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
         map.put("type",type);
         OkhttpUtils.getInstance(this).dologin("organizationService/userAccount/userLogin", map, new OkhttpUtils.onCallBack() {
             @Override
-            public void onFaild(Exception e) {
-
+            public void onFaild(final Exception e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.show(e.getMessage());
+                    }
+                });
             }
             @Override
             public void onResponse(String json) {

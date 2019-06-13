@@ -21,6 +21,8 @@ import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.view.AddMapActivity;
 import com.meiliangzi.app.ui.view.AddMapLoctionActivity;
 import com.meiliangzi.app.ui.view.MapActivity;
+import com.meiliangzi.app.ui.view.MapDetailsActivity;
+import com.meiliangzi.app.ui.view.MapListsActivity;
 import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
@@ -147,7 +149,8 @@ public class NativePlugin {
             Intent intent=new Intent(fragment,AddMapLoctionActivity.class);
             intent.putExtra("lng",lng);
             intent.putExtra("lat",lat);
-            fragment.startActivityForResult(intent,101);
+//            fragment.startActivityForResult(intent,101);
+           fragment.setResult(101,intent);
            fragment.finish();
         }
 
@@ -324,10 +327,14 @@ public class NativePlugin {
 
     }
     @JavascriptInterface
-    public void callphone(String phoneNumber ) {
-        Intent dialIntent =  new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));//跳转到拨号界面，同时传递电话号码
-        fragment.startActivity(dialIntent);
-        //fragment.finish();
+    public void androidMapInfo(String id) {
+        Intent intent =new Intent(fragment,MapDetailsActivity.class);
+        intent.putExtra("id",Integer.valueOf(id));
+
+        fragment.startActivity(intent);
+        fragment.finish();
+
+//        Intent dialIntent =  new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phoneNumber));//跳转到拨号界面，同时传递电话号码
 
     }
     public interface  JsCallback{

@@ -19,21 +19,48 @@
             android:text="每周一答" />
 
     </RelativeLayout>
-    <View
-        android:layout_marginTop="48dp"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="#f2f2f2" />
-    <com.meiliangzi.app.widget.XListView
+
+    <RelativeLayout
+        android:id="@+id/one"
         android:layout_marginTop="49dp"
-        android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollingCache="false"
-        android:scrollbars="none"
-        android:listSelector="@android:color/transparent"
-        android:dividerHeight="1dp"
-        android:divider="#F2F2F2"
-        android:overScrollMode="never"
-        />
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:layout_marginRight="50dp"
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/zm_red"
+            app:tabIndicatorHeight="1dip"
+            app:tabMode="scrollable"
+            app:tabMinWidth="50dip"
+            app:tabPaddingStart="10dip"
+            app:tabPaddingEnd="10dip"
+            app:tabGravity="center"
+            app:tabSelectedTextColor="@color/zm_red"
+            app:tabTextAppearance="@style/tab_head"
+            app:tabTextColor="@color/text_tips_color" />
+        <ImageView
+            android:layout_marginTop="12dp"
+            android:id="@+id/im_menu"
+            android:layout_marginRight="15dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/amenu"/>
+        <View
+            android:layout_marginTop="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#f2f2f2" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="51dip"
+            android:layout_weight="1"
+            android:background="@color/white" />
+    </RelativeLayout>
+
 </RelativeLayout>

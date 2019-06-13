@@ -167,6 +167,8 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_big_image,true);
                         helper.showOrGoneView(R.id.rl_small_image,false);
                         ((TextView)helper.getView(R.id.tv_big_title)).setText(item.getTitle());
+                        ((TextView)helper.getView(R.id.tv_big_videoTime)).setText( item.TimeString());
+
 
                         ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
                                 +"   "+item.getCreateTime());
@@ -176,7 +178,7 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_big_image,false);
                         helper.showOrGoneView(R.id.rl_small_image,true);
                         ((TextView)helper.getView(R.id.tv_small_title)).setText(item.getTitle());
-
+                        ((TextView)helper.getView(R.id.tv_smiall_videoTime)).setText( item.TimeString());
                         ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
                                 +"   "+item.getCreateTime());
                         helper.setImageByUrl(R.id.image_small,item.getCoverImage(),R.mipmap.smallphoto,R.mipmap.smallphoto);
@@ -197,6 +199,7 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
 //                intent.putExtra("url","html/video.html?id="+Adapter.getItem(position-1).getId());
 //                intent.putExtra("title",Adapter.getItem(position-1).getTitle());
                 intent.putExtra("id",Adapter.getItem(position-1).getId());
+                intent.putExtra("videotime",Adapter.getItem(position-1).getVideoTime());
                 startActivity(intent);
             }
         });

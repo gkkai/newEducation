@@ -1,9 +1,11 @@
 package com.meiliangzi.app.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -17,7 +19,9 @@ import com.meiliangzi.app.tools.IntentUtils;
 import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.listener.ClearCacheHandler;
+import com.meiliangzi.app.ui.view.Academy.NewLoginActivity;
 import com.meiliangzi.app.ui.view.Academy.NewPersonCenterActivity;
 import com.meiliangzi.app.widget.CircleImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -48,6 +52,7 @@ public class SetttingActivity extends BaseActivity {
     private RelativeLayout mClear;
     private ViewSwitcher mClearCacheViewSwitch;
     private ClearCacheHandler clearCacheHanler;
+    private MyDialog myDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +78,27 @@ public class SetttingActivity extends BaseActivity {
 
     @Override
     protected void initComponent() {
+        myDialog=new MyDialog(this);
+        myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 1.0f;
+                getWindow().setAttributes(lp);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
+
+            }
+        });
+        myDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                WindowManager.LayoutParams lp = getWindow().getAttributes();
+                lp.alpha = 0.6f;
+                getWindow().setAttributes(lp);
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            }
+        });
     }
 
     @OnClick({ R.id.tvAboutUs, R.id.layout_setting_clear_cache,R.id.tvLoginOut})
@@ -88,19 +113,38 @@ public class SetttingActivity extends BaseActivity {
                 break;
 
             case R.id.tvLoginOut:
-                TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
-                tagAliasBean.action = ACTION_DELETE;
-                if(true){
-                    tagAliasBean.alias = String.valueOf(NewPreferManager.getId());
-                }else{
-                }
-                tagAliasBean.isAliasAction = true;
-                int sequence = 1;
-                TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
-                Intent intent = new Intent(SetttingActivity.this, CounterServer.class);
-                stopService(intent);
-                NewPreferManager.savePasswd("");
-                getApplication().onTerminate();
+                myDialog.setMessage("确认是否退出登录");
+                myDialog.setNoOnclickListener("取消", new MyDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        myDialog.dismiss();
+                    }
+                });
+                myDialog.setYesOnclickListener("确认", new MyDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
+                        tagAliasBean.action = ACTION_DELETE;
+                        if(true){
+                            tagAliasBean.alias = String.valueOf(NewPreferManager.getId());
+                        }else{
+                        }
+                        tagAliasBean.isAliasAction = true;
+                        int sequence = 1;
+                        TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
+                        Intent intent = new Intent(SetttingActivity.this, CounterServer.class);
+                        stopService(intent);
+                        NewPreferManager.savePasswd("");
+                        //getApplication().onTerminate();
+                        Intent intent1 = new Intent(SetttingActivity.this, NewLoginActivity.class);
+                        intent1.putExtra("out","1");
+                        startActivity(intent1);
+                        finish();
+                        myDialog.dismiss();
+                    }
+                });
+                myDialog.show();
+
                 break;
         }
     }

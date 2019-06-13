@@ -177,7 +177,7 @@ public class AlloptionsActivity extends BaseActivity implements View.OnClickList
 
         mRecyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
         mRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
-        myAdapter = new MyAdapter(MyApplication.indexColumnBean.getData(), mContext);
+       // myAdapter = new MyAdapter(MyApplication.indexColumnBean.getData(), mContext);
         mRecyclerView.setAdapter(myAdapter);
         //TODO 我的频道
         mRecyclerView.addOnItemTouchListener(new OnRecyclerItemClickListener(mRecyclerView) {

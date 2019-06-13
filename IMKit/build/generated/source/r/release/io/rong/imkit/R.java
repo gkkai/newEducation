@@ -95,7 +95,7 @@ containing a value of this type.
     public static final class color {
         public static int rc_ad_file_list_no_select_file_text_state=0x7f080000;
         public static int rc_ad_file_list_select_file_text_state=0x7f080001;
-        public static int rc_btn_file_list_send=0x7f080030;
+        public static int rc_btn_file_list_send=0x7f080031;
         public static int rc_conversation_list_divider_color=0x7f080002;
         public static int rc_conversation_top_bg=0x7f080003;
         public static int rc_divider_color=0x7f080004;
@@ -142,6 +142,7 @@ containing a value of this type.
         public static int rc_voice_color_left=0x7f08002d;
         public static int rc_voice_color_right=0x7f08002e;
         public static int rc_web_progress_bar=0x7f08002f;
+        public static int zed=0x7f080030;
     }
     public static final class dimen {
         public static int rc_conversation_item_data_size=0x7f090000;

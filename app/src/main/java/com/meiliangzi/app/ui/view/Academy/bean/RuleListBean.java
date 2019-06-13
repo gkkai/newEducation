@@ -37,19 +37,22 @@ public class RuleListBean {
 
     public static class Data{
         private String id;
-        private String integralNumber;
+        private String updateTime;
+        private String modifier;
         private String integralName;
-        private int score;
-        private int isRepeat;
-        private String conditions;
-        private String singleScore;
+        private String isDelete;
+        private String founder;
+        private String  cycle;
+        private String limits;
+        private String isRelease;
+        private String score;
         private String ruleDescribe;
-        private int limits;
-        private int dayScore;
-        private  int weekScore;
-        private  int cycle;
-        private  int isAdd;
-        private  int userTotalScore;
+        private String conditions;
+        private String isRepeat;
+        private String createTime;
+        private String dayIntegral;
+        private String dayScore;
+
 
         public String getId() {
             return id;
@@ -59,12 +62,20 @@ public class RuleListBean {
             this.id = id;
         }
 
-        public String getIntegralNumber() {
-            return integralNumber;
+        public String getUpdateTime() {
+            return updateTime;
         }
 
-        public void setIntegralNumber(String integralNumber) {
-            this.integralNumber = integralNumber;
+        public void setUpdateTime(String updateTime) {
+            this.updateTime = updateTime;
+        }
+
+        public String getModifier() {
+            return modifier;
+        }
+
+        public void setModifier(String modifier) {
+            this.modifier = modifier;
         }
 
         public String getIntegralName() {
@@ -75,36 +86,52 @@ public class RuleListBean {
             this.integralName = integralName;
         }
 
-        public int getScore() {
+        public String getIsDelete() {
+            return isDelete;
+        }
+
+        public void setIsDelete(String isDelete) {
+            this.isDelete = isDelete;
+        }
+
+        public String getFounder() {
+            return founder;
+        }
+
+        public void setFounder(String founder) {
+            this.founder = founder;
+        }
+
+        public String getCycle() {
+            return cycle;
+        }
+
+        public void setCycle(String cycle) {
+            this.cycle = cycle;
+        }
+
+        public String getLimits() {
+            return limits;
+        }
+
+        public void setLimits(String limits) {
+            this.limits = limits;
+        }
+
+        public String getIsRelease() {
+            return isRelease;
+        }
+
+        public void setIsRelease(String isRelease) {
+            this.isRelease = isRelease;
+        }
+
+        public String getScore() {
             return score;
         }
 
-        public void setScore(int score) {
+        public void setScore(String score) {
             this.score = score;
-        }
-
-        public int getIsRepeat() {
-            return isRepeat;
-        }
-
-        public void setIsRepeat(int isRepeat) {
-            this.isRepeat = isRepeat;
-        }
-
-        public String getConditions() {
-            return conditions;
-        }
-
-        public void setConditions(String conditions) {
-            this.conditions = conditions;
-        }
-
-        public String getSingleScore() {
-            return singleScore;
-        }
-
-        public void setSingleScore(String singleScore) {
-            this.singleScore = singleScore;
         }
 
         public String getRuleDescribe() {
@@ -115,52 +142,44 @@ public class RuleListBean {
             this.ruleDescribe = ruleDescribe;
         }
 
-        public int getLimits() {
-            return limits;
+        public String getConditions() {
+            return conditions;
         }
 
-        public void setLimits(int limits) {
-            this.limits = limits;
+        public void setConditions(String conditions) {
+            this.conditions = conditions;
         }
 
-        public int getDayScore() {
+        public String getIsRepeat() {
+            return isRepeat;
+        }
+
+        public void setIsRepeat(String isRepeat) {
+            this.isRepeat = isRepeat;
+        }
+
+        public String getCreateTime() {
+            return createTime;
+        }
+
+        public void setCreateTime(String createTime) {
+            this.createTime = createTime;
+        }
+
+        public String getDayIntegral() {
+            return dayIntegral;
+        }
+
+        public void setDayIntegral(String dayIntegral) {
+            this.dayIntegral = dayIntegral;
+        }
+
+        public String getDayScore() {
             return dayScore;
         }
 
-        public void setDayScore(int dayScore) {
+        public void setDayScore(String dayScore) {
             this.dayScore = dayScore;
-        }
-
-        public int getWeekScore() {
-            return weekScore;
-        }
-
-        public void setWeekScore(int weekScore) {
-            this.weekScore = weekScore;
-        }
-
-        public int getCycle() {
-            return cycle;
-        }
-
-        public void setCycle(int cycle) {
-            this.cycle = cycle;
-        }
-
-        public int getIsAdd() {
-            return isAdd;
-        }
-
-        public void setIsAdd(int isAdd) {
-            this.isAdd = isAdd;
-        }
-
-        public int getUserTotalScore() {
-            return userTotalScore;
-        }
-
-        public void setUserTotalScore(int userTotalScore) {
-            this.userTotalScore = userTotalScore;
         }
     }
 

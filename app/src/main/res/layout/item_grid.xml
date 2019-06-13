@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="75dp"
-    android:layout_height="40dp"
+    android:layout_height="30dp"
     android:orientation="horizontal"
     android:id="@+id/ll_item"
     android:background="@drawable/shape_huise"
     >
 
+    <CheckBox
+        android:layout_gravity="center_vertical"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:id="@+id/ck"
+        android:text="Aaaaaaa"
+        android:textColor="@color/drawable_text_answer"
+        android:gravity="center"
+        android:layout_width="75dp"
+        android:layout_height="30dp"
+        android:background="@drawable/select_checkbox"
 
+        android:button="@null" />
         <TextView
+            android:visibility="gone"
             android:background="@drawable/shape_huise"
             android:layout_centerInParent="true"
             android:id="@+id/tv_title"
@@ -22,6 +36,7 @@
             android:textSize="15dp"/>
 
         <ImageView
+            android:visibility="gone"
             android:layout_marginTop="5dp"
             android:layout_alignParentRight="true"
             android:id="@+id/img"

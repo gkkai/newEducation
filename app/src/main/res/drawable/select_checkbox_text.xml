@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/black6" android:state_checked="false"/>
-    <item android:color="@color/white" android:state_checked="true" />
+    <!--<item android:color="@color/black6" android:state_checked="false"/>-->
+    <!--<item android:color="@color/white" android:state_checked="true" />-->
+    <item android:state_checked="true" android:drawable="@mipmap/ic_support_selected"></item>
+    <item android:state_checked="false" android:drawable="@mipmap/ic_support_unselected"></item>
+    <item  android:drawable="@mipmap/ic_support_unselected"></item>
 </selector>

@@ -351,6 +351,7 @@ public class OkhttpUtils {
         urlBuilder.addQueryParameter("type", jsonObject.getString("type"));
         urlBuilder.addQueryParameter("pageNumber", jsonObject.getString("pageNumber"));
         urlBuilder.addQueryParameter("pageSize", jsonObject.getString("pageSize"));
+        urlBuilder.addQueryParameter("paperTypeId", jsonObject.getString("paperTypeId"));
         reqBuild.addHeader("userId", jsonObject.getString("userId"));
         reqBuild.addHeader("token", NewPreferManager.getToken());
         reqBuild.url(urlBuilder.build());
@@ -628,6 +629,58 @@ public class OkhttpUtils {
 
     }
 
+    public void getget(String url, Map<String, String> maps, final onCallBack onCallBack) {
+        Request.Builder reqBuild = new Request.Builder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(ChanYeXY + url)
+                .newBuilder();
+        //循环form表单，将表单内容添加到form builder中
+        for (Map.Entry<String, String> entry : maps.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            urlBuilder.addQueryParameter(key, value);
+            if (key.equals("userId")) {
+                reqBuild.addHeader(key, value);
+            }
+
+            // builder.add(key,value);
+        }
+        reqBuild.addHeader("token", NewPreferManager.getToken());
+
+
+        reqBuild.url(urlBuilder.build());
+        Request request = reqBuild.build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                if (onCallBack != null) {
+//切换到主线程
+
+                    onCallBack.onFaild(e);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+
+
+                try {
+                    if (response != null && response.isSuccessful()) {
+                        String json = response.body().string();
+                        if (onCallBack != null) {
+                            onCallBack.onResponse(json);
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (onCallBack != null) {
+                    onCallBack.onFaild(new Exception("异常"));
+                }
+            }
+        });
+    }
 
     public void getList(String url, Map<String, String> maps, final onCallBack onCallBack) {
         Request.Builder reqBuild = new Request.Builder();
@@ -699,12 +752,6 @@ public class OkhttpUtils {
                                 Log.i("response.code=" ,"静默自动刷新Token,然后重新请求数据"+response.code());
                                 //同步请求方式，获取最新的Token
                                 String newSession;
-//                                if(!TextUtils.isEmpty(NewPreferManager.getrefreshToken())){
-//                                     newSession = NewPreferManager.getrefreshToken();
-//                                   // NewPreferManager.saverefreshToken("");
-//                                }else {
-//
-//                                }
                                 newSession = getNewToken();
 
                                 Log.i("token","rtoken====="+newSession);

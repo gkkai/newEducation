@@ -122,7 +122,6 @@ public class CIndexTFragment extends BaseFragment implements View.OnClickListene
             case 1005:
                int i= data.getIntExtra("position",0);
 //                names= gson.fromJson(PreferUtils.getString("TAB",""),List.class);
-                adapter.setList(MyApplication.indexColumnBean.getData());
                 viewPager.setCurrentItem(data.getIntExtra("position",0));
                 tabLayout.getTabAt(data.getIntExtra("position",0)).select();
 
@@ -139,6 +138,7 @@ public class CIndexTFragment extends BaseFragment implements View.OnClickListene
 
       Map<String,String> map=new HashMap<>();
         map.put("columnType","1");
+        map.put("orgId",NewPreferManager.getOrgId());
         OkhttpUtils.getInstance(getContext()).getList("academyService/column/getList", map, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
@@ -154,7 +154,6 @@ public class CIndexTFragment extends BaseFragment implements View.OnClickListene
                             Gson gson=new Gson();
                             IndexColumnBean bean=gson.fromJson(json,IndexColumnBean.class);
                             adapter = new MsgContentFragmentAdapter(getChildFragmentManager());
-                            MyApplication.indexColumnBean=bean;
                             // 更新适配器数据
                             adapter.setList(bean.getData());
                             viewPager.setAdapter(adapter);

@@ -197,10 +197,27 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
                                 +"   "+item.getCreateTime());
                         List<String> result = Arrays.asList(item.getCoverImage().split(","));
+                        if(result.size()>=3){
 
-                        helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
-                        helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
-                        helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
+                        }
+                        switch (result.size()){
+                            case 1:
+                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                                break;
+                            case 2:
+                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                                break;
+                            case 3:
+                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
+                                helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                                break;
+                        }
+
 
 
                         break;
@@ -217,6 +234,8 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                 intent.putExtra("type","0");
                 intent.putExtra("url","academyService/html/articleInfo.html?id="+Adapter.getItem(position-1).getId());
                 intent.putExtra("title",Adapter.getItem(position-1).getTitle());
+                intent.putExtra("description",Adapter.getItem(position-1).getContent());
+                intent.putExtra("id",Adapter.getItem(position-1).getId());
                 startActivity(intent);
             }
         });

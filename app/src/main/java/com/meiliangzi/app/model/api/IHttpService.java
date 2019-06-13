@@ -2,6 +2,7 @@ package com.meiliangzi.app.model.api;
 
 
 import com.meiliangzi.app.db.bean.FreebackBean;
+import com.meiliangzi.app.db.bean.MapInfoBean;
 import com.meiliangzi.app.model.annotation.HttpRequest;
 import com.meiliangzi.app.model.bean.AddFrouppicBean;
 import com.meiliangzi.app.model.bean.AddMapBean;
@@ -159,8 +160,8 @@ public interface IHttpService {
      * 地理位置添加
      * @param context
      */
-    @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","phone","lng","lat"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
-    public void addmapss(Object context,int user_id,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat);
+    @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","phone","lng","lat","image","describe"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
+    public void addmaps(Object context,String user_id,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat,String image,String describe);
     /**
      * 县列表
      * @param context
@@ -1131,12 +1132,12 @@ public interface IHttpService {
     @HttpRequest(arguments = {"userId"}, url = "rule/", resultClass = RuleListBean.class, refreshMethod = "getList")
     public void get(Object context,String userId );
     /**
-     * 个人积分明细
+     * 地理位置详情
      *
      * @param context 上下文对象
      */
-    @HttpRequest(arguments = {"token"}, url = "organizationService/userAccount/refresh", resultClass = BaseBean.class, refreshMethod = "refresh")
-    public void refresh(Object context,String token);
+    @HttpRequest(arguments = {"id"}, url = "", resultClass = MapInfoBean.class, refreshMethod = "mapInfo")
+    public void mapInfo(Object context,int id);
 
 }
 

@@ -27,7 +27,7 @@ int bool rc_stop_custom_service_when_quit 0x7f070007
 int bool rc_typing_status 0x7f070008
 int color rc_ad_file_list_no_select_file_text_state 0x7f080000
 int color rc_ad_file_list_select_file_text_state 0x7f080001
-int color rc_btn_file_list_send 0x7f080030
+int color rc_btn_file_list_send 0x7f080031
 int color rc_conversation_list_divider_color 0x7f080002
 int color rc_conversation_top_bg 0x7f080003
 int color rc_divider_color 0x7f080004
@@ -74,6 +74,7 @@ int color rc_voice_color 0x7f08002c
 int color rc_voice_color_left 0x7f08002d
 int color rc_voice_color_right 0x7f08002e
 int color rc_web_progress_bar 0x7f08002f
+int color zed 0x7f080030
 int dimen rc_conversation_item_data_size 0x7f090000
 int dimen rc_conversation_item_name_size 0x7f090001
 int dimen rc_conversation_item_time_size 0x7f090002

@@ -43,7 +43,7 @@ public final class R {
     public static final class color {
         public static final int rc_ad_file_list_no_select_file_text_state = 0x7f080000;
         public static final int rc_ad_file_list_select_file_text_state = 0x7f080001;
-        public static final int rc_btn_file_list_send = 0x7f080030;
+        public static final int rc_btn_file_list_send = 0x7f080031;
         public static final int rc_conversation_list_divider_color = 0x7f080002;
         public static final int rc_conversation_top_bg = 0x7f080003;
         public static final int rc_divider_color = 0x7f080004;
@@ -90,6 +90,7 @@ public final class R {
         public static final int rc_voice_color_left = 0x7f08002d;
         public static final int rc_voice_color_right = 0x7f08002e;
         public static final int rc_web_progress_bar = 0x7f08002f;
+        public static final int zed = 0x7f080030;
     }
     public static final class dimen {
         public static final int rc_conversation_item_data_size = 0x7f090000;

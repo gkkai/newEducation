@@ -81,10 +81,10 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
 
     @BindView(R.id.imag_share)
     ImageView imag_share;
-    private Timer timer;
+    private Timer timer,timer1;
     long firsttime = System.currentTimeMillis();
     private String url;
-
+    private String id;
     @BindView(R.id.tv_title)
     TextView tv_title;
     private String title;
@@ -92,7 +92,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     private long time;
     private boolean isplay=false;
     private long timeFormat=0;
-
+    private String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,7 +101,8 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
         type=getIntent().getStringExtra("type");
         url=getIntent().getStringExtra("url");
         title=getIntent().getStringExtra("title");
-
+        description=getIntent().getStringExtra("description");
+        id=getIntent().getStringExtra("id");
         onCreateView(R.layout.activity_details);
     }
 
@@ -110,6 +111,16 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
        // tv_title.setText(title);
 
         if("0".equals(type)){
+            imag_share.setVisibility(View.VISIBLE);
+            timer1=new Timer();
+            timer1.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    timeFormat++;
+
+
+                }
+            },0,1000);
             tv_title.setText("文章详情");
             String ruleslists= NewPreferManager.getRuleLists();
             if(ruleslists.equals("")){
@@ -133,7 +144,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
                     if("0".equals(type)){
                         maps.put("ruleId",ArticlereadingId);
                     }
-
+                    maps.put("comprehensiveId",id);
                     OkhttpUtils.getInstance(DetailsWebActivity.this).doPost("academyService/detail/readArticlesScore", maps, new OkhttpUtils.onCallBack() {
                         @Override
                         public void onFaild(Exception e) {
@@ -142,6 +153,12 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
 
                         @Override
                         public void onResponse(String json) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ToastUtils.show("文章结束"+time*1000);
+                                }
+                            });
 
 
                         }
@@ -150,13 +167,10 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
                 }
             },time*1000);
 
+        }else {
+            imag_share.setVisibility(View.GONE);
+            tv_title.setText(title);
         }
-//        else if("1".equals(type)){
-//
-//        }
-//        if("0".equals(type)||"1".equals(type)){
-//
-//        }
 
         imag_share.setOnClickListener(this);
         webview.loadUrl(ChanYeXY+url);
@@ -312,10 +326,10 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     private void  sharewein(){
         UMImage image = new UMImage(this, R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
-        web.setTitle("产业通");//标题
+        UMWeb web = new UMWeb(ChanYeXY+url);
+        web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription("产业通");//描述
+        web.setDescription(description);//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN)
                 .withMedia(web)
@@ -325,10 +339,10 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     private void  sharewcircle(){
         UMImage image = new UMImage(this, R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
-        web.setTitle("产业通");//标题
+        UMWeb web = new UMWeb(ChanYeXY+url);
+        web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription("产业通");//描述
+        web.setDescription(description);//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN_CIRCLE)
                 .withMedia(web)
@@ -368,6 +382,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     public void onBackClick(View v) {
         if("0".equals(type)){
             timer.cancel();
+            timer1.cancel();
             Map<String,String> maps=new HashMap<>();
             maps.put("userId",NewPreferManager.getId());
             if("0".equals(type)){
@@ -376,7 +391,8 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
             }
             long nowTime = System.currentTimeMillis();
             long time=(nowTime-firsttime)/1000;
-            maps.put("time", String.valueOf(time));
+            maps.put("time", String.valueOf(timeFormat));
+            maps.put("comprehensiveId",id);
             OkhttpUtils.getInstance(DetailsWebActivity.this).doPost("academyService/detail/essayLearningDurationScore", maps, new OkhttpUtils.onCallBack() {
                 @Override
                 public void onFaild(Exception e) {
@@ -385,6 +401,12 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
 
                 @Override
                 public void onResponse(String json) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtils.show("timeFormat");
+                        }
+                    });
 
                 }
             });

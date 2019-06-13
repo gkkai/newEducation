@@ -13,6 +13,7 @@ import android.view.Display;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Surface;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.Window;
@@ -43,10 +44,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.BindView;
+import cn.jzvd.JZMediaInterface;
+import cn.jzvd.JZMediaSystem;
 import cn.jzvd.JZUserAction;
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 
+import static com.meiliangzi.app.config.Constant.ChanYeXY;
 import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN;
 import static com.umeng.socialize.bean.SHARE_MEDIA.WEIXIN_CIRCLE;
 
@@ -71,9 +75,6 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     private Timer timer,timer1;
     long firsttime = System.currentTimeMillis();
     private String url;
-
-    private boolean mMainOnPaused = false;
-    private boolean mMainOnResumed = false;
     private String title;
     private Dialog dialog;
     private View inflate;
@@ -85,19 +86,18 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     private long timeFormat=0;
     private String WatchVideoId="402881e56a47e6c8016a47e9363c0002";
     private String  DurationWatchVideoId="402881e56a47e6c8016a47e9363c0004";
-    private String videoUrl;
+    private String videotime;
+    private String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         id=getIntent().getStringExtra("id");
+        videotime=getIntent().getStringExtra("videotime");
         // 隐藏标题栏
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         //去掉Activity上面的状态栏
         getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
-        // 设置这两句切换时会直接进入横屏全屏模式
-        videoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;  //横向
-        videoPlayer.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;  //纵向
 
         onCreateView(R.layout.activity_video_play);
         if (this.getResources().getConfiguration().orientation ==
@@ -176,6 +176,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initComponent() {
+        url=ChanYeXY+" academyService/html/videoInfo.html?id="+id;
         Map<String,String> map=new HashMap<>();
         OkhttpUtils.getInstance(this).getList("academyService/video/findById/"+id, map, new OkhttpUtils.onCallBack() {
             @Override
@@ -191,7 +192,8 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
                             Gson gson=new Gson();
 
                             VideoBean bean=gson.fromJson(json,VideoBean.class);
-                            videoUrl=bean.getData().getVideoPath();
+                            description=bean.getData().getContent();
+                            title=bean.getData().getTitle();
                             initview(bean);
 
 
@@ -218,12 +220,13 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
         videoPlayer.setUp(bean.getData().getVideoPath()
                 , JZVideoPlayerStandard.CURRENT_STATE_NORMAL,"");
-   ImageLoader.getInstance().displayImage(bean.getData().getCoverImage(), videoPlayer.thumbImageView, MyApplication.getSimpleOptions(0, 0));
-//                //TODO  首页
-//        videoPlayer.setMediaController();
-        setImageSize();
+        ImageLoader.getInstance().displayImage(bean.getData().getCoverImage(), videoPlayer.thumbImageView, MyApplication.getSimpleOptions(0, 0));
+
         videoPlayer.setJzUserAction(new MyUserActionStandard());
         videoPlayer.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+        videoPlayer.setMediaInterface(new JZMediaSystem());
+        videoPlayer.startButton.performClick();
+        setImageSize();
         tx_title.setText(bean.getData().getTitle());
         tv_departmentName.setText(bean.getData().getDepartmentName());
         tv_time.setText(bean.getData().getCreateTime());
@@ -313,6 +316,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         maps.put("userId",NewPreferManager.getId());
         maps.put("ruleId",DurationWatchVideoId);
         maps.put("time", timeFormat+"");
+        maps.put("comprehensiveId",id);
         OkhttpUtils.getInstance(this).doPost("academyService/detail/videoLearningDurationScore", maps, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
@@ -320,14 +324,21 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
             }
             @Override
             public void onResponse(String json) {
-                Log.i("VideoPlayActivity",timeFormat+"");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.show("阅读视频"+timeFormat);
+                    }
+                });
+
 
             }
         });
 
 
-        finish();
+
         super.onBackPressed();
+        finish();
     }
 
     @Override
@@ -386,10 +397,10 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     private void  sharewein(){
         UMImage image = new UMImage(this, R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
-        web.setTitle("产业通");//标题
+        UMWeb web = new UMWeb(url);
+        web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription("产业通");//描述
+        web.setDescription(description);//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN)
                 .withMedia(web)
@@ -399,10 +410,10 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     private void  sharewcircle(){
         UMImage image = new UMImage(this, R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
-        web.setTitle("产业通");//标题
+        UMWeb web = new UMWeb(url);
+        web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription("产业通");//描述
+        web.setDescription(description);//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN_CIRCLE)
                 .withMedia(web)
@@ -428,7 +439,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
                             maps.put("ruleId",WatchVideoId);
 
-
+                            maps.put("comprehensiveId",id);
                             OkhttpUtils.getInstance(getBaseContext()).doPost("academyService/detail/watchVideoScore", maps, new OkhttpUtils.onCallBack() {
                                 @Override
                                 public void onFaild(Exception e) {
@@ -437,8 +448,12 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
                                 @Override
                                 public void onResponse(String json) {
-
-                                    Log.i("VideoPlayActivity",time+"秒后调用视频阅读");
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                ToastUtils.show("阅读视频"+time);
+                                            }
+                                        });
 
                                 }
                             });
@@ -449,7 +464,13 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
                         @Override
                         public void run() {
                             if (isplay){
-                                timeFormat++;
+                                if(timeFormat>=Integer.valueOf(videotime)){
+
+                                }else {
+                                    timeFormat++;
+                                }
+                                if(timeFormat==time){}
+
                                 Log.i("VideoPlayActivity",timeFormat+"");
 
                             }
@@ -463,6 +484,9 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
                     Log.i("USER_EVENT", "ON_CLICK_START_ERROR" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_CLICK_START_AUTO_COMPLETE:
+                    //TODO  重播
+                    isplay=true;
+                    //timeFormat=0;
                     Log.i("USER_EVENT", "ON_CLICK_START_AUTO_COMPLETE" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_CLICK_PAUSE:
@@ -485,16 +509,14 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
                     break;
                 case JZUserAction.ON_ENTER_FULLSCREEN:
 
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+                    videoPlayer.FULLSCREEN_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE;  //横向
                     //videoPlayer.autoFullscreen(1);
                     Log.i("USER_EVENT", "ON_ENTER_FULLSCREEN" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_QUIT_FULLSCREEN:
                     //TODO 竖频
-                    //退出横频
-                    // videoPlayer.autoFullscreen(0);
-                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+                    videoPlayer.NORMAL_ORIENTATION = ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT;  //纵向
                     Log.i("USER_EVENT", "ON_QUIT_FULLSCREEN" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_ENTER_TINYSCREEN:
@@ -518,4 +540,62 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     }
 
 
+    private class MyJZMediaSystem extends JZMediaInterface {
+        @Override
+        public void start() {
+            Log.i("USER_EVENT", "1");
+        }
+
+        @Override
+        public void prepare() {
+            Log.i("USER_EVENT", "2");
+        }
+
+        @Override
+        public void pause() {
+            Log.i("USER_EVENT", "3");
+
+        }
+
+        @Override
+        public boolean isPlaying() {
+            Log.i("USER_EVENT", "4");
+            return false;
+        }
+
+        @Override
+        public void seekTo(long time) {
+            Log.i("USER_EVENT", "5");
+
+        }
+
+        @Override
+        public void release() {
+            Log.i("USER_EVENT", "6");
+
+        }
+
+        @Override
+        public long getCurrentPosition() {
+            Log.i("USER_EVENT", "7");
+            return 0;
+        }
+
+        @Override
+        public long getDuration() {
+            Log.i("USER_EVENT", "8");
+            return 0;
+        }
+
+        @Override
+        public void setSurface(Surface surface) {
+
+
+        }
+
+        @Override
+        public void setVolume(float leftVolume, float rightVolume) {
+
+        }
+    }
 }

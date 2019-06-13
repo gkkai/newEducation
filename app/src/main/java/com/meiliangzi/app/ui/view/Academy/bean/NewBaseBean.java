@@ -35,14 +35,14 @@ public class NewBaseBean {
 
    public class Data{
        private TokenVo tokenVo;
-       private String orgId;
+       private String personalOrgId;
 
        public String getOrgId() {
-           return orgId;
+           return personalOrgId;
        }
 
        public void setOrgId(String orgId) {
-           this.orgId = orgId;
+           this.personalOrgId = orgId;
        }
 
        public TokenVo getTokenVo() {

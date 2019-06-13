@@ -31,7 +31,7 @@
             app:tabPaddingStart="5dip"
             app:tabPaddingEnd="5dip"
             app:tabMode="fixed"
-            app:tabSelectedTextColor="@color/ac_filter_nature"
+            app:tabSelectedTextColor="@color/zm_red"
             app:tabTextAppearance="@style/tab_head"
             app:tabTextColor="@color/text_tips_color" />
         <View

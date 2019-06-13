@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
+import com.meiliangzi.app.ui.view.Academy.bean.WeekColumnBean;
 
 import java.util.List;
 
@@ -24,11 +26,13 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<IndexColumnBean.Data> datas;
+    private List<WeekColumnBean.Data> datas;
     private Context mContext;
     private LayoutInflater mLiLayoutInflater;
     private boolean isShow;
-    public MyAdapter(List<IndexColumnBean.Data> datas, Context context) {
+    private int pos;
+
+    public MyAdapter(List<WeekColumnBean.Data> datas, Context context) {
         this.datas = datas;
         this.mContext = context;
         this.mLiLayoutInflater = LayoutInflater.from(mContext);
@@ -40,14 +44,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
     }
+    public void setPos(int isshow){
+        this.pos=isshow;
+
+
+
+    }
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ViewHolder(mLiLayoutInflater.inflate(R.layout.item_grid, parent, false));
+       // return new ViewHolder(mLiLayoutInflater.inflate(R.layout.gradview_chex, parent, false));
+
     }
 
     @Override
     public void onBindViewHolder(MyAdapter.ViewHolder holder, int position) {
-        holder.tv_title.setText(datas.get(position).getColumnName());
+        holder.ck.setText(datas.get(position).getTypeName());
+        if(datas.get(position).ischos()){
+            holder.ck.setChecked(true);
+        }else {
+            holder.ck.setChecked(false);
+        }
+
        // holder.img.setImageResource(datas.get(position).getImg());
         if(isShow) {
             holder.img.setVisibility(View.VISIBLE);
@@ -67,17 +85,18 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public RelativeLayout ll_item;
         LinearLayout ll_hidden;
 
+        CheckBox ck;
         public ViewHolder(View itemView) {
             super(itemView);
 
             tv_title = (TextView) itemView.findViewById(R.id.tv_title);
             img = (ImageView) itemView.findViewById(R.id.img);
-
+            ck= (CheckBox) itemView.findViewById(R.id.ck);
             ll_item = (RelativeLayout) itemView.findViewById(R.id.ll_item);
             //ll_hidden = (LinearLayout) itemView.findViewById(R.id.ll_hidden);
         }
     }
-    public  List<IndexColumnBean.Data>  getdata(){
+    public  List<WeekColumnBean.Data>  getdata(){
         return datas;
     }
 }

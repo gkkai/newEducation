@@ -410,7 +410,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private void  sharewein(){
         UMImage image = new UMImage(getActivity(), R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("https://www.pgyer.com/vDpV");
         web.setTitle("产业通");//标题
         web.setThumb(image);  //缩略图
         web.setDescription("产业通");//描述
@@ -423,7 +423,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private void  sharewcircle(){
         UMImage image = new UMImage(getActivity(), R.mipmap.log2);//资源文件
 
-        UMWeb web = new UMWeb("https://www.baidu.com/");
+        UMWeb web = new UMWeb("https://www.pgyer.com/vDpV");
         web.setTitle("产业通");//标题
         web.setThumb(image);  //缩略图
         web.setDescription("产业通");//描述

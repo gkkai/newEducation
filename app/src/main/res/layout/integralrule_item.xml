@@ -27,7 +27,6 @@
             android:background="@drawable/shape_huise"
             android:layout_alignParentRight="true"
             android:textSize="12sp"
-            android:textColor="@drawable/select_checkbox_text"
             android:layout_marginTop="20dp"
             android:text="已完成"
             android:layout_width="58dp"

@@ -27,6 +27,7 @@ import com.meiliangzi.app.tools.picompressor.NativePlugin;
 import com.meiliangzi.app.ui.NewsDetailActivity;
 import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
 import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
+import com.meiliangzi.app.ui.view.Academy.bean.WeekColumnBean;
 import com.meiliangzi.app.ui.view.train.ZipFileBena;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -68,7 +69,7 @@ import static android.content.ContentValues.TAG;
  * @date 2016年5月1日 上午10:26:14
  */
 public class MyApplication extends MultiDexApplication implements RongIM.GroupInfoProvider, RongIM.GroupUserInfoProvider {
-    private static Stack<Activity> atyStack = new Stack<Activity>();
+    public static Stack<Activity> atyStack = new Stack<Activity>();
     private static DisplayImageOptions options;
     private static DisplayImageOptions.Builder builder;
     public  static int score=0;
@@ -94,6 +95,7 @@ public class MyApplication extends MultiDexApplication implements RongIM.GroupIn
     public static DepartmentuserNumberBean numberBean;
 
     public static IndexColumnBean indexColumnBean;
+    public static WeekColumnBean weekColumnBean;
     public static int id;
     /**
      * 集成融云应用的唯一标识, 前端后台都需要用到.

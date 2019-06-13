@@ -21,6 +21,7 @@
     <color name="rc_web_progress_bar">#9fcdfd</color>
 
     <color name="rc_draft_color">#cb120f</color>
+    <color name="zed">#E80017</color>
     <color name="rc_mentioned_color">#cc3333</color>
     <color name="rc_voice_color">#0195ff</color>
     <color name="rc_voice_color_left">#4385bf</color>

@@ -113,6 +113,7 @@ public class CVideoFragment extends BaseFragment implements View.OnClickListener
         //ProxyUtils.gethttpchanyexutyan().getList(this,"2");
         Map<String,String> map=new HashMap<>();
         map.put("columnType","2");
+        map.put("orgId",NewPreferManager.getOrgId());
         OkhttpUtils.getInstance(getContext()).getList("academyService/column/getList", map, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
@@ -128,12 +129,16 @@ public class CVideoFragment extends BaseFragment implements View.OnClickListener
                             Gson gson=new Gson();
                             IndexColumnBean bean=gson.fromJson(json,IndexColumnBean.class);
                             adapter = new MsgContentFragmentAdapter(getChildFragmentManager());
-                            MyApplication.indexColumnBean=bean;
+                        if(bean.getData()!=null&&bean.getData().size()!=0){
                             // 更新适配器数据
                             adapter.setList(bean.getData());
                             viewPager.setAdapter(adapter);
                             tabLayout.setupWithViewPager(viewPager);
                             tabLayout.getTabAt(0).select();
+                        }else {
+                            ToastUtils.show("暂无数据");
+                        }
+
 
                         }catch (Exception e){
                             ToastUtils.show(e.getMessage());

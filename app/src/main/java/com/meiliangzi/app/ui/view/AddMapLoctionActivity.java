@@ -1,5 +1,6 @@
 package com.meiliangzi.app.ui.view;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.AddMapBean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
@@ -24,20 +26,28 @@ import com.meiliangzi.app.ui.LoginActivity;
 import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.dialog.MyDialog;
+import com.meiliangzi.app.widget.DialogSelectPhoto;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.PermissionListener;
+import com.yanzhenjie.permission.Rationale;
+import com.yanzhenjie.permission.RationaleListener;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class AddMapLoctionActivity extends BaseActivity implements View.OnClickListener {
+public class AddMapLoctionActivity extends BaseActivity implements View.OnClickListener , PermissionListener {
     @BindView(R.id.iput_cityname)
     TextView iput_cityname;
     @BindView(R.id.iput_countyname)
     TextView iput_countyname;
     @BindView(R.id.loction_name)
     EditText loction_name;
-
+    private static final int REQUEST_CODE_PERMISSION_CAMERA_SD = 100;
+    private static final int REQUEST_CODE_SETTING = 101;
     @BindView(R.id.phene_number)
     EditText phene_number;
     @BindView(R.id.lat_id)
@@ -65,26 +75,73 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     private LayoutInflater Inflater;
     private MyDialog myDialog;
 
+    @BindView(R.id.image_add_image)
+    ImageView image_add_image;
+    private DialogSelectPhoto dialogSelect;
+    private String path;
+
+    @BindView(R.id.edit_describe)
+     EditText edit_describe;
+    @BindView(R.id.tv_dadian)
+     TextView tv_dadian;
+    private String cityname;
+    private String countyname;
+
+    private String phone;
+    private String describe;
+    private String image;
+    private String name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         onCreateView(R.layout.activity_add_map_loction);
+
         Inflater = LayoutInflater.from(this);
     }
 
     @Override
     protected void findWidgets() {
         tvEmpty.setOnClickListener(this);
+        image_add_image.setOnClickListener(this);
         lat =getIntent().getStringExtra("lat");
         lng =getIntent().getStringExtra("lng");
-        lat_id.setText(lat);
-        lng_id.setText(lng);
-        String lng=lng_id.getText().toString().trim();
-        String lat=lat_id.getText().toString().trim();
+
+        tv_dadian.setOnClickListener(this);
+
+        if("111".equals(getIntent().getStringExtra("type"))){
+            cityname =getIntent().getStringExtra("cityname");
+            countyname =getIntent().getStringExtra("countyname");
+            phone =getIntent().getStringExtra("phone");
+            image =getIntent().getStringExtra("image");
+            describe=getIntent().getStringExtra("describe");
+            name=getIntent().getStringExtra("name");
+            classification_id=getIntent().getIntExtra("classification_id",0);
+            cityid=getIntent().getIntExtra("cityid",0);
+            county_id=getIntent().getIntExtra("county_id",0);
+            lat_id.setText(lat);
+            lng_id.setText(lng);
+            iput_cityname.setText(cityname);
+            iput_countyname.setText(countyname);
+            phene_number.setText(phone);
+            loction_name.setText(name);
+            ImageLoader.getInstance().displayImage(image, image_add_image, MyApplication.getSimpleOptions(R.mipmap.test_user_star, R.mipmap.test_user_star));
+
+            edit_describe.setText(describe);
+        }
+        if(lat!=null&&lng!=null){
+            tv_dadian.setText("已打点");
+        }else {
+            tv_dadian.setText("未打点");
+        }
+
+
     }
 
     @Override
     protected void initComponent() {
+        dialogSelect = new DialogSelectPhoto();
+        dialogSelect.setType(1);
         if (TextUtils.isEmpty(NewPreferManager.getId())) {
 //            if (TextUtils.isEmpty(PreferManager.getUserId())) {
 //                tvEmpty.setText("请先登录");
@@ -173,6 +230,19 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.image_add_image:
+                AndPermission.with(this)
+                        .requestCode(REQUEST_CODE_PERMISSION_CAMERA_SD)
+                    .permission(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
+                    // rationale作用是：用户拒绝一次权限，再次申请时先征求用户同意，再打开授权对话框，避免用户勾选不再提示。
+                    .rationale(new RationaleListener() {
+                        @Override
+                        public void showRequestPermissionRationale(int requestCode, Rationale rationale) {
+                            AndPermission.rationaleDialog(AddMapLoctionActivity.this, rationale).show();
+                        }
+                    })
+                    .send();
+                break;
             case R.id.image_citylist:
                 Intent cityintent=new Intent(this,AddCityListsActivity.class);
                 cityintent.putExtra("type","city");
@@ -214,13 +284,16 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
 
                     RuleCheckUtils.checkEmpty(iput_countyname.getText().toString(), "请选择所在县");
                     RuleCheckUtils.checkEmpty(loction_name.getText().toString(), "请输入地址名称");
+
                     //TODO 地理位置添加
                     String name=loction_name.getText().toString();
                     //TODO 手机号码
                     String phone=phene_number.getText().toString();
-                    String lng=lng_id.getText().toString().trim();
-                    String lat=lat_id.getText().toString().trim();
-                    ProxyUtils.getHttpProxy().addmapss(AddMapLoctionActivity.this,Integer.valueOf(NewPreferManager.getId()),name,cityid,county_id,classification_id,phone,lng,lat);
+//                    String lng=lng_id.getText().toString().trim();
+//                    String lat=lat_id.getText().toString().trim();
+                    File image =new File(path);
+                    String describe=edit_describe.getText().toString().trim();
+                    ProxyUtils.getHttpProxy().addmaps(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,phone,lng,lat,path,describe);
                 } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());
                     e.printStackTrace();
@@ -235,6 +308,12 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                 }
 
                 break;
+            case R.id.tv_dadian:
+                Intent addintent=new Intent(this,AddMapActivity.class);
+                startActivityForResult(addintent,101);
+
+                break;
+
             default: setType(view.getId());
         }
 
@@ -290,18 +369,59 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode==105){
 
-        }else {
-            if(requestCode==103){
-                cityid=data.getIntExtra("cityid",0);
-                String string=    data.getStringExtra("cityname");
-                iput_cityname.setText(data.getStringExtra("cityname"));
-            }else if(requestCode==104){
-                iput_countyname.setText(data.getStringExtra("countyname"));
-                county_id=data.getIntExtra("county_id",0);
-            }
+            switch (requestCode) {
+                case 103:
+                    if(data!=null){
+                        cityid=data.getIntExtra("cityid",0);
+                        String string=    data.getStringExtra("cityname");
+                        iput_cityname.setText(data.getStringExtra("cityname"));
+                    }
+
+                    break;
+                case 104:
+                    if(data!=null){
+                        iput_countyname.setText(data.getStringExtra("countyname"));
+                        county_id=data.getIntExtra("county_id",0);
+                    }
+
+                    break;
+                case 101:
+                    if(data!=null){
+                        lng= data.getStringExtra("lng");
+                        lat=data.getStringExtra("lat");
+                        if(lat!=null&&lng!=null){
+                            tv_dadian.setText("已打点");
+                        }else {
+                            tv_dadian.setText("未打点");
+                        }
+                    }
+
+                    break;
+
+                default:
+
+                    path = dialogSelect.onActivityResult(this, requestCode, resultCode, data);
+                    if(path!=null){
+                        ImageLoader.getInstance().displayImage("file:///" + path, image_add_image, MyApplication.getSimpleOptions(R.mipmap.test_user_star, R.mipmap.test_user_star));
+
+                        //updatePersonInfo(new File(path));
+                    }
+                    break;
+
         }
+//        if (resultCode==105){
+//
+//        }else {
+//            if(requestCode==103){
+//
+//            }else if(requestCode==104){
+//                iput_countyname.setText(data.getStringExtra("countyname"));
+//                county_id=data.getIntExtra("county_id",0);
+//            }else {
+//
+//            }
+//        }
 
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -312,5 +432,24 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
         startActivity(intent);
         finish();
       //  super.onBackClick();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        // 只需要调用这一句，其它的交给AndPermission吧，最后一个参数是PermissionListener。
+        AndPermission.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+    @Override
+    public void onSucceed(int requestCode, List<String> grantPermissions) {
+        dialogSelect.getSelectPhoto(this);
+    }
+
+    @Override
+    public void onFailed(int requestCode, List<String> deniedPermissions) {
+        // 用户否勾选了不再提示并且拒绝了权限，那么提示用户到设置中授权。
+        if (AndPermission.hasAlwaysDeniedPermission(this, deniedPermissions)) {
+            // 第一种：用默认的提示语。
+            AndPermission.defaultSettingDialog(this, REQUEST_CODE_SETTING).show();
+        }
     }
 }

@@ -1,31 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="#11ffffff">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="285dp"
-        android:layout_height="149dp"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:background="@drawable/mydeletedialog"
         android:orientation="vertical">
 
         <TextView
+            android:layout_centerHorizontal="true"
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="26dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="确定退出此次考试"
             android:textColor="@color/colorBlack"
             android:textSize="19sp" />
 
-
         <TextView
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/message1"
+            android:layout_marginTop="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:text="退出后数据会被保存"
+            android:textColor="#666666"
+            android:textSize="14sp" />
+        <TextView
+            android:layout_below="@id/title"
+            android:layout_centerHorizontal="true"
             android:id="@+id/message"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="15dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -34,20 +48,23 @@
             android:textColor="#666666"
             android:textSize="13sp" />
         <View
+
             android:background="@color/colorGrayLine"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="90dp"
             android:layout_width="match_parent"
             android:layout_height="1dp"></View>
 
         <LinearLayout
+            android:layout_marginTop="91dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/no"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="@null"
@@ -59,13 +76,13 @@
             <View
                 android:background="@color/colorGrayLine"
                 android:layout_width="0.5dp"
-                android:layout_height="match_parent"></View>
+                android:layout_height="45dp"></View>
 
 
             <Button
                 android:id="@+id/yes"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="45dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="1"
                 android:background="@null"
@@ -75,6 +92,6 @@
                 android:textColor="#E80017"
                 android:textSize="14sp" />
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

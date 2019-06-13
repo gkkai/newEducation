@@ -12,7 +12,7 @@ public class BaseInfo {
      */
 
     private int code;
-    private String success;
+    private String message;
     private String data;
 
     public int getCode() {
@@ -24,11 +24,11 @@ public class BaseInfo {
     }
 
     public String getSuccess() {
-        return success;
+        return message;
     }
 
     public void setSuccess(String success) {
-        this.success = success;
+        this.message = success;
     }
 
     public String getMsg() {

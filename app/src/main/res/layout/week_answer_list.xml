@@ -30,10 +30,11 @@
                 android:textSize="12sp"
                 android:id="@+id/tv_isanswer1"
                 android:gravity="top"
-                android:text="未达"
+                android:text="未作答"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#999999"/>
+
         </RelativeLayout>
         <RelativeLayout
             android:visibility="gone"

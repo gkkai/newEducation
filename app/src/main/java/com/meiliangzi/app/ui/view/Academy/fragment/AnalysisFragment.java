@@ -102,7 +102,18 @@ public class AnalysisFragment extends BaseFragment {
                     helper.showOrGoneView(R.id.ll_chose,false);
                     helper.showOrGoneView(R.id.ll_blanks,true);
                     if(MyApplication.paperBean.getData()!=null&&MyApplication.paperBean.getData().get(Integer.valueOf(position)).getUserAnswer()!=null&&MyApplication.paperBean.getData().get(Integer.valueOf(position)).getUserAnswer().size()!=0){
-
+                    }
+                    if(pos==0){
+                        helper.showOrHideView(R.id.text,true);
+                    }else {
+                        helper.showOrHideView(R.id.text,false);
+                    }
+                    if(!item.ischos){
+                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).setIschos(false);
+                        ((EditText)helper.getView(R.id.edit_Answer)).setHint("请输入答案");
+                    }else {
+                        ((EditText)helper.getView(R.id.edit_Answer)).setText(item.getValue());
+                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).setIschos(true);
                     }
                     ((EditText)helper.getView(R.id.edit_Answer)).setFocusable(false);
 

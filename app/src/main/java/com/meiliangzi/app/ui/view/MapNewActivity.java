@@ -157,8 +157,9 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
                         webview.loadUrl("javascript:+androidGetAddress()");
                     }
                 });*/
-                Intent addintent=new Intent(this,AddMapActivity.class);
-                startActivityForResult(addintent,101);
+                Intent addintent=new Intent(this,AddMapLoctionActivity.class);
+                //startActivityForResult(addintent,101);
+                startActivity(addintent);
                 //TODO 添加位置
                 break;
             case R.id.text_bd_name:
@@ -375,6 +376,7 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
                             js.put("image", ((CountyListbean.DataBean.MapinfoBean)adapter.getChild(i,i1)).getImage());
                             js.put("lat", ((CountyListbean.DataBean.MapinfoBean)adapter.getChild(i,i1)).getLatitude());
                             js.put("lng", ((CountyListbean.DataBean.MapinfoBean)adapter.getChild(i,i1)).getLongitude());
+                            js.put("id", ((CountyListbean.DataBean.MapinfoBean)adapter.getChild(i,i1)).getId());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

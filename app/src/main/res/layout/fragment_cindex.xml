@@ -78,13 +78,13 @@
             android:layout_height="50dp"
             app:tabBackground="@color/white"
             app:tabIndicatorColor="@color/zm_red"
-            app:tabIndicatorHeight="1dip"
+            app:tabIndicatorHeight="2dip"
             app:tabMode="scrollable"
             app:tabMinWidth="50dip"
             app:tabPaddingStart="5dip"
             app:tabPaddingEnd="5dip"
             app:tabGravity="center"
-            app:tabSelectedTextColor="@color/ac_filter_nature"
+            app:tabSelectedTextColor="@color/zm_red"
             app:tabTextAppearance="@style/tab_head"
             app:tabTextColor="@color/text_tips_color" />
         <ImageView

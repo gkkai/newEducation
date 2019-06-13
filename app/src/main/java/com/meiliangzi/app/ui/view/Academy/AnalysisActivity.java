@@ -149,8 +149,11 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
 
                                             }else {
                                                 for (int j = 0; j < MyApplication.paperBean.getData().get(i).getUserAnswer().size(); j++) {
+
+
                                                     if (MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getKey())) {
                                                         MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
+                                                        MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setValue(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getValue());
                                                     }
                                                 }
                                             }
@@ -184,6 +187,8 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
             });
 
         }else {
+            //academyService/examinationUserPaperQuestions/getList
+            //
             OkhttpUtils.getInstance(this).getList("academyService/examinationUserPaperQuestions/getList", jsonObject, new OkhttpUtils.onCallBack() {
                 @Override
                 public void onFaild(Exception e) {
@@ -214,6 +219,8 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
                                                 for (int j = 0; j < MyApplication.paperBean.getData().get(i).getUserAnswer().size(); j++) {
                                                     if (MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getKey())) {
                                                         MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
+                                                        MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setValue(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getValue());
+
                                                     }
                                                 }
                                             }
