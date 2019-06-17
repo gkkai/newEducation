@@ -169,9 +169,12 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_big_title)).setText(item.getTitle());
                         ((TextView)helper.getView(R.id.tv_big_videoTime)).setText( item.TimeString());
 
-
-                        ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
-                                +"   "+item.getCreateTime());
+                        if(null==item.getDepartmentName()){
+                            ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getUpdateTime());
+                        }else {
+                            ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
+                                    +"   "+item.getUpdateTime());
+                        }
                         helper.setImageByUrl(R.id.image_big_one,item.getCoverImage(),R.mipmap.photo,R.mipmap.photo);
                         break;
                     case 2:
@@ -179,8 +182,12 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_small_image,true);
                         ((TextView)helper.getView(R.id.tv_small_title)).setText(item.getTitle());
                         ((TextView)helper.getView(R.id.tv_smiall_videoTime)).setText( item.TimeString());
-                        ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
-                                +"   "+item.getCreateTime());
+                        if(null==item.getDepartmentName()){
+                            ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getUpdateTime());
+                        }else {
+                            ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
+                                    +"   "+item.getUpdateTime());
+                        }
                         helper.setImageByUrl(R.id.image_small,item.getCoverImage(),R.mipmap.smallphoto,R.mipmap.smallphoto);
 
                         break;

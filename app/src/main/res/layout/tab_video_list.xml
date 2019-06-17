@@ -54,6 +54,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+
         android:id="@+id/rl_small_image"
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -73,9 +74,11 @@
                 android:textColor="#333333"
                 android:text="全民国家安全教育日|这份网络安全书请查看"
                 android:layout_width="match_parent"
-                android:layout_height="60dp" />
+                android:layout_height="wrap_content" />
 
             <TextView
+                android:lines="1"
+                android:ellipsize="end"
                 android:layout_alignParentBottom="true"
                 android:id="@+id/tv_small_department"
                 android:gravity="bottom"
@@ -83,7 +86,7 @@
                 android:textColor="#999999"
                 android:text="安环部  2019-04-12"
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content" />
         </RelativeLayout>
 
         <com.meiliangzi.app.widget.SemicircleImageView

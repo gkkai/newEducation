@@ -316,10 +316,18 @@ public class TopSearchActivity extends BaseActivity implements View.OnClickListe
                             ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
                                     +"   "+item.getCreateTime());
                             List<String> result = Arrays.asList(item.getCoverImage().split(","));
+                            if(result.size()>=1){
+                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.nocourse,R.mipmap.nocourse);
 
-                            helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.nocourse,R.mipmap.nocourse);
-                            helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.nocourse,R.mipmap.nocourse);
-                            helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.nocourse,R.mipmap.nocourse);
+                            }
+                            if(result.size()>=2){
+                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.nocourse,R.mipmap.nocourse);
+
+                            }
+                            if(result.size()>=3){
+                                helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.nocourse,R.mipmap.nocourse);
+
+                            }
 
 
                             break;

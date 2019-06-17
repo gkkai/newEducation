@@ -104,7 +104,7 @@ public class MapDetailsActivity extends BaseActivity implements View.OnClickList
                 intent.putExtra("phone",bean.getData().getPhone());
                 intent.putExtra("describe",bean.getData().getDescribe());
                 intent.putExtra("county_id",bean.getData().getCounty_id());
-
+                intent.putExtra("county_id",bean.getData().getId());
                 intent.putExtra("classification_id",bean.getData().getClassification_id());
                 intent.putExtra("cityid",bean.getData().getCityName());
                 intent.putExtra("name",bean.getData().getName());

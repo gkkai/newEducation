@@ -189,7 +189,7 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
         }else {
             //academyService/examinationUserPaperQuestions/getList
             //
-            OkhttpUtils.getInstance(this).getList("academyService/examinationUserPaperQuestions/getList", jsonObject, new OkhttpUtils.onCallBack() {
+            OkhttpUtils.getInstance(this).getList("academyService/examinationUserPaperQuestions/getAnalysisList", jsonObject, new OkhttpUtils.onCallBack() {
                 @Override
                 public void onFaild(Exception e) {
 

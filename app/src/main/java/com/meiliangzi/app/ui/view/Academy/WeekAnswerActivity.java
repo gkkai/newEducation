@@ -124,9 +124,6 @@ public class WeekAnswerActivity  extends BaseActivity  {
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//                adapter.weekListFra   gments.get(position).setType(adapter.names.get(pos).getType());
-//                adapter.weekListFragments.get(position).setPaperTypeId(adapter.names.get(pos).getId());
-//                adapter.weekListFragments.get(position).onRefresh();
             }
 
             @Override
@@ -274,8 +271,17 @@ public class WeekAnswerActivity  extends BaseActivity  {
 //                }else {
 //                    myAdapter.notifyItemMoved(fromPosition, toPosition);
 //                }
-                //TODO  保存本地
-                NewPreferManager.saverefreshToken(gson.toJson(bean));
+                //bean.getData().add(new WeekColumnBean.Data());
+                if("0".equals(type)){
+                   // tv_title.setText("智能答题");
+                    //TODO  保存本地
+                    NewPreferManager.saveIntelligence(gson.toJson(bean));
+                }else if("1".equals(type)){
+                    //tv_title.setText("每周一答");
+                    //TODO  保存本地
+                    NewPreferManager.saveWeekColumbean(gson.toJson(bean));
+                }
+
                 myAdapter.setPos(tabLayout.getSelectedTabPosition());
                 myAdapter.notifyItemMoved(fromPosition, toPosition);
                 myAdapter.getdata();
@@ -364,37 +370,78 @@ public class WeekAnswerActivity  extends BaseActivity  {
                     public void run() {
                         try {
                             WeekColumnBean bean=gson.fromJson(json,WeekColumnBean.class);
+
                             if(bean.getData().size()==0){
                                 ToastUtils.show("暂无数据");
                             }else {
-                                if(!NewPreferManager.getWeekColumbean().equals("")){
-                                    WeekColumnBean bean1=gson.fromJson(NewPreferManager.getWeekColumbean(),WeekColumnBean.class);
+                                if("0".equals(type)){
+                                    // tv_title.setText("智能答题");
+                                    //TODO  保存本地
+                                   // NewPreferManager.saveIntelligence(gson.toJson(bean));
+                                    if(!NewPreferManager.getIntelligence().equals("")){
+                                        WeekColumnBean bean1=gson.fromJson(NewPreferManager.getIntelligence(),WeekColumnBean.class);
+                                        //TODO  先清除
+                                        for(int i=0;i<bean1.getData().size();i++){
 
-
-                                    for(int i=0;i<bean.getData().size();i++){
-                                        for(int j=0;j<bean1.getData().size();j++){
-                                            if(bean1.getData().get(j).getId()==bean.getData().get(i).getId()){
+                                            if(iscontains(bean,bean1.getData().get(i))){
 
                                             }else {
-                                                bean1.getData().add(bean.getData().get(j));
-                                                break;
+                                                bean1.getData().remove(i);
                                             }
                                         }
-                                    }
 
-                                }else {
-                                    if(adapter!=null){
-                                        adapter=null;
+
+                                        for(int i=0;i<bean.getData().size();i++){
+                                            if(iscontains(bean1,bean.getData().get(i))){
+
+                                            }else {
+                                                bean1.getData().add(bean.getData().get(i));
+                                            }
+//
+                                        }
+                                        bean=bean1;
+                                    }else {
+
                                     }
-                                    adapter = new MsgContentFragmentAdapter(getSupportFragmentManager());
-                                    //Adapter.setDatas(bean.getData());
-                                    // 更新适配器数据
-                                    adapter.setList(bean.getData());
-                                    viewPager.setAdapter(adapter);
-                                    viewPager.setOffscreenPageLimit(bean.getData().size()-1);
-                                    tabLayout.setupWithViewPager(viewPager);
-                                    tabLayout.getTabAt(0).select();
+                                }else if("1".equals(type)){
+                                    if(!NewPreferManager.getWeekColumbean().equals("")){
+                                        WeekColumnBean bean1=gson.fromJson(NewPreferManager.getWeekColumbean(),WeekColumnBean.class);
+                                        //TODO  先清除
+                                        for(int i=0;i<bean1.getData().size();i++){
+
+                                            if(iscontains(bean,bean1.getData().get(i))){
+
+                                            }else {
+                                                bean1.getData().remove(i);
+                                            }
+                                        }
+
+
+                                        for(int i=0;i<bean.getData().size();i++){
+                                            if(iscontains(bean1,bean.getData().get(i))){
+
+                                            }else {
+                                                bean1.getData().add(bean.getData().get(i));
+                                            }
+//
+                                        }
+                                        bean=bean1;
+                                    }else {
+
+                                    }
                                 }
+
+                                if(adapter!=null){
+                                    adapter=null;
+                                }
+                                adapter = new MsgContentFragmentAdapter(getSupportFragmentManager());
+                                //Adapter.setDatas(bean.getData());
+                                // 更新适配器数据
+                                adapter.setList(bean.getData());
+                                viewPager.setAdapter(adapter);
+                                viewPager.setOffscreenPageLimit(bean.getData().size()-1);
+                                tabLayout.setupWithViewPager(viewPager);
+                                tabLayout.getTabAt(0).select();
 
                                 initView(bean);
                             }
@@ -410,6 +457,14 @@ public class WeekAnswerActivity  extends BaseActivity  {
         });
 
 
+    }
+    private boolean iscontains(WeekColumnBean bean,WeekColumnBean.Data bean1){
+        for(int i=0;i<bean.getData().size();i++){
+                if(bean1.getId().equals(bean.getData().get(i).getId())){
+                    return true;
+            }
+        }
+        return false;
     }
     private void shownavigation( ) {
         dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
@@ -450,14 +505,6 @@ public class WeekAnswerActivity  extends BaseActivity  {
 
         @Override
         public int getItemPosition(Object object) {
-//            for (int i = 0; i < names.size(); i++) {
-//                // 用标签判断是不是同一个fragment
-//                if (names.get(i).equals(((WeekListFragment) object).getTitle())) {
-//                    //int newPosition = adapter.get();
-////                    Log.i("tab", "new position=" + newPosition + "   which is   " + ((MainFragment) object).getTitle());
-//                    return 1;
-//                }
-//            }
             return super.getItemPosition(object);
                // return super.getItemPosition(object);
             }

@@ -17,6 +17,7 @@ import com.meiliangzi.app.ui.base.BaseActivity;
 import butterknife.BindView;
 
 
+
 public class AnswerReportActivity extends BaseActivity implements View.OnClickListener {
     @BindView(R.id.tv_pass)
     TextView tv_pass;
@@ -48,6 +49,8 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
     private String answerTime;
     private String repeatAnswer;
     private String userId;
+    private String mode;
+
     private String createType;
 
 
@@ -72,6 +75,7 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
         repeatAnswer=getIntent().getStringExtra("repeatAnswer");
 
         createType=getIntent().getStringExtra("createType");
+        mode=getIntent().getStringExtra("mode");
         onCreateView(R.layout.activity_answer_report);
     }
 
@@ -121,7 +125,7 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
                     finish();
                 }else {
                     //TODO 重新答题
-                    Intent intent=new Intent(this,ExaminationQuestionsActivity.class);
+                    Intent intent=new Intent(this,WeekExaminationActivity.class);
                     intent.putExtra("title",title);
                     intent.putExtra("userId", NewPreferManager.getId());
                     intent.putExtra("paperId",paperId);
@@ -135,6 +139,7 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
                     intent.putExtra("repeatAnswer",finishStatus);
                     intent.putExtra("totalNumber",totalNumber);
                     intent.putExtra("title",title);
+                    intent.putExtra("mode",mode);
                     intent.putExtra("createType",createType);
                     startActivity(intent);
                     finish();
@@ -145,7 +150,9 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
             case R.id.tv_answeranalysis:
                 //TODO 查看解析
                 Intent intent=new Intent(this,AnalysisActivity.class);
-                intent.putExtra("title",title);
+                //TODO
+
+
                 intent.putExtra("userId",NewPreferManager.getId());
                 intent.putExtra("paperId",paperId);
                 intent.putExtra("paperId",paperId);

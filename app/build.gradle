@@ -16,6 +16,7 @@ android {
             abiFilters "armeabi-v7a", "x86"
         }
     }
+
     lintOptions {
         abortOnError false
     }
@@ -96,5 +97,6 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.4'
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
     testCompile 'junit:junit:4.12'
+    compile 'com.zzhoujay.richtext:richtext:2.4.7'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
 }

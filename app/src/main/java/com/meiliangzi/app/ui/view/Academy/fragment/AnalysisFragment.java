@@ -137,8 +137,6 @@ public class AnalysisFragment extends BaseFragment {
                 }
             }
 
-
-
         };
         kaoshiAdapter.setDatas(MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption());
         gradview.setAdapter(kaoshiAdapter);

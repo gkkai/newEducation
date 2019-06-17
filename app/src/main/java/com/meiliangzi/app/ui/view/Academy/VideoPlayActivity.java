@@ -8,6 +8,8 @@ import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -36,6 +38,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
+import com.zzhoujay.richtext.RichText;
 
 import java.util.HashMap;
 import java.util.List;
@@ -176,7 +179,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initComponent() {
-        url=ChanYeXY+" academyService/html/videoInfo.html?id="+id;
+        url=ChanYeXY+"academyService/html/video.html?id="+id;
         Map<String,String> map=new HashMap<>();
         OkhttpUtils.getInstance(this).getList("academyService/video/findById/"+id, map, new OkhttpUtils.onCallBack() {
             @Override
@@ -230,7 +233,9 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         tx_title.setText(bean.getData().getTitle());
         tv_departmentName.setText(bean.getData().getDepartmentName());
         tv_time.setText(bean.getData().getCreateTime());
-        tv_content.setText(bean.getData().getContent());
+        tv_content.setMovementMethod(LinkMovementMethod.getInstance());
+        RichText.fromHtml(bean.getData().getContent()).into(tv_content);
+
 
 
     }

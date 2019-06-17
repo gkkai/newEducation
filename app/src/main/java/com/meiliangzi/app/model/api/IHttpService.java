@@ -96,6 +96,7 @@ import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
 import com.meiliangzi.app.ui.view.Academy.bean.PersonalScorebean;
 import com.meiliangzi.app.ui.view.Academy.bean.RuleListBean;
 import com.meiliangzi.app.ui.view.Academy.bean.VideoListBean;
+import com.meiliangzi.app.ui.view.AddMapLoctionActivity;
 import com.meiliangzi.app.ui.view.sendcar.DriverListActivity;
 
 import org.json.JSONObject;
@@ -162,6 +163,13 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","phone","lng","lat","image","describe"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
     public void addmaps(Object context,String user_id,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat,String image,String describe);
+    /**
+     * 地理位置修改
+     * @param context
+     */
+    @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","lng","lat","image","describe","id",}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
+    public void updateMap(Object context,String user_id,String name,int city_id,int county_id,int classification_id,String lng,String lat,String image,String describe,String id);
+
     /**
      * 县列表
      * @param context
@@ -1138,6 +1146,13 @@ public interface IHttpService {
      */
     @HttpRequest(arguments = {"id"}, url = "", resultClass = MapInfoBean.class, refreshMethod = "mapInfo")
     public void mapInfo(Object context,int id);
+    /**
+     * 地理位置详情
+     *
+     * @param context 上下文对象
+     */
+    @HttpRequest(arguments = {"image"}, url = "", resultClass = AddMapBean.class, refreshMethod = "imageupload")
+    public void imageupload(Object context,File image);
 
 }
 

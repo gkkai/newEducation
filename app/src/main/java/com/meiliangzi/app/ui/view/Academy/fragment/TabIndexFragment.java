@@ -172,10 +172,12 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_no_image,true);
                         helper.showOrGoneView(R.id.rl_small_image,false);
                         ((TextView)helper.getView(R.id.tv_no_title)).setText(item.getTitle());
-
-                        ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
-                        +"   "+item.getCreateTime());
-
+                        if(null==item.getDepartmentName()){
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                        }else {
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
+                                    +"   "+item.getUpdateTime());
+                        }
                         break;
                     case 1:
                         helper.showOrGoneView(R.id.rl_big_image,true);
@@ -183,9 +185,12 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_small_image,false);
                         ((TextView)helper.getView(R.id.tv_big_title)).setText(item.getTitle());
 
-                        ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
-                                +"   "+item.getCreateTime());
-
+                        if(null==item.getDepartmentName()){
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                        }else {
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
+                                    +"   "+item.getUpdateTime());
+                        }
                         helper.setImageByUrl(R.id.image_big,item.getCoverImage(),R.mipmap.smallphoto,R.mipmap.smallphoto);
                         break;
                     case 2:
@@ -194,31 +199,25 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_small_image,true);
                         ((TextView)helper.getView(R.id.tv_small_title)).setText(item.getTitle());
 
-                        ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
-                                +"   "+item.getCreateTime());
+                        if(null==item.getDepartmentName()){
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                        }else {
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
+                                    +"   "+item.getUpdateTime());
+                        }
                         List<String> result = Arrays.asList(item.getCoverImage().split(","));
+                        if(result.size()>=1){
+                            helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                        }
+                        if(result.size()>=2){
+                            helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                        }
                         if(result.size()>=3){
+                            helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
 
                         }
-                        switch (result.size()){
-                            case 1:
-                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
-
-                                break;
-                            case 2:
-                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
-                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
-
-                                break;
-                            case 3:
-                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
-                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
-                                helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
-
-                                break;
-                        }
-
-
 
                         break;
 

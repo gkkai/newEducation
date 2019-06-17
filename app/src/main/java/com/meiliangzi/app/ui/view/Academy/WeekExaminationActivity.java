@@ -590,6 +590,7 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                                             intent.putExtra("userId", NewPreferManager.getId());
                                             intent.putExtra("pagetitle",pagetitle);
                                             intent.putExtra("time",time);
+                                            intent.putExtra("mode",mode);
                                             intent.putExtra("createType",createType);
                                             intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
                                             intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
@@ -659,6 +660,7 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                                 intent.putExtra("userId", NewPreferManager.getId());
                                 intent.putExtra("pagetitle",pagetitle);
                                 intent.putExtra("time",time);
+                                intent.putExtra("mode",mode);
                                 intent.putExtra("createType",createType);
                                 intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
                                 intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());

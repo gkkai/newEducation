@@ -19,6 +19,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.AddMapBean;
 import com.meiliangzi.app.model.bean.MapTypeListsBean;
 import com.meiliangzi.app.tools.NewPreferManager;
+import com.meiliangzi.app.tools.PreferManager;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.RuleCheckUtils;
 import com.meiliangzi.app.tools.ToastUtils;
@@ -91,6 +92,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     private String describe;
     private String image;
     private String name;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
         tv_dadian.setOnClickListener(this);
 
         if("111".equals(getIntent().getStringExtra("type"))){
+            id=String.valueOf(getIntent().getIntExtra("id",1));
             cityname =getIntent().getStringExtra("cityname");
             countyname =getIntent().getStringExtra("countyname");
             phone =getIntent().getStringExtra("phone");
@@ -291,10 +294,16 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     String phone=phene_number.getText().toString();
 //                    String lng=lng_id.getText().toString().trim();
 //                    String lat=lat_id.getText().toString().trim();
-                    File image =new File(path);
+
                     String describe=edit_describe.getText().toString().trim();
-                    ProxyUtils.getHttpProxy().addmaps(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,phone,lng,lat,path,describe);
-                } catch (Exception e) {
+                    if("111".equals(getIntent().getStringExtra("type"))){
+                        ProxyUtils.getHttpProxy().updateMap(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,lng,lat,image,describe,id);
+
+                    }else {
+                        ProxyUtils.getHttpProxy().addmaps(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,phone,lng,lat,path,describe);
+
+                    }
+                   } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());
                     e.printStackTrace();
                 }
@@ -405,27 +414,22 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     if(path!=null){
                         ImageLoader.getInstance().displayImage("file:///" + path, image_add_image, MyApplication.getSimpleOptions(R.mipmap.test_user_star, R.mipmap.test_user_star));
 
-                        //updatePersonInfo(new File(path));
+                        updatePersonInfo(new File(path));
                     }
                     break;
 
         }
-//        if (resultCode==105){
-//
-//        }else {
-//            if(requestCode==103){
-//
-//            }else if(requestCode==104){
-//                iput_countyname.setText(data.getStringExtra("countyname"));
-//                county_id=data.getIntExtra("county_id",0);
-//            }else {
-//
-//            }
-//        }
+
 
         super.onActivityResult(requestCode, resultCode, data);
     }
+    public void updatePersonInfo(File img) {
+        ProxyUtils.getHttpProxy().imageupload(this,img);
+    }
+    private void imageupload(AddMapBean bean){
+        path=bean.getData();
 
+    }
     @Override
     public void onBackClick(View v) {
         Intent intent =new Intent(this,MapNewActivity.class);

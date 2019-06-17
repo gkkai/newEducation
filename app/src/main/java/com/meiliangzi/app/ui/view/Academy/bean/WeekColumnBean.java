@@ -36,7 +36,7 @@ public class WeekColumnBean {
         this.data = data;
     }
 
-    public class  Data implements Serializable {
+    public static class  Data implements Serializable {
         private String id;
         private String serviceMenuId;
         private String typeName;

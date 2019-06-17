@@ -30,6 +30,8 @@ public class NewPreferManager {
     private static final String RefreshToken = "token_refresh";
     private static final String OrgId = "personalOrgId";
     private static final String WeekColumbean = "weekColumbean";
+    private static final String Intelligence = "intelligence";
+
     private static final String Hostirysocary = "hostirysocary";
 
 
@@ -44,6 +46,12 @@ public class NewPreferManager {
 
 
 
+    public static void  saveIntelligence(String rulelists){
+        PreferUtils.put(Intelligence,rulelists);
+    }
+    public static String getIntelligence(){
+        return PreferUtils.getString(Intelligence,"");
+    }
 
     public static void  saveWeekColumbean(String rulelists){
         PreferUtils.put(WeekColumbean,rulelists);

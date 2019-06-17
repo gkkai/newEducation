@@ -243,13 +243,13 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
 
 
                 }
-                if(item.getPublicOrprivate()==0){
-                    ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle()+"("+"公共"+")");
-                }else {
-                    ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle()+"("+"专业"+")");
-                }
+//                if(item.getPublicOrprivate()==0){
+//
+//                }else {
+//                    ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle()+"("+"专业"+")");
+//                }
 
-
+                ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle());
 
             }
         };

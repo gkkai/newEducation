@@ -89,6 +89,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
     public  int totle=0;
     private ArrayList<OutAnswerBean.AnswerBean.QuestionOption> listquestionOption;
     private MyDialog myDialog;
+    public int during=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -408,7 +409,10 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
     }
 
 
+    private int sduring=1;
     private Handler handler = new Handler() {
+
+
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
@@ -418,15 +422,25 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
 //                    Log.i("info", "onPostExecute: =" + during);
 //                    int min = (int) (during / 60);
 //                    int second = (int) (during % 60);
-//                    String minStr = (min < 10) ? ("0" + min) : String.valueOf(min);
+                    //String minStr = (min < 10) ? ("0" + min) : String.valueOf(min);
 //                    String secondStr = (second < 10) ? ("0" + second) : String.valueOf(second);
 //                    tv_duration.setText("倒计时：" + minStr + ":" + secondStr);
                     tv_duration.setText("倒计时：" + change(during));
-//                    if (minStr.equals("00") && secondStr.equals("00")) {
-//
-//
-//
-//                    }
+                    if (during==60) {
+
+                        //TODO 考试结束
+                        ToastUtils.show("距离考试结束还有1分钟");
+                       // commit(1);
+
+                    }
+                    if (during==0) {
+                        sduring=during;
+                    //TODO 考试结束
+                        ToastUtils.show("考试结束");
+
+                        commit(1);
+
+                    }
                     break;
             }
         }
@@ -477,7 +491,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
             iscommit=true;
             outAnswerBean= new OutAnswerBean();
             outAnswerBean.setPaperId(paperId);
-            if(1==ctype){
+            if(1==ctype&&sduring!=0){
                 outAnswerBean.setFinishStatus("1");
             }else {
                 outAnswerBean.setFinishStatus("0");
@@ -593,6 +607,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                             intent.putExtra("pagetitle",pagetitle);
                                             intent.putExtra("time",time);
                                             intent.putExtra("createType",createType);
+                                            intent.putExtra("mode",mode);
                                             intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
                                             intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
                                             intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
@@ -650,7 +665,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                 }
                             });
                         }else {
-                            if(1==ctype){
+                            if(1==ctype&&sduring==1){
                                 finish();
                             }else {
                                 Intent intent=new Intent(ExaminationQuestionsActivity.this,AnswerReportActivity.class);
@@ -662,6 +677,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                 intent.putExtra("userId", NewPreferManager.getId());
                                 intent.putExtra("pagetitle",pagetitle);
                                 intent.putExtra("time",time);
+                                intent.putExtra("mode",mode);
                                 intent.putExtra("createType",createType);
                                 intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
                                 intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());

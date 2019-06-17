@@ -1,6 +1,8 @@
 package com.meiliangzi.app.widget;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -165,6 +167,7 @@ public class DialogSelectPhoto {
                         }else {
                             intent3.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(sdcardTempFile));
                         }
+                        //intent3.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(sdcardTempFile));
                         ((FragmentActivity) context).startActivityForResult(intent3, PHOTO_REQUEST_TAKEPHOTO);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -217,6 +220,11 @@ public class DialogSelectPhoto {
                     return "";
                 }
                 uri = data.getData();
+//                if (uri.toString().contains("com.miui.gallery.open")) {
+//                    uri = getImageContentUri(context, new File(path));
+//                }
+
+
                 if (uri.toString().toLowerCase().startsWith("file:")) {
                     path = uri.toString().substring(7);
                 } else {
@@ -352,6 +360,7 @@ public class DialogSelectPhoto {
         }else {
             uri = Uri.fromFile(new File(path));
         }
+        //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
         intent.setDataAndType(uri, "image/*");
         //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
         intent.putExtra("crop", "true");
@@ -367,4 +376,62 @@ public class DialogSelectPhoto {
 
         ( (FragmentActivity) context).startActivityForResult(intent, 4);
     }
+    /**
+     * 将URI转为图片的路径
+     *
+     * @param context
+     * @param uri
+     * @return
+     */
+    public static String getRealFilePath(final Context context, final Uri uri) {
+        if (null == uri)
+            return null;
+        final String scheme = uri.getScheme();
+        String data = null;
+        if (scheme == null)
+            data = uri.getPath();
+        else if (ContentResolver.SCHEME_FILE.equals(scheme)) {
+            data = uri.getPath();
+        } else if (ContentResolver.SCHEME_CONTENT.equals(scheme)) {
+            Cursor cursor = context.getContentResolver().query(uri,
+                    new String[]{MediaStore.Images.ImageColumns.DATA}, null, null, null);
+            if (null != cursor) {
+                if (cursor.moveToFirst()) {
+                    int index = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+                    if (index > -1) {
+                        data = cursor.getString(index);
+                    }
+                }
+                cursor.close();
+            }
+        }
+        return data;
+    }
+    public static Uri getImageContentUri(Context context, File imageFile) {
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor
+                    .getColumnIndex(MediaStore.MediaColumns._ID));
+            Uri baseUri = Uri.parse("content://media/external/images/media");
+            return Uri.withAppendedPath(baseUri, "" + id);
+        } else {
+            if (imageFile.exists()) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return context.getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                return null;
+            }
+        }
+    }
+
+
+
 }
