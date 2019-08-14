@@ -89,12 +89,13 @@
 
     <TextView
         android:id="@+id/text_sure"
-        android:layout_alignParentBottom="true"
         android:background="@color/zm_red"
         android:gravity="center"
         android:text="确定"
         android:textColor="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="50dp" />
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

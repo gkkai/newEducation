@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -75,7 +76,7 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
             if (dt1.getTime() > dt2.getTime()) {
                 System.out.println("dt1 在dt2前");
                 return 1;
-            } else if (dt1.getTime() < dt2.getTime()) {
+            } else if (dt1.getTime() <= dt2.getTime()) {
                 System.out.println("dt1在dt2后");
                 return -1;
             } else {
@@ -118,7 +119,7 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                 ((TextView) helper.getView(R.id.tv_Time)).setText(item.getValidityTimeStart() + "-" + item.getValidityTimeEnd());
 
                 if (TextUtils.isEmpty(item.getFixedTimeStart())) {
-                    //TODO
+                    //TODO 定向
                     switch (compareTime(item.getValidityTimeEnd())) {
                         case -1:
                             ((TextView) helper.getView(R.id.tv_startquestions)).setText("已过期");
@@ -133,7 +134,367 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                                     intent.putExtra("title", names);
                                     //TODO
                                     intent.putExtra("type", type);
-                                    intent.putExtra("time", item.getDuration());
+                                   // intent.putExtra("time", item.getDuration());
+                                    if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                        intent.putExtra("time", item.getDuration());
+                                    }else {
+                                        intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
+                                    }
+                                    intent.putExtra("pagetitle", item.getTitle());
+                                    intent.putExtra("totalNumber", item.getTotalNumber());
+                                    intent.putExtra("countDown", item.getCountDown());
+                                    intent.putExtra("mode", item.getMode());
+                                    intent.putExtra("userPaperId", item.getUserPaperId());
+                                    intent.putExtra("userId", NewPreferManager.getId());
+                                    intent.putExtra("finishStatus", item.getFinishStatus());
+                                    intent.putExtra("answerTime", item.getAnswerTime());
+                                    intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                    intent.putExtra("createType", item.getCreateType());
+                                    startActivity(intent);
+
+                                }
+                            });
+                            if (item.getScore() == null) {
+                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
+
+                            } else {
+                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
+
+                            }
+
+                            helper.showOrGoneView(R.id.ll_analysis, true);
+                             helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                 @Override
+                                 public void onClick(View v) {
+
+                                 }
+                             });
+                            break;
+                        default:
+                            //TODO 未过期
+                            switch (item.getFinishStatus()) {
+                                case "0"://结束
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
+
+                                    helper.showOrGoneView(R.id.ll_analysis, true);
+
+                                    helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            //TODO 产看解析
+                                            Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+                                            intent.putExtra("paperId", item.getId());
+                                            intent.putExtra("title", names);
+                                            //TODO
+                                            intent.putExtra("type", type);
+                                            //intent.putExtra("time", item.getDuration());
+                                            if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                                intent.putExtra("time", item.getDuration());
+                                            }else {
+                                                intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
+                                            }
+                                            intent.putExtra("pagetitle", item.getTitle());
+                                            intent.putExtra("totalNumber", item.getTotalNumber());
+                                            intent.putExtra("countDown", item.getCountDown());
+                                            intent.putExtra("mode", item.getMode());
+                                            intent.putExtra("userPaperId", item.getUserPaperId());
+                                            intent.putExtra("userId", NewPreferManager.getId());
+                                            intent.putExtra("finishStatus", item.getFinishStatus());
+                                            intent.putExtra("answerTime", item.getAnswerTime());
+                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                            intent.putExtra("createType", item.getCreateType());
+                                            startActivity(intent);
+
+                                        }
+                                    });
+                                    if (item.getScore() == null) {
+                                        ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
+
+                                    } else {
+                                        ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
+
+                                    }
+                                    helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+
+                                        }
+                                    });
+                                    break;
+                                case "1"://未结束
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("继续答题");
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
+
+
+                                    helper.showOrGoneView(R.id.ll_analysis, false);
+                                    helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            //TODO 判断考试有没有完成
+
+
+                                            //TODO 跳转答题
+                                            Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
+                                            intent.putExtra("paperId", item.getId());
+                                            intent.putExtra("title", names);
+                                            //TODO
+                                            intent.putExtra("type", type);
+                                            if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                                intent.putExtra("time", item.getDuration());
+                                            }else {
+                                                intent.putExtra("time", item.getAnswerTime());
+                                            }
+                                            intent.putExtra("pagetitle", item.getTitle());
+                                            intent.putExtra("totalNumber", item.getTotalNumber());
+                                            intent.putExtra("countDown", item.getCountDown());
+                                            intent.putExtra("mode", item.getMode());
+                                            intent.putExtra("userPaperId", item.getUserPaperId());
+                                            intent.putExtra("userId", NewPreferManager.getId());
+                                            intent.putExtra("finishStatus", item.getFinishStatus());
+                                            intent.putExtra("answerTime", item.getAnswerTime());
+                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                            intent.putExtra("createType", item.getCreateType());
+                                            intent.putExtra("createType", item.getCreateType());
+                                            startActivity(intent);
+                                           // TabExaminationFragment.this.startActivityForResult(intent, 1101);
+                                           // startActivity(intent);
+
+                                        }
+                                    });
+                                    break;
+                                case "2"://未答题
+                                    helper.showOrGoneView(R.id.ll_analysis, false);
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("开始答题");
+                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
+
+
+                                    helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            //TODO 判断考试有没有完成
+
+
+                                            //TODO 跳转答题
+                                            Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
+                                            intent.putExtra("paperId", item.getId());
+                                            intent.putExtra("title", names);
+                                            //TODO
+                                            intent.putExtra("type", type);
+                                            if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                                intent.putExtra("time", item.getDuration());
+                                            }else {
+                                                intent.putExtra("time", item.getAnswerTime());
+                                            }
+                                            intent.putExtra("pagetitle", item.getTitle());
+                                            intent.putExtra("totalNumber", item.getTotalNumber());
+                                            intent.putExtra("countDown", item.getCountDown());
+                                            intent.putExtra("mode", item.getMode());
+                                            intent.putExtra("userPaperId", item.getUserPaperId());
+                                            intent.putExtra("userId", NewPreferManager.getId());
+                                            intent.putExtra("finishStatus", item.getFinishStatus());
+                                            intent.putExtra("answerTime", item.getAnswerTime());
+                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                            intent.putExtra("createType", item.getCreateType());
+                                            // setTargetFragment(getTargetFragment(),intent);
+                                            // startActivityForResult();
+                                             //TabExaminationFragment.this.startActivityForResult(intent, 1101);
+                                            startActivity(intent);
+
+                                        }
+                                    });
+                                    break;
+
+                            }
+
+
+                    }
+                } else {
+                    //TODO 定点
+                    if(compareTime1(item.getFixedTimeStart(),item.getDuration())==-1){
+                        if(compareTime(item.getValidityTimeEnd())==-1){
+                            ((TextView) helper.getView(R.id.tv_startquestions)).setText("已过期");
+                            ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
+
+                            helper.showOrGoneView(R.id.ll_analysis, true);
+
+                            helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //TODO 产看解析
+                                    Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+                                    intent.putExtra("paperId", item.getId());
+                                    intent.putExtra("title", names);
+                                    //TODO
+                                    intent.putExtra("type", type);
+                                    if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                        intent.putExtra("time", item.getDuration());
+                                    }else {
+                                        intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
+                                    }
+                                    intent.putExtra("pagetitle", item.getTitle());
+                                    intent.putExtra("totalNumber", item.getTotalNumber());
+                                    intent.putExtra("countDown", item.getCountDown());
+                                    intent.putExtra("mode", item.getMode());
+                                    intent.putExtra("userPaperId", item.getUserPaperId());
+                                    intent.putExtra("userId", NewPreferManager.getId());
+                                    intent.putExtra("finishStatus", item.getFinishStatus());
+                                    intent.putExtra("answerTime", item.getAnswerTime());
+                                    intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                    intent.putExtra("createType", item.getCreateType());
+                                    startActivity(intent);
+
+                                }
+                            });
+                            if (item.getScore() == null) {
+                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
+
+                            } else {
+                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
+
+                            }
+
+                            helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                }
+                            });
+
+                        }else {
+                            if(!"0".equals(item.getFinishStatus())){
+
+                                //TODO  未答题
+
+                                ((TextView) helper.getView(R.id.tv_startquestions)).setText("已结束");
+                                ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
+
+                                helper.showOrGoneView(R.id.ll_analysis, true);
+
+                                helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //TODO 产看解析
+                                        Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+                                        intent.putExtra("paperId", item.getId());
+                                        intent.putExtra("title", names);
+                                        //TODO
+                                        intent.putExtra("type", type);
+                                        if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                            intent.putExtra("time", item.getDuration());
+                                        }else {
+                                            intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
+                                        }
+                                        intent.putExtra("pagetitle", item.getTitle());
+                                        intent.putExtra("totalNumber", item.getTotalNumber());
+                                        intent.putExtra("countDown", item.getCountDown());
+                                        intent.putExtra("mode", item.getMode());
+                                        intent.putExtra("userPaperId", item.getUserPaperId());
+                                        intent.putExtra("userId", NewPreferManager.getId());
+                                        intent.putExtra("finishStatus", item.getFinishStatus());
+                                        intent.putExtra("answerTime", item.getAnswerTime());
+                                        intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                        intent.putExtra("createType", item.getCreateType());
+                                        startActivity(intent);
+
+                                    }
+                                });
+                                if (item.getScore() == null) {
+                                    ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
+
+                                } else {
+                                    ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
+
+                                }
+
+                                helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                });
+
+                            }else {
+                                //TODO 已结束  已答题
+                                ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
+                                ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
+
+                                helper.showOrGoneView(R.id.ll_analysis, true);
+
+                                helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        //TODO 产看解析
+                                        Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+                                        intent.putExtra("paperId", item.getId());
+                                        intent.putExtra("title", names);
+                                        //TODO
+                                        intent.putExtra("type", type);
+                                        if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                            intent.putExtra("time", item.getDuration());
+                                        }else {
+                                            intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+                                        }
+
+                                        intent.putExtra("pagetitle", item.getTitle());
+                                        intent.putExtra("totalNumber", item.getTotalNumber());
+                                        intent.putExtra("countDown", item.getCountDown());
+                                        intent.putExtra("mode", item.getMode());
+                                        intent.putExtra("userPaperId", item.getUserPaperId());
+                                        intent.putExtra("userId", NewPreferManager.getId());
+                                        intent.putExtra("finishStatus", item.getFinishStatus());
+                                        intent.putExtra("answerTime", item.getAnswerTime());
+                                        intent.putExtra("repeatAnswer", item.getRepeatAnswer());
+                                        intent.putExtra("createType", item.getCreateType());
+                                        startActivity(intent);
+
+                                    }
+                                });
+                                helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+
+                                    }
+                                });
+                                if (item.getScore() == null) {
+                                    ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
+
+                                } else {
+                                    ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
+
+                                }
+                            }
+                        }
+
+                    }else {
+
+                        helper.showOrGoneView(R.id.ll_analysis, false);
+                        //((TextView) helper.getView(R.id.tv_startquestions)).setText("开始答题");
+                        ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
+                        //TODO  未结束
+
+                            switch (item.getFinishStatus()) {
+                        case "0"://结束
+                            ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
+                            ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
+
+                            helper.showOrGoneView(R.id.ll_analysis, true);
+
+                            helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //TODO 产看解析
+                                    Intent intent = new Intent(getActivity(), AnalysisActivity.class);
+                                    intent.putExtra("paperId", item.getId());
+                                    intent.putExtra("title", names);
+                                    //TODO
+                                    intent.putExtra("type", type);
+                                    intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
                                     intent.putExtra("pagetitle", item.getTitle());
                                     intent.putExtra("totalNumber", item.getTotalNumber());
                                     intent.putExtra("countDown", item.getCountDown());
@@ -158,262 +519,9 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                             helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-//
 
                                 }
                             });
-                            helper.showOrGoneView(R.id.ll_analysis, true);
-                            break;
-                        default:
-                            //TODO 未过期
-                            switch (item.getFinishStatus()) {
-                                case "0"://结束
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
-
-                                    helper.showOrGoneView(R.id.ll_analysis, true);
-
-                                    helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            //TODO 产看解析
-                                            Intent intent = new Intent(getActivity(), AnalysisActivity.class);
-                                            intent.putExtra("paperId", item.getId());
-                                            intent.putExtra("title", names);
-                                            //TODO
-                                            intent.putExtra("type", type);
-                                            intent.putExtra("time", item.getDuration());
-                                            intent.putExtra("pagetitle", item.getTitle());
-                                            intent.putExtra("totalNumber", item.getTotalNumber());
-                                            intent.putExtra("countDown", item.getCountDown());
-                                            intent.putExtra("mode", item.getMode());
-                                            intent.putExtra("userPaperId", item.getUserPaperId());
-                                            intent.putExtra("userId", NewPreferManager.getId());
-                                            intent.putExtra("finishStatus", item.getFinishStatus());
-                                            intent.putExtra("answerTime", item.getAnswerTime());
-                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                            intent.putExtra("createType", item.getCreateType());
-                                            startActivity(intent);
-
-                                        }
-                                    });
-                                    if (item.getScore() == null) {
-                                        ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
-
-                                    } else {
-                                        ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
-
-                                    }
-                                    break;
-                                case "1"://未结束
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("继续答题");
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
-
-
-                                    helper.showOrGoneView(R.id.ll_analysis, false);
-                                    helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            //TODO 判断考试有没有完成
-
-
-                                            //TODO 跳转答题
-                                            Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
-                                            intent.putExtra("paperId", item.getId());
-                                            intent.putExtra("title", names);
-                                            //TODO
-                                            intent.putExtra("type", type);
-                                            intent.putExtra("time", item.getDuration());
-                                            intent.putExtra("pagetitle", item.getTitle());
-                                            intent.putExtra("totalNumber", item.getTotalNumber());
-                                            intent.putExtra("countDown", item.getCountDown());
-                                            intent.putExtra("mode", item.getMode());
-                                            intent.putExtra("userPaperId", item.getUserPaperId());
-                                            intent.putExtra("userId", NewPreferManager.getId());
-                                            intent.putExtra("finishStatus", item.getFinishStatus());
-                                            intent.putExtra("answerTime", item.getAnswerTime());
-                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                            intent.putExtra("createType", item.getCreateType());
-                                            intent.putExtra("createType", item.getCreateType());
-                                            startActivity(intent);
-
-                                        }
-                                    });
-                                    break;
-                                case "2"://未答题
-                                    helper.showOrGoneView(R.id.ll_analysis, false);
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setText("开始答题");
-                                    ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
-
-
-                                    helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            //TODO 判断考试有没有完成
-
-
-                                            //TODO 跳转答题
-                                            Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
-                                            intent.putExtra("paperId", item.getId());
-                                            intent.putExtra("title", names);
-                                            //TODO
-                                            intent.putExtra("type", type);
-                                            intent.putExtra("time", item.getDuration());
-                                            intent.putExtra("pagetitle", item.getTitle());
-                                            intent.putExtra("totalNumber", item.getTotalNumber());
-                                            intent.putExtra("countDown", item.getCountDown());
-                                            intent.putExtra("mode", item.getMode());
-                                            intent.putExtra("userPaperId", item.getUserPaperId());
-                                            intent.putExtra("userId", NewPreferManager.getId());
-                                            intent.putExtra("finishStatus", item.getFinishStatus());
-                                            intent.putExtra("answerTime", item.getAnswerTime());
-                                            intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                            intent.putExtra("createType", item.getCreateType());
-                                            // setTargetFragment(getTargetFragment(),intent);
-                                            // startActivityForResult();
-                                            // TabExaminationFragment.this.startActivityForResult(intent, 1);
-                                            startActivity(intent);
-
-                                        }
-                                    });
-                                    break;
-
-                            }
-
-
-                    }
-                } else {
-
-                    if(compareTime1(item.getFixedTimeStart(),item.getDuration())==-1){
-                        //TODO 已经结束
-                        if(!"0".equals(item.getFinishStatus())){
-
-                            //TODO  未答题
-
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setText("已结束");
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
-
-                            helper.showOrGoneView(R.id.ll_analysis, true);
-
-                            helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //TODO 产看解析
-                                    Intent intent = new Intent(getActivity(), AnalysisActivity.class);
-                                    intent.putExtra("paperId", item.getId());
-                                    intent.putExtra("title", names);
-                                    //TODO
-                                    intent.putExtra("type", type);
-                                    intent.putExtra("time", item.getDuration());
-                                    intent.putExtra("pagetitle", item.getTitle());
-                                    intent.putExtra("totalNumber", item.getTotalNumber());
-                                    intent.putExtra("countDown", item.getCountDown());
-                                    intent.putExtra("mode", item.getMode());
-                                    intent.putExtra("userPaperId", item.getUserPaperId());
-                                    intent.putExtra("userId", NewPreferManager.getId());
-                                    intent.putExtra("finishStatus", item.getFinishStatus());
-                                    intent.putExtra("answerTime", item.getAnswerTime());
-                                    intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                    intent.putExtra("createType", item.getCreateType());
-                                    startActivity(intent);
-
-                                }
-                            });
-                            if (item.getScore() == null) {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
-
-                            } else {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
-
-                            }
-
-
-
-                        }else {
-                            //TODO 已结束  已答题
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
-
-                            helper.showOrGoneView(R.id.ll_analysis, true);
-
-                            helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //TODO 产看解析
-                                    Intent intent = new Intent(getActivity(), AnalysisActivity.class);
-                                    intent.putExtra("paperId", item.getId());
-                                    intent.putExtra("title", names);
-                                    //TODO
-                                    intent.putExtra("type", type);
-                                    intent.putExtra("time", item.getDuration());
-                                    intent.putExtra("pagetitle", item.getTitle());
-                                    intent.putExtra("totalNumber", item.getTotalNumber());
-                                    intent.putExtra("countDown", item.getCountDown());
-                                    intent.putExtra("mode", item.getMode());
-                                    intent.putExtra("userPaperId", item.getUserPaperId());
-                                    intent.putExtra("userId", NewPreferManager.getId());
-                                    intent.putExtra("finishStatus", item.getFinishStatus());
-                                    intent.putExtra("answerTime", item.getAnswerTime());
-                                    intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                    intent.putExtra("createType", item.getCreateType());
-                                    startActivity(intent);
-
-                                }
-                            });
-                            if (item.getScore() == null) {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
-
-                            } else {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
-
-                            }
-                        }
-                    }else {
-
-                        helper.showOrGoneView(R.id.ll_analysis, false);
-                        //((TextView) helper.getView(R.id.tv_startquestions)).setText("开始答题");
-                        ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
-                        //TODO  未结束
-
-
-                            switch (item.getFinishStatus()) {
-                        case "0"://结束
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setText("已完成");
-                            ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.group_list_gray));
-
-                            helper.showOrGoneView(R.id.ll_analysis, true);
-
-                            helper.getView(R.id.tv_checkanalysis).setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    //TODO 产看解析
-                                    Intent intent = new Intent(getActivity(), AnalysisActivity.class);
-                                    intent.putExtra("paperId", item.getId());
-                                    intent.putExtra("title", names);
-                                    //TODO
-                                    intent.putExtra("type", type);
-                                    intent.putExtra("time", (compareTime3(item.getFixedTimeStart(),item.getDuration())));
-                                    intent.putExtra("pagetitle", item.getTitle());
-                                    intent.putExtra("totalNumber", item.getTotalNumber());
-                                    intent.putExtra("countDown", item.getCountDown());
-                                    intent.putExtra("mode", item.getMode());
-                                    intent.putExtra("userPaperId", item.getUserPaperId());
-                                    intent.putExtra("userId", NewPreferManager.getId());
-                                    intent.putExtra("finishStatus", item.getFinishStatus());
-                                    intent.putExtra("answerTime", item.getAnswerTime());
-                                    intent.putExtra("repeatAnswer", item.getRepeatAnswer());
-                                    intent.putExtra("createType", item.getCreateType());
-                                    startActivity(intent);
-
-                                }
-                            });
-                            if (item.getScore() == null) {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + "0");
-
-                            } else {
-                                ((TextView) helper.getView(R.id.tv_examinationresults)).setText("考试成绩：" + item.getScore());
-
-                            }
                             break;
                         case "1"://未结束
                             ((TextView) helper.getView(R.id.tv_startquestions)).setText("继续答题");
@@ -421,13 +529,11 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
 
 
                             helper.showOrGoneView(R.id.ll_analysis, false);
-                            if(compareTime2(item.getFixedTimeStart())==-1){
-                                helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        //TODO 判断考试有没有完成
-
-
+                            helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //TODO 判断考试有没有完成
+                                    if(compareTime2(item.getFixedTimeStart())==-1){
                                         //TODO 跳转答题
                                         Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
                                         intent.putExtra("paperId", item.getId());
@@ -448,31 +554,30 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                                         // setTargetFragment(getTargetFragment(),intent);
                                         // startActivityForResult();
                                         // TabExaminationFragment.this.startActivityForResult(intent, 1);
+                                       //TabExaminationFragment.this.startActivityForResult(intent, 1101);
                                         startActivity(intent);
+                                    }else {
 
+                                        //TODO 未开始
+                                        ToastUtils.show("考试未开始");
                                     }
-                                });
-                                break;
-                            }else {
 
-                                //TODO 未开始
-                                ToastUtils.show("考试未开始");
-                            }
+
+
+                                }
+                            });
+
 
                             break;
                         case "2"://未答题
                             helper.showOrGoneView(R.id.ll_analysis, false);
                             ((TextView) helper.getView(R.id.tv_startquestions)).setText("开始答题");
                             ((TextView) helper.getView(R.id.tv_startquestions)).setTextColor(getResources().getColor(R.color.black3));
-
-
-                            if(compareTime2(item.getFixedTimeStart())==-1){
-                                helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        //TODO 判断考试有没有完成
-
-
+                            helper.getView(R.id.tv_startquestions).setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    //TODO 判断考试有没有完成
+                                    if(compareTime2(item.getFixedTimeStart())==-1){
                                         //TODO 跳转答题
                                         Intent intent = new Intent(getActivity(), ExaminationQuestionsActivity.class);
                                         intent.putExtra("paperId", item.getId());
@@ -490,37 +595,31 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                                         intent.putExtra("answerTime", item.getAnswerTime());
                                         intent.putExtra("repeatAnswer", item.getRepeatAnswer());
                                         intent.putExtra("createType", item.getCreateType());
-                                        // setTargetFragment(getTargetFragment(),intent);
-                                        // startActivityForResult();
-                                        // TabExaminationFragment.this.startActivityForResult(intent, 1);
+                                         //setTargetFragment(getTargetFragment(),intent);
+                                         //startActivityForResult();
+                                         //TabExaminationFragment.this.startActivityForResult(intent, 1101);
                                         startActivity(intent);
-
+                                    }else {
+                                        //TODO 未开始
+                                        ToastUtils.show("考试未开始");
                                     }
-                                });
-                                break;
-                            }else {
-                                //TODO 未开始
-                                ToastUtils.show("考试未开始");
-                            }
-
-
+                                }
+                            });
+                            break;
                     }
-
-
-
-
                     }
-
-
                 }
             }
-
-
         };
         listView.setAdapter(kaoshiAdapter);
-
     }
-    private long compareTime3(String time,String duration){
+
+    @Override
+    protected void initComponent() {
+       // getdata();
+    }
+
+    private String compareTime3(String time,String duration){
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
         try {
@@ -530,7 +629,7 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
         }
         long ts = date.getTime()+Integer.valueOf(duration)*1000;
        long time1= (ts-System.currentTimeMillis())/1000;
-        return  time1;
+        return  time1+"";
 
 
     }
@@ -575,18 +674,27 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
     @Override
     public void onResume() {
         super.onResume();
-        initComponent();
+        page = 0;
+        getdata();
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        if (resultCode==1101){
+//            if(data.getIntExtra("pos",-1)!=-1){
+//                if(kaoshiAdapter.getmDatas().get(data.getIntExtra("pos",-1)).getId().equals(data.getStringArrayExtra("paperId"))){
+//                    kaoshiAdapter.getmDatas().get(data.getIntExtra("pos",-1)).setFinishStatus("2");
+//                }
+//            }
+//
+//        }
+
 
     }
 
 
-    @Override
-    protected void initComponent() {
+    protected void getdata() {
         //TODO 获取试卷列表
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("userId",NewPreferManager.getId());
@@ -619,6 +727,7 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
                                 listView.setHeaderDividersEnabled(true);
                                 listView.setFooterDividersEnabled(true);
                             }
+                            //kaoshiAdapter.pullRefresh(baseBean.getData());
                             if (page == 0) {
                                 kaoshiAdapter.pullRefresh(baseBean.getData());
                             } else {
@@ -644,13 +753,13 @@ public class TabExaminationFragment extends BaseFragment implements XListView.IX
     @Override
     public void onRefresh() {
         page = 0;
-        initComponent();
+        getdata();
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        initComponent();
+        getdata();
 
     }
 }

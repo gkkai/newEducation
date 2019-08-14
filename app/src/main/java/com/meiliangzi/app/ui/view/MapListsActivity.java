@@ -69,7 +69,6 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
     @BindView(R.id.tvhostirysocary)
     TextView tvhostirysocary;
 
-
     private Boolean isequals=false;
     private BaseLoctionsAdapter<QueryMapsBeans.DataBean> adapter;
     private List<QueryMapsBeans.DataBean> lists=new ArrayList<>();
@@ -88,6 +87,8 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
     GridView gradview_group;
     private BaseLoctionsAdapter<String > historiadapter;
     Gson gson =new Gson();
+    @BindView(R.id.tv_delete)
+    TextView tv_delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +138,14 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO 查询数据类型
                 ProxyUtils.getHttpProxy().querymaps(MapListsActivity.this,historiadapter.getItem(position));
+            }
+        });
+        tv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NewPreferManager.savehostirysocary("");
+                historiadapter.setDatas(new ArrayList<String>());
+                historiadapter.notifyDataSetChanged();
             }
         });
 
@@ -205,7 +214,8 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent =new Intent(MapListsActivity.this,MapDetailsActivity.class);
                 intent.putExtra("id",adapter.getItem(i-1).getId());
-
+                intent.putExtra("id",adapter.getItem(i-1).getId());
+                intent.putExtra("id",adapter.getItem(i-1).getId());
                 startActivity(intent);
 
             }
@@ -313,7 +323,6 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
             adapter.setDatas(data.getData());
         }else {
             ll_historicalrecords.setVisibility(View.GONE);
-            ll_historicalrecords.setVisibility(View.GONE);
             ll_no.setVisibility(View.GONE);
             adapter.setDatas(data.getData());
         }
@@ -333,6 +342,8 @@ public class MapListsActivity extends BaseActivity implements XListView.IXListVi
     protected void showErrorMessage(Integer errorCode, String errorMessage) {
         if(errorCode==1){
             ll_no.setVisibility(View.VISIBLE);
+            ll_historicalrecords.setVisibility(View.GONE);
+
             adapter.setDatas(lists);
         }
 

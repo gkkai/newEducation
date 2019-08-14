@@ -66,7 +66,7 @@ public class VoteDetailsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,NewPreferManager.getoldUseId());
 
     }
 
@@ -81,7 +81,7 @@ public class VoteDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDetailsActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDetailsActivity.this,id,NewPreferManager.getoldUseId());
 
 
             }
@@ -126,7 +126,7 @@ public class VoteDetailsActivity extends BaseActivity {
     }
     private void getusersubvote(VoteUsersubvoteBean data){
 
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,NewPreferManager.getoldUseId());
 
     }
 }

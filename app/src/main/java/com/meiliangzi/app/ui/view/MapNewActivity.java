@@ -880,39 +880,6 @@ public class MapNewActivity extends BaseActivity implements XListView.IXListView
      */
     private void setGestureListener(){
 
-       /* layout_maps.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                // TODO Auto-generated method stub
-                switch (event.getAction()) {
-
-                    case MotionEvent.ACTION_DOWN:
-                        mPosX = event.getX();
-                        mPosY = event.getY();
-                        break;
-                    case MotionEvent.ACTION_MOVE:
-                        mCurPosX = event.getX();
-                        mCurPosY = event.getY();
-
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        if (mCurPosY - mPosY > 2
-                                && (Math.abs(mCurPosY - mPosY) > 25)) {
-                            //向下滑動
-                            performAnim2();
-                        } else if (mCurPosY - mPosY < 2
-                                && (Math.abs(mCurPosY - mPosY) > 25)) {
-                            //向上滑动
-                            performAnim2();
-                        }
-
-                        break;
-                }
-                return true;
-            }
-
-        });*/
     }
     public void performAnim2(){
         //View是否显示的标志

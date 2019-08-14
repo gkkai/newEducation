@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/answer_header">
+    <TextView
+        android:textStyle="bold"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textColor="#333333"
+        android:gravity="center_vertical"
+        android:id="@+id/tv_type"
+        android:text="单选题"
+        android:textSize="14sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_below="@id/tv_type"
+        android:textColor="#333333"
+        android:padding="10dp"
+        android:lineSpacingExtra="13dp"
+        android:layout_marginTop="10dp"
+        android:textSize="15sp"
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="近期，我国学者研究“多节点（ ）网络”取,近期，我国学者研究“多节点（ ）网络”取" />
+
+</RelativeLayout>

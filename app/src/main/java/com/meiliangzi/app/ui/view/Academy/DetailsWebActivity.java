@@ -3,10 +3,12 @@ package com.meiliangzi.app.ui.view.Academy;
 
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -29,6 +31,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.tools.picompressor.NativePlugin;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.LoadingDialog;
 import com.meiliangzi.app.ui.view.Academy.bean.RuleListBean;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMShareListener;
@@ -76,7 +80,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     private final static int FILECHOOSER_RESULTCODE = 1;// 表单的结果回调
     private String ArticlereadingId="402881e56a47e6c8016a47e8ffda0001";
     private String  DurationarticlesId="402881e56a47e6c8016a47e9363c0003";
-
+    private ProgressDialog progressDialog;
     private String type;
 
     @BindView(R.id.imag_share)
@@ -89,10 +93,12 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
     TextView tv_title;
     private String title;
 
-    private long time;
+    private long time=30;
     private boolean isplay=false;
     private long timeFormat=0;
     private String description;
+     @BindView(R.id.rr)
+     RelativeLayout rr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,13 +130,15 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
             tv_title.setText("文章详情");
             String ruleslists= NewPreferManager.getRuleLists();
             if(ruleslists.equals("")){
-                time=30000;
+                time=30;
             }else {
                 Gson gson=new Gson();
                 RuleListBean bean=   gson.fromJson(ruleslists,RuleListBean.class);
-                for(int i=0;i<bean.getData().size();i++){
-                    if(ArticlereadingId.equals(bean.getData().get(i).getId())){
-                        time=Integer.valueOf(bean.getData().get(i).getConditions());
+                if(bean!=null&&bean.getData()!=null&&bean.getData().size()!=0){
+                    for(int i=0;i<bean.getData().size();i++){
+                        if(ArticlereadingId.equals(bean.getData().get(i).getId())){
+                            time=Integer.valueOf(bean.getData().get(i).getConditions());
+                        }
                     }
                 }
             }
@@ -153,12 +161,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
 
                         @Override
                         public void onResponse(String json) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ToastUtils.show("文章结束"+time*1000);
-                                }
-                            });
+
 
 
                         }
@@ -173,7 +176,12 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
         }
 
         imag_share.setOnClickListener(this);
-        webview.loadUrl(ChanYeXY+url);
+        if("1".equals(type)){
+            webview.loadUrl(ChanYeXY+url+"?token="+NewPreferManager.getToken());
+        }else {
+            webview.loadUrl(ChanYeXY+url);
+        }
+
        // webview.loadUrl("file:///android_asset/video.html");
         WebSettings webSettings = webview.getSettings();
         webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
@@ -222,8 +230,21 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
         webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        rr.setVisibility(View.GONE);
 
+                    }
+                });
+               // removeProgress();
 
+            }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                super.onPageStarted(view, url, favicon);
+                //showProgress("正在加载.....");
             }
 
             @Override
@@ -401,12 +422,7 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
 
                 @Override
                 public void onResponse(String json) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ToastUtils.show("timeFormat");
-                        }
-                    });
+
 
                 }
             });
@@ -424,6 +440,29 @@ public class DetailsWebActivity extends BaseActivity implements View.OnClickList
         return false;
     }
 
+    //-----显示ProgressDialog
+    public void showProgress(String message) {
+        if (progressDialog == null) {
+            progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
+            progressDialog.setCancelable(false);//设置点击不消失
+        }
+        if (progressDialog.isShowing()) {
+            progressDialog.setMessage(message);
+        } else {
+            progressDialog.setMessage(message);
+            progressDialog.show();
+        }
+    }
+    //------取消ProgressDialog
+    public void removeProgress(){
+        if (progressDialog==null){
+            return;
+        }
+        if (progressDialog.isShowing()){
+            progressDialog.dismiss();
+        }
+
+    }
 
 
 

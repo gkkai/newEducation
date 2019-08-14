@@ -9,7 +9,10 @@
         android:text="神木红柳林"
         android:gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="22dp" />
 
 
 </RelativeLayout>

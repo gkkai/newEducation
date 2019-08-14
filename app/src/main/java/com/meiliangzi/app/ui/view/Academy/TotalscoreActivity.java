@@ -22,6 +22,7 @@ import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.BaseInfo;
+import com.meiliangzi.app.ui.view.Academy.bean.FindByPaperIdBean;
 import com.meiliangzi.app.ui.view.Academy.bean.RuleListBean;
 import com.meiliangzi.app.widget.MyGridView;
 
@@ -62,7 +63,9 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
 
     @BindView(R.id.tv_today_scoredes)
     TextView tv_today_scoredes;
+    Gson gson=new Gson();
     int  todayscoredes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +82,6 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
     protected void findWidgets() {
         im_black.setOnClickListener(this);
         gradview.setFocusable(false);
-        tv_totle_code.setText(NewPreferManager.getUserTotalScore());
         Adapter=new BaseVoteAdapter<RuleListBean.Data>(this,gradview,R.layout.integralrule_item) {
             @Override
             public void convert(BaseViewHolder helper, final RuleListBean.Data item) {
@@ -101,7 +103,7 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                         ((TextView)helper.getView(R.id.tv_finish)).setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                switch (item.getId()){
+                                switch (item.getId()) {
                                     case LOGINID:
                                         loginScore(NewPreferManager.getId());
                                         //TODO 阅读文章
@@ -110,52 +112,303 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                                         break;
                                     case ArticlereadingId:
                                         //TODO 阅读文章
-                                        Intent intent1 =new Intent(TotalscoreActivity.this, MainActivity.class);
-                                        intent1.putExtra("pos",0);
+                                        Intent intent1 = new Intent(TotalscoreActivity.this, MainActivity.class);
+                                        intent1.putExtra("pos", 0);
                                         startActivity(intent1);
                                         break;
                                     case WatchVideoId:
                                         //TODO  观看视屏
-                                        Intent intent2 =new Intent(TotalscoreActivity.this, MainActivity.class);
-                                        intent2.putExtra("pos",1);
+                                        Intent intent2 = new Intent(TotalscoreActivity.this, MainActivity.class);
+                                        intent2.putExtra("pos", 1);
                                         startActivity(intent2);
                                         break;
                                     case DurationarticlesId:
                                         //TODO 文章学习时长
-                                        Intent intent3 =new Intent(TotalscoreActivity.this, MainActivity.class);
-                                        intent3.putExtra("pos",0);
+                                        Intent intent3 = new Intent(TotalscoreActivity.this, MainActivity.class);
+                                        intent3.putExtra("pos", 0);
                                         startActivity(intent3);
                                         break;
                                     case DurationWatchVideoId:
                                         //TODO 视屏学习时长
-                                        Intent intent4 =new Intent(TotalscoreActivity.this, MainActivity.class);
-                                        intent4.putExtra("pos",1);
+                                        Intent intent4 = new Intent(TotalscoreActivity.this, MainActivity.class);
+                                        intent4.putExtra("pos", 1);
                                         startActivity(intent4);
                                         break;
                                     case PublicIntelligenceAnswers:
                                         //TODO 公共智能答题
-                                        Intent intent5 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent5.putExtra("type","0");
-                                        startActivity(intent5);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()){
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map <String,String> map=new HashMap<String, String>();
+                                                    map.put("paperTypeId",item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean bean=   gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent =new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId",bean.getData().getId());
+                                                                Examinationintent.putExtra("title",item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle",bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber",bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time",bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode",bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown",bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer",bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType",bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            }catch (final Exception e){
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent =new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid",item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+
+                                        }
+//                                        Intent intent5 = new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent5.putExtra("type", "0");
+//                                        startActivity(intent5);
                                         break;
                                     case Professionalknowledgeanswers:
                                         //TODO 专业知识答题
-                                        Intent intent6 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent6.putExtra("type","0");
-                                        startActivity(intent6);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()){
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map <String,String> map=new HashMap<String, String>();
+                                                    map.put("paperTypeId",item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean   bean=   gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent =new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId",bean.getData().getId());
+                                                                Examinationintent.putExtra("title",item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle",bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber",bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time",bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode",bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown",bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer",bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType",bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            }catch (final Exception e){
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent =new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid",item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+
+                                        }
+//                                        Intent intent6 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent6.putExtra("type","0");
+//                                        startActivity(intent6);
 
                                         break;
                                     case PublicKnowledgeWeekly:
                                         //TODO 公共知识每周一答
-                                        Intent intent7 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent7.putExtra("type","1");
-                                        startActivity(intent7);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()) {
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map<String, String> map = new HashMap<String, String>();
+                                                    map.put("paperTypeId", item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean  bean = gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent = new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId", bean.getData().getId());
+                                                                Examinationintent.putExtra("title", item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle", bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber", bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time", bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode", bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown", bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer", bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType", bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            } catch (final Exception e) {
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent = new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid", item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+                                        }
+//                                            Intent intent7 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent7.putExtra("type","1");
+//                                        startActivity(intent7);
                                         break;
                                     case Professionalknowledgeweekly:
                                         //TODO 专业知识每周一答
-                                        Intent intent8 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent8.putExtra("type","1");
-                                        startActivity(intent8);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()) {
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map<String, String> map = new HashMap<String, String>();
+                                                    map.put("paperTypeId", item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean   bean = gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent = new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId", bean.getData().getId());
+                                                                Examinationintent.putExtra("title", item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle", bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber", bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time", bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode", bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown", bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer", bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType", bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            } catch (final Exception e) {
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent = new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid", item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+                                        }
+
+//                                            Intent intent8 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent8.putExtra("type","1");
+//                                        startActivity(intent8);
                                         break;
                                     case Orientationexamination:
                                         //TODO 定向考试
@@ -222,28 +475,282 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                                         break;
                                     case PublicIntelligenceAnswers:
                                         //TODO 公共智能答题
-                                        Intent intent5 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent5.putExtra("type","0");
-                                        startActivity(intent5);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()){
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map <String,String> map=new HashMap<String, String>();
+                                                    map.put("paperTypeId",item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean  bean=   gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent =new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId",bean.getData().getId());
+                                                                Examinationintent.putExtra("title",item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle",bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber",bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time",bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode",bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown",bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer",bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType",bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            }catch (final Exception e){
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent =new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid",item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+
+
+
+                                        }
+//
+//                                        Intent intent5 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent5.putExtra("type","0");
+//                                        startActivity(intent5);
                                         break;
                                     case Professionalknowledgeanswers:
-                                        //TODO 专业知识答题
-                                        Intent intent6 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent6.putExtra("type","0");
-                                        startActivity(intent6);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()){
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map <String,String> map=new HashMap<String, String>();
+                                                    map.put("paperTypeId",item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean  bean=   gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent =new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId",bean.getData().getId());
+                                                                Examinationintent.putExtra("title",item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle",bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber",bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time",bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode",bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown",bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer",bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType",bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            }catch (final Exception e){
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent =new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid",item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+
+
+
+                                        }
+
+//
 
                                         break;
                                     case PublicKnowledgeWeekly:
+
                                         //TODO 公共知识每周一答
-                                        Intent intent7 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent7.putExtra("type","1");
-                                        startActivity(intent7);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()){
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map <String,String> map=new HashMap<String, String>();
+                                                    map.put("paperTypeId",item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean bean=   gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent =new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId",bean.getData().getId());
+                                                                Examinationintent.putExtra("title",item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle",bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber",bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time",bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode",bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown",bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer",bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType",bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            }catch (final Exception e){
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent =new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid",item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+
+
+
+                                        }
+//                                        Intent intent7 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent7.putExtra("type","1");
+//                                        startActivity(intent7);
                                         break;
                                     case Professionalknowledgeweekly:
                                         //TODO 专业知识每周一答
-                                        Intent intent8 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
-                                        intent8.putExtra("type","1");
-                                        startActivity(intent8);
+                                        if(Integer.valueOf(item.getPaperTypeCount())>=1){
+                                            // TODO 有子栏目
+                                            Intent culmnintent =new Intent(TotalscoreActivity.this, ColumnActivity.class);
+                                            culmnintent.putExtra("pid",item.getPaperTypeId());
+                                            culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                            startActivity(culmnintent);
+                                        }else {
+                                            switch (item.getPaperNumber()) {
+
+                                                //TODO 没有子栏目
+                                                case "0":
+                                                    ToastUtils.show("暂无试卷");
+                                                    break;
+                                                case "1":
+                                                    Map<String, String> map = new HashMap<String, String>();
+                                                    map.put("paperTypeId", item.getPaperTypeId());
+                                                    OkhttpUtils.getInstance(getBaseContext()).getList("academyService/examinationPaper/findByPaperId", map, new OkhttpUtils.onCallBack() {
+                                                        @Override
+                                                        public void onFaild(Exception e) {
+
+                                                        }
+
+                                                        @Override
+                                                        public void onResponse(String json) {
+                                                            try {
+                                                                FindByPaperIdBean bean = gson.fromJson(json, FindByPaperIdBean.class);
+                                                                //TODO 一个试卷 直接进试题
+                                                                Intent Examinationintent = new Intent(TotalscoreActivity.this, WeekExaminationActivity.class);
+                                                                Examinationintent.putExtra("paperId", bean.getData().getId());
+                                                                Examinationintent.putExtra("title", item.getPaperTypeName());
+                                                                Examinationintent.putExtra("pagetitle", bean.getData().getTitle());
+                                                                Examinationintent.putExtra("totalNumber", bean.getData().getTotalNumber());
+                                                                Examinationintent.putExtra("time", bean.getData().getDuration());
+                                                                Examinationintent.putExtra("mode", bean.getData().getMode());
+                                                                Examinationintent.putExtra("countDown", bean.getData().getCountDown());
+                                                                Examinationintent.putExtra("repeatAnswer", bean.getData().getRepeatAnswer());
+                                                                Examinationintent.putExtra("createType", bean.getData().getCreateType());
+                                                                startActivity(Examinationintent);
+
+                                                            } catch (final Exception e) {
+                                                                runOnUiThread(new Runnable() {
+                                                                    @Override
+                                                                    public void run() {
+                                                                        ToastUtils.show("暂无试卷");
+                                                                    }
+                                                                });
+                                                            }
+
+
+                                                        }
+                                                    });
+
+                                                    break;
+                                                default:
+                                                    //有很多试卷
+                                                    Intent culmnintent = new Intent(TotalscoreActivity.this, NoCulmnActivity.class);
+                                                    culmnintent.putExtra("pid", item.getPaperTypeId());
+                                                    culmnintent.putExtra("tv_title",item.getPaperTypeName());
+                                                    startActivity(culmnintent);
+                                            }
+                                        }
+
+//                                            Intent intent8 =new Intent(TotalscoreActivity.this, WeekAnswerActivity.class);
+//                                        intent8.putExtra("type","1");
+//                                        startActivity(intent8);
                                         break;
                                     case Orientationexamination:
                                         //TODO 定向考试
@@ -313,8 +820,16 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
     }
     @Override
     protected void initComponent() {
-        getlsit();
+
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getlsit();
+        tv_totle_code.setText(NewPreferManager.getUserTotalScore());
+    }
+
     private void getlsit(){
         Map<String,String> maps=new HashMap<>();
         maps.put("userId", NewPreferManager.getId());
@@ -338,19 +853,15 @@ public class TotalscoreActivity extends BaseActivity implements View.OnClickList
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Gson gson=new Gson();
-                        RuleListBean bean=   gson.fromJson(json,RuleListBean.class);
-//                        if("1".equals(bean.getCode())){
-//                            ToastUtils.show(bean.getMessage());
-//                        }else {
-//                            for(int i=0;i<bean.getData().size();i++){
-//                                todayscoredes=todayscoredes+bean.getData().get(i).getDayScore();
-//                            }
-//
-//                        }
-                        tv_today_scoredes.setText(bean.getData().get(1).getDayIntegral());
-                        bean.getData().add(new RuleListBean.Data());
-                        Adapter.setDatas(bean.getData());
+                        try {
+                            Gson gson=new Gson();
+                            RuleListBean bean=   gson.fromJson(json,RuleListBean.class);
+                            tv_today_scoredes.setText(bean.getData().get(1).getDayIntegral());
+                            Adapter.setDatas(bean.getData());
+                        }catch (Exception e){
+
+                        }
+
 
 
 

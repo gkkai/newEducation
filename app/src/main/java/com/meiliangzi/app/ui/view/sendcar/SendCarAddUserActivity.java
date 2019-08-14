@@ -55,7 +55,7 @@ public class SendCarAddUserActivity extends BaseActivity {
 
     @Override
     protected void onResume() {
-        ProxyUtils.getHttpProxy().querydepartment(this,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().querydepartment(this,NewPreferManager.getoldUseId());
 
         super.onResume();
     }

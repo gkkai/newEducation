@@ -1,3 +1,6 @@
-include ':app', ':jpush', ':versionupdatelibrary', ':zoomcommonlibs', ':IMLib', ':IMKit', ':wheelview', ':tablibrary'
+include ':app', ':jpush', ':versionupdatelibrary', ':zoomcommonlibs', ':IMLib', ':IMKit', ':newwheelview', ':tablibrary'
 include ':zoomcommonlib'
 include ':zoommobilertc'
+include 'pickerview'
+include 'wheelview'
+include 'preview'

@@ -16,7 +16,6 @@ import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 import android.util.Log;
@@ -147,7 +146,9 @@ public class VersionUpdateService extends Service {
         }
         Intent buttonAction = new Intent(BUTTON_ACTION);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, buttonAction, PendingIntent.FLAG_UPDATE_CURRENT);
-        remoteView.setOnClickPendingIntent(R.id.btn1, pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.CUPCAKE) {
+            remoteView.setOnClickPendingIntent(R.id.btn1, pendingIntent);
+        }
         builder = new NotificationCompat.Builder(this);
         if(Config.notificaionSmallIconResId == 0) {
             builder.setSmallIcon(Config.notificaionSmallIconResId);

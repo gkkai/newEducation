@@ -5,6 +5,7 @@ package com.meiliangzi.app.tools;
  */
 
 public class NewPreferManager {
+    public  static String title="";
     public static final String UserSex="userSex";
     public static final String OrganizationName="organizationName";
     public static final String Photo="photo";
@@ -34,7 +35,7 @@ public class NewPreferManager {
 
     private static final String Hostirysocary = "hostirysocary";
 
-
+    private static final String OldUserId = "oldUserId";
 
     public static void  savehostirysocary(String orgId){
         PreferUtils.put(Hostirysocary,orgId);
@@ -269,5 +270,20 @@ public class NewPreferManager {
     }
     public static String getOrganizationName(){
         return PreferUtils.getString(OrganizationName,"");
+    }
+    public static int getoldUseId(){
+        return PreferUtils.getInt(OldUserId,1);
+    }
+    public static void saveoldUseId(int orgId) {
+        PreferUtils.put(OldUserId,orgId);
+
+    }
+
+    public  void saveColumbean(String title, String s) {
+        this.title=title;
+        PreferUtils.put(title,s);
+    }
+    public static String geteColumbean(String t) {
+        return PreferUtils.getString(t,"");
     }
 }

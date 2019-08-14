@@ -34,12 +34,15 @@ import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.view.Academy.bean.RuleListBean;
 import com.meiliangzi.app.ui.view.Academy.bean.VideoBean;
+import com.meiliangzi.app.widget.MyJZMediaSystem;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.media.UMWeb;
 import com.zzhoujay.richtext.RichText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -75,7 +78,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     @BindView(R.id.image_menu)
     ImageView image_menu;
     private int mLastPlayedTime;
-    private Timer timer,timer1;
+    private Timer timer1;
     long firsttime = System.currentTimeMillis();
     private String url;
     private String title;
@@ -84,8 +87,8 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     private LinearLayout ll_weinxin;
     private LinearLayout ll_penyouquan;
     private TextView concle;
-    private long time;
-    private boolean isplay=false;
+    private long time=30;
+    public boolean isplay=false;
     private long timeFormat=0;
     private String WatchVideoId="402881e56a47e6c8016a47e9363c0002";
     private String  DurationWatchVideoId="402881e56a47e6c8016a47e9363c0004";
@@ -153,24 +156,91 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
         mLastPlayedTime = savedInstanceState.getInt(LAST_PLAYED_TIME);
     }
+//    public void starplay(){
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//
+//                Map<String,String> maps=new HashMap<>();
+//                maps.put("userId", NewPreferManager.getId());
+//
+//                maps.put("ruleId",WatchVideoId);
+//
+//                maps.put("comprehensiveId",id);
+//                OkhttpUtils.getInstance(getBaseContext()).doPost("academyService/detail/watchVideoScore", maps, new OkhttpUtils.onCallBack() {
+//                    @Override
+//                    public void onFaild(Exception e) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onResponse(String json) {
+//                        Log.i("VideoPlayActivity",timeFormat+"");
+//
+//                    }
+//                });
+//
+//            }
+//        },time*1000);
+//    }
 
     @Override
     protected void findWidgets() {
           timer1=new Timer();
-        timer=new Timer();
+        //timer=new Timer();
+
+        timer1.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                if (isplay){
+                    if(timeFormat>=Integer.valueOf(videotime)){
+
+                    }else {
+                        timeFormat++;
+                    }
+                    if(timeFormat==time){
+                        Map<String,String> maps=new HashMap<>();
+                        maps.put("userId", NewPreferManager.getId());
+                        maps.put("ruleId",WatchVideoId);
+                        maps.put("comprehensiveId",id);
+                        OkhttpUtils.getInstance(getBaseContext()).doPost("academyService/detail/watchVideoScore", maps, new OkhttpUtils.onCallBack() {
+                            @Override
+                            public void onFaild(Exception e) {
+
+                            }
+
+                            @Override
+                            public void onResponse(String json) {
+                                Log.i("VideoPlayActivity",timeFormat+"");
+
+                            }
+                        });
+                    }
+
+                    Log.i("VideoPlayActivity",timeFormat+"");
+
+                }
+
+
+            }
+        },0,1000);
         String ruleslists= NewPreferManager.getRuleLists();
         image_back.setOnClickListener(this);
         image_menu.setOnClickListener(this);
         if(ruleslists.equals("")){
-            time=30000;
+            time=30;
         }else {
             Gson gson=new Gson();
             RuleListBean bean=   gson.fromJson(ruleslists,RuleListBean.class);
-            for(int i=0;i<bean.getData().size();i++){
-                if(WatchVideoId.equals(bean.getData().get(i).getId())){
-                    time=Integer.valueOf(bean.getData().get(i).getConditions());
+
+            if(bean!=null&&bean.getData()!=null&&bean.getData().size()!=0){
+                for(int i=0;i<bean.getData().size();i++){
+                    if(WatchVideoId.equals(bean.getData().get(i).getId())){
+                        time=Integer.valueOf(bean.getData().get(i).getConditions());
+                    }
                 }
             }
+
         }
 
 
@@ -184,6 +254,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         OkhttpUtils.getInstance(this).getList("academyService/video/findById/"+id, map, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
+
 
             }
 
@@ -227,12 +298,13 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
         videoPlayer.setJzUserAction(new MyUserActionStandard());
         videoPlayer.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        videoPlayer.setMediaInterface(new JZMediaSystem());
+        videoPlayer.setMediaInterface(new MyJZMediaSystem(this));
         videoPlayer.startButton.performClick();
         setImageSize();
         tx_title.setText(bean.getData().getTitle());
         tv_departmentName.setText(bean.getData().getDepartmentName());
-        tv_time.setText(bean.getData().getCreateTime());
+
+        tv_time.setText(removetime(bean.getData().getUpdateTime()));
         tv_content.setMovementMethod(LinkMovementMethod.getInstance());
         RichText.fromHtml(bean.getData().getContent()).into(tv_content);
 
@@ -315,7 +387,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
 
     public void onBack() {
-        timer.cancel();
+
         timer1.cancel();
         Map<String,String> maps=new HashMap<>();
         maps.put("userId",NewPreferManager.getId());
@@ -324,17 +396,17 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         maps.put("comprehensiveId",id);
         OkhttpUtils.getInstance(this).doPost("academyService/detail/videoLearningDurationScore", maps, new OkhttpUtils.onCallBack() {
             @Override
-            public void onFaild(Exception e) {
-
-            }
-            @Override
-            public void onResponse(String json) {
+            public void onFaild(final Exception e) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        ToastUtils.show("阅读视频"+timeFormat);
+                        ToastUtils.show(e.getMessage());
                     }
                 });
+            }
+            @Override
+            public void onResponse(String json) {
+
 
 
             }
@@ -400,12 +472,13 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
 
     }
     private void  sharewein(){
+        String s=tv_content.getText().toString().trim();
         UMImage image = new UMImage(this, R.mipmap.log2);//资源文件
 
         UMWeb web = new UMWeb(url);
         web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription(description);//描述
+        web.setDescription(tv_content.getText().toString().trim());//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN)
                 .withMedia(web)
@@ -418,7 +491,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
         UMWeb web = new UMWeb(url);
         web.setTitle(title);//标题
         web.setThumb(image);  //缩略图
-        web.setDescription(description);//描述
+        web.setDescription(tv_content.getText().toString().trim());//描述
         new ShareAction(this)
                 .setPlatform(WEIXIN_CIRCLE)
                 .withMedia(web)
@@ -433,56 +506,9 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
             switch (type) {
                 case JZUserAction.ON_CLICK_START_ICON:
                     //TODO 开始播放
-                    isplay=true;
+                   // isplay=true;
                     //TODO 视频逻辑处理
 
-                    timer.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Map<String,String> maps=new HashMap<>();
-                            maps.put("userId", NewPreferManager.getId());
-
-                            maps.put("ruleId",WatchVideoId);
-
-                            maps.put("comprehensiveId",id);
-                            OkhttpUtils.getInstance(getBaseContext()).doPost("academyService/detail/watchVideoScore", maps, new OkhttpUtils.onCallBack() {
-                                @Override
-                                public void onFaild(Exception e) {
-
-                                }
-
-                                @Override
-                                public void onResponse(String json) {
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ToastUtils.show("阅读视频"+time);
-                                            }
-                                        });
-
-                                }
-                            });
-
-                        }
-                    },time*1000);
-                    timer1.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            if (isplay){
-                                if(timeFormat>=Integer.valueOf(videotime)){
-
-                                }else {
-                                    timeFormat++;
-                                }
-                                if(timeFormat==time){}
-
-                                Log.i("VideoPlayActivity",timeFormat+"");
-
-                            }
-
-
-                        }
-                    },0,1000);
                     Log.i("USER_EVENT", "ON_CLICK_START_ICON" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_CLICK_START_ERROR:
@@ -501,6 +527,7 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
                     break;
                 case JZUserAction.ON_CLICK_RESUME:
                     isplay=true;
+
                     Log.i("USER_EVENT", "ON_CLICK_RESUME" + " title is : " + (objects.length == 0 ? "" : objects[0]) + " url is : " + url + " screen is : " + screen);
                     break;
                 case JZUserAction.ON_SEEK_POSITION:
@@ -545,62 +572,16 @@ public class VideoPlayActivity extends BaseActivity implements View.OnClickListe
     }
 
 
-    private class MyJZMediaSystem extends JZMediaInterface {
-        @Override
-        public void start() {
-            Log.i("USER_EVENT", "1");
-        }
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+private String removetime(String time){
+    String s="";
+    try {
 
-        @Override
-        public void prepare() {
-            Log.i("USER_EVENT", "2");
-        }
-
-        @Override
-        public void pause() {
-            Log.i("USER_EVENT", "3");
-
-        }
-
-        @Override
-        public boolean isPlaying() {
-            Log.i("USER_EVENT", "4");
-            return false;
-        }
-
-        @Override
-        public void seekTo(long time) {
-            Log.i("USER_EVENT", "5");
-
-        }
-
-        @Override
-        public void release() {
-            Log.i("USER_EVENT", "6");
-
-        }
-
-        @Override
-        public long getCurrentPosition() {
-            Log.i("USER_EVENT", "7");
-            return 0;
-        }
-
-        @Override
-        public long getDuration() {
-            Log.i("USER_EVENT", "8");
-            return 0;
-        }
-
-        @Override
-        public void setSurface(Surface surface) {
-
-
-        }
-
-        @Override
-        public void setVolume(float leftVolume, float rightVolume) {
-
-        }
+     s  = sdf.format(sdf.parse(time));
+    } catch (ParseException e) {
+        e.printStackTrace();
     }
+    return s;
+}
+
 }

@@ -158,7 +158,7 @@ private int id;
     @Override
     protected void onResume() {
         super.onResume();
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,NewPreferManager.getoldUseId());
 
     }
 
@@ -169,7 +169,7 @@ private int id;
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,NewPreferManager.getoldUseId());
 
             }
         });
@@ -177,7 +177,7 @@ private int id;
             @Override
             public void onClick(View v) {
                 text_blow_vote.setEnabled(false);
-                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,Integer.valueOf(NewPreferManager.getId()));
+                ProxyUtils.getHttpProxy().usersubvote(VoteDateVoideActivity.this,id,NewPreferManager.getoldUseId());
 
             }
         });
@@ -319,7 +319,7 @@ private int id;
 
     }
     private void getusersubvote(VoteUsersubvoteBean data){
-        ProxyUtils.getHttpProxy().subvoteinfo(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvoteinfo(this,id,NewPreferManager.getoldUseId());
 
     }
     public  void getBitmapFormUrl(final String url) {

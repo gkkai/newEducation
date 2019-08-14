@@ -36,6 +36,23 @@ public class NewBaseBean {
    public class Data{
        private TokenVo tokenVo;
        private String personalOrgId;
+       private int oldUserId;
+
+       public String getPersonalOrgId() {
+           return personalOrgId;
+       }
+
+       public void setPersonalOrgId(String personalOrgId) {
+           this.personalOrgId = personalOrgId;
+       }
+
+       public int getOldUserId() {
+           return oldUserId;
+       }
+
+       public void setOldUserId(int oldUserId) {
+           this.oldUserId = oldUserId;
+       }
 
        public String getOrgId() {
            return personalOrgId;

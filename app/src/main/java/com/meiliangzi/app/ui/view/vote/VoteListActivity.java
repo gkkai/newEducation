@@ -83,7 +83,7 @@ public class VoteListActivity extends BaseActivity {
                                 public void onClick(View v) {
 
                                     if(!((TextView)helper.getView(R.id.text_vote)).getText().equals("已投")){
-                                        ProxyUtils.getHttpProxy().usersubvote(VoteListActivity.this,item.getId(),Integer.valueOf(NewPreferManager.getId()));
+                                        ProxyUtils.getHttpProxy().usersubvote(VoteListActivity.this,item.getId(),NewPreferManager.getoldUseId());
 
                                     }
                                     helper.setText(R.id.text_vote, "已投");
@@ -228,7 +228,7 @@ public class VoteListActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
 
-        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvotelist(this,id,NewPreferManager.getoldUseId());
 
     }
 
@@ -252,7 +252,7 @@ public class VoteListActivity extends BaseActivity {
         isonclick=false;
     }
     private void getusersubvote(VoteUsersubvoteBean data){
-        ProxyUtils.getHttpProxy().subvotelist(this,id,Integer.valueOf(NewPreferManager.getId()));
+        ProxyUtils.getHttpProxy().subvotelist(this,id,NewPreferManager.getoldUseId());
 
     }
 

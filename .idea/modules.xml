@@ -7,6 +7,9 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jpush/jpush.iml" filepath="$PROJECT_DIR$/jpush/jpush.iml" />
       <module fileurl="file://$PROJECT_DIR$/newEducation.iml" filepath="$PROJECT_DIR$/newEducation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/newwheelview/newwheelview.iml" filepath="$PROJECT_DIR$/newwheelview/newwheelview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pickerview/pickerview.iml" filepath="$PROJECT_DIR$/pickerview/pickerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/preview/preview.iml" filepath="$PROJECT_DIR$/preview/preview.iml" />
       <module fileurl="file://$PROJECT_DIR$/tablibrary/tablibrary.iml" filepath="$PROJECT_DIR$/tablibrary/tablibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/versionupdatelibrary/versionupdatelibrary.iml" filepath="$PROJECT_DIR$/versionupdatelibrary/versionupdatelibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/wheelview/wheelview.iml" filepath="$PROJECT_DIR$/wheelview/wheelview.iml" />

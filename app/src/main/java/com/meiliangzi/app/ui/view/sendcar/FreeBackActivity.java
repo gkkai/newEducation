@@ -53,8 +53,7 @@ public class FreeBackActivity extends BaseActivity implements XListView.IXListVi
                 helper.getView(R.id.text_sumit_fk).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Log.d("name++++++++++",  NewPreferManager.getId()+"");
-                        if(item.getDriverUserId()==Integer.valueOf(NewPreferManager.getId())){
+                        if(item.getDriverUserId()==NewPreferManager.getoldUseId()){
                             Intent i=new Intent(FreeBackActivity.this,FkDataActivity.class);
                             i.putExtra("sendACarId",item.getId());
                             startActivity(i);

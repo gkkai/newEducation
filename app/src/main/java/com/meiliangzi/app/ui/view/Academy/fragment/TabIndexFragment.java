@@ -33,6 +33,8 @@ import com.meiliangzi.app.ui.view.Academy.bean.ArticleListBean;
 import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
 import com.meiliangzi.app.widget.XListView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -173,10 +175,10 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         helper.showOrGoneView(R.id.rl_small_image,false);
                         ((TextView)helper.getView(R.id.tv_no_title)).setText(item.getTitle());
                         if(null==item.getDepartmentName()){
-                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_no_department)).setText(removetime(item.getUpdateTime()));
                         }else {
                             ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
-                                    +"   "+item.getUpdateTime());
+                                    +"   "+removetime(item.getUpdateTime()));
                         }
                         break;
                     case 1:
@@ -186,10 +188,10 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_big_title)).setText(item.getTitle());
 
                         if(null==item.getDepartmentName()){
-                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_big_department)).setText(removetime(item.getUpdateTime()));
                         }else {
-                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
-                                    +"   "+item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
+                                    +"   "+removetime(item.getUpdateTime()));
                         }
                         helper.setImageByUrl(R.id.image_big,item.getCoverImage(),R.mipmap.smallphoto,R.mipmap.smallphoto);
                         break;
@@ -200,24 +202,29 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_small_title)).setText(item.getTitle());
 
                         if(null==item.getDepartmentName()){
-                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_small_department)).setText(removetime(item.getUpdateTime()));
                         }else {
-                            ((TextView)helper.getView(R.id.tv_no_department)).setText(item.getDepartmentName()
-                                    +"   "+item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
+                                    +"  "+removetime(item.getUpdateTime()));
                         }
-                        List<String> result = Arrays.asList(item.getCoverImage().split(","));
-                        if(result.size()>=1){
-                            helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+                        try {
+                            List<String> result = Arrays.asList(item.getCoverImage().split(","));
+                            if(result.size()>=1){
+                                helper.setImageByUrl(R.id.image_small_one,result.get(0),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                            }
+                            if(result.size()>=2){
+                                helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                            }
+                            if(result.size()>=3){
+                                helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
+
+                            }
+                        }catch (Exception e){
 
                         }
-                        if(result.size()>=2){
-                            helper.setImageByUrl(R.id.image_small_two,result.get(1),R.mipmap.smallphoto,R.mipmap.smallphoto);
 
-                        }
-                        if(result.size()>=3){
-                            helper.setImageByUrl(R.id.image_small_three,result.get(2),R.mipmap.smallphoto,R.mipmap.smallphoto);
-
-                        }
 
                         break;
 
@@ -346,6 +353,19 @@ public class TabIndexFragment extends BaseFragment implements XListView.IXListVi
     }
     public interface Ifsearch{
         public int getid();
+    }
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private String removetime(String time){
+        String s="";
+        try {
+            if(time!=null){
+                s  = sdf.format(sdf.parse(time));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
     }
 
 }

@@ -414,7 +414,7 @@ public class ZoomActivity extends BaseActivity implements  ZoomSDKInitializeList
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
                     IntentUtils.startAtyWithSingleParam(ZoomActivity.this, LoginActivity.class, "activity", "WholeFragment");
                 }
             }
@@ -424,7 +424,7 @@ public class ZoomActivity extends BaseActivity implements  ZoomSDKInitializeList
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(NewPreferManager.getId())){
+        if(TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")){
 //            if(TextUtils.isEmpty(PreferManager.getUserId())){
 //                tvEmpty.setText("请先登录");
 //            }else if(!PreferManager.getIsComplete()){

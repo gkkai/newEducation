@@ -20,6 +20,7 @@ import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
+import com.meiliangzi.app.ui.view.Academy.NewLoginActivity;
 import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
@@ -97,8 +98,8 @@ public class CommonsListActivity extends BaseActivity implements View.OnClickLis
         text_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
-                    IntentUtils.startAtyForResult(CommonsListActivity.this, LoginActivity.class, 1003, "activity", "index");
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
+                    IntentUtils.startAtyForResult(CommonsListActivity.this, NewLoginActivity.class, 1003, "activity", "index");
 
                 }
             }

@@ -50,16 +50,17 @@
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="42dp"
                     android:text="123"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="39sp"
                     android:layout_width="100dp"
                     android:layout_height="55dp" />
                 <TextView
+
                     android:gravity="center"
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="102dp"
                     android:text="个人总积分"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:layout_width="100dp"
                     android:layout_height="23dp" />
@@ -84,7 +85,7 @@
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="42dp"
                     android:text="123"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="39sp"
                     android:layout_width="100dp"
                     android:layout_height="55dp" />
@@ -93,7 +94,7 @@
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="102dp"
                     android:text="公司排名"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:layout_width="100dp"
                     android:layout_height="23dp" />
@@ -117,7 +118,7 @@
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="42dp"
                     android:text="123"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="39sp"
                     android:layout_width="100dp"
                     android:layout_height="55dp" />
@@ -126,7 +127,7 @@
                     android:layout_marginLeft="193dp"
                     android:layout_marginTop="102dp"
                     android:text="部门排名"
-                    android:textColor="#333333"
+                    android:textColor="@color/white"
                     android:textSize="16sp"
                     android:layout_width="100dp"
                     android:layout_height="23dp" />

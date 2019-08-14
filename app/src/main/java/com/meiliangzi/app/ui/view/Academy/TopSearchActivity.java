@@ -1,7 +1,10 @@
 package com.meiliangzi.app.ui.view.Academy;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.text.Editable;
@@ -271,12 +274,17 @@ public class TopSearchActivity extends BaseActivity implements View.OnClickListe
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent=new Intent(TopSearchActivity.this, VideoPlayActivity.class);
+                    if(isNetworkConnected(getBaseContext())){
+                        Intent intent=new Intent(TopSearchActivity.this, VideoPlayActivity.class);
 //                intent.putExtra("type","1");
 //                intent.putExtra("url","html/video.html?id="+Adapter.getItem(position-1).getId());
 //                intent.putExtra("title",Adapter.getItem(position-1).getTitle());
-                    intent.putExtra("id",voidAdapter.getItem(position-1).getId());
-                    startActivity(intent);
+                        intent.putExtra("id",voidAdapter.getItem(position-1).getId());
+                        startActivity(intent);
+                    }else {
+                      ToastUtils.show("暂无网络，请重试");
+                    }
+
                 }
             });
 
@@ -361,4 +369,15 @@ public class TopSearchActivity extends BaseActivity implements View.OnClickListe
                 break;
         }
     }
+    public boolean isNetworkConnected(Context context) {
+         if (context != null) {
+             ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+             .getSystemService(Context.CONNECTIVITY_SERVICE);
+             NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+             if (mNetworkInfo != null) {
+                 return mNetworkInfo.isAvailable();
+                 }
+             }
+         return false;
+         }
 }

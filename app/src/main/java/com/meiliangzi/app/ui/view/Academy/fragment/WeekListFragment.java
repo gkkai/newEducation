@@ -58,8 +58,8 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
             if(type==null){
                 type=(String) getArguments().get("type");
             }
-            if(type==null){
-                type=(String) getArguments().get("type");
+            if(title==null){
+                title=(String) getArguments().get("title");
             }
             if(paperTypeId==null){
                 paperTypeId=(String) getArguments().get("paperTypeId");
@@ -101,16 +101,20 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
         kaoshiAdapter=new BaseVoteAdapter<PageListBean.Data>(getContext(),listView,R.layout.week_answer_list) {
             @Override
             public void convert(BaseViewHolder helper, final PageListBean.Data item) {
-                if(item.getType().equals("0")){
-                    helper.getView(R.id.rl_0).setVisibility(View.VISIBLE);
-                    helper.getView(R.id.rl_1).setVisibility(View.GONE);
-                    ((TextView)helper.getView(R.id.tv_isanswer0)).setText(item.getTotalNumber()+"道题");
-                    ((TextView)helper.getView(R.id.tv_time)).setText(item.getCreateTime());
-                }else {
-                    helper.getView(R.id.rl_1).setVisibility(View.VISIBLE);
-                    helper.getView(R.id.rl_0).setVisibility(View.GONE);
-                    ((TextView)helper.getView(R.id.tv_isanswer1)).setText("未作答");
-                }
+//                if(item.getType().equals("0")){
+//                    helper.getView(R.id.rl_0).setVisibility(View.VISIBLE);
+//                    helper.getView(R.id.rl_1).setVisibility(View.GONE);
+//                    ((TextView)helper.getView(R.id.tv_isanswer0)).setText(item.getTotalNumber()+"道题");
+//                    ((TextView)helper.getView(R.id.tv_time)).setText(item.getCreateTime());
+//                }else {
+//                    helper.getView(R.id.rl_1).setVisibility(View.VISIBLE);
+//                    helper.getView(R.id.rl_0).setVisibility(View.GONE);
+//                    ((TextView)helper.getView(R.id.tv_isanswer1)).setText("未作答");
+//                }
+                helper.getView(R.id.rl_0).setVisibility(View.VISIBLE);
+                helper.getView(R.id.rl_1).setVisibility(View.GONE);
+                ((TextView)helper.getView(R.id.tv_isanswer0)).setText(item.getTotalNumber()+"道题");
+                ((TextView)helper.getView(R.id.tv_time)).setText(item.getCreateTime());
 
                 switch (compareTime(item.getValidityTimeEnd())){
                     case -1:
@@ -123,9 +127,14 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
                                 Intent intent=new Intent(getActivity(), AnalysisActivity.class);
                                 intent.putExtra("paperId",item.getId());
                                 //TODO
-                                intent.putExtra("title",item.getTitle());
+                                intent.putExtra("title",title);
                                 intent.putExtra("type",type);
-                                intent.putExtra("time",item.getDuration());
+                                if(item.getAnswerTime()==null||"".equals(item.getAnswerTime())){
+                                    intent.putExtra("time", item.getDuration());
+                                }else {
+                                    intent.putExtra("time", (Integer.valueOf(item.getDuration())-Integer.valueOf(item.getAnswerTime()))+"");
+
+                                }
                                 intent.putExtra("pagetitle",item.getTitle());
                                 intent.putExtra("totalNumber",item.getTotalNumber());
                                 intent.putExtra("countDown",item.getCountDown());
@@ -157,7 +166,7 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
                                         Intent intent=new Intent(getActivity(), WeekExaminationActivity.class);
                                         intent.putExtra("paperId",item.getId());
                                         //TODO
-                                        intent.putExtra("title",item.getTitle());
+                                        intent.putExtra("title",title);
                                         intent.putExtra("type",type);
                                         intent.putExtra("time",item.getDuration());
                                         intent.putExtra("pagetitle",item.getTitle());
@@ -188,7 +197,7 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
                                         intent.putExtra("paperId",item.getId());
                                         //TODO
                                         intent.putExtra("type",type);
-                                        intent.putExtra("title",item.getTitle());
+                                        intent.putExtra("title",title);
                                         intent.putExtra("time",item.getDuration());
                                         intent.putExtra("pagetitle",item.getTitle());
                                         intent.putExtra("totalNumber",item.getTotalNumber());
@@ -219,7 +228,7 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
                                         Intent intent=new Intent(getActivity(), WeekExaminationActivity.class);
                                         intent.putExtra("paperId",item.getId());
                                         //TODO
-                                        intent.putExtra("title",item.getTitle());
+                                        intent.putExtra("title",title);
                                         intent.putExtra("type",type);
                                         intent.putExtra("time",item.getDuration());
                                         intent.putExtra("pagetitle",item.getTitle());
@@ -240,14 +249,7 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
                                 });
                                 break;
                         }
-
-
                 }
-//                if(item.getPublicOrprivate()==0){
-//
-//                }else {
-//                    ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle()+"("+"专业"+")");
-//                }
 
                 ((TextView)helper.getView(R.id.tv_title)).setText(item.getTitle());
 
@@ -259,10 +261,13 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
 
     @Override
     protected void initComponent() {
+    }
+
+
+    protected void getdata() {
         //TODO 获取试卷列表
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("userId",NewPreferManager.getId());
-        jsonObject.put("type",type);
         jsonObject.put("pageNumber",page+"");
         jsonObject.put("pageSize","10");
         jsonObject.put("paperTypeId",paperTypeId);
@@ -305,22 +310,22 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
 
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onResume() {
+        super.onResume();
         page = 0;
-        initComponent();
+        getdata();
     }
 
     @Override
     public void onRefresh() {
         page = 0;
-        initComponent();
+        getdata();
     }
 
     @Override
     public void onLoadMore() {
         page++;
-        initComponent();
+        getdata();
 
     }
     private int compareTime(String time){
@@ -334,11 +339,13 @@ public class WeekListFragment extends BaseFragment implements XListView.IXListVi
         try {
             Date dt1 = df.parse(time);
             Date dt2 = df.parse(timenow);
+            long s =dt1.getTime();
+            long ss =dt2.getTime();
             if (dt1.getTime() > dt2.getTime()) {
                 System.out.println("dt1 在dt2前");
                 //TODO 过期
                 return 1;
-            } else if (dt1.getTime() < dt2.getTime()) {
+            } else if (dt1.getTime()<=dt2.getTime()) {
                 System.out.println("dt1在dt2后");
                 return -1;
             } else {

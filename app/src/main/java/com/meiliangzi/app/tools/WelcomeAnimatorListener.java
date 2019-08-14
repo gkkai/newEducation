@@ -37,12 +37,12 @@ public class WelcomeAnimatorListener implements AnimationListener {
 
     @Override
     public void onAnimationEnd(Animation animation) {
+        //login("1","1","2");
         if(TextUtils.isEmpty(NewPreferManager.getPasswd()) ){
 
                 //TODO 进行登录
                 IntentUtils.startAty(welcomeActivity, NewLoginActivity.class);
                 welcomeActivity.finish();
-
 
         }else {
 
@@ -51,11 +51,9 @@ public class WelcomeAnimatorListener implements AnimationListener {
 
             //Todo 工号登录
                 login(NewPreferManager.getWorkNumber(),NewPreferManager.getPasswd(),"2");
-
             }else if(!TextUtils.isEmpty(NewPreferManager.getPhone())){
                //TODO
                 login(NewPreferManager.getPhone(),NewPreferManager.getPasswd(),"1");
-
             }else {
                 //TODO 进行登录
                 IntentUtils.startAty(welcomeActivity, NewLoginActivity.class);
@@ -98,7 +96,7 @@ public class WelcomeAnimatorListener implements AnimationListener {
                     NewPreferManager.saveToken(bean.getData().getTokenVo().getToken());
                     NewPreferManager.saveOrgId(bean.getData().getOrgId());
                     NewPreferManager.saverefreshToken(bean.getData().getTokenVo().getRefreshToken());
-
+                    NewPreferManager.saveoldUseId(bean.getData().getOldUserId());
                     userInfo(bean.getData().getUserId(),bean.getData().getOrgId());
                     getlsit(bean.getData().getUserId());
                     loginScore(bean.getData().getUserId());

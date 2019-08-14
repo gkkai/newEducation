@@ -22,12 +22,9 @@
                 android:gravity="center_vertical"
                 android:text="投票管理"
                 android:textSize="12sp"
-                android:layout_width="48dp"
+                android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 />
-
-
-
 
 
 </RelativeLayout>

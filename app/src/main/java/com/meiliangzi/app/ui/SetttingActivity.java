@@ -126,7 +126,7 @@ public class SetttingActivity extends BaseActivity {
                         TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
                         tagAliasBean.action = ACTION_DELETE;
                         if(true){
-                            tagAliasBean.alias = String.valueOf(NewPreferManager.getId());
+                            tagAliasBean.alias = String.valueOf(NewPreferManager.getoldUseId());
                         }else{
                         }
                         tagAliasBean.isAliasAction = true;

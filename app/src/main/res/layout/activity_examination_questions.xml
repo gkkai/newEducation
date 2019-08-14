@@ -69,7 +69,7 @@
             android:textSize="11sp"
             android:id="@+id/tv_no_duration"
             android:layout_below="@id/tv_pagetitle"
-            android:text="不记时"
+            android:text="不计时"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:textColor="#999999"/>
@@ -110,7 +110,7 @@
         android:layout_marginTop="160dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="51dp">
+        android:layout_marginBottom="50dp">
 
 
         <!--阴影-->
@@ -126,7 +126,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
-            android:layout_weight="1"
             android:background="@color/white" />
 
 

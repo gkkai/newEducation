@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorWhite"
         android:fitsSystemWindows="false"
+
         >
         <FrameLayout
 

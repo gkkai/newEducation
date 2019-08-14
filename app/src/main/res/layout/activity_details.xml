@@ -17,6 +17,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <RelativeLayout
+
+        android:layout_marginTop="48dp"
+        android:id="@+id/rr"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_title_backgroud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
+            android:text="正在加载......"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
     <RelativeLayout style="@style/ActionBar">
 
         <ImageView style="@style/ActionBar.LeftImage" />

@@ -30,6 +30,7 @@ import com.meiliangzi.app.ui.view.Academy.AlloptionsActivity;
 import com.meiliangzi.app.ui.view.Academy.TopSearchActivity;
 import com.meiliangzi.app.ui.view.Academy.TotalscoreActivity;
 import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
+import com.meiliangzi.app.ui.view.Academy.bean.UserInfoBean;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,7 +95,8 @@ public class CVideoFragment extends BaseFragment implements View.OnClickListener
     public void onResume() {
         super.onResume();
         StatusBarCompat.setStatusBarColor(getActivity(), getResources().getColor(R.color.de_draft_color));
-        tv_code.setText(NewPreferManager.getUserTotalScore());
+       // tv_code.setText(NewPreferManager.getUserTotalScore());
+        userInfo();
     }
 
     @Override
@@ -102,6 +104,50 @@ public class CVideoFragment extends BaseFragment implements View.OnClickListener
         search.setOnClickListener(this);
         tv_topersonalcentenr.setOnClickListener(this);
         rl_integral.setOnClickListener(this);
+
+
+    }
+    private void userInfo(){
+        Map<String,String> map=new HashMap();
+        map.put("userId",NewPreferManager.getId());
+        map.put("orgId",NewPreferManager.getOrgId());
+        OkhttpUtils.getInstance(getContext()).getList("academyService//userInfo/findByUserInfo", map, new OkhttpUtils.onCallBack() {
+            @Override
+            public void onFaild(Exception e) {
+
+            }
+
+            @Override
+            public void onResponse(String json) {
+                Gson gson=new Gson();
+                UserInfoBean user=gson.fromJson(json,UserInfoBean.class);
+                NewPreferManager.saveUserSex(user.getData().getUserSex());
+                NewPreferManager.saveOrganizationName(user.getData().getOrganizationName());
+                NewPreferManager.saveOrganizationId(user.getData().getOrganizationId());
+                NewPreferManager.savePhoto(user.getData().getPhoto());
+                NewPreferManager.saveUserName(user.getData().getUserName());
+                NewPreferManager.saveBirthDate(user.getData().getBirthDate());
+                NewPreferManager.saveNativePlace(user.getData().getNativePlace());
+                NewPreferManager.savePartyMasses(user.getData().getPartyMasses());
+                NewPreferManager.savePartyName(user.getData().getPartyName());
+                NewPreferManager.savePartyPositionName(user.getData().getPartyPositionName());
+                NewPreferManager.savePhone(user.getData().getPhone());
+                NewPreferManager.saveUserCode(user.getData().getUserCode());
+                NewPreferManager.saveWorkNumber(user.getData().getWorkNumber());
+                NewPreferManager.savePositionName(user.getData().getPositionName());
+                NewPreferManager.savePositionId(user.getData().getPositionId());
+                NewPreferManager.saveId(user.getData().getId());
+                NewPreferManager.saveUserTotalScore(user.getData().getUserTotalScore());
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tv_code.setText(NewPreferManager.getUserTotalScore());
+                    }
+                });
+
+
+            }
+        });
 
 
     }
@@ -151,19 +197,6 @@ public class CVideoFragment extends BaseFragment implements View.OnClickListener
         });
 
     }
-
-//    public void getList(IndexColumnBean bean){
-//        adapter = new MsgContentFragmentAdapter(getChildFragmentManager());
-//        MyApplication.indexColumnBean=bean;
-//        // 更新适配器数据
-//        adapter.setList(bean.getData());
-//        viewPager.setAdapter(adapter);
-//        tabLayout.setupWithViewPager(viewPager);
-//        tabLayout.getTabAt(0).select();
-//
-//
-//    }
-
     public class MsgContentFragmentAdapter extends FragmentPagerAdapter {
         private List<IndexColumnBean.Data> names;
 

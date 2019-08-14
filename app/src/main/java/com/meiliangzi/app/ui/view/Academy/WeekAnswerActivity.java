@@ -78,10 +78,6 @@ public class WeekAnswerActivity  extends BaseActivity  {
         type=getIntent().getStringExtra("type");
         onCreateView(R.layout.activity_week_answer);
     }
-
-
-
-
     @Override
     protected void findWidgets() {
         inflate = LayoutInflater.from(getBaseContext()).inflate(R.layout.screen_weekanswer, null);
@@ -125,12 +121,9 @@ public class WeekAnswerActivity  extends BaseActivity  {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             }
-
             @Override
             public void onPageSelected(int position) {
-
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -172,10 +165,9 @@ public class WeekAnswerActivity  extends BaseActivity  {
         stringIntegerHashMap.put(RecyclerViewSpacesItemDecoration.RIGHT_DECORATION,15);//右间距
 
         recyclerView.addItemDecoration(new RecyclerViewSpacesItemDecoration(stringIntegerHashMap));
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
-
-        myAdapter = new MyAdapter(bean.getData(), mContext);
+       // myAdapter = new MyAdapter(bean.getData(), mContext);
         bean.getData().get((tabLayout.getSelectedTabPosition())).setIschos(true);
         recyclerView.setAdapter(myAdapter);
         //TODO 我的频道
@@ -192,17 +184,7 @@ public class WeekAnswerActivity  extends BaseActivity  {
 
             @Override
             public void onItemLongClick(RecyclerView.ViewHolder vh) {
-                //判断被拖拽的是否是前两个，如果不是则执行拖拽
-//                if (vh.getLayoutPosition()>=5) {
-//                    mItemTouchHelper.startDrag(vh);
-//
-//                    //获取系统震动服务
-//                    Vibrator vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);//震动70毫秒
-//                    vib.vibrate(70);
-//
-//                }
                 mItemTouchHelper.startDrag(vh);
-//
                     //获取系统震动服务
                     Vibrator vib = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);//震动70毫秒
                     vib.vibrate(70);
@@ -447,7 +429,7 @@ public class WeekAnswerActivity  extends BaseActivity  {
                             }
 
                         }catch (Exception e){
-                            ToastUtils.show(e.getMessage());
+                            //ToastUtils.show(e.getMessage());
 
                         }
                     }

@@ -4,30 +4,33 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectChangeListener;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.model.bean.SendacardeleteBean;
 import com.meiliangzi.app.model.bean.SendacarinfoBean;
 import com.meiliangzi.app.tools.ProxyUtils;
-import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
-import com.wx.wheelview.adapter.ArrayWheelAdapter;
-import com.wx.wheelview.widget.WheelView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 
@@ -67,6 +70,8 @@ public class FkDataActivity extends BaseActivity {
 
     @BindView(R.id.text_sure)
     TextView text_sure;
+    private TimePickerView pvTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,6 +80,7 @@ public class FkDataActivity extends BaseActivity {
 
     @Override
     protected void findWidgets() {
+        initTimePicker();
         text_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +108,7 @@ public class FkDataActivity extends BaseActivity {
         text_fk_tiem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shownavigation(text_fk_tiem);
+                pvTime.show(v);
             }
         });
     }
@@ -112,24 +118,24 @@ public class FkDataActivity extends BaseActivity {
         ProxyUtils.getHttpProxy().sendacarinfo(this,getIntent().getIntExtra("sendACarId",0));
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
-        int year=Integer.valueOf(nowyear);
-//TODO
-        for(int i=0;i<20;i++){
-            listyear.add(i,String.valueOf(year+i));
-        }
-        for(int i=0;i<12;i++){
-            listmouth.add(String.valueOf(i+1));
-        }
-
-        for(int i=0;i<getMonthOfDay(year,3);i++){
-            listdays.add(String.valueOf(i+1));
-        }
-        for(int i=0;i<24;i++){
-            listtime.add(i+"");
-        }
-        for(int i=0;i<60;i++){
-            listmin.add(i+"");
-        }
+//        int year=Integer.valueOf(nowyear);
+////TODO
+//        for(int i=0;i<20;i++){
+//            listyear.add(i,String.valueOf(year+i));
+//        }
+//        for(int i=0;i<12;i++){
+//            listmouth.add(String.valueOf(i+1));
+//        }
+//
+//        for(int i=0;i<getMonthOfDay(year,3);i++){
+//            listdays.add(String.valueOf(i+1));
+//        }
+//        for(int i=0;i<24;i++){
+//            listtime.add(i+"");
+//        }
+//        for(int i=0;i<60;i++){
+//            listmin.add(i+"");
+//        }
 
     }
     //计算天数
@@ -195,168 +201,225 @@ public class FkDataActivity extends BaseActivity {
     protected void showErrorMessage(Integer errorCode, String errorMessage) {
         super.showErrorMessage(errorCode, errorMessage);
     }
-    ArrayWheelAdapter dayadapter=new ArrayWheelAdapter(this);
-    private Dialog dialog;
-    private View inflate;
-    private com.wx.wheelview.widget.WheelView year;
-    private com.wx.wheelview.widget.WheelView mouth;
-    private com.wx.wheelview.widget.WheelView days;
-    private com.wx.wheelview.widget.WheelView time;
-    private com.wx.wheelview.widget.WheelView min;
-    List<String> listyear=new ArrayList<String>();
-    List<String> listmouth=new ArrayList<String>();
-    List<String> listdays=new ArrayList<String>();
-    List<String> listtime=new ArrayList<String>();
-    List<String> listmin=new ArrayList<String>();
-    //TODO
-    SimpleDateFormat sdf=new SimpleDateFormat("yyyy");
-    private String nowyear=sdf.format(new java.util.Date());
-    private String selectyear;
-    private  String selectmouth;
-    private String selectdata;
-    private String selecttime;
-    private String selectmin;
-    public void shownavigation(final TextView text) {
-        inflate = LayoutInflater.from(this).inflate(R.layout.dialog_send_select_time, null);
-        TextView text_sure=(TextView) inflate.findViewById(R.id.text_sure);
-        TextView text_quxiao=(TextView) inflate.findViewById(R.id.text_quxiao);
-        final TextView text_time=(TextView) inflate.findViewById(R.id.text_time);
+//    ArrayWheelAdapter dayadapter=new ArrayWheelAdapter(this);
+//    private Dialog dialog;
+//    private View inflate;
+//    private com.wx.wheelview.widget.WheelView year;
+//    private com.wx.wheelview.widget.WheelView mouth;
+//    private com.wx.wheelview.widget.WheelView days;
+//    private com.wx.wheelview.widget.WheelView time;
+//    private com.wx.wheelview.widget.WheelView min;
+//    List<String> listyear=new ArrayList<String>();
+//    List<String> listmouth=new ArrayList<String>();
+//    List<String> listdays=new ArrayList<String>();
+//    List<String> listtime=new ArrayList<String>();
+//    List<String> listmin=new ArrayList<String>();
+//    //TODO
+//    SimpleDateFormat sdf=new SimpleDateFormat("yyyy");
+//    private String nowyear=sdf.format(new java.util.Date());
+//    private String selectyear;
+//    private  String selectmouth;
+//    private String selectdata;
+//    private String selecttime;
+//    private String selectmin;
+//    public void shownavigation(final TextView text) {
+//        inflate = LayoutInflater.from(this).inflate(R.layout.dialog_send_select_time, null);
+//        TextView text_sure=(TextView) inflate.findViewById(R.id.text_sure);
+//        TextView text_quxiao=(TextView) inflate.findViewById(R.id.text_quxiao);
+//        final TextView text_time=(TextView) inflate.findViewById(R.id.text_time);
+//
+//        text_sure.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                text.setText(text_time.getText());
+//                dialog.dismiss();
+//            }
+//        });
+//        text_quxiao.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                text.setText("");
+//                dialog.dismiss();
+//
+//            }
+//        });
+//
+//        year = (WheelView) inflate.findViewById(R.id.year);
+//        mouth = (WheelView) inflate.findViewById(R.id.mouth);
+//        days = (WheelView) inflate.findViewById(R.id.days);
+//        time = (WheelView) inflate.findViewById(R.id.time);
+//        min = (WheelView) inflate.findViewById(R.id.min);
+//        com.wx.wheelview.widget.WheelView.WheelViewStyle style = new com.wx.wheelview.widget.WheelView.WheelViewStyle();
+//        style.selectedTextColor = Color.parseColor("#0288ce");
+//        style.textColor = Color.GRAY;
+//        style.selectedTextSize = 20;
+//        year.setWheelAdapter(new ArrayWheelAdapter(this));
+//        year.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
+//        year.setWheelSize(5);
+//        year.setWheelData(listyear);
+//        year.setStyle(style);
+//        year.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
+//        mouth.setWheelAdapter(new ArrayWheelAdapter(this));
+//        mouth.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
+//        mouth.setWheelSize(5);
+//        mouth.setSelection(3);
+//        mouth.setWheelData(listmouth);
+//        mouth.setStyle(style);
+//        mouth.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
+//        days.setWheelAdapter(dayadapter);
+//        days.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
+//        days.setWheelSize(5);
+//        days.setSelection(3);
+//        days.setWheelData(listdays);
+//        days.setStyle(style);
+//        days.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
+//        time.setWheelAdapter(new ArrayWheelAdapter(this));
+//        time.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
+//        time.setWheelSize(5);
+//        time.setSelection(3);
+//        time.setWheelData(listtime);
+//        time.setStyle(style);
+//        time.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
+//        min.setWheelAdapter(new ArrayWheelAdapter(this));
+//        min.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
+//        min.setWheelSize(5);
+//        min.setSelection(3);
+//        min.setWheelData(listmin);
+//        min.setStyle(style);
+//        min.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
+//        year.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int position, Object o) {
+//                selectyear=listyear.get(position);
+//                if(selectyear!=null&&selectmouth!=null){
+//                    listdays.clear();
+//                    for(int i=0;i<getMonthOfDay(Integer.valueOf(selectyear),Integer.valueOf(selectmouth));i++){
+//                        listdays.add(String.valueOf(i+1));
+//                    }
+//                    dayadapter.setData(listdays);
+//                }
+//                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+//
+//            }
+//        });
+//        mouth.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int position, Object o) {
+//                selectmouth=listmouth.get(position);
+//                if(selectyear!=null&&selectmouth!=null){
+//                    listdays.clear();
+//                    for(int i=0;i<getMonthOfDay(Integer.valueOf(selectyear),Integer.valueOf(selectmouth));i++){
+//                        listdays.add(String.valueOf(i+1));
+//                    }
+//                    dayadapter.setData(listdays);
+//                }
+//                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+//            }
+//        });
+//
+//        days.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int position, Object o) {
+//                if(listdays.size()!=0){
+//                    selectdata=listdays.get(position);
+//                }
+//                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+//
+//            }
+//
+//        });
+//        time.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int position, Object o) {
+//                selecttime=listtime.get(position);
+//                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+//
+//            }
+//        });
+//        min.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(int position, Object o) {
+//                selectmin=listmin.get(position);
+//                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+//
+//            }
+//        });
+//
+//        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
+////填充对话框的布局
+//
+//        //将布局设置给Dialog
+//        dialog.setContentView(inflate);
+//        //获取当前Activity所在的窗体
+//        Window dialogWindow = dialog.getWindow();
+//        //设置Dialog从窗体底部弹出
+//        dialogWindow.setGravity(Gravity.BOTTOM);
+//        //获得窗体的属性
+//        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+//        lp.y = 0;//设置Dialog距离底部的距离
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+////       将属性设置给窗体
+//        dialogWindow.setAttributes(lp);
+//        dialog.setCanceledOnTouchOutside(false);
+//        dialog.show();//显示对话框
+//
+//    }
+private void initTimePicker() {//Dialog 模式下，在底部弹出
 
-        text_sure.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                text.setText(text_time.getText());
-                dialog.dismiss();
-            }
-        });
-        text_quxiao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                text.setText("");
-                dialog.dismiss();
+    pvTime = new TimePickerBuilder(this, new OnTimeSelectListener() {
+        @Override
+        public void onTimeSelect(Date date, View v) {
+            //ToastUtils.show(getTime(date));
+            //TODO
+            //     确定
+            Log.i("pvTime", "onTimeSelect");
+            ((TextView)pvTime.getClickView()).setText(getTime(date));
 
-            }
-        });
-
-        year = (WheelView) inflate.findViewById(R.id.year);
-        mouth = (WheelView) inflate.findViewById(R.id.mouth);
-        days = (WheelView) inflate.findViewById(R.id.days);
-        time = (WheelView) inflate.findViewById(R.id.time);
-        min = (WheelView) inflate.findViewById(R.id.min);
-        com.wx.wheelview.widget.WheelView.WheelViewStyle style = new com.wx.wheelview.widget.WheelView.WheelViewStyle();
-        style.selectedTextColor = Color.parseColor("#0288ce");
-        style.textColor = Color.GRAY;
-        style.selectedTextSize = 20;
-        year.setWheelAdapter(new ArrayWheelAdapter(this));
-        year.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
-        year.setWheelSize(5);
-        year.setWheelData(listyear);
-        year.setStyle(style);
-        year.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
-        mouth.setWheelAdapter(new ArrayWheelAdapter(this));
-        mouth.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
-        mouth.setWheelSize(5);
-        mouth.setSelection(3);
-        mouth.setWheelData(listmouth);
-        mouth.setStyle(style);
-        mouth.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
-        days.setWheelAdapter(dayadapter);
-        days.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
-        days.setWheelSize(5);
-        days.setSelection(3);
-        days.setWheelData(listdays);
-        days.setStyle(style);
-        days.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
-        time.setWheelAdapter(new ArrayWheelAdapter(this));
-        time.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
-        time.setWheelSize(5);
-        time.setSelection(3);
-        time.setWheelData(listtime);
-        time.setStyle(style);
-        time.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
-        min.setWheelAdapter(new ArrayWheelAdapter(this));
-        min.setSkin(com.wx.wheelview.widget.WheelView.Skin.Holo);
-        min.setWheelSize(5);
-        min.setSelection(3);
-        min.setWheelData(listmin);
-        min.setStyle(style);
-        min.setExtraText("", Color.parseColor("#0288ce"), 40, 70);
-        year.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position, Object o) {
-                selectyear=listyear.get(position);
-                if(selectyear!=null&&selectmouth!=null){
-                    listdays.clear();
-                    for(int i=0;i<getMonthOfDay(Integer.valueOf(selectyear),Integer.valueOf(selectmouth));i++){
-                        listdays.add(String.valueOf(i+1));
-                    }
-                    dayadapter.setData(listdays);
+        }
+    })
+            .setTimeSelectChangeListener(new OnTimeSelectChangeListener() {
+                @Override
+                public void onTimeSelectChanged(Date date) {
+                    // TODO 选择
+                    //((TextView)pvTime.getClickView()).setText(getTime(date));
+                    pvTime.setTitleText(getTime(date));
                 }
-                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
-
-            }
-        });
-        mouth.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position, Object o) {
-                selectmouth=listmouth.get(position);
-                if(selectyear!=null&&selectmouth!=null){
-                    listdays.clear();
-                    for(int i=0;i<getMonthOfDay(Integer.valueOf(selectyear),Integer.valueOf(selectmouth));i++){
-                        listdays.add(String.valueOf(i+1));
-                    }
-                    dayadapter.setData(listdays);
+            })
+            .setType(new boolean[]{true, true, true, true, true, true})
+            .isDialog(true) //默认设置false ，内部实现将DecorView 作为它的父控件。
+            .addOnCancelClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("pvTime", "onCancelClickListener");
                 }
-                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
-            }
-        });
+            })
+            .build();
 
-        days.setOnWheelItemSelectedListener(new com.wx.wheelview.widget.WheelView.OnWheelItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position, Object o) {
-                if(listdays.size()!=0){
-                    selectdata=listdays.get(position);
-                }
-                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+    Dialog mDialog = pvTime.getDialog();
+    if (mDialog != null) {
 
-            }
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                Gravity.BOTTOM);
 
-        });
-        time.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position, Object o) {
-                selecttime=listtime.get(position);
-                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
+        params.leftMargin = 0;
+        params.rightMargin = 0;
+        pvTime.getDialogContainerLayout().setLayoutParams(params);
 
-            }
-        });
-        min.setOnWheelItemSelectedListener(new WheelView.OnWheelItemSelectedListener() {
-            @Override
-            public void onItemSelected(int position, Object o) {
-                selectmin=listmin.get(position);
-                text_time.setText(selectyear+"-"+selectmouth+"-"+selectdata+" "+selecttime+":"+selectmin);
-
-            }
-        });
-
-        dialog = new Dialog(this, R.style.ActionSheetDialogStyle);
-//填充对话框的布局
-
-        //将布局设置给Dialog
-        dialog.setContentView(inflate);
-        //获取当前Activity所在的窗体
-        Window dialogWindow = dialog.getWindow();
-        //设置Dialog从窗体底部弹出
-        dialogWindow.setGravity(Gravity.BOTTOM);
-        //获得窗体的属性
-        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-        lp.y = 0;//设置Dialog距离底部的距离
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-//       将属性设置给窗体
-        dialogWindow.setAttributes(lp);
-        dialog.setCanceledOnTouchOutside(false);
-        dialog.show();//显示对话框
-
+        Window dialogWindow = mDialog.getWindow();
+        if (dialogWindow != null) {
+            dialogWindow.setWindowAnimations(com.bigkoo.pickerview.R.style.picker_view_slide_anim);//修改动画样式
+            dialogWindow.setGravity(Gravity.BOTTOM);//改成Bottom,底部显示
+            dialogWindow.setDimAmount(0.1f);
+        }
     }
+}
+    private String getTime(Date date) {//可根据需要自行截取数据显示
+        Log.d("getTime()", "choice date millis: " + date.getTime());
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return format.format(date);
+    }
+
 }

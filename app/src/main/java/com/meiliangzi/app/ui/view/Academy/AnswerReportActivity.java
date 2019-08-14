@@ -82,7 +82,7 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
     @Override
     protected void findWidgets() {
 
-        if("0".equals(type)||"1".equals(type)){
+        if("0".equals(type)||"1".equals(type)||"".equals(type)||null==type){
             //TODO 每周一答
             ll_week.setVisibility(View.VISIBLE);
             ll_kaosho.setVisibility(View.GONE);
@@ -121,7 +121,7 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()){
             case R.id.tv_finish:
                 if(tv_finish.getText().equals("返回主页")){
-                    IntentUtils.startAty(this, MainActivity.class);
+                    //IntentUtils.startAty(this, MainActivity.class);
                     finish();
                 }else {
                     //TODO 重新答题
@@ -160,6 +160,8 @@ public class AnswerReportActivity extends BaseActivity implements View.OnClickLi
                 intent.putExtra("userId",NewPreferManager.getId());
                 intent.putExtra("pagetitle",pagetitle);
                 intent.putExtra("time",time);
+                intent.putExtra("countDown",countDown);
+
                 intent.putExtra("finishStatus",finishStatus);
                 intent.putExtra("answerTime",answerTime);
                 intent.putExtra("repeatAnswer",finishStatus);

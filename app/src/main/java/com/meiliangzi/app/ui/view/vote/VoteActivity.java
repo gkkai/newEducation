@@ -77,7 +77,7 @@ public class VoteActivity extends BaseActivity {
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
                     IntentUtils.startAtyWithSingleParam(VoteActivity.this, LoginActivity.class, "activity", "WholeFragment");
                 }
             }
@@ -92,7 +92,7 @@ public class VoteActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(NewPreferManager.getId())){
+        if(TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")){
 //            if(TextUtils.isEmpty(PreferManager.getUserId())){
 //                tvEmpty.setText("请先登录");
 //            }else if(!PreferManager.getIsComplete()){

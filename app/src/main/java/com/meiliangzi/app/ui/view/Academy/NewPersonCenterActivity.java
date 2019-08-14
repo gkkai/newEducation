@@ -118,7 +118,7 @@ public class NewPersonCenterActivity extends BaseActivity implements PermissionL
         tvWorkNum.setText(NewPreferManager.getWorkNumber());
         workNum = NewPreferManager.getWorkNumber();
         tvPartment.setText(NewPreferManager.getOrganizationName());
-        if (!"".equals(NewPreferManager.getPartyMasses())) {
+        if (!"".equals(NewPreferManager.getPartyMasses())&&!"null".equals(NewPreferManager.getPartyMasses())) {
             tvIsParentment.setText("是");
             llIsPartybranch.setVisibility(View.VISIBLE);
             tvIsPartybranch.setText(NewPreferManager.getPartyName());

@@ -1,10 +1,13 @@
 package com.meiliangzi.app.ui.view.Academy.fragment;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -36,6 +39,8 @@ import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
 import com.meiliangzi.app.ui.view.Academy.bean.VideoListBean;
 import com.meiliangzi.app.widget.XListView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -170,10 +175,10 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_big_videoTime)).setText( item.TimeString());
 
                         if(null==item.getDepartmentName()){
-                            ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_big_department)).setText(removetime(item.getUpdateTime()));
                         }else {
                             ((TextView)helper.getView(R.id.tv_big_department)).setText(item.getDepartmentName()
-                                    +"   "+item.getUpdateTime());
+                                    +"   "+removetime(item.getUpdateTime()));
                         }
                         helper.setImageByUrl(R.id.image_big_one,item.getCoverImage(),R.mipmap.photo,R.mipmap.photo);
                         break;
@@ -183,10 +188,10 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
                         ((TextView)helper.getView(R.id.tv_small_title)).setText(item.getTitle());
                         ((TextView)helper.getView(R.id.tv_smiall_videoTime)).setText( item.TimeString());
                         if(null==item.getDepartmentName()){
-                            ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getUpdateTime());
+                            ((TextView)helper.getView(R.id.tv_small_department)).setText(removetime(item.getUpdateTime()));
                         }else {
                             ((TextView)helper.getView(R.id.tv_small_department)).setText(item.getDepartmentName()
-                                    +"   "+item.getUpdateTime());
+                                    +"   "+removetime(item.getUpdateTime()));
                         }
                         helper.setImageByUrl(R.id.image_small,item.getCoverImage(),R.mipmap.smallphoto,R.mipmap.smallphoto);
 
@@ -201,15 +206,33 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent=new Intent(getActivity(), VideoPlayActivity.class);
+                if(isNetworkConnected(getContext())){
+                    Intent intent=new Intent(getActivity(), VideoPlayActivity.class);
 //                intent.putExtra("type","1");
 //                intent.putExtra("url","html/video.html?id="+Adapter.getItem(position-1).getId());
 //                intent.putExtra("title",Adapter.getItem(position-1).getTitle());
-                intent.putExtra("id",Adapter.getItem(position-1).getId());
-                intent.putExtra("videotime",Adapter.getItem(position-1).getVideoTime());
-                startActivity(intent);
+                    intent.putExtra("id",Adapter.getItem(position-1).getId());
+                    intent.putExtra("videotime",Adapter.getItem(position-1).getVideoTime());
+                    startActivity(intent);
+                }else {
+                   ToastUtils.show("暂无网络链接，请重试");
+                }
+
             }
         });
+    }
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private String removetime(String time){
+        String s="";
+        try {
+                if(time!=null){
+                    s  = sdf.format(sdf.parse(time));
+                }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
     }
     private void getPageList(Map<String,String> map){
         OkhttpUtils.getInstance(getContext()).getList("academyService/video/getPageList", map, new OkhttpUtils.onCallBack() {
@@ -309,5 +332,16 @@ public class TabViedoFragment extends BaseFragment implements XListView.IXListVi
     public float dp2px(int dp) {
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 getContext().getResources().getDisplayMetrics());
+    }
+    public boolean isNetworkConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null) {
+                return mNetworkInfo.isAvailable();
+            }
+        }
+        return false;
     }
 }

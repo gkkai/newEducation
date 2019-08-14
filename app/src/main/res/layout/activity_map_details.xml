@@ -50,7 +50,7 @@
                 android:layout_marginTop="40dp"
                 android:textColor="#222222"
                 android:textSize="14sp"
-                android:text="神木县海鸿矿业有限神木县海鸿矿业有限公司办公室地址位于神木县海鸿矿业有限公司办公室地址位于公司办公室地址位于 陕"
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#222222"
                 android:textSize="14sp"
-                android:text="设备厂商 "
+                android:text=""
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
@@ -90,7 +90,7 @@
                 android:layout_marginTop="10dp"
                 android:textColor="#E80017"
                 android:textSize="14sp"
-                android:text="0923-3748987 "
+                android:text=" "
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
@@ -116,7 +116,7 @@
                     android:layout_marginTop="10dp"
                     android:textColor="#222222"
                     android:textSize="14sp"
-                    android:text="榆林市神木县"
+                    android:text=""
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
                 <TextView

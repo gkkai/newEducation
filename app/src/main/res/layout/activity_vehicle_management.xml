@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.DistributionSystem.VehicleManagementActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:text="车辆管理"
+            style="@style/ActionBar.CenterTitle" />
+
+    </RelativeLayout>
+    <View
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f2f2f2"
+        android:id="@+id/view2"></View>
+    <ScrollView
+        android:layout_marginTop="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_apply_usercar"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sendcarjcz3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="申请用车"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_apply_hitchhiking"
+                        android:layout_marginTop="23dp"
+                        android:src="@mipmap/sendcardfk3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="申请搭车"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_cer_oning"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sencarywc3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="车辆进程"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_car_garage"
+                        android:layout_marginTop="25dp"
+                        android:layout_centerHorizontal="true"
+                        android:src="@mipmap/sendcarjcz3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="车辆库"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/image_mine_oning"
+                        android:layout_marginTop="23dp"
+                        android:src="@mipmap/sendcardfk3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true" />
+                    <TextView
+                        android:layout_marginTop="90dp"
+                        android:layout_centerHorizontal="true"
+                        android:text="我的行程"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp" />
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="101dp"
+                android:background="#979797"
+                ></View>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="18sp"
+                    android:textColor="#222222"
+                    android:paddingLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:text="待发车列表"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:layout_alignParentRight="true"
+                    android:textColor="#999999"
+                    android:paddingRight="10dp"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="更多"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#D8D8D8"
+                ></View>
+            <com.meiliangzi.app.widget.MyGridView
+                android:id="@+id/gradview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numColumns="1"
+                android:scrollbars="none"
+                android:horizontalSpacing="5dp"
+                android:verticalSpacing="10dp"
+                android:scrollingCache="false"
+                android:stretchMode="columnWidth" />
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

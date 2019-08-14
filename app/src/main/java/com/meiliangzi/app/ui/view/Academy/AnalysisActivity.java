@@ -65,11 +65,10 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
     TextView tv_alreadyanswered;
     @BindView(R.id.tv_totalNumber)
     TextView tv_totalNumber;
-    String type;
     private MsgContentFragmentAdapter adapter;
     private String time;
     private String pagetitle;
-    private String totalNumber;
+    private String totalNumber="0";
     String userId;
     String finishStatus;
     String answerTime;
@@ -77,7 +76,7 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
     String title;
     String repeatAnswer;
     private String mode;
-    private String userPaperId;
+    private String countDown;
     private SubmitDialog submitDialog;
     public OutAnswerBean outAnswerBean;
     private Dialog dialog;
@@ -88,13 +87,12 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperId=getIntent().getStringExtra("paperId");
-        type=getIntent().getStringExtra("type");
         title=getIntent().getStringExtra("title");
         pagetitle=getIntent().getStringExtra("pagetitle");
         totalNumber=getIntent().getStringExtra("totalNumber");
         time = getIntent().getStringExtra("time");
         mode=getIntent().getStringExtra("mode");
-        userPaperId=getIntent().getStringExtra("userPaperId");
+        countDown=getIntent().getStringExtra("countDown");
         userId=getIntent().getStringExtra("userId");
         finishStatus=getIntent().getStringExtra("finishStatus");
         answerTime=getIntent().getStringExtra("answerTime");
@@ -165,8 +163,6 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
                                             }
                                         }
 
-//
-
                                     }
                                     tv_totalNumber.setText("/"+beans.size());
                                     initReadViewPager();
@@ -187,8 +183,6 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
             });
 
         }else {
-            //academyService/examinationUserPaperQuestions/getList
-            //
             OkhttpUtils.getInstance(this).getList("academyService/examinationUserPaperQuestions/getAnalysisList", jsonObject, new OkhttpUtils.onCallBack() {
                 @Override
                 public void onFaild(Exception e) {
@@ -235,6 +229,18 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
 //
 
                                     }
+                                    if("0".equals(countDown)){
+                                        if(null==time){
+                                            time="0";
+                                        }
+                                        tv_duration.setText(change(Integer.valueOf(time)));
+                                        tv_duration.setVisibility(View.VISIBLE);
+                                        tv_no_duration.setVisibility(View.GONE);
+                                    }else {
+                                        tv_duration.setVisibility(View.GONE);
+                                        tv_no_duration.setVisibility(View.VISIBLE);
+                                        tv_no_duration.setText("不计时");
+                                    }
                                     tv_totalNumber.setText("/"+beans.size());
                                     initReadViewPager();
                                     initList();
@@ -258,7 +264,7 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
     private int curPosition;
     private void initList() {
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
 
         topicAdapter = new TopicAdapter(this,MyApplication.paperBean.getData());
         topicAdapter.notifyDataSetChanged();
@@ -435,4 +441,50 @@ public class AnalysisActivity extends BaseActivity implements View.OnClickListen
         return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                getResources().getDisplayMetrics());
     }
+
+
+    public static String unitFormat(int i) {// 时分秒的格式转换
+        String retStr = null;
+        if (i >= 0 && i < 10)
+            retStr = "0" + Integer.toString(i);
+        else
+            retStr = "" + i;
+        return retStr;
+    }
+    /*
+            * 将秒数转为时分秒
+            * */
+    public String change(int second) {
+        String h="00" ;
+        String d ="00";
+        String s ="00";
+        int temp = second % 3600;
+        if (second > 3600) {
+            h = unitFormat(second / 3600);
+            if (temp != 0) {
+                if (temp > 60) {
+                    d=unitFormat(temp / 60);
+
+                    if (temp % 60 != 0) {
+                        s=unitFormat(temp % 60);
+                    }
+                } else {
+                    s=unitFormat(temp );
+                }
+            }
+        } else {
+            d=unitFormat(second / 60);
+            if (second % 60 != 0) {
+                s=unitFormat(second % 60);
+            }
+        }
+
+
+        if("00".equals(h)){
+            return  d + ":" + s + "";
+        }else {
+            return h + ":" + d + ":" + s + "";
+        }
+    }
+
 }

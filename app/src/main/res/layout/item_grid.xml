@@ -8,12 +8,14 @@
     >
 
     <CheckBox
+        android:lines="1"
+        android:ellipsize="middle"
         android:layout_gravity="center_vertical"
         android:focusableInTouchMode="false"
         android:clickable="false"
         android:focusable="false"
         android:id="@+id/ck"
-        android:text="Aaaaaaa"
+        android:text=""
         android:textColor="@color/drawable_text_answer"
         android:gravity="center"
         android:layout_width="75dp"
@@ -22,6 +24,7 @@
 
         android:button="@null" />
         <TextView
+
             android:visibility="gone"
             android:background="@drawable/shape_huise"
             android:layout_centerInParent="true"

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.DistributionSystem.ApplyUseActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_titel"
+            android:text="用车申请"
+            style="@style/ActionBar.CenterTitle" />
+
+    </RelativeLayout>
+    <ScrollView
+        android:id="@+id/svid"
+        android:layout_marginTop="49dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="乘车人姓名"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/rider_name"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="乘车人电话"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/rider_phone"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="乘车人数"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/rider_num"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="出发地"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/place_of_departure"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="目的地"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/place_of_destination"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="出发时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/startAtime"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:drawableRight="@mipmap/ic_right_arrow_s"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="出发时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="返回时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/endAtime"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:drawableRight="@mipmap/ic_right_arrow_s"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="返回时间"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="预估里程"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <EditText
+                    android:textCursorDrawable="@null"
+                    android:singleLine="true"
+                    android:textSize="13sp"
+                    android:background="@android:color/transparent"
+                    android:id="@+id/estimated_mileage"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请输入"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <View
+                android:background="#f2f2f2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"></View>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="备注"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/remarks"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:paddingLeft="20dp"
+                    android:gravity="center_vertical"
+                    android:text="审核人"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+                <TextView
+                    android:background="@android:color/transparent"
+                    android:id="@+id/auditor"
+                    android:drawablePadding="10dp"
+                    android:paddingRight="20dp"
+                    android:drawableRight="@mipmap/ic_right_arrow_s"
+                    android:layout_alignParentRight="true"
+                    android:gravity="center_vertical"
+                    android:hint="请选择"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

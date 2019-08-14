@@ -150,7 +150,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                 //TODO 修改申请
                 if (getIntent().getIntExtra("type", 101) == 1) {
                     //TOOD
-                    if (proposerUserid == Integer.valueOf(NewPreferManager.getId())) {
+                    if (proposerUserid == NewPreferManager.getoldUseId()) {
                         Intent intent = new Intent(this, AddSendacarActivity.class);
                         intent.putExtra("type", "updata");
                         intent.putExtra("sendACarId", id);
@@ -166,7 +166,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                         ToastUtils.show("您没有权限进行此操作");
                     }
                 } else {
-                    if (driverUserId == Integer.valueOf(NewPreferManager.getId())) {
+                    if (driverUserId == NewPreferManager.getoldUseId()) {
                         //TODO 修改反馈
                         Intent intent = new Intent(this, FkDataActivity.class);
                         intent.putExtra("type", "updata");
@@ -185,7 +185,7 @@ public class SendaCarinfoActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.text_delete:
                 //TODO 删除
-                if (proposerUserid == Integer.valueOf(NewPreferManager.getId())) {
+                if (proposerUserid == NewPreferManager.getoldUseId()) {
                     ProxyUtils.getHttpProxy().sendacardelete(this, id);
 
                 } else {

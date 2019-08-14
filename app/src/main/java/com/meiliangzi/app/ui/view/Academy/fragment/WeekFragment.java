@@ -4,6 +4,8 @@ package com.meiliangzi.app.ui.view.Academy.fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -25,6 +27,7 @@ import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
 import com.meiliangzi.app.widget.MyGridView;
+import com.meiliangzi.app.widget.XListView;
 
 import butterknife.BindView;
 
@@ -33,18 +36,15 @@ import butterknife.BindView;
  */
 public class WeekFragment  extends BaseFragment {
     private String position;
-    @BindView(R.id.gradview)
-    MyGridView gradview;
+    @BindView(R.id.listView)
+    XListView listView;
     BaseVoteAdapter<PaperBean.Data.QuestionOption> kaoshiAdapter;
-
-    @BindView(R.id.tv_analysis)
     TextView tv_analysis;
     private String type;
-    @BindView(R.id.tv_type)
     TextView tv_type;
-    @BindView(R.id.tv_title)
     TextView tv_title;
     private String mode;
+    private View footView,headerview;
 
     public WeekFragment() {
     }
@@ -71,26 +71,37 @@ public class WeekFragment  extends BaseFragment {
 
     @Override
     protected void findWidgets() {
+        footView = getActivity().getLayoutInflater().inflate(R.layout.footer_answer, null, false);
+        listView.setPullLoadEnable(false);
+        listView.setPullRefreshEnable(false);
+        headerview= getActivity().getLayoutInflater().inflate(R.layout.header_ansewer, null, false);
+        tv_type= (TextView) headerview.findViewById(R.id.tv_type);
+        tv_title=(TextView) headerview.findViewById(R.id.tv_title);
+        tv_analysis=(TextView) footView.findViewById(R.id.tv_analysis);
+        listView.addFooterView(footView, null, true);
+        listView.addHeaderView(headerview,null,true);
+
         inflate = LayoutInflater.from(getContext()).inflate(R.layout.analysis, null);
+
         // ArrayList<JSONObject> objectList=(ArrayList<JSONObject>) JSONObject.parseObject( MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption(),ArrayList.class);
 //
         tv_title.setText(MyApplication.paperBean.getData().get(Integer.parseInt(position)).getTitle());
         switch (MyApplication.paperBean.getData().get(Integer.parseInt(position)).getType()){
             case "0":
-                tv_type.setText("单选题");
+                tv_type.setText("单选题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "1":
-                tv_type.setText("多选题");
+                tv_type.setText("多选题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "2":
-                tv_type.setText("判断题");
+                tv_type.setText("判断题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "3":
-                tv_type.setText("填空题");
+                tv_type.setText("填空题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
         }
 
-        kaoshiAdapter=new BaseVoteAdapter<PaperBean.Data.QuestionOption>(getContext(),gradview,R.layout.choice) {
+        kaoshiAdapter=new BaseVoteAdapter<PaperBean.Data.QuestionOption>(getContext(),listView,R.layout.choice) {
             @Override
             public void convert(BaseViewHolder helper, PaperBean.Data.QuestionOption item) {
 
@@ -119,11 +130,11 @@ public class WeekFragment  extends BaseFragment {
                             if ((event != null && KeyEvent.KEYCODE_ENTER == event.getKeyCode() && KeyEvent.ACTION_DOWN == event.getAction())) {
                                 String s=v.getText().toString();
                                 if(!"".equals(s)){
-                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(true);
-                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setValue(s);
+                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setIschos(true);
+                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setValue(s);
                                 }else {
-                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(false);
-                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setValue(s);
+                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setIschos(false);
+                                    MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setValue(s);
                                 }
 
 
@@ -156,8 +167,8 @@ public class WeekFragment  extends BaseFragment {
                                 MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(true);
                                 MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setValue(s);
                             }else {
-                                MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(false);
-                                MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setValue(s);
+                                MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setIschos(false);
+                                MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setValue(s);
                             }
                         }
                     });
@@ -178,25 +189,26 @@ public class WeekFragment  extends BaseFragment {
             }
         };
         kaoshiAdapter.setDatas(MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption());
-        gradview.setAdapter(kaoshiAdapter);
-        gradview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(kaoshiAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long id) {
                 if(MyApplication.paperBean.getData().get(Integer.parseInt(position)).getType().equals("1")){
                     MyApplication.paperBean.getData().get(Integer.parseInt(position)).setIschos(true);
                     //TODO
-                    if( MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).ischos){
-                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(false);
+                    if( MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).ischos){
+                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setIschos(false);
                         kaoshiAdapter.notifyDataSetChanged();
                     }else {
-                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos).setIschos(true);
+                        MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(pos-2).setIschos(true);
                         kaoshiAdapter.notifyDataSetChanged();
                     }
                 }else {
                     MyApplication.paperBean.getData().get(Integer.parseInt(position)).setIschos(true);
                     //TODO
                     for(int i=0;i<MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().size();i++){
-                        if(pos==i){
+                        if(pos-2==i){
                             MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(i).setIschos(true);
                         }else {
                             MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption().get(i).setIschos(false);

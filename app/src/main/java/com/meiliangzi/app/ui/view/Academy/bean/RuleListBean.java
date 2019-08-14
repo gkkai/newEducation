@@ -52,7 +52,42 @@ public class RuleListBean {
         private String createTime;
         private String dayIntegral;
         private String dayScore;
+        private String paperTypeCount;
+        private String paperNumber;
+        private String paperTypeId;
+        private String paperTypeName;
 
+        public String getPaperTypeName() {
+            return paperTypeName;
+        }
+
+        public void setPaperTypeName(String paperTypeName) {
+            this.paperTypeName = paperTypeName;
+        }
+
+        public String getPaperTypeId() {
+            return paperTypeId;
+        }
+
+        public void setPaperTypeId(String paperTypeId) {
+            this.paperTypeId = paperTypeId;
+        }
+
+        public String getPaperTypeCount() {
+            return paperTypeCount;
+        }
+
+        public void setPaperTypeCount(String paperTypeCount) {
+            this.paperTypeCount = paperTypeCount;
+        }
+
+        public String getPaperNumber() {
+            return paperNumber;
+        }
+
+        public void setPaperNumber(String paperNumber) {
+            this.paperNumber = paperNumber;
+        }
 
         public String getId() {
             return id;

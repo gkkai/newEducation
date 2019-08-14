@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.DistributionSystem.CerGarageActivity">
+    <RelativeLayout style="@style/ActionBar"
+        android:id="@+id/relativeLayout3">
+
+        <ImageView style="@style/ActionBar.LeftImage" />
+
+        <TextView
+            android:id="@+id/text_titel"
+            android:text="车辆库"
+            style="@style/ActionBar.CenterTitle" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"></View>
+    <com.meiliangzi.app.widget.XListView
+        android:layout_marginTop="48dp"
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollingCache="false"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:dividerHeight="2dp"
+        android:divider="@color/white"
+        android:overScrollMode="never"
+        />
+</RelativeLayout>

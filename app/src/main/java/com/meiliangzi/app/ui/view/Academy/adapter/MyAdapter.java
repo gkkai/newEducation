@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.ui.view.Academy.bean.IndexColumnBean;
+import com.meiliangzi.app.ui.view.Academy.bean.PaperOneLevelTypeListBean;
 import com.meiliangzi.app.ui.view.Academy.bean.WeekColumnBean;
 
 import java.util.List;
@@ -26,13 +27,13 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private List<WeekColumnBean.Data> datas;
+    private List<PaperOneLevelTypeListBean.Data> datas;
     private Context mContext;
     private LayoutInflater mLiLayoutInflater;
     private boolean isShow;
     private int pos;
 
-    public MyAdapter(List<WeekColumnBean.Data> datas, Context context) {
+    public MyAdapter(List<PaperOneLevelTypeListBean.Data> datas, Context context) {
         this.datas = datas;
         this.mContext = context;
         this.mLiLayoutInflater = LayoutInflater.from(mContext);
@@ -96,7 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             //ll_hidden = (LinearLayout) itemView.findViewById(R.id.ll_hidden);
         }
     }
-    public  List<WeekColumnBean.Data>  getdata(){
+    public  List<PaperOneLevelTypeListBean.Data>  getdata(){
         return datas;
     }
 }

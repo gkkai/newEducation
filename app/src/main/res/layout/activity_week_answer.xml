@@ -32,7 +32,7 @@
             android:layout_height="50dp"
             app:tabBackground="@color/white"
             app:tabIndicatorColor="@color/zm_red"
-            app:tabIndicatorHeight="1dip"
+            app:tabIndicatorHeight="2dip"
             app:tabMode="scrollable"
             app:tabMinWidth="50dip"
             app:tabPaddingStart="10dip"
@@ -42,12 +42,11 @@
             app:tabTextAppearance="@style/tab_head"
             app:tabTextColor="@color/text_tips_color" />
         <ImageView
-            android:layout_marginTop="12dp"
+            android:padding="18dp"
             android:id="@+id/im_menu"
-            android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/amenu"/>
         <View
             android:layout_marginTop="50dp"
@@ -58,9 +57,10 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="51dip"
             android:layout_weight="1"
-            android:background="@color/white" />
+            android:background="@color/white"
+            android:layout_below="@+id/tab_layout"
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
 </RelativeLayout>

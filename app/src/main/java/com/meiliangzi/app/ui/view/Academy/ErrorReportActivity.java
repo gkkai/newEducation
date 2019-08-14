@@ -74,7 +74,6 @@ public class ErrorReportActivity extends BaseActivity implements View.OnClickLis
             case R.id.tv_finish:
                 //TODO 返回主页
 
-                IntentUtils.startAty(this, MainActivity.class);
                 finish();
                 break;
         }

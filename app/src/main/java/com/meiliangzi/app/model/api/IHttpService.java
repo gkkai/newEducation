@@ -161,14 +161,14 @@ public interface IHttpService {
      * 地理位置添加
      * @param context
      */
-    @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","phone","lng","lat","image","describe"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
-    public void addmaps(Object context,String user_id,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat,String image,String describe);
+    @HttpRequest(arguments = {"name","city_id","county_id","classification_id","phone","lng","lat","image","describe","user_id"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
+    public void addmaps(Object context,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat,String image,String describe,int userId);
     /**
      * 地理位置修改
      * @param context
      */
-    @HttpRequest(arguments = {"user_id","name","city_id","county_id","classification_id","lng","lat","image","describe","id",}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
-    public void updateMap(Object context,String user_id,String name,int city_id,int county_id,int classification_id,String lng,String lat,String image,String describe,String id);
+    @HttpRequest(arguments = {"name","city_id","county_id","classification_id","phone","lng","lat","image","describe","id","user_id"}, url = "", resultClass = AddMapBean.class, refreshMethod = "addmaps")
+    public void updateMap(Object context,String name,int city_id,int county_id,int classification_id,String phone,String lng,String lat,String image,String describe,String id,int userId);
 
     /**
      * 县列表

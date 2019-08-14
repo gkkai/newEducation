@@ -29,6 +29,7 @@ import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.LoadingDialog;
 import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.view.Academy.adapter.TopicAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.ComintQuestionsBackbean;
@@ -72,7 +73,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
     private MsgContentFragmentAdapter adapter;
     private String time;
     private String pagetitle;
-    private String totalNumber;
+    private String totalNumber="0";
     String userId;
     String finishStatus;
     String answerTime="0";
@@ -90,10 +91,13 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
     private ArrayList<OutAnswerBean.AnswerBean.QuestionOption> listquestionOption;
     private MyDialog myDialog;
     public int during=1;
+    private LoadingDialog cmmitdialog;
+    private int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyApplication.paperBean=null;
         paperId=getIntent().getStringExtra("paperId");
         type=getIntent().getStringExtra("type");
         title=getIntent().getStringExtra("title");
@@ -126,6 +130,11 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
 
     @Override
     protected void findWidgets() {
+        LoadingDialog.Builder loadBuilder=new LoadingDialog.Builder(this)
+                .setMessage("正在提交...")
+                .setCancelable(false)
+                .setCancelOutside(false);
+        cmmitdialog=loadBuilder.create();
         submitDialog = new SubmitDialog(this);
         myDialog=new MyDialog(this);
         myDialog=new MyDialog(this);
@@ -172,7 +181,12 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
         tv_title.setText(title);
         tv_pagetitle.setText(pagetitle);
         tv_totalNumber.setText("/"+totalNumber);
-        tv_alreadyanswered.setText(1+"");
+        if("0".equals(totalNumber)){
+            tv_alreadyanswered.setText(0+"");
+        }else {
+            tv_alreadyanswered.setText(1+"");
+        }
+
         if("1".equals(type)){
             //TODO 每周一答
             tv_no_duration.setVisibility(View.VISIBLE);
@@ -244,6 +258,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                             try{
                                 Gson gson=new Gson();
                                 PaperBean baseBean= gson.fromJson(json,PaperBean.class);
+
                                 if("1".equals(baseBean.getCode())){
                                     ToastUtils.show(baseBean.getMessage());
                                 }else {
@@ -251,19 +266,25 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                     String [] s=new String[]{"A","B","C","D","E","F","G","H","I"};
                                     List<PaperBean.Data> beans=MyApplication.paperBean.getData();
                                     for(int i=0;i<beans.size();i++){
-                                        for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
-                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
-                                            if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
-                                                for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
-                                                    if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
-                                                        MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
-                                                        break;
+                                        if(MyApplication.paperBean.getData().get(i).getQuestionOption()!=null&&MyApplication.paperBean.getData().get(i).getQuestionOption().size()!=0){
+                                            for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
+
+                                                MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
+                                                if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
+                                                    for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
+                                                        if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
+                                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
+                                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setValue(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getValue());
+
+                                                            break;
+                                                        }
                                                     }
                                                 }
+
+
                                             }
-
-
                                         }
+
                                     }
                                     if("0".equals(countDown)){
                                         if(null==time){
@@ -322,26 +343,24 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                     String [] s=new String[]{"A","B","C","D","E","F","G","H","I"};
                                     List<PaperBean.Data> beans=MyApplication.paperBean.getData();
                                     for(int i=0;i<beans.size();i++){
-                                        for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
-                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
-                                            if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
-//                                            if( beans.get(i).getUserAnswer().contains(
-//                                                    MyApplication.paperBean.getData().get(i).getQuestionOption().get(h))){
-//                                                MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
-//
-//                                            }else {
-//                                                MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(false);
-//                                            }
-                                                for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
-                                                    if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
-                                                        MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
-                                                        break;
+                                        if(MyApplication.paperBean.getData().get(i).getQuestionOption()!=null&&MyApplication.paperBean.getData().get(i).getQuestionOption().size()!=0){
+                                            for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
+
+                                                MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
+                                                if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
+                                                    for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
+                                                        if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
+                                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
+                                                            MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setValue(MyApplication.paperBean.getData().get(i).getUserAnswer().get(j).getValue());
+                                                            break;
+                                                        }
                                                     }
                                                 }
+
+
                                             }
-
-
                                         }
+
                                     }
                                     if("0".equals(countDown)){
                                         if(null==time){
@@ -378,34 +397,48 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
 
 
     }
+    public static String unitFormat(int i) {// 时分秒的格式转换
+        String retStr = null;
+        if (i >= 0 && i < 10)
+            retStr = "0" + Integer.toString(i);
+        else
+            retStr = "" + i;
+        return retStr;
+    }
     /*
             * 将秒数转为时分秒
             * */
     public String change(int second) {
-        int h = 0;
-        int d = 0;
-        int s = 0;
+        String h="00" ;
+        String d ="00";
+        String s ="00";
         int temp = second % 3600;
         if (second > 3600) {
-            h = second / 3600;
+            h = unitFormat(second / 3600);
             if (temp != 0) {
                 if (temp > 60) {
-                    d = temp / 60;
+                    d=unitFormat(temp / 60);
+
                     if (temp % 60 != 0) {
-                        s = temp % 60;
+                        s=unitFormat(temp % 60);
                     }
                 } else {
-                    s = temp;
+                    s=unitFormat(temp );
                 }
             }
         } else {
-            d = second / 60;
+            d=unitFormat(second / 60);
             if (second % 60 != 0) {
-                s = second % 60;
+                s=unitFormat(second % 60);
             }
         }
 
-        return h + ":" + d + ":" + s + "";
+
+        if("00".equals(h)){
+            return  d + ":" + s + "";
+        }else {
+            return h + ":" + d + ":" + s + "";
+        }
     }
 
 
@@ -425,7 +458,8 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                     //String minStr = (min < 10) ? ("0" + min) : String.valueOf(min);
 //                    String secondStr = (second < 10) ? ("0" + second) : String.valueOf(second);
 //                    tv_duration.setText("倒计时：" + minStr + ":" + secondStr);
-                    tv_duration.setText("倒计时：" + change(during));
+                    tv_duration.setText(change(during));
+                    answerTime=during+"";
                     if (during==60) {
 
                         //TODO 考试结束
@@ -437,8 +471,12 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                         sduring=during;
                     //TODO 考试结束
                         ToastUtils.show("考试结束");
+                        if(MyApplication.paperBean==null){
+                            finish();
+                        }else {
+                            commit(1);
+                        }
 
-                        commit(1);
 
                     }
                     break;
@@ -463,7 +501,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                 }
                 if(!isBackGround){
                     timeStamp--;
-                    answerTime=String.valueOf(timeStamp);
+                    //answerTime=String.valueOf(timeStamp);
 //                publishProgress(params[0]);
                     handler.sendMessage(handler.obtainMessage(0, timeStamp));
                 }else {
@@ -491,14 +529,25 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
             iscommit=true;
             outAnswerBean= new OutAnswerBean();
             outAnswerBean.setPaperId(paperId);
-            if(1==ctype&&sduring!=0){
-                outAnswerBean.setFinishStatus("1");
-            }else {
+//            if(1==ctype&&sduring!=0){
+//                outAnswerBean.setFinishStatus("1");
+//            }else {
+//                outAnswerBean.setFinishStatus("0");
+//            }
+            if(0==ctype){
                 outAnswerBean.setFinishStatus("0");
+            }else {
+                outAnswerBean.setFinishStatus("1");
+//                if(sduring==0){
+//                    //考试时间到提交
+//
+//                }else  {
+//                    outAnswerBean.setFinishStatus("2");
+//                }
             }
 
             outAnswerBean.setRepeatAnswer(repeatAnswer);
-            if(null==answerTime){
+            if(!"0".equals(countDown)){
                 answerTime="0";
             }
             outAnswerBean.setAnswerTime(answerTime);
@@ -507,17 +556,23 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
             for(int i=0;i<MyApplication.paperBean.getData().size();i++){
                 OutAnswerBean.AnswerBean bean=new OutAnswerBean.AnswerBean();
                 bean.setQuestionOptionid(MyApplication.paperBean.getData().get(i).getId());
-                listquestionOption=new ArrayList<OutAnswerBean.AnswerBean.QuestionOption>();
-//
-                for(int j=0;j<MyApplication.paperBean.getData().get(i).getQuestionOption().size();j++){
-                    OutAnswerBean.AnswerBean.QuestionOption questionOption=new OutAnswerBean.AnswerBean.QuestionOption();
-                    if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).ischos){
-                        questionOption.setKey(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getKey());
-                        questionOption.setValue(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getValue());
-                        listquestionOption.add(questionOption);
 
+                listquestionOption=new ArrayList<OutAnswerBean.AnswerBean.QuestionOption>();
+
+
+                //TODO
+                if(MyApplication.paperBean.getData().get(i).getQuestionOption()!=null&&MyApplication.paperBean.getData().get(i).getQuestionOption().size()!=0){
+                    for(int j=0;j<MyApplication.paperBean.getData().get(i).getQuestionOption().size();j++){
+                        OutAnswerBean.AnswerBean.QuestionOption questionOption=new OutAnswerBean.AnswerBean.QuestionOption();
+                        if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).ischos){
+                            questionOption.setKey(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getKey());
+                            questionOption.setValue(MyApplication.paperBean.getData().get(i).getQuestionOption().get(j).getValue());
+                            listquestionOption.add(questionOption);
+
+                        }
                     }
                 }
+
                 bean.setType((MyApplication.paperBean.getData().get(i).getType()));
                 bean.setFraction((MyApplication.paperBean.getData().get(i).getFraction()));
                 bean.setQuestionOption(listquestionOption);
@@ -569,12 +624,14 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                         public void onYesClick() {
                             iscommit=false;
                             myDialog.dismiss();
+                            cmmitdialog.show();
                             OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserPaperQuestions/add", new OkhttpUtils.onCallBack() {
                                 @Override
                                 public void onFaild(Exception e) {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            cmmitdialog.dismiss();
                                             iscommit=false;
                                             ToastUtils.show("提交失败，请重新提交");
                                         }
@@ -585,39 +642,53 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                                 public void onResponse(String json) {
                                     iscommit=true;
                                     final ComintQuestionsBackbean questionsBackbean=new Gson().fromJson(json,ComintQuestionsBackbean.class);
-                                    if("1".equals(questionsBackbean.getCode())){
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            cmmitdialog.dismiss();
+                                            if("1".equals(questionsBackbean.getCode())){
                                                 iscommit=false;
                                                 ToastUtils.show(questionsBackbean.getMessage());
-                                            }
-                                        });
-                                    }else {
-                                        if(1==ctype){
-                                            finish();
-                                        }else {
-                                            Intent intent=new Intent(ExaminationQuestionsActivity.this,AnswerReportActivity.class);
-                                            repeatAnswer=getIntent().getStringExtra("repeatAnswer");
-                                            intent.putExtra("paperId",paperId);
-                                            intent.putExtra("score",questionsBackbean.getData().getScore()+"");
-                                            intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
-                                            intent.putExtra("type",type);
-                                            intent.putExtra("userId", NewPreferManager.getId());
-                                            intent.putExtra("pagetitle",pagetitle);
-                                            intent.putExtra("time",time);
-                                            intent.putExtra("createType",createType);
-                                            intent.putExtra("mode",mode);
-                                            intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
-                                            intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
-                                            intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
-                                            intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
-                                            intent.putExtra("title",title);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                            }else {
+                                                if(1==ctype){
+//                                                    setResult(1101);
+//                                                    Intent intent =new Intent();
+//                                                    intent.putExtra("paperId",paperId);
+//                                                    intent.putExtra("pos",p)
+                                                    finish();
+                                                    overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+                                                }else {
+                                                    Intent intent=new Intent(ExaminationQuestionsActivity.this,AnswerReportActivity.class);
+                                                    repeatAnswer=getIntent().getStringExtra("repeatAnswer");
+                                                    intent.putExtra("paperId",paperId);
+                                                    intent.putExtra("score",questionsBackbean.getData().getScore()+"");
+                                                    intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
+                                                    intent.putExtra("type",type);
+                                                    intent.putExtra("userId", NewPreferManager.getId());
+                                                    intent.putExtra("pagetitle",pagetitle);
+                                                    if(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime()==null||"".equals(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime())){
+                                                        intent.putExtra("time",questionsBackbean.getData().getExaminationUserPaperMap().getDuration());
+                                                    }else {
+                                                        intent.putExtra("time", (Integer.valueOf(questionsBackbean.getData().getExaminationUserPaperMap().getDuration())-Integer.valueOf(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime()))+"");
 
-                                    }
+                                                    }
+                                                    intent.putExtra("countDown",countDown);
+                                                    intent.putExtra("createType",createType);
+                                                    intent.putExtra("mode",mode);
+                                                    intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
+                                                    intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
+                                                    intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
+                                                    intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
+                                                    intent.putExtra("title",title);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
+
+                                            }
+
+                                        }
+                                    });
+
 
 
                                 }
@@ -640,12 +711,14 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                 }
 
             }else {
+                cmmitdialog.show();
                 OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserPaperQuestions/add", new OkhttpUtils.onCallBack() {
                     @Override
                     public void onFaild(Exception e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                cmmitdialog.dismiss();
                                 iscommit=false;
                                 ToastUtils.show("提交失败，请重新提交");
                             }
@@ -656,39 +729,50 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
                     public void onResponse(String json) {
                         iscommit=true;
                         final ComintQuestionsBackbean questionsBackbean=new Gson().fromJson(json,ComintQuestionsBackbean.class);
-                        if("1".equals(questionsBackbean.getCode())){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                cmmitdialog.dismiss();
+                                if("1".equals(questionsBackbean.getCode())){
                                     iscommit=false;
                                     ToastUtils.show(questionsBackbean.getMessage());
-                                }
-                            });
-                        }else {
-                            if(1==ctype&&sduring==1){
-                                finish();
-                            }else {
-                                Intent intent=new Intent(ExaminationQuestionsActivity.this,AnswerReportActivity.class);
-                                repeatAnswer=getIntent().getStringExtra("repeatAnswer");
-                                intent.putExtra("paperId",paperId);
-                                intent.putExtra("score",questionsBackbean.getData().getScore()+"");
-                                intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
-                                intent.putExtra("type",type);
-                                intent.putExtra("userId", NewPreferManager.getId());
-                                intent.putExtra("pagetitle",pagetitle);
-                                intent.putExtra("time",time);
-                                intent.putExtra("mode",mode);
-                                intent.putExtra("createType",createType);
-                                intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
-                                intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
-                                intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
-                                intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
-                                intent.putExtra("title",title);
-                                startActivity(intent);
-                                finish();
-                            }
+                                }else {
+                                    if(1==ctype&&sduring==1){
+                                        finish();
+                                        overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+                                    }else {
+                                        Intent intent=new Intent(ExaminationQuestionsActivity.this,AnswerReportActivity.class);
+                                        repeatAnswer=getIntent().getStringExtra("repeatAnswer");
+                                        intent.putExtra("paperId",paperId);
+                                        intent.putExtra("score",questionsBackbean.getData().getScore()+"");
+                                        intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
+                                        intent.putExtra("type",type);
+                                        intent.putExtra("userId", NewPreferManager.getId());
+                                        intent.putExtra("pagetitle",pagetitle);
+                                        if(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime()==null||"".equals(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime())){
+                                            intent.putExtra("time",questionsBackbean.getData().getExaminationUserPaperMap().getDuration());
+                                        }else {
+                                            intent.putExtra("time", (Integer.valueOf(questionsBackbean.getData().getExaminationUserPaperMap().getDuration())-Integer.valueOf(questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime()))+"");
 
-                        }
+                                        }
+
+                                        intent.putExtra("countDown",countDown);
+                                        intent.putExtra("mode",mode);
+                                        intent.putExtra("createType",createType);
+                                        intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
+                                        intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
+                                        intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
+                                        intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
+                                        intent.putExtra("title",title);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                }
+
+
+                            }
+                        });
 
 
                     }
@@ -711,58 +795,68 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
         if("1".equals(totalNumber)){
             tv_next.setText("提交");
         }
+        if("0".equals(totalNumber)){
 
-        tv_pre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentItem = viewPager.getCurrentItem();
-                currentItem = currentItem-1;
-                if (currentItem>MyApplication.paperBean.getData().size()-1){
-                    currentItem=MyApplication.paperBean.getData().size()-1;
-                }
+        }else {
+            tv_pre.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int currentItem = viewPager.getCurrentItem();
+                    currentItem = currentItem-1;
+                    if (currentItem>MyApplication.paperBean.getData().size()-1){
+                        currentItem=MyApplication.paperBean.getData().size()-1;
+                    }
 
-                if(currentItem==-1){
-
-                }else {
-                    viewPager.setCurrentItem(currentItem,true);
-                    tv_alreadyanswered.setText(currentItem+1+"");
-                    tv_next.setText("下一题");
-                }
-
-            }
-        });
-
-
-        tv_next.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View v) {
-                int currentItem = viewPager.getCurrentItem();
-                currentItem = currentItem+1;
-                if (currentItem<0){
-                    currentItem=0;
-                }
-
-                //TODO 开始提交数据
-                if(currentItem==MyApplication.paperBean.getData().size()){
-                    commit(0);
-
-                }else {
-                    if(currentItem+1==MyApplication.paperBean.getData().size()){
-                        tv_next.setText("提交");
-                        viewPager.setCurrentItem(currentItem,true);
-                        tv_alreadyanswered.setText(currentItem+1+"");
+                    if(currentItem==-1){
 
                     }else {
                         viewPager.setCurrentItem(currentItem,true);
                         tv_alreadyanswered.setText(currentItem+1+"");
+                        tv_next.setText("下一题");
                     }
+
                 }
+            });
 
 
-            }
-        });
+            tv_next.setOnClickListener(new View.OnClickListener() {
+
+
+                @Override
+                public void onClick(View v) {
+                    int currentItem = viewPager.getCurrentItem();
+                    currentItem = currentItem+1;
+                    if (currentItem<0){
+                        currentItem=0;
+                    }
+
+                    if(MyApplication.paperBean==null){
+                        finish();
+                    }else {
+                        //TODO 开始提交数据
+                        if(currentItem==MyApplication.paperBean.getData().size()){
+                            commit(0);
+
+                        }else {
+                            if(currentItem+1==MyApplication.paperBean.getData().size()){
+                                tv_next.setText("提交");
+                                viewPager.setCurrentItem(currentItem,true);
+                                tv_alreadyanswered.setText(currentItem+1+"");
+
+                            }else {
+                                viewPager.setCurrentItem(currentItem,true);
+                                tv_alreadyanswered.setText(currentItem+1+"");
+                            }
+                        }
+                    }
+
+
+
+                }
+            });
+        }
+
+
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -808,7 +902,7 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
     private int curPosition;
     private void initList() {
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
 
         topicAdapter = new TopicAdapter(this,MyApplication.paperBean.getData());
         topicAdapter.notifyDataSetChanged();
@@ -878,20 +972,15 @@ public class ExaminationQuestionsActivity extends BaseActivity implements View.O
             submitDialog.setYesOnclickListener("确认", new SubmitDialog.onYesOnclickListener() {
                 @Override
                 public void onYesClick() {
-                    if("1".equals(type)){
-                        //TODO 每周一答
-                        finish();
 
-                    }else if("0".equals(type)){
-                        //TODO 智能答题
-                        finish();
+                    if(MyApplication.paperBean==null){
 
+                        finish();
                     }else {
-                        //TODO 提交数据
                         commit(1);
-
                     }
-                    submitDialog.dismiss();
+
+
 
                 }
             });

@@ -104,20 +104,38 @@
             />
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="70dp"
         android:id="@+id/ll_historicalrecords"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="48dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-        <TextView
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/ll_no">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="30dp"
-            android:text="历史记录"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+           >
+
+            <TextView
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="历史记录" />
+            <TextView
+                android:id="@+id/tv_delete"
+                android:gravity="center"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="70dp"
+                android:layout_height="30dp"
+                android:text="清除" />
+
+        </RelativeLayout>
+
         <GridView
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:id="@+id/gradview_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -4,78 +4,81 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="#f2f2f2">
+    <TextView
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rc_dimen_size_50"
+        android:gravity="center"
+        android:text="请选择分享平台" />
 
 
-
-    <LinearLayout
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
 
-        android:weightSum="4">
+        >
 
 
         <LinearLayout
-            android:layout_weight="2"
-            android:layout_centerHorizontal="true"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_marginLeft="20dp"
             android:id="@+id/ll_weinxin"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/weixin" />
 
 
             <TextView
-                android:gravity="center"
                 android:layout_width="48dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:textSize="12sp"
+                android:gravity="center"
                 android:text="微信"
-                android:textColor="@color/black6" />
+                android:textColor="@color/black6"
+                android:textSize="12sp" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight="2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_marginLeft="90dp"
             android:id="@+id/ll_penyouquan"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="68dp"
-                android:layout_height="68dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:scaleType="fitXY"
                 android:src="@mipmap/friend" />
 
 
             <TextView
-                android:gravity="center"
                 android:layout_width="48dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:textSize="12sp"
+                android:gravity="center"
                 android:text="朋友圈"
-                android:textColor="@color/black6" />
+                android:textColor="@color/black6"
+                android:textSize="12sp" />
         </LinearLayout>
+
         <LinearLayout
-            android:visibility="gone"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
             android:id="@+id/ll_copy"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
 
             <ImageView
                 android:layout_width="68dp"
@@ -85,50 +88,26 @@
 
 
             <TextView
-                android:gravity="center"
                 android:layout_width="48dp"
                 android:layout_height="17dp"
                 android:layout_marginTop="@dimen/margin_8dp"
-                android:textSize="12sp"
+                android:gravity="center"
                 android:text="复制"
-                android:textColor="@color/black6" />
+                android:textColor="@color/black6"
+                android:textSize="12sp" />
         </LinearLayout>
-        <!--<LinearLayout-->
-            <!--android:layout_weight="1"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="vertical"-->
-            <!--android:gravity="center"-->
-            <!--android:id="@+id/ll_share"-->
-            <!--&gt;-->
 
-            <!--<ImageView-->
-                <!--android:layout_width="68dp"-->
-                <!--android:layout_height="68dp"-->
-                <!--android:scaleType="fitXY"-->
-                <!--android:src="@mipmap/share" />-->
-
-
-            <!--<TextView-->
-                <!--android:gravity="center"-->
-                <!--android:layout_width="48dp"-->
-                <!--android:layout_height="17dp"-->
-                <!--android:layout_marginTop="@dimen/margin_8dp"-->
-                <!--android:textSize="12sp"-->
-                <!--android:text="分享"-->
-                <!--android:textColor="@color/black6" />-->
-        <!--</LinearLayout>-->
-    </LinearLayout>
+    </RelativeLayout>
 
     <TextView
-        android:background="@color/white"
-        android:textSize="16sp"
-        android:textColor="#E80017"
         android:id="@+id/concle"
         android:layout_width="match_parent"
         android:layout_height="@dimen/rc_dimen_size_50"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/white"
         android:gravity="center"
-        android:text="取消" />
+        android:text="取消"
+        android:textColor="#666666"
+        android:textSize="16sp" />
 
 </LinearLayout>

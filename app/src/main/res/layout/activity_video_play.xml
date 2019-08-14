@@ -30,7 +30,7 @@
         android:layout_height="23dp" />
 
     <ScrollView
-        android:layout_marginTop="230dp"
+        android:layout_below="@id/video_Player"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
@@ -79,7 +79,7 @@
                 android:textSize="13sp" />
             <View
                 android:layout_marginTop="10dp"
-                android:background="#979797"
+                android:background="#999999"
                 android:layout_below="@id/tv_departmentName"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"></View>
@@ -95,6 +95,7 @@
             <TextView
                 android:id="@+id/tv_content"
                 android:paddingLeft="15dp"
+                android:paddingRight="15dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="120dp"

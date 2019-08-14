@@ -58,11 +58,11 @@ public class FreeBackActivity  extends BaseActivity {
 
                     //ProxyUtils.getHttpProxy().feedbackadd(this, Integer.valueOf(PreferManager.getUserId()), ss);
                     Map<String,String> maps=new HashMap<>();
-                    maps.put("userId", NewPreferManager.getId());
+                    maps.put("userId", NewPreferManager.getOrgId());
                     maps.put("deliveryContent",ss);
                     JSONObject jsonObject=new JSONObject();
                     jsonObject.put("deliveryContent",ss);
-                    OkhttpUtils.getInstance(FreeBackActivity.this).postJson( NewPreferManager.getId(),jsonObject.toJSONString(),"academyService/feedBack/add",  new OkhttpUtils.onCallBack() {
+                    OkhttpUtils.getInstance(FreeBackActivity.this).postJson(NewPreferManager.getId(),jsonObject.toJSONString(),"academyService/feedBack/add",  new OkhttpUtils.onCallBack() {
                         @Override
                         public void onFaild(Exception e) {
 

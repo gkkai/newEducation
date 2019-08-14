@@ -27,6 +27,7 @@ import com.meiliangzi.app.ui.LoginActivity;
 import com.meiliangzi.app.ui.PersonCenterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.dialog.MyDialog;
+import com.meiliangzi.app.ui.view.Academy.NewLoginActivity;
 import com.meiliangzi.app.widget.DialogSelectPhoto;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yanzhenjie.permission.AndPermission;
@@ -63,7 +64,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     ImageView image_countylist;
     @BindView(R.id.tvEmpty)
     TextView tvEmpty;
-    private int cityid=0;
+    private int city_id=0;
     private int county_id;
     @BindView(R.id.ll_map_type)
     LinearLayout ll_map_type;//展示地图类型列表
@@ -72,7 +73,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     private String lng;
     private List<TextView> listviews=new ArrayList<>();//
     private List<MapTypeListsBean.DataBean> typeBean=new ArrayList<>();
-    private int classification_id;
+    private int classification_id=0;
     private LayoutInflater Inflater;
     private MyDialog myDialog;
 
@@ -90,7 +91,6 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
 
     private String phone;
     private String describe;
-    private String image;
     private String name;
     private String id;
 
@@ -116,11 +116,12 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
             cityname =getIntent().getStringExtra("cityname");
             countyname =getIntent().getStringExtra("countyname");
             phone =getIntent().getStringExtra("phone");
-            image =getIntent().getStringExtra("image");
             describe=getIntent().getStringExtra("describe");
             name=getIntent().getStringExtra("name");
+            path=getIntent().getStringExtra("path");
+
             classification_id=getIntent().getIntExtra("classification_id",0);
-            cityid=getIntent().getIntExtra("cityid",0);
+            city_id=getIntent().getIntExtra("cityid",0);
             county_id=getIntent().getIntExtra("county_id",0);
             lat_id.setText(lat);
             lng_id.setText(lng);
@@ -128,7 +129,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
             iput_countyname.setText(countyname);
             phene_number.setText(phone);
             loction_name.setText(name);
-            ImageLoader.getInstance().displayImage(image, image_add_image, MyApplication.getSimpleOptions(R.mipmap.test_user_star, R.mipmap.test_user_star));
+            ImageLoader.getInstance().displayImage(path, image_add_image, MyApplication.getSimpleOptions(R.mipmap.test_user_star, R.mipmap.test_user_star));
 
             edit_describe.setText(describe);
         }
@@ -145,7 +146,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
     protected void initComponent() {
         dialogSelect = new DialogSelectPhoto();
         dialogSelect.setType(1);
-        if (TextUtils.isEmpty(NewPreferManager.getId())) {
+        if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
 //            if (TextUtils.isEmpty(PreferManager.getUserId())) {
 //                tvEmpty.setText("请先登录");
 //            } else {
@@ -174,12 +175,18 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     ll_map_type, false);
             TextView txt = (TextView) view
                     .findViewById(R.id.id_index_gallery_item_text);
-
-            if(i==postiton){
+            if(classification_id==dataBeans.get(i).getId()){
                 txt.setBackground(getResources().getDrawable(R.drawable.shape_type));
                 txt.setTextColor(Color.WHITE);
                 classification_id=typeBean.get(i).getId();
+            }else {
+
             }
+//            if(i==postiton){
+//                txt.setBackground(getResources().getDrawable(R.drawable.shape_type));
+//                txt.setTextColor(Color.WHITE);
+//                classification_id=typeBean.get(i).getId();
+//            }
 
             txt.setText(dataBeans.get(i).getName());
             txt.setId(100+i);
@@ -261,7 +268,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     RuleCheckUtils.checkEmpty(iput_cityname.getText().toString(), "请选择所在市");
                     Intent countyintent = new Intent(this, AddCityListsActivity.class);
                     countyintent.putExtra("type", "county");
-                    countyintent.putExtra("cityid", cityid);
+                    countyintent.putExtra("cityid", city_id);
                     startActivityForResult(countyintent, 104);
                 } catch (Exception e) {
                 ToastUtils.custom(e.getMessage());
@@ -273,7 +280,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                     RuleCheckUtils.checkEmpty(iput_cityname.getText().toString(), "请选择所在市");
                     Intent countyintent = new Intent(this, AddCityListsActivity.class);
                     countyintent.putExtra("type", "county");
-                    countyintent.putExtra("cityid", cityid);
+                    countyintent.putExtra("cityid", city_id);
                     startActivityForResult(countyintent, 104);
                 } catch (Exception e) {
                     ToastUtils.custom(e.getMessage());
@@ -284,9 +291,14 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                 //TODO 上传后台
                 try {
                     RuleCheckUtils.checkEmpty(iput_cityname.getText().toString(), "请选择所在市");
-
                     RuleCheckUtils.checkEmpty(iput_countyname.getText().toString(), "请选择所在县");
+                    RuleCheckUtils.checkEmpty(phene_number.getText().toString(), "请输入电话号码");
+
                     RuleCheckUtils.checkEmpty(loction_name.getText().toString(), "请输入地址名称");
+                    RuleCheckUtils.checkEmpty(path, "请选择图片");
+                    RuleCheckUtils.checkEmpty(edit_describe.getText().toString(), "请输入描述");
+                    RuleCheckUtils.checkEmpty(lng, "未打点");
+                    RuleCheckUtils.checkEmpty(lat, "未打点");
 
                     //TODO 地理位置添加
                     String name=loction_name.getText().toString();
@@ -296,11 +308,12 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
 //                    String lat=lat_id.getText().toString().trim();
 
                     String describe=edit_describe.getText().toString().trim();
+                int olduserid=    NewPreferManager.getoldUseId();
                     if("111".equals(getIntent().getStringExtra("type"))){
-                        ProxyUtils.getHttpProxy().updateMap(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,lng,lat,image,describe,id);
+                        ProxyUtils.getHttpProxy().updateMap(AddMapLoctionActivity.this,name,city_id,county_id,classification_id,phone,lng,lat,path,describe,id,olduserid);
 
                     }else {
-                        ProxyUtils.getHttpProxy().addmaps(AddMapLoctionActivity.this,NewPreferManager.getId(),name,cityid,county_id,classification_id,phone,lng,lat,path,describe);
+                        ProxyUtils.getHttpProxy().addmaps(AddMapLoctionActivity.this,name,city_id,county_id,classification_id,phone,lng,lat,path,describe,olduserid);
 
                     }
                    } catch (Exception e) {
@@ -309,8 +322,8 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
                 }
                 break;
             case R.id.tvEmpty:
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
-                    Intent intent=new Intent(this,LoginActivity.class);
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
+                    Intent intent=new Intent(this,NewLoginActivity.class);
                     startActivity(intent);
                     finish();
 
@@ -382,7 +395,7 @@ public class AddMapLoctionActivity extends BaseActivity implements View.OnClickL
             switch (requestCode) {
                 case 103:
                     if(data!=null){
-                        cityid=data.getIntExtra("cityid",0);
+                        city_id=data.getIntExtra("cityid",0);
                         String string=    data.getStringExtra("cityname");
                         iput_cityname.setText(data.getStringExtra("cityname"));
                     }

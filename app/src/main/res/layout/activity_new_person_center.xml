@@ -248,9 +248,11 @@
         android:layout_marginTop="20dp"
         android:textColor="@color/white"
         android:gravity="center"
-        android:layout_width="342dp"
-        android:layout_height="49dp"
-        android:background="@color/zm_red"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/shape_roid_red"
         android:text="确定"
         />
 </LinearLayout>

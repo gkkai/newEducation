@@ -12,7 +12,11 @@
             style="@style/ActionBar.LeftImage" />
 
         <TextView
+            android:lines="1"
+            android:ellipsize="end"
             android:id="@+id/tv_title"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
             style="@style/ActionBar.CenterTitle"
             android:text="考试专题" />
         <TextView
@@ -68,7 +72,7 @@
             android:textSize="11sp"
             android:id="@+id/tv_no_duration"
             android:layout_below="@id/tv_pagetitle"
-            android:text="不记时"
+            android:text="不计时"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:textColor="#999999"/>

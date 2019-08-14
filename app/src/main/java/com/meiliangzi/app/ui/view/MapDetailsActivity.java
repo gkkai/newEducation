@@ -20,6 +20,7 @@ import com.meiliangzi.app.R;
 import com.meiliangzi.app.db.bean.MapInfoBean;
 import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ProxyUtils;
+import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.dialog.MyDialog;
 
@@ -39,7 +40,6 @@ import static java.lang.Math.sqrt;
 public class MapDetailsActivity extends BaseActivity implements View.OnClickListener {
     private int id;
     private MyDialog myDialog;
-    Gson gson=new Gson();
     @BindView(R.id.tv_describe)
     TextView tv_describe;
     @BindView(R.id.tv_category)
@@ -61,7 +61,7 @@ public class MapDetailsActivity extends BaseActivity implements View.OnClickList
     private String autotype = "";
     String autoPackage = "com.autonavi.minimap";
     String baiduPackage = "com.baidu.BaiduMap";
-
+    Gson gson=new Gson();
     @BindView(R.id.image_edit)
     ImageView image_edit;
     @Override
@@ -77,44 +77,72 @@ public class MapDetailsActivity extends BaseActivity implements View.OnClickList
     protected void findWidgets() {
 
 //TODO 查询数据类型
-        ProxyUtils.gethttp().mapInfo(this,id);
+       // ProxyUtils.gethttp().mapInfo(this,id);
+        Map<String,String> map=new HashMap<String, String>();
+        map.put("id",id+"");
+        OkhttpUtils.getInstance(this).getmapList("mapInfo", map, new OkhttpUtils.onCallBack() {
+            @Override
+            public void onFaild(final Exception e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ToastUtils.show(e.getMessage());
+                        finish();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(final String json) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        final MapInfoBean bean  =gson.fromJson(json,MapInfoBean.class);
+                        tv_describe.setText(bean.getData().getDescribe());
+                        tv_category.setText(bean.getData().getClassIfIcationName());
+                        tv_phone.setText(bean.getData().getPhone());
+                        tv_cityName.setText(bean.getData().getCityName()+bean.getData().getCountyName());
+                        tv_daohang.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                daohang(bean.getData());
+
+                            }
+                        });
+                        image_edit.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent=new Intent(MapDetailsActivity.this,AddMapLoctionActivity.class);
+                                intent.putExtra("id",bean.getData().getId());
+                                intent.putExtra("type","111");
+                                intent.putExtra("cityname",bean.getData().getCityName());
+                                intent.putExtra("countyname",bean.getData().getCountyName());
+                                intent.putExtra("phone",bean.getData().getPhone());
+                                intent.putExtra("describe",bean.getData().getDescribe());
+                                intent.putExtra("county_id",bean.getData().getCounty_id());
+                                intent.putExtra("classification_id",bean.getData().getClassification_id());
+                                intent.putExtra("cityid",Integer.valueOf(bean.getData().getCity_id()));
+                                intent.putExtra("name",bean.getData().getName());
+                                intent.putExtra("image",bean.getData().getImage());
+                                intent.putExtra("lng",bean.getData().getLongitude());
+                                intent.putExtra("lat",bean.getData().getLatitude());
+                                intent.putExtra("path",bean.getData().getImage());
+                                startActivity(intent);
+                                finish();
+                            }
+                        });
+
+
+                    }
+                });
+
+            }
+        });
 
 
     }
     private void  mapInfo(final MapInfoBean bean){
 
-        tv_describe.setText(bean.getData().getDescribe());
-                            tv_category.setText(bean.getData().getClassIfIcationName());
-                            tv_phone.setText(bean.getData().getPhone());
-                            tv_cityName.setText(bean.getData().getCityName()+bean.getData().getCountyName());
-                            tv_daohang.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    daohang(bean.getData());
-
-                                }
-                            });
-        image_edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(MapDetailsActivity.this,AddMapLoctionActivity.class);
-                intent.putExtra("type","111");
-                intent.putExtra("cityname",bean.getData().getCityName());
-                intent.putExtra("countyname",bean.getData().getCountyName());
-                intent.putExtra("phone",bean.getData().getPhone());
-                intent.putExtra("describe",bean.getData().getDescribe());
-                intent.putExtra("county_id",bean.getData().getCounty_id());
-                intent.putExtra("county_id",bean.getData().getId());
-                intent.putExtra("classification_id",bean.getData().getClassification_id());
-                intent.putExtra("cityid",bean.getData().getCityName());
-                intent.putExtra("name",bean.getData().getName());
-                intent.putExtra("image",bean.getData().getImage());
-                intent.putExtra("lng",bean.getData().getLongitude());
-                intent.putExtra("lat",bean.getData().getLatitude());
-                startActivity(intent);
-                finish();
-            }
-        });
 
 
 
@@ -280,4 +308,13 @@ public class MapDetailsActivity extends BaseActivity implements View.OnClickList
 
     }
 
+    @Override
+    protected void showErrorMessage(String errorMessage) {
+        super.showErrorMessage(errorMessage);
+    }
+
+    @Override
+    protected void showErrorMessage(Integer errorCode, String errorMessage) {
+        super.showErrorMessage(errorCode, errorMessage);
+    }
 }

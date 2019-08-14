@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.Academy.KaoShiActivity">
+    <RelativeLayout style="@style/ActionBar"
+        >
+        <ImageView
+            style="@style/ActionBar.LeftImage" />
+        <TextView
+            style="@style/ActionBar.CenterTitle"
+            android:text="考试专栏" />
+
+    </RelativeLayout>
+    <LinearLayout
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:id="@+id/one"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            app:tabBackground="@color/white"
+            app:tabIndicatorColor="@color/zm_red"
+            app:tabIndicatorHeight="2dip"
+            app:tabMinWidth="50dip"
+            app:tabPaddingStart="5dip"
+            app:tabPaddingEnd="5dip"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="@color/zm_red"
+            app:tabTextAppearance="@style/tab_head"
+            app:tabTextColor="@color/text_tips_color" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="#f2f2f2" />
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>

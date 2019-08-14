@@ -24,6 +24,7 @@ import com.meiliangzi.app.ui.LoginActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
+import com.meiliangzi.app.ui.view.Academy.NewLoginActivity;
 import com.meiliangzi.app.widget.MyGridView;
 import com.meiliangzi.app.widget.XListView;
 
@@ -433,7 +434,7 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
     @Override
     protected void onResume() {
         super.onResume();
-        if(TextUtils.isEmpty(NewPreferManager.getId())){
+        if(TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")){
 //            if(TextUtils.isEmpty(PreferManager.getUserId())){
 //
 //            }else if(!PreferManager.getIsComplete()){
@@ -620,8 +621,8 @@ public class CheckSuperviseProjectListActivity extends BaseActivity implements V
         tvEmpty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
-                    IntentUtils.startAtyWithSingleParam(CheckSuperviseProjectListActivity.this, LoginActivity.class, "activity", "WholeFragment");
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
+                    IntentUtils.startAtyWithSingleParam(CheckSuperviseProjectListActivity.this, NewLoginActivity.class, "activity", "WholeFragment");
                 }
             }
         });

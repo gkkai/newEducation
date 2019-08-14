@@ -19,6 +19,7 @@ import com.meiliangzi.app.ui.base.BaseActivity;
 import com.meiliangzi.app.ui.base.BaseQuickAdapter;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.dialog.SendDeleatDialog;
+import com.meiliangzi.app.ui.view.Academy.NewLoginActivity;
 import com.meiliangzi.app.widget.MyGridView;
 import java.text.SimpleDateFormat;
 
@@ -81,7 +82,7 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
                 helper.getView(R.id.text_quxiao_sendcar).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(item.getProposerUserid()== Integer.valueOf(NewPreferManager.getId())){
+                        if(item.getProposerUserid()== NewPreferManager.getoldUseId()){
                             deleatDialog.setYesOnclickListener("确定", new SendDeleatDialog.onYesOnclickListener() {
                                 @Override
                                 public void onYesClick() {
@@ -148,8 +149,8 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
         text_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (TextUtils.isEmpty(NewPreferManager.getId())) {
-                    IntentUtils.startAtyForResult(SendCarActivity.this, LoginActivity.class, 1003, "activity", "index");
+                if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"")) {
+                    IntentUtils.startAtyForResult(SendCarActivity.this, NewLoginActivity.class, 1003, "activity", "index");
                 }
             }
         });
@@ -232,7 +233,7 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
     private boolean iscontains(ProposerUserlistBean bean){
         boolean iscontains=false;
         for (int i=0;i<bean.getData().size();i++){
-                if(bean.getData().get(i).getId()==Integer.valueOf(NewPreferManager.getId())){
+                if(bean.getData().get(i).getId()==NewPreferManager.getoldUseId()){
 
                     iscontains= true;
                 }
@@ -290,7 +291,7 @@ public class SendCarActivity extends BaseActivity implements View.OnClickListene
         }
     }
     private void isLogin() {
-        if (TextUtils.isEmpty(NewPreferManager.getId()) ) {
+        if (TextUtils.isEmpty(NewPreferManager.getoldUseId()+"") ) {
 //            if (TextUtils.isEmpty(NewPreferManager.getId())) {
 //                text_login.setText("请先登录");
 //            } else {

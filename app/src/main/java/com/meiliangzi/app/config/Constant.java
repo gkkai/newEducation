@@ -1,10 +1,6 @@
 package com.meiliangzi.app.config;
 
 public class Constant {
-
-
-
-
     // 崩溃日志文件
     public static final String LOG_FILE = "crash";
     // TabHost
@@ -17,8 +13,8 @@ public class Constant {
     public static final String Examination = "考试";
     public static final String BASE_URL = "http://z.meiliangzi.cn:8087/api/";
     public static final String JavaBASE_URL = "http://z.meiliangzi.cn:8080/mr2/app/";
-
-    public static final String ChanYeXY = "http://dev-2.meiliangzi.cn:9090/";
+    public static final String ChanYeXY = "http://cyxy.meiliangzi.cn:9090/";
+    public static final String TestChanYeXY = "http://dev-2.meiliangzi.cn:9090/";
     //public static final String JavaBASE_URL = "http://dev-2.meiliangzi.cn:9090/academyService/";
     //public static final String BASE_URL = "http://dev-2.meiliangzi.cn:8087/api/";
     public static final String LOGINID = "402881e56a47e6c8016a47e70f040000";//TODO 阅读文章

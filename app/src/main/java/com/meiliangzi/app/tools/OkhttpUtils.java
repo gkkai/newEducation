@@ -35,6 +35,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
+import static com.meiliangzi.app.config.Constant.BASE_URL;
 import static com.meiliangzi.app.config.Constant.ChanYeXY;
 
 
@@ -310,7 +311,6 @@ public class OkhttpUtils {
             public void onFailure(Call call, final IOException e) {
                 if (onCallBack != null) {
 //切换到主线程
-
                     onCallBack.onFaild(e);
                 }
             }
@@ -348,7 +348,11 @@ public class OkhttpUtils {
         Request.Builder reqBuild = new Request.Builder();
         HttpUrl.Builder urlBuilder = HttpUrl.parse(ChanYeXY + url)
                 .newBuilder();
-        urlBuilder.addQueryParameter("type", jsonObject.getString("type"));
+        if(null==jsonObject.getString("type")){
+
+        }else {
+            urlBuilder.addQueryParameter("type", jsonObject.getString("type"));
+        }
         urlBuilder.addQueryParameter("pageNumber", jsonObject.getString("pageNumber"));
         urlBuilder.addQueryParameter("pageSize", jsonObject.getString("pageSize"));
         urlBuilder.addQueryParameter("paperTypeId", jsonObject.getString("paperTypeId"));
@@ -698,6 +702,58 @@ public class OkhttpUtils {
             // builder.add(key,value);
         }
         reqBuild.addHeader("token", NewPreferManager.getToken());
+
+
+        reqBuild.url(urlBuilder.build());
+        Request request = reqBuild.build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, final IOException e) {
+                if (onCallBack != null) {
+//切换到主线程
+
+                    onCallBack.onFaild(e);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, final Response response) throws IOException {
+
+
+                try {
+                    if (response != null && response.isSuccessful()) {
+                        String json = response.body().string();
+                        if (onCallBack != null) {
+                            onCallBack.onResponse(json);
+                            return;
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                if (onCallBack != null) {
+                    onCallBack.onFaild(new Exception("异常"));
+                }
+            }
+        });
+    }
+    public void getmapList(String url, Map<String, String> maps, final onCallBack onCallBack) {
+        Request.Builder reqBuild = new Request.Builder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + url)
+                .newBuilder();
+        //循环form表单，将表单内容添加到form builder中
+        for (Map.Entry<String, String> entry : maps.entrySet()) {
+            String key = entry.getKey();
+            String value = entry.getValue();
+            urlBuilder.addQueryParameter(key, value);
+            if (key.equals("userId")) {
+                reqBuild.addHeader(key, value);
+            }
+
+            // builder.add(key,value);
+        }
+        //reqBuild.addHeader("token", NewPreferManager.getToken());
 
 
         reqBuild.url(urlBuilder.build());

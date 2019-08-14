@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.meiliangzi.app.ui.view.DistributionSystem.SelectionAuditorsActivity">
+    <RelativeLayout style="@style/ActionBar"
+        >
+
+        <ImageView style="@style/ActionBar.LeftImage"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            />
+
+        <TextView
+            android:textSize="19sp"
+            android:id="@+id/tv_title_train"
+            style="@style/ActionBar.CenterTitle"
+            android:text="选择审核人" />
+
+    </RelativeLayout>
+    <View
+        android:background="@color/colorGrayLine"
+        android:layout_marginTop="48dp"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"></View>
+    <com.meiliangzi.app.widget.XListView
+        android:layout_marginTop="50dp"
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:divider="@color/colorGrayLine"
+        android:dividerHeight="1dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none"
+        android:scrollingCache="false"
+        ></com.meiliangzi.app.widget.XListView>
+</RelativeLayout>

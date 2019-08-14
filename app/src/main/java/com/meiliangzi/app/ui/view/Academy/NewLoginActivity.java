@@ -25,6 +25,7 @@ import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.MainActivity;
 import com.meiliangzi.app.ui.RegisterActivity;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.LoadingDialog;
 import com.meiliangzi.app.ui.view.Academy.bean.NewBaseBean;
 import com.meiliangzi.app.ui.view.Academy.bean.UserInfoBean;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -36,6 +37,7 @@ import java.util.Stack;
 
 import butterknife.BindView;
 
+import static com.meiliangzi.app.R.attr.handler;
 import static com.meiliangzi.app.config.Constant.LOGINID;
 
 public class NewLoginActivity  extends BaseActivity implements View.OnClickListener {
@@ -69,6 +71,7 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
     TextView tvLogin;
     @BindView(R.id.tvForgetPwd)
     TextView tvForgetPwd;
+    private LoadingDialog dialog;
 
 
     @Override
@@ -82,6 +85,11 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void findWidgets() {
+        LoadingDialog.Builder loadBuilder=new LoadingDialog.Builder(this)
+                .setMessage("正在登录...")
+                .setCancelable(false)
+                .setCancelOutside(false);
+         dialog=loadBuilder.create();
         if("1".equals(out)){
             Stack<Activity> s= MyApplication.atyStack;
             for(Activity activity :s){
@@ -89,12 +97,12 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
             }
             Log.i("Login=======",s.toArray().toString());
         }
-        cbRemPwd.setChecked(NewPreferManager.getIsRememberPwd().equals("1"));
-        etAccount.setText(NewPreferManager.getPhone());
-        if(NewPreferManager.getIsRememberPwd().equals("1")){
-
-            etPwd.setText(NewPreferManager.getPasswd());
-        }
+//        cbRemPwd.setChecked(NewPreferManager.getIsRememberPwd().equals("1"));
+//        etAccount.setText(NewPreferManager.getPhone());
+//        if(NewPreferManager.getIsRememberPwd().equals("1")){
+//
+//            etPwd.setText(NewPreferManager.getPasswd());
+//        }
         tvphone.setTextColor(getResources().getColor(R.color.zm_red));
         tvworknumber.setTextColor(getResources().getColor(R.color.group_list_gray));
         cbLine11.setBackgroundColor(getResources().getColor(R.color.de_draft_color));
@@ -157,11 +165,15 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
         }
     }
     public void login(String loginName,String password){
+
+
+
         if (cbRemPwd.isChecked()){
             NewPreferManager.saveIsRememberPwd("1");
         }else {
             NewPreferManager.saveIsRememberPwd("0");
         }
+        dialog.show();
         NewPreferManager.savePasswd(password);
         Map<String,String> map=new HashMap();
         map.put("loginName",loginName);
@@ -173,6 +185,7 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        dialog.dismiss();
                         ToastUtils.show(e.getMessage());
                     }
                 });
@@ -185,12 +198,14 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            dialog.dismiss();
                             ToastUtils.show(bean.getMessage());
                         }
                     });
                 }else {
                     NewPreferManager.saveToken(bean.getData().getTokenVo().getToken());
                     NewPreferManager.saveOrgId(bean.getData().getOrgId());
+                    NewPreferManager.saveoldUseId(bean.getData().getOldUserId());
                     NewPreferManager.saverefreshToken(bean.getData().getTokenVo().getRefreshToken());
 
                     userInfo(bean.getData().getUserId(),bean.getData().getOrgId());
@@ -242,7 +257,12 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
         OkhttpUtils.getInstance(this).getList("academyService/userInfo/findByUserInfo", map, new OkhttpUtils.onCallBack() {
             @Override
             public void onFaild(Exception e) {
-
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dialog.dismiss();
+                    }
+                });
             }
             @Override
             public void onResponse(String json) {
@@ -273,12 +293,14 @@ public class NewLoginActivity  extends BaseActivity implements View.OnClickListe
                     NewPreferManager.savePositionId(user.getData().getPositionId());
                     NewPreferManager.saveId(user.getData().getId());
                     NewPreferManager.saveUserTotalScore(user.getData().getUserTotalScore());
+
                     //TODO 获取部门列表
                     IntentUtils.startAty(NewLoginActivity.this, MainActivity.class);
                     finish();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
+                            dialog.dismiss();
                             TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
                             if(true){
                                 tagAliasBean.alias = String.valueOf(user.getData().getId());

@@ -267,7 +267,7 @@ public class NewBuildComminsActivity extends BaseActivity implements PermissionL
                     RuleCheckUtils.checkEmpty(edit_neirong.getText().toString(), "请输入内容");
                     if(issure){
                         issure=false;
-                        uploadImg(edit_title.getText().toString().trim(),edit_neirong.getText().toString().trim(), NewPreferManager.getId(),NewPreferManager.getUserName());
+                        uploadImg(edit_title.getText().toString().trim(),edit_neirong.getText().toString().trim(), NewPreferManager.getoldUseId()+"",NewPreferManager.getUserName());
 
                     }
 

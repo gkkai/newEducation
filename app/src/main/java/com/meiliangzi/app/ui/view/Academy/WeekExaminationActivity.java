@@ -31,6 +31,7 @@ import com.meiliangzi.app.tools.NewPreferManager;
 import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
+import com.meiliangzi.app.ui.dialog.LoadingDialog;
 import com.meiliangzi.app.ui.dialog.MyDialog;
 import com.meiliangzi.app.ui.view.Academy.adapter.TopicAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.ComintQuestionsBackbean;
@@ -38,10 +39,10 @@ import com.meiliangzi.app.ui.view.Academy.bean.OutAnswerBean;
 import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
 import com.meiliangzi.app.ui.view.Academy.dialog.SubmitDialog;
 import com.meiliangzi.app.ui.view.Academy.fragment.ReadFragment;
-import com.meiliangzi.app.ui.view.Academy.fragment.WeekFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 
 import butterknife.BindView;
 
@@ -72,14 +73,14 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
     TextView tv_alreadyanswered;
     @BindView(R.id.tv_totalNumber)
     TextView tv_totalNumber;
-    String type;
+    //String type;
     private MyThread myThread;
     private MsgContentFragmentAdapter adapter;
     private String time;
     private String pagetitle;
-    private String totalNumber;
+    private String totalNumber="0";
     String userId;
-    String finishStatus;
+   // String finishStatus;
     String answerTime="0";
     String paperId;
     String title;
@@ -87,29 +88,28 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
     String createType;
     String countDown;
     private String mode;
-    private String userPaperId;
     private SubmitDialog submitDialog;
     private MyDialog myDialog;
     public OutAnswerBean outAnswerBean;
     public boolean iscommit=false;
     public  int totle=0;
     private ArrayList<OutAnswerBean.AnswerBean.QuestionOption> listquestionOption;
+    private Timer timer;
+    private LoadingDialog cmmitdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         paperId=getIntent().getStringExtra("paperId");
-        type=getIntent().getStringExtra("type");
+       // type=getIntent().getStringExtra("type");
         title=getIntent().getStringExtra("title");
         pagetitle=getIntent().getStringExtra("pagetitle");
         totalNumber=getIntent().getStringExtra("totalNumber");
         time = getIntent().getStringExtra("time");
         mode=getIntent().getStringExtra("mode");
-        userPaperId=getIntent().getStringExtra("userPaperId");
         userId=getIntent().getStringExtra("userId");
         countDown=getIntent().getStringExtra("countDown");
         //TODO
-        finishStatus=getIntent().getStringExtra("finishStatus");
         answerTime=getIntent().getStringExtra("answerTime");
         repeatAnswer=getIntent().getStringExtra("repeatAnswer");
         createType=getIntent().getStringExtra("createType");
@@ -130,7 +130,13 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
 
     @Override
     protected void findWidgets() {
+        LoadingDialog.Builder loadBuilder=new LoadingDialog.Builder(this)
+                .setMessage("正在提交...")
+                .setCancelable(false)
+                .setCancelOutside(false);
+        cmmitdialog=loadBuilder.create();
         submitDialog = new SubmitDialog(this);
+
         myDialog=new MyDialog(this);
         myDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
             @Override
@@ -175,20 +181,26 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
         tv_title.setText(title);
         tv_pagetitle.setText(pagetitle);
         tv_totalNumber.setText("/"+totalNumber);
-        tv_alreadyanswered.setText(1+"");
-        if("1".equals(type)){
-            //TODO 每周一答
-            tv_no_duration.setVisibility(View.VISIBLE);
-            tv_duration.setVisibility(View.GONE);
-        }else if("0".equals(type)){
-            //TODO 智能答题
-            tv_no_duration.setVisibility(View.VISIBLE);
-            tv_duration.setVisibility(View.GONE);
-
+        if("0".equals(totalNumber)){
+            tv_alreadyanswered.setText(0+"");
         }else {
-            tv_duration.setVisibility(View.VISIBLE);
-            tv_no_duration.setVisibility(View.GONE);
+            tv_alreadyanswered.setText(1+"");
         }
+//        if("1".equals(type)){
+//            //TODO 每周一答
+//            tv_no_duration.setVisibility(View.VISIBLE);
+//            tv_duration.setVisibility(View.GONE);
+//        }else if("0".equals(type)){
+//            //TODO 智能答题
+//            tv_no_duration.setVisibility(View.VISIBLE);
+//            tv_duration.setVisibility(View.GONE);
+//
+//        }else {
+//            tv_duration.setVisibility(View.VISIBLE);
+//            tv_no_duration.setVisibility(View.GONE);
+//        }
+        tv_no_duration.setVisibility(View.VISIBLE);
+        tv_duration.setVisibility(View.GONE);
         inflate = LayoutInflater.from(getBaseContext()).inflate(R.layout.answercard, null);
         recyclerView=(RecyclerView)inflate.findViewById(R.id.list);
         tv_answercard.setOnClickListener(this);
@@ -225,8 +237,7 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
 
     }
 
-    @Override
-    protected void initComponent() {
+    private  void  getdata(){
         //TODO 获取试题
         JSONObject jsonObject=new JSONObject();
         jsonObject.put("userId",NewPreferManager.getId());
@@ -256,15 +267,6 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                                     for(int i=0;i<beans.size();i++){
                                         for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
                                             MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
-//                                            if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
-//                                                for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
-//                                                    if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
-//                                                        MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
-//                                                        break;
-//                                                    }
-//                                                }
-//                                            }
-
 
                                         }
                                     }
@@ -327,15 +329,6 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                                     for(int i=0;i<beans.size();i++){
                                         for(int h=0;h<MyApplication.paperBean.getData().get(i).getQuestionOption().size();h++){
                                             MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setOptinon(s[h]);
-//                                            if(beans.get(i).getUserAnswer()!=null&&beans.get(i).getUserAnswer().size()!=0){
-//                                                for(int j=0;j<beans.get(i).getUserAnswer().size();j++){
-//                                                    if(MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).getKey().equals(beans.get(i).getUserAnswer().get(j).getKey())){
-//                                                        //MyApplication.paperBean.getData().get(i).getQuestionOption().get(h).setIschos(true);
-//                                                        break;
-//                                                    }
-//                                                }
-//                                            }
-
 
                                         }
                                     }
@@ -371,37 +364,56 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
             });
 
         }
+    }
+    @Override
+    protected void initComponent() {
+        getdata();
 
 
+
+    }
+    public static String unitFormat(int i) {// 时分秒的格式转换
+        String retStr = null;
+        if (i >= 0 && i < 10)
+            retStr = "0" + Integer.toString(i);
+        else
+            retStr = "" + i;
+        return retStr;
     }
     /*
             * 将秒数转为时分秒
             * */
     public String change(int second) {
-        int h = 0;
-        int d = 0;
-        int s = 0;
+        String h="00" ;
+        String d ="00";
+        String s ="00";
         int temp = second % 3600;
         if (second > 3600) {
-            h = second / 3600;
+            h = unitFormat(second / 3600);
             if (temp != 0) {
                 if (temp > 60) {
-                    d = temp / 60;
+                    d=unitFormat(temp / 60);
+
                     if (temp % 60 != 0) {
-                        s = temp % 60;
+                        s=unitFormat(temp % 60);
                     }
                 } else {
-                    s = temp;
+                    s=unitFormat(temp );
                 }
             }
         } else {
-            d = second / 60;
+            d=unitFormat(second / 60);
             if (second % 60 != 0) {
-                s = second % 60;
+                s=unitFormat(second % 60);
             }
         }
 
-        return h + ":" + d + ":" + s + "";
+        if("00".equals(h)){
+            return  d + ":" + s + "";
+        }else {
+            return h + ":" + d + ":" + s + "";
+        }
+
     }
 
 
@@ -418,7 +430,7 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
 //                    String minStr = (min < 10) ? ("0" + min) : String.valueOf(min);
 //                    String secondStr = (second < 10) ? ("0" + second) : String.valueOf(second);
 //                    tv_duration.setText("倒计时：" + minStr + ":" + secondStr);
-                    tv_duration.setText("倒计时：" + change(during));
+                    tv_duration.setText(change(during));
 //                    if (minStr.equals("00") && secondStr.equals("00")) {
 //
 //
@@ -468,6 +480,8 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
     protected void onResume() {
         super.onResume();
         isBackGround =false;
+       // getdata();
+
     }
     private void commit(final int ctype){
         if(!iscommit){
@@ -553,12 +567,14 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                         public void onYesClick() {
                             iscommit=false;
                             myDialog.dismiss();
+                            cmmitdialog.show();
                             OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserPaperQuestions/add", new OkhttpUtils.onCallBack() {
                                 @Override
                                 public void onFaild(Exception e) {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            cmmitdialog.dismiss();
                                             iscommit=false;
                                             ToastUtils.show("提交失败，请重新提交");
                                         }
@@ -569,39 +585,44 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                                 public void onResponse(String json) {
                                     iscommit=true;
                                     final ComintQuestionsBackbean questionsBackbean=new Gson().fromJson(json,ComintQuestionsBackbean.class);
-                                    if("1".equals(questionsBackbean.getCode())){
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            cmmitdialog.dismiss();
+                                            if("1".equals(questionsBackbean.getCode())){
                                                 iscommit=false;
                                                 ToastUtils.show(questionsBackbean.getMessage());
-                                            }
-                                        });
-                                    }else {
-                                        if(1==ctype){
-                                            finish();
-                                        }else {
-                                            Intent intent=new Intent(WeekExaminationActivity.this,AnswerReportActivity.class);
-                                            repeatAnswer=getIntent().getStringExtra("repeatAnswer");
-                                            intent.putExtra("paperId",paperId);
-                                            intent.putExtra("score",questionsBackbean.getData().getScore()+"");
-                                            intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
-                                            intent.putExtra("type",type);
-                                            intent.putExtra("userId", NewPreferManager.getId());
-                                            intent.putExtra("pagetitle",pagetitle);
-                                            intent.putExtra("time",time);
-                                            intent.putExtra("mode",mode);
-                                            intent.putExtra("createType",createType);
-                                            intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
-                                            intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
-                                            intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
-                                            intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
-                                            intent.putExtra("title",title);
-                                            startActivity(intent);
-                                            finish();
-                                        }
+                                            }else {
+                                                if(1==ctype){
+                                                    finish();
+                                                    overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+                                                }else {
+                                                    Intent intent=new Intent(WeekExaminationActivity.this,AnswerReportActivity.class);
+                                                    repeatAnswer=getIntent().getStringExtra("repeatAnswer");
+                                                    intent.putExtra("paperId",paperId);
+                                                    intent.putExtra("score",questionsBackbean.getData().getScore()+"");
+                                                    intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
+                                                    //intent.putExtra("type",type);
+                                                    intent.putExtra("userId", NewPreferManager.getId());
+                                                    intent.putExtra("pagetitle",pagetitle);
+                                                    intent.putExtra("time",time);
+                                                    intent.putExtra("mode",mode);
+                                                    intent.putExtra("countDown",countDown);
+                                                    intent.putExtra("createType",createType);
+                                                    intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
+                                                    intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
+                                                    intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
+                                                    intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
+                                                    intent.putExtra("title",title);
+                                                    startActivity(intent);
+                                                    finish();
+                                                }
 
-                                    }
+                                            }
+
+                                        }
+                                    });
+
 
 
                                 }
@@ -623,12 +644,14 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                 }
 
             }else {
+                cmmitdialog.show();
                 OkhttpUtils.postJson(NewPreferManager.getId(), rsule, "academyService/examinationUserPaperQuestions/add", new OkhttpUtils.onCallBack() {
                     @Override
                     public void onFaild(Exception e) {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                cmmitdialog.dismiss();
                                 iscommit=false;
                                 ToastUtils.show("提交失败，请重新提交");
                             }
@@ -639,39 +662,45 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
                     public void onResponse(String json) {
                         iscommit=true;
                         final ComintQuestionsBackbean questionsBackbean=new Gson().fromJson(json,ComintQuestionsBackbean.class);
-                        if("1".equals(questionsBackbean.getCode())){
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                dialog.dismiss();
+                                if("1".equals(questionsBackbean.getCode())){
                                     iscommit=false;
                                     ToastUtils.show(questionsBackbean.getMessage());
-                                }
-                            });
-                        }else {
-                            if(1==ctype){
-                                finish();
-                            }else {
-                                Intent intent=new Intent(WeekExaminationActivity.this,AnswerReportActivity.class);
-                                repeatAnswer=getIntent().getStringExtra("repeatAnswer");
-                                intent.putExtra("paperId",paperId);
-                                intent.putExtra("score",questionsBackbean.getData().getScore()+"");
-                                intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
-                                intent.putExtra("type",type);
-                                intent.putExtra("userId", NewPreferManager.getId());
-                                intent.putExtra("pagetitle",pagetitle);
-                                intent.putExtra("time",time);
-                                intent.putExtra("mode",mode);
-                                intent.putExtra("createType",createType);
-                                intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
-                                intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
-                                intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
-                                intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
-                                intent.putExtra("title",title);
-                                startActivity(intent);
-                                finish();
-                            }
+                                }else {
+                                    if(1==ctype){
+                                        finish();
+                                        overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+                                    }else {
+                                        Intent intent=new Intent(WeekExaminationActivity.this,AnswerReportActivity.class);
+                                        repeatAnswer=getIntent().getStringExtra("repeatAnswer");
+                                        intent.putExtra("paperId",paperId);
+                                        intent.putExtra("score",questionsBackbean.getData().getScore()+"");
+                                        intent.putExtra("pass",questionsBackbean.getData().getPass()+"");
+                                        //intent.putExtra("type",type);
+                                        intent.putExtra("userId", NewPreferManager.getId());
+                                        intent.putExtra("pagetitle",pagetitle);
+                                        intent.putExtra("time",time);
+                                        intent.putExtra("mode",mode);
+                                        intent.putExtra("createType",createType);
+                                        intent.putExtra("countDown",countDown);
 
-                        }
+                                        intent.putExtra("finishStatus",questionsBackbean.getData().getExaminationUserPaperMap().getFinishStatus());
+                                        intent.putExtra("answerTime",questionsBackbean.getData().getExaminationUserPaperMap().getAnswerTime());
+                                        intent.putExtra("repeatAnswer",questionsBackbean.getData().getExaminationUserPaperMap().getRepeatAnswer());
+                                        intent.putExtra("totalNumber",questionsBackbean.getData().getExaminationUserPaperMap().getTotalNumber()+"");
+                                        intent.putExtra("title",title);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+
+                                }
+
+                            }
+                        });
+
 
 
                     }
@@ -694,58 +723,62 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
         if("1".equals(totalNumber)){
             tv_next.setText("提交");
         }
+        if(totalNumber.equals("0")){
 
-        tv_pre.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int currentItem = viewPager.getCurrentItem();
-                currentItem = currentItem-1;
-                if (currentItem>MyApplication.paperBean.getData().size()-1){
-                    currentItem=MyApplication.paperBean.getData().size()-1;
-                }
+        }else {
+            tv_pre.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int currentItem = viewPager.getCurrentItem();
+                    currentItem = currentItem-1;
+                    if (currentItem>MyApplication.paperBean.getData().size()-1){
+                        currentItem=MyApplication.paperBean.getData().size()-1;
+                    }
 
-                if(currentItem==-1){
-
-                }else {
-                    viewPager.setCurrentItem(currentItem,true);
-                    tv_alreadyanswered.setText(currentItem+1+"");
-                    tv_next.setText("下一题");
-                }
-
-            }
-        });
-
-
-        tv_next.setOnClickListener(new View.OnClickListener() {
-
-
-            @Override
-            public void onClick(View v) {
-                int currentItem = viewPager.getCurrentItem();
-                currentItem = currentItem+1;
-                if (currentItem<0){
-                    currentItem=0;
-                }
-
-                //TODO 开始提交数据
-                if(currentItem==MyApplication.paperBean.getData().size()){
-                    commit(0);
-
-                }else {
-                    if(currentItem+1==MyApplication.paperBean.getData().size()){
-                        tv_next.setText("提交");
-                        viewPager.setCurrentItem(currentItem,true);
-                        tv_alreadyanswered.setText(currentItem+1+"");
+                    if(currentItem==-1){
 
                     }else {
                         viewPager.setCurrentItem(currentItem,true);
                         tv_alreadyanswered.setText(currentItem+1+"");
+                        tv_next.setText("下一题");
                     }
+
                 }
+            });
 
 
-            }
-        });
+            tv_next.setOnClickListener(new View.OnClickListener() {
+
+
+                @Override
+                public void onClick(View v) {
+                    int currentItem = viewPager.getCurrentItem();
+                    currentItem = currentItem+1;
+                    if (currentItem<0){
+                        currentItem=0;
+                    }
+
+                    //TODO 开始提交数据
+                    if(currentItem==MyApplication.paperBean.getData().size()){
+                        commit(0);
+
+                    }else {
+                        if(currentItem+1==MyApplication.paperBean.getData().size()){
+                            tv_next.setText("提交");
+                            viewPager.setCurrentItem(currentItem,true);
+                            tv_alreadyanswered.setText(currentItem+1+"");
+
+                        }else {
+                            viewPager.setCurrentItem(currentItem,true);
+                            tv_alreadyanswered.setText(currentItem+1+"");
+                        }
+                    }
+
+
+                }
+            });
+        }
+
 
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -791,7 +824,7 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
     private int curPosition;
     private void initList() {
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
 
         topicAdapter = new TopicAdapter(this,MyApplication.paperBean.getData());
         topicAdapter.notifyDataSetChanged();
@@ -829,7 +862,6 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
             ReadFragment fragment = new ReadFragment();
             Bundle args = new Bundle();
             args.putString("position", String.valueOf(position));
-            args.putString("type",""+type);
             args.putString("mode",""+mode);
             args.putSerializable(ARG_PARAM1, MyApplication.paperBean.getData().get(position));
             fragment.setArguments(args);
@@ -849,45 +881,34 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-
-//            if("1".equals(type)){
-//                //TODO 每周一答
-//                submitDialog.setMessage("退出后数据不会被保存");
 //
-//            }else if("0".equals(type)){
-//                //TODO 每周一答
-//                submitDialog.setMessage("退出后数据不会被保存");
-//
-//            }else {
-//                //TODO
-//                submitDialog.setMessage("退出后数据会被保存");
-//
-//            }
             iscommit=false;
             submitDialog.show();
             submitDialog.setMessage("退出后数据不会被保存");
             submitDialog.messageTv1.setVisibility(View.GONE);
             submitDialog.titleTv.setVisibility(View.VISIBLE);
             submitDialog.messageTv.setVisibility(View.VISIBLE);
-
-            //if(){}
             submitDialog.setYesOnclickListener("确认", new SubmitDialog.onYesOnclickListener() {
                 @Override
                 public void onYesClick() {
-                    if("1".equals(type)){
-                        //TODO 每周一答
-                        finish();
-
-                    }else if("0".equals(type)){
-                        //TODO 智能答题
-                        finish();
-
-                    }else {
-                        //TODO 提交数据
-                        commit(1);
-
-                    }
                     submitDialog.dismiss();
+                    finish();
+                    overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+
+//                    if("1".equals(type)){
+//                        //TODO 每周一答
+//                        finish();
+//                        overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+//
+//                    }else {
+//                        //TODO 智能答题
+//                        finish();
+//                        overridePendingTransition(R.anim.no_slide,R.anim.slide_out_right);
+//
+//
+//                    }
+
+
 
                 }
             });
@@ -904,4 +925,5 @@ public class WeekExaminationActivity extends BaseActivity implements View.OnClic
         }
         return false;
     }
+
 }

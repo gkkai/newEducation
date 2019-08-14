@@ -14,7 +14,7 @@
     <HorizontalScrollView
         android:id="@+id/column_children"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:scrollbars="none"
         android:layout_below="@id/tv_index"
         android:layout_alignParentStart="true">

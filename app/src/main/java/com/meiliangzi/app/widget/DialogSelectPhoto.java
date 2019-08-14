@@ -1,5 +1,6 @@
 package com.meiliangzi.app.widget;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.ContentValues;
@@ -17,6 +18,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -29,10 +31,16 @@ import com.tandong.bottomview.view.BottomView;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
+import java.util.Properties;
 
 
 import static android.app.Activity.RESULT_OK;
@@ -45,6 +53,11 @@ import static android.app.Activity.RESULT_OK;
  * @date 2016/12/3 10:42
  */
 public class DialogSelectPhoto {
+    // 检测MIUI
+    private static final String KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code";
+    private static final String KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name";
+    private static final String KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage";
+    private static String SYS_MIUI="MIUI";
 
     String stupath, shenfenpath;
     private static final int PHOTO_REQUEST_TAKEPHOTO = 11;// 拍照
@@ -60,6 +73,7 @@ public class DialogSelectPhoto {
     private static final int REQUEST_CODE_SETTING = 1002;
     private Context context;
     private  int type;
+    private Uri uritempFile;
 
     public void setType(int type) {
         this.type = type;
@@ -70,6 +84,8 @@ public class DialogSelectPhoto {
     }
 
     public void getSelectPhoto(final Context context) {
+
+
         final BottomView bottomView = new BottomView(context, R.style.BottomViewTheme_Defalut, R.layout.pannel_select_photo);
         this.context = context;
         View view = bottomView.getView();
@@ -201,6 +217,7 @@ public class DialogSelectPhoto {
         bottomView.showBottomView(true);
     }
 
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     public String onActivityResult(Context context, int requestCode, int resultCode, Intent data) {
         if (resultCode != RESULT_OK) {
             ((FragmentActivity) context).setResult(Activity.RESULT_CANCELED);
@@ -274,12 +291,45 @@ public class DialogSelectPhoto {
                     return path;
                 }
                 break;
+            case 5:
+                if(data!=null){
+                    File file = null;
+                    try {
+                        file = new File(new URI(uritempFile.toString()));
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
+                    }
+                    //照片路径
+                    String path = Objects.requireNonNull(file).getPath();
+
+                    return path;
+                }
+                break;
             default:
                 break;
         }
         return null;
     }
 
+
+    public String saveImage(String name, Bitmap bmp) {
+        File appDir = new File(Environment.getExternalStorageDirectory().getPath());
+        if (!appDir.exists()) {
+            appDir.mkdir();
+        }
+        String fileName = name + ".jpg";
+        File file = new File(appDir, fileName);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.flush();
+            fos.close();
+            return file.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /**
      * 保存裁剪之后的图片数据
@@ -291,48 +341,7 @@ public class DialogSelectPhoto {
         if (extras != null) {
             Bitmap photo = extras.getParcelable("data");
 
-           /* if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                String storage = Environment.getExternalStorageDirectory().getPath();
-                File dirFile = new File(storage + "/smallIcon");
-                if (!dirFile.exists()) {
-                    if (!dirFile.mkdirs()) {
-                        Log.e("TAG", "文件夹创建失败");
-                    } else {
-                        Log.e("TAG", "文件夹创建成功");
-                    }
-                }
-                File file = new File(dirFile, System.currentTimeMillis() + ".jpg");
-                // 保存图片
-                FileOutputStream outputStream = null;
-                try {
-                    outputStream = new FileOutputStream(file);
-                    photo.compress(Bitmap.CompressFormat.JPEG, 100, outputStream);
-                    outputStream.flush();
-                    outputStream.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }*/
             path = BitmapUtil.SavePhoto(photo,0);
-			//BitmapCompress.getSmallBitmap(fileName, new File(fileName));
-           /* *//**
-             * 下面注释的方法是将裁剪之后的图片以Base64Coder的字符方式上
-             * 传到服务器，QQ头像上传采用的方法跟这个类似
-             *//*
-
-			ByteArrayOutputStream stream = new ByteArrayOutputStream();
-			photo.compress(Bitmap.CompressFormat.JPEG, 60, stream);
-			byte[] b = stream.toByteArray();
-			// 将图片流以字符串形式存储下来
-
-			tp = new String(Base64Coder.encodeLines(b));
-
-
-			*//*如果下载到的服务器的数据还是以Base64Coder的形式的话，可以用以下方式转换
-			为我们可以用的图片类型就OK啦...吼吼*//*
-			Bitmap dBitmap = BitmapFactory.decodeFile(tp);
-			Drawable drawable = new BitmapDrawable(dBitmap);*/
-
 
         }
         return path;
@@ -351,6 +360,7 @@ public class DialogSelectPhoto {
 		 */
 
 
+
         Intent intent = new Intent("com.android.camera.action.CROP");
         Uri uri=null;
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N){
@@ -358,23 +368,47 @@ public class DialogSelectPhoto {
             uri = FileProvider.getUriForFile(context, "com.meiliangzi.app.FileProvider", new File(path));
 
         }else {
-            uri = Uri.fromFile(new File(path));
+            uri = Uri.parse(path);
         }
-        //intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-        intent.setDataAndType(uri, "image/*");
-        //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
-        intent.putExtra("crop", "true");
+        if(SYS_MIUI.equals(getSystem())){
+            uritempFile = Uri.parse("file://" + "/" + Environment.getExternalStorageDirectory().getPath() + "/" + System.currentTimeMillis() + ".jpg");
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, uritempFile);
+            intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+            intent.putExtra("noFaceDetection", true);
+            intent.putExtra("return-data", false);
+            intent.setDataAndType(uri, "image/*");
+            //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+            intent.putExtra("crop", "true");
 
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+            intent.putExtra("aspectX", 1);
+            intent.putExtra("aspectY", 1);
 //
-        // outputX outputY 是裁剪图片宽高
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
-        intent.putExtra("return-data", true);
-        intent.putExtra("circleCrop", false);
+            // outputX outputY 是裁剪图片宽高
+            intent.putExtra("outputX", 150);
+            intent.putExtra("outputY", 150);
 
-        ( (FragmentActivity) context).startActivityForResult(intent, 4);
+
+
+            ( (FragmentActivity) context).startActivityForResult(intent, 5);
+        }else {
+            intent.putExtra("return-data", true);
+            intent.setDataAndType(uri, "image/*");
+            //下面这个crop=true是设置在开启的Intent中设置显示的VIEW可裁剪
+            intent.putExtra("crop", "true");
+
+            intent.putExtra("aspectX", 1);
+            intent.putExtra("aspectY", 1);
+//
+            // outputX outputY 是裁剪图片宽高
+            intent.putExtra("outputX", 150);
+            intent.putExtra("outputY", 150);
+
+
+
+            ( (FragmentActivity) context).startActivityForResult(intent, 4);
+        }
+
+
     }
     /**
      * 将URI转为图片的路径
@@ -433,5 +467,58 @@ public class DialogSelectPhoto {
     }
 
 
+    public static boolean isMIUI() {
+
+//获取缓存状态
+
+        Properties prop= new Properties();
+        boolean isMIUI;
+        try {
+            prop.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        isMIUI= prop.getProperty(KEY_MIUI_VERSION_CODE, null) != null
+                || prop.getProperty(KEY_MIUI_VERSION_NAME, null) != null
+                || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, null) != null;
+        return isMIUI;
+    }
+    public static String getSystem() {
+        String SYS = "";
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N_MR1) {
+            if (!TextUtils.isEmpty(getSystemProperty(KEY_MIUI_VERSION_CODE, ""))
+                    || !TextUtils.isEmpty(getSystemProperty(KEY_MIUI_VERSION_NAME, ""))
+                    || !TextUtils.isEmpty(getSystemProperty(KEY_MIUI_INTERNAL_STORAGE, ""))) {
+                SYS = SYS_MIUI;//小米
+            }
+            return SYS;
+        } else {
+            try {
+                Properties prop = new Properties();
+                prop.load(new FileInputStream(new File(Environment.getRootDirectory(), "build.prop")));
+                if (prop.getProperty(KEY_MIUI_VERSION_CODE, null) != null
+                        || prop.getProperty(KEY_MIUI_VERSION_NAME, null) != null
+                        || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, null) != null) {
+                    SYS = SYS_MIUI;//小米
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                return SYS;
+            } finally {
+                return SYS;
+            }
+        }
+    }
+
+    private static String getSystemProperty(String key, String defaultValue) {
+        try {
+            Class<?> clz = Class.forName("android.os.SystemProperties");
+            Method get = clz.getMethod("get", String.class, String.class);
+            return (String) get.invoke(clz, key, defaultValue);
+        } catch (Exception e) {
+        }
+        return defaultValue;
+    }
 
 }

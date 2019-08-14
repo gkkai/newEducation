@@ -22,6 +22,7 @@ import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.ui.view.Academy.bean.PaperBean;
 import com.meiliangzi.app.widget.MyGridView;
+import com.meiliangzi.app.widget.XListView;
 import com.zipow.videobox.view.mm.sticker.StickerAdapter;
 
 import java.util.ArrayList;
@@ -35,25 +36,23 @@ import butterknife.BindView;
 public class AnalysisFragment extends BaseFragment {
 
     private String position;
-    @BindView(R.id.gradview)
-    MyGridView gradview;
+
+    @BindView(R.id.listView)
+    XListView listView;
+    TextView tv_type;
+    TextView tv_title;
+    private String mode;
+    private View footView,headerview;
+
     BaseVoteAdapter<PaperBean.Data.QuestionOption> kaoshiAdapter;
 
 
-    @BindView(R.id.tv_title)
-    TextView tv_title;
 
-    @BindView(R.id.tv_type)
-    TextView tv_type;
     List<String> item1=new ArrayList<>();
-    @BindView(R.id.tv_rightkey)
     TextView tv_rightkey;
 
-    @BindView(R.id.tv_stateorr)
     TextView tv_stateorr;
-    @BindView(R.id.tv_stateok)
     TextView tv_stateok;
-    @BindView(R.id.tv_parsingcontent)
     TextView tv_parsingcontent;
 
     public AnalysisFragment() {
@@ -72,27 +71,41 @@ public class AnalysisFragment extends BaseFragment {
 
     @Override
     protected void findWidgets() {
+        footView = getActivity().getLayoutInflater().inflate(R.layout.footer_analysis, null, false);
+        listView.setPullLoadEnable(false);
+        listView.setPullRefreshEnable(false);
+        headerview= getActivity().getLayoutInflater().inflate(R.layout.header_ansewer, null, false);
+        tv_type= (TextView) headerview.findViewById(R.id.tv_type);
+        tv_title=(TextView) headerview.findViewById(R.id.tv_title);
+        tv_rightkey=(TextView) footView.findViewById(R.id.tv_rightkey);
+        tv_stateorr=(TextView) footView.findViewById(R.id.tv_stateorr);
+        tv_stateok=(TextView) footView.findViewById(R.id.tv_stateok);
+        tv_parsingcontent=(TextView)footView.findViewById(R.id.tv_parsingcontent);
+        listView.addFooterView(footView, null, true);
+        listView.addHeaderView(headerview,null,true);
+
+
         inflate = LayoutInflater.from(getContext()).inflate(R.layout.analysis, null);
 //
         tv_title.setText(MyApplication.paperBean.getData().get(Integer.parseInt(position)).getTitle());
         switch (MyApplication.paperBean.getData().get(Integer.parseInt(position)).getType()){
             case "0":
-                tv_type.setText("单选题");
+                tv_type.setText("单选题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "1":
-                tv_type.setText("多选题");
+                tv_type.setText("多选题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "2":
-                tv_type.setText("判断题");
+                tv_type.setText("判断题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
             case "3":
-                tv_type.setText("填空题");
+                tv_type.setText("填空题"+" ("+ MyApplication.paperBean.getData().get(Integer.parseInt(position)).getFraction() +"分) ");
                 break;
         }
 
 
 //
-        kaoshiAdapter=new BaseVoteAdapter<PaperBean.Data.QuestionOption>(getContext(),gradview,R.layout.choice) {
+        kaoshiAdapter=new BaseVoteAdapter<PaperBean.Data.QuestionOption>(getContext(),listView,R.layout.choice) {
             @Override
             public void convert(BaseViewHolder helper, PaperBean.Data.QuestionOption item) {
                 final int  pos= kaoshiAdapter.getPosition();
@@ -139,7 +152,7 @@ public class AnalysisFragment extends BaseFragment {
 
         };
         kaoshiAdapter.setDatas(MyApplication.paperBean.getData().get(Integer.valueOf(position)).getQuestionOption());
-        gradview.setAdapter(kaoshiAdapter);
+        listView.setAdapter(kaoshiAdapter);
         if((MyApplication.paperBean.getData().get(Integer.valueOf(position)).getUserAnswerResult()==null)){
             tv_stateok.setVisibility(View.GONE);
             tv_stateorr.setVisibility(View.VISIBLE);
@@ -153,7 +166,7 @@ public class AnalysisFragment extends BaseFragment {
             }
         }
 
-        gradview.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+        listView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
 

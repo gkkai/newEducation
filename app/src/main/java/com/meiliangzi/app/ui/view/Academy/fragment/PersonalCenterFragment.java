@@ -39,11 +39,12 @@ import com.meiliangzi.app.ui.base.BaseFragment;
 import com.meiliangzi.app.ui.base.BaseViewHolder;
 import com.meiliangzi.app.ui.base.BaseVoteAdapter;
 import com.meiliangzi.app.ui.view.Academy.ErrorBankActivity;
+import com.meiliangzi.app.ui.view.Academy.KaoShiActivity;
 import com.meiliangzi.app.ui.view.Academy.NewPersonCenterActivity;
 import com.meiliangzi.app.ui.view.Academy.StudyResultActivity;
 import com.meiliangzi.app.ui.view.Academy.TotalscoreActivity;
-import com.meiliangzi.app.ui.view.Academy.WeekAnswerActivity;
 import com.meiliangzi.app.ui.view.Academy.bean.UserInfoBean;
+import com.meiliangzi.app.ui.view.DistributionSystem.VehicleManagementActivity;
 import com.meiliangzi.app.ui.view.MapNewActivity;
 import com.meiliangzi.app.ui.view.ZoomActivity;
 import com.meiliangzi.app.ui.view.checkSupervise.CheckSuperviseProjectListActivity;
@@ -85,10 +86,8 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     LinearLayout ll_setting;
     @BindView(R.id.ll_studyscore)
     LinearLayout ll_studyscore;
-    @BindView(R.id.ll_answer)
-    LinearLayout ll_answer;
-    @BindView(R.id.ll_examination)
-    LinearLayout ll_examination;
+    @BindView(R.id.ll_kaoshi)
+    LinearLayout ll_kaoshi;
     @BindView(R.id.ll_learningoutcomes)
     LinearLayout ll_learningoutcomes;
     @BindView(R.id.rl_edit)
@@ -99,8 +98,6 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
 
     @BindView(R.id.tvUserName)
     TextView tvUserName;
-    @BindView(R.id.ll_integral_shopping)
-    LinearLayout ll_integral_shopping;
     @BindView(R.id.ll_studyresult)
     LinearLayout ll_studyresult;
 
@@ -115,6 +112,9 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
 
     @BindView(R.id.tv_totle_code)
     TextView tv_totle_code;
+
+    @BindView(R.id.rl_totle_code)
+    RelativeLayout rl_totle_code;
     public PersonalCenterFragment() {
     }
 
@@ -205,7 +205,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
              mainBeanList.add(mainBean);
 
         }
-        tv_totle_code.setOnClickListener(this);
+        rl_totle_code.setOnClickListener(this);
         voteAdapter.setDatas(mainBeanList);
         gradview.setAdapter(voteAdapter);
         gradview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -214,7 +214,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
                switch (position){
                    case 0:
                        // TODO  知识共享
-                       Intent sendcar=new Intent(getActivity(), SendCarActivity.class);
+                       Intent sendcar=new Intent(getActivity(), VehicleManagementActivity.class);
                        startActivity(sendcar);
                        break;
                    case 1:
@@ -250,11 +250,9 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
         ll_Feedback.setOnClickListener(this);
         ll_setting.setOnClickListener(this);
         ll_studyscore.setOnClickListener(this);
-        ll_answer.setOnClickListener(this);
-        ll_examination.setOnClickListener(this);
+        ll_kaoshi.setOnClickListener(this);
         ll_learningoutcomes.setOnClickListener(this);
         rl_edit.setOnClickListener(this);
-        ll_integral_shopping.setOnClickListener(this);
         ll_studyresult.setOnClickListener(this);
         ll_share.setOnClickListener(this);
         Log.i("Name====++++",(NewPreferManager.getUserName()));
@@ -277,7 +275,7 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-                    case R.id.tv_totle_code:
+                    case R.id.rl_totle_code:
                         //TODO 学习积分
 
                         IntentUtils.startAty(getActivity(), TotalscoreActivity.class);
@@ -287,21 +285,21 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
 
                 IntentUtils.startAty(getActivity(), TotalscoreActivity.class);
                 break;
-                     case R.id.ll_answer:
-                     //TODO 智能答题
-
-                         IntentUtils.startAtyWithSingleParam(getActivity(), WeekAnswerActivity.class,"type","0");
-                        break;
-                   case R.id.ll_examination:
-                            //TODO 每周一答
-                            IntentUtils.startAtyWithSingleParam(getActivity(), WeekAnswerActivity.class,"type","1");
-
-                break;
-            case R.id.ll_integral_shopping:
-                //TODO 积分商城
-                //IntentUtils.startAty(getActivity(), WeekAnswerActivity.class);
+//                     case R.id.ll_answer:
+//                     //TODO 智能答题
+//
+//                         IntentUtils.startAtyWithSingleParam(getActivity(), WeekAnswerActivity.class,"type","0");
+//                        break;
+                   case R.id.ll_kaoshi:
+                            //TODO 考试专栏
+                       IntentUtils.startAty(getActivity(), KaoShiActivity.class);
 
                 break;
+//            case R.id.ll_integral_shopping:
+//                //TODO 积分商城
+//                //IntentUtils.startAty(getActivity(), WeekAnswerActivity.class);
+//
+//                break;
             case R.id.ll_studyresult:
                 //TODO 学习成果
                 IntentUtils.startAty(getActivity(), StudyResultActivity.class);

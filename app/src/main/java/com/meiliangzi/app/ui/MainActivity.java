@@ -32,6 +32,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.google.gson.Gson;
 import com.meiliangzi.app.MyApplication;
 import com.meiliangzi.app.R;
 import com.meiliangzi.app.config.Constant;
@@ -44,7 +45,8 @@ import com.meiliangzi.app.model.bean.VersionUpdate;
 import com.meiliangzi.app.receiver.CounterServer;
 import com.meiliangzi.app.receiver.TagAliasOperatorHelper;
 import com.meiliangzi.app.tools.FileUtil;
-import com.meiliangzi.app.tools.PreferManager;
+import com.meiliangzi.app.tools.NewPreferManager;
+import com.meiliangzi.app.tools.OkhttpUtils;
 import com.meiliangzi.app.tools.ProxyUtils;
 import com.meiliangzi.app.tools.ToastUtils;
 import com.meiliangzi.app.ui.base.BaseActivity;
@@ -54,6 +56,8 @@ import com.meiliangzi.app.ui.fragment.IndexFragment;
 import com.meiliangzi.app.ui.fragment.SheQunFragment;
 import com.meiliangzi.app.ui.fragment.TrainFragment;
 import com.meiliangzi.app.ui.listener.ClearCacheHandler;
+import com.meiliangzi.app.ui.view.Academy.bean.UserInfoBean;
+import com.meiliangzi.app.ui.view.Academy.fragment.AnswerFragment;
 import com.meiliangzi.app.ui.view.Academy.fragment.CIndexTFragment;
 import com.meiliangzi.app.ui.view.Academy.fragment.CVideoFragment;
 import com.meiliangzi.app.ui.view.Academy.fragment.ExaminationFragment;
@@ -80,7 +84,9 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 
 import androidkun.com.versionupdatelibrary.entity.VersionUpdateConfig;
@@ -117,48 +123,35 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
     private String isPhone;
     SQLiteDatabase database = null;
     private ImageCycleView icvView;
-    private AddFridentDialog dialog;
     public  FragmentTabHost mTabHost;
     private int pos;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        //得到当前界面的装饰视图
-//        if(Build.VERSION.SDK_INT >= 21) {
-//            View decorView = getWindow().getDecorView();
-//            //让应用主题内容占用系统状态栏的空间,注意:下面两个参数必须一起使用 stable 牢固的
-//            int option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
-//            decorView.setSystemUiVisibility(option);
-//            //设置状态栏颜色为透明
-//            getWindow().setStatusBarColor(Color.TRANSPARENT);
-//        }
-//        //隐藏标题栏
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.hide();
         super.onCreate(savedInstanceState);
         MyApplication.activity=this;
 
-        dialog=new AddFridentDialog(this);
-        dialog.setMessage("您好，请先绑定手机号码");
-        //dialog.setCancelable(false);
-        dialog.setYesOnclickListener("确定", new AddFridentDialog.onYesOnclickListener() {
-            @Override
-            public void onYesClick() {
-                Intent intent=new Intent(MainActivity.this,ResetPwdActivity.class);
-                isPhone="Yes";
-                intent.putExtra("BindPhone",101);
-                startActivityForResult(intent,1009);
-                dialog.dismiss();
-            }
-        });
-        dialog.setNoOnclickListener("取消", new AddFridentDialog.onNoOnclickListener() {
-            @Override
-            public void onNoClick() {
-
-                dialog.dismiss();
-            }
-        });
+//        dialog=new AddFridentDialog(this);
+//        dialog.setMessage("您好，请先绑定手机号码");
+//        //dialog.setCancelable(false);
+//        dialog.setYesOnclickListener("确定", new AddFridentDialog.onYesOnclickListener() {
+//            @Override
+//            public void onYesClick() {
+//                Intent intent=new Intent(MainActivity.this,ResetPwdActivity.class);
+//                isPhone="Yes";
+//                intent.putExtra("BindPhone",101);
+//                startActivityForResult(intent,1009);
+//                dialog.dismiss();
+//            }
+//        });
+//        dialog.setNoOnclickListener("取消", new AddFridentDialog.onNoOnclickListener() {
+//            @Override
+//            public void onNoClick() {
+//
+//                dialog.dismiss();
+//            }
+//        });
         initWindow();
         if(helper ==null){
             helper = new SQLHelper(this);
@@ -174,6 +167,10 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
 
         }
         super.onCreateView(R.layout.activity_main);
+        pos=getIntent().getIntExtra("pos",10);
+        if(pos!=10){
+            mTabHost.setCurrentTab(pos);
+        }
 
 
     }
@@ -331,6 +328,18 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
 
     protected void getVersion(VersionUpdate versionUpdate) {
         this.versionUpdate = versionUpdate;
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            int REQUEST_CODE_CONTACT = 101;
+//            String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CALL_PHONE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE};
+//            //验证是否许可权限
+//            for (String str : permissions) {
+//                if (checkSelfPermission(str) != PackageManager.PERMISSION_GRANTED) {
+//                    //申请权限
+//                    requestPermissions(permissions, REQUEST_CODE_CONTACT);
+//                    return;
+//                }
+//            }
+
         AndPermission.with(MainActivity.this)
                 .requestCode(REQUEST_CODE_PERMISSION_CAMERA_SD)
                 .permission(Manifest.permission.CALL_PHONE,Manifest.permission.READ_PHONE_STATE,Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -342,7 +351,9 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
                     }
                 })
                 .send();
+
     }
+
 
     private void initTabHost() {
         mTabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
@@ -350,7 +361,7 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
         // TODO 培训
         mTabHost.addTab(mTabHost.newTabSpec(Constant.TRAIN).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_msg, R.string.stringTRAIN)), CVideoFragment.class, new Bundle());
 
-        mTabHost.addTab(mTabHost.newTabSpec(Examination).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_video, R.string.stringExamination)), ExaminationFragment.class, new Bundle());
+        mTabHost.addTab(mTabHost.newTabSpec(Examination).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_video, R.string.stringAnswer)), AnswerFragment.class, new Bundle());
 
         mTabHost.addTab(mTabHost.newTabSpec(Constant.MINE).setIndicator(createIndicatorView(R.drawable.selector_maintab_nav_nime, R.string.stringMine)), PersonalCenterFragment.class, new Bundle());
         mTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
@@ -385,18 +396,6 @@ public class MainActivity extends BaseActivity implements PermissionListener, Vi
         }
     }
 
-//    @Override
-//    public boolean dispatchKeyEvent(KeyEvent event) {
-//        if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
-//            if (event.getAction() == KeyEvent.ACTION_DOWN && event.getRepeatCount() == 0) {
-//
-//                return true;
-//            }
-//            exitApp();
-//        }
-//
-//        return super.dispatchKeyEvent(event);
-//    }
 @Override
 public boolean onKeyDown(int keyCode, KeyEvent event) {
     if (event.getKeyCode() == KeyEvent.KEYCODE_BACK) {
@@ -415,8 +414,8 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
         }
     }
     public void submitTime(){
-        if(!TextUtils.isEmpty(PreferManager.getUserId())){
-            ProxyUtils.getHttpProxyNoDialog().queryuserloginlog(this, PreferManager.getUserId());
+        if(!TextUtils.isEmpty(NewPreferManager.getId())){
+            ProxyUtils.getHttpProxyNoDialog().queryuserloginlog(this, NewPreferManager.getId());
         }
     }
     protected void getStatus(JSONObject jsonObject){
@@ -443,14 +442,14 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
             }
         }else {
             if(requestCode==1009){
-                if("".equals(PreferManager.getUserPhone())){
-                    if(TextUtils.isEmpty(PreferManager.getUserId())){
-
-                    }else {
-                        dialog.show();
-                    }
-
-                }
+//                if("".equals(NewPreferManager.getPhone())){
+//                    if(TextUtils.isEmpty(NewPreferManager.getId())){
+//
+//                    }else {
+//                        dialog.show();
+//                    }
+//
+//                }
             }
 
 
@@ -466,21 +465,18 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
     @Override
     protected void onResume() {
         isForeground = true;
-        pos=getIntent().getIntExtra("pos",10);
-        if(pos!=10){
-            mTabHost.setCurrentTab(pos);
-        }
 
 
-        if(TextUtils.isEmpty(PreferManager.getUserId())){
 
-        }else {
-            if("".equals(PreferManager.getUserPhone())&&MyApplication.ISShow){
-
-
-                dialog.show();
-            }
-        }
+//        if(TextUtils.isEmpty(PreferManager.getUserId())){
+//
+//        }else {
+//            if("".equals(PreferManager.getUserPhone())&&MyApplication.ISShow){
+//
+//
+//                dialog.show();
+//            }
+//        }
 //        if(TextUtils.isEmpty(PreferManager.getUserId()) ){
 //            if(TextUtils.isEmpty(PreferManager.getUserId())){
 //                //TODO 进行登录
@@ -497,6 +493,7 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         super.onResume();
     }
+
 
 
     @Override
@@ -533,11 +530,11 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
             tvConfirm.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    playClearAnimIfNeeded();
+                    //playClearAnimIfNeeded();
                     MyApplication.ISShow=false;
-                    if(dialog.isShowing()){
-                        dialog.dismiss();
-                    }
+//                    if(dialog.isShowing()){
+//                        dialog.dismiss();
+//                    }
                    VersionUpdateConfig.getInstance()//获取配置实例
                             .setContext(MainActivity.this)//设置上下文
                             .setDownLoadURL(versionUpdate.getData().getAndroid_address())//设置文件下载链接
@@ -642,16 +639,16 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
         TagAliasOperatorHelper.TagAliasBean tagAliasBean = new TagAliasOperatorHelper.TagAliasBean();
         tagAliasBean.action = ACTION_DELETE;
         if(true){
-            tagAliasBean.alias = String.valueOf(PreferManager.getUserId());
+            tagAliasBean.alias = String.valueOf(NewPreferManager.getId());
         }else{
 //            tagAliasBean.tags = tags;
         }
         tagAliasBean.isAliasAction = true;
         int sequence = 1;
         TagAliasOperatorHelper.getInstance().handleAction(getApplicationContext(),sequence,tagAliasBean);
-        PreferManager.saveUserId("");
+        NewPreferManager.saveId("");
 
-        PreferManager.saveIsCompleteInfo(false);
+       // NewPreferManager.saveIsCompleteInfo(false);
 
         List<File> cacheFiles = new ArrayList<File>();
         FileUtil.recursionFile(getCacheDir(), cacheFiles);

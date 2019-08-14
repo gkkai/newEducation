@@ -49,39 +49,34 @@
             android:layout_height="20dp"
             android:textColor="#333333"/>
         <TextView
-
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
+            android:layout_marginRight="105dp"
+            android:layout_alignBottom="@id/tv_alreadyanswered"
             android:textSize="12sp"
             android:id="@+id/tv_duration"
             android:text="提示: 若每月月底不按时清空错题库，则扣除5积分"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:textColor="#999999"/>
+            android:layout_height="wrap_content"
+            android:textColor="#999999"
+
+            />
 
 
         <TextView
+            android:gravity="bottom"
             android:id="@+id/tv_alreadyanswered"
             android:text="3"
             android:textColor="#333333"
             android:layout_marginRight="28dp"
-            android:gravity="bottom|right"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
             android:textSize="36sp"
             android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="65dp"
+            android:layout_height="70dp"
             />
 
         <TextView
-            android:gravity="bottom"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="20dp"
-            android:textSize="14sp"
             android:id="@+id/tv_totalNumber"
+            android:textSize="14sp"
+            android:gravity="bottom"
             android:layout_alignParentRight="true"
             android:text="/10"
             android:layout_width="30dp"
